@@ -1,6 +1,17 @@
-### SENSORS ###
+### sensors.yaml
 
-- platform: yr
+##################################
+#### TIME/DATE                ####
+##################################
+
+- platform: time_date
+  display_options:
+      - 'time'
+      - 'date'
+
+##################################
+#### Speed Test               ####
+##################################
 
 - platform: speedtest
   minute: 30
@@ -13,6 +24,10 @@
     - ping
     - download
     - upload
+
+##################################
+#### Weather                  ####
+##################################
 
 - platform: forecast
   api_key: !secret forecast_api_key

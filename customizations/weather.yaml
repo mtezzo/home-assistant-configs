@@ -1,6 +1,8 @@
-### CUSTOMIZE ###
+### customizations/weather.yaml
 
-#weather
+##################################
+#### Weather Sensors          ####
+##################################
 sensor.weather_temperature:
   friendly_name: 'Outdoor Temperature'
 sensor.weather_summary:

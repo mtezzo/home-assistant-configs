@@ -1,4 +1,4 @@
-### Upgrade ###
+### automation/upgrade.yaml
 
 # Send a notification when and update is available
 alias: 'Update Available Notifications'

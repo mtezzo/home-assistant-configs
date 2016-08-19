@@ -1,3 +1,7 @@
+##########################################################
+### Home Assistant Configuration                      ####
+##########################################################
+
 homeassistant:
   # Name of the location where Home Assistant is running
   name: 'Otter Den'
@@ -16,12 +20,15 @@ homeassistant:
   # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/Detroit
 
-  customize: !include customize.yaml
+  # Customizations
+  customize: !include_dir_merge_named customizations/
 
+# HA Website
 http:
   api_password: !secret ha_password
   server_port: 8123
 
+# Nest Learning Thermosat
 nest:
   username: !secret nest_username
   password: !secret nest_password
@@ -29,6 +36,7 @@ nest:
 thermostat:
   platform: nest
 
+# Sonos
 media_player:
   platform: sonos
 
@@ -56,27 +64,6 @@ conversation:
 # Creates port forward mapping in router
 upnp:
 
-device_tracker:
-  - platform: netgear
-    # The IP address of your router
-    host: 192.168.0.1
-    # The username of an user with administrative privileges
-    username: !secret netgear_username
-    # The password for your given admin account.
-    password: !secret netgear_password
-    # The port your router communicates with
-    # port: 5000
-    # If new discovered devices are tracked by default (default: yes)
-    track_new_devices: yes
-    # Seconds between each scan for new devices (default: 12)
-    interval_seconds: 12
-    # Seconds to wait till marking someone as not home after not being seen
-    # (default: 180)
-    consider_home: 3600
-  - platform: locative
-  - platform: owntracks
-    max_gps_accuracy: 200
-
 # Twilio notifications
 notify:
   platform: twilio_sms
@@ -89,6 +76,7 @@ notify:
 ifttt:
   key: !secret ifttt_secret
 
+# MQTT
 mqtt:
   broker: 127.0.0.1
   port: 1883
@@ -96,15 +84,12 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
-switch:
-  platform: wake_on_lan
-  mac_address: "D8:30:62:51:F6:6A"
-  name: "iMac"
-  host: "192.168.0.15"
+##########################################################
+### INCLUDES                                          ####
+##########################################################
 
-############
-# INCLUDES #
-############
+# Automation #
+automation: !include_dir_list automation/
 
 # Zones #
 zone: !include zones.yaml
@@ -112,12 +97,14 @@ zone: !include zones.yaml
 # Sensors #
 sensor: !include sensors.yaml
 
+# Switches #
+switch: !include switches.yaml
+
+# Device Tracker #
+device_tracker: !include device_tracker.yaml
+
 # Shell Commands #
 shell_command: !include shell_commands.yaml
 
-# Automation #
-automation: !include_dir_list automation
-
 # Groups #
-group: !include_dir_named groups
-
+group: !include_dir_merge_named groups/
