@@ -1,0 +1,11 @@
+- name: 'Computer Center'
+  latitude: 42.729344
+  longitude: -84.480287
+  radius: 150
+  icon: mdi:briefcase
+
+- name: 'Main Library'
+  latitude: 42.731173
+  longitude: -84.483579
+  radius: 150
+  icon: mdi:briefcase
