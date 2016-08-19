@@ -17,7 +17,7 @@ weather:
     - sensor.weather_cloud_coverage
     - sensor.weather_nearest_storm_distance
     - sensor.weather_wind_speed
-    - sensor.main_floor_humidity
+#    - sensor.main_floor_humidity
     - sensor.weather_wind_bearing
     - sensor.weather_ozone
     - sensor.weather_pressure

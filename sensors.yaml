@@ -26,6 +26,19 @@
     - upload
 
 ##################################
+#### Nest                     ####
+##################################
+
+- platform: nest
+  monitored_conditions:
+    - 'temperature'
+    - 'target'
+    - 'humidity'
+    - 'mode'
+    - 'co_status'
+    - 'smoke_status'
+
+##################################
 #### Weather                  ####
 ##################################
 

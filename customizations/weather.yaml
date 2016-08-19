@@ -5,16 +5,21 @@
 ##################################
 sensor.weather_temperature:
   friendly_name: 'Outdoor Temperature'
+sensor.living_room_temperature:
+  friendly_name: 'Indoor Temperature'
 sensor.weather_summary:
   icon: mdi:weather-sunny
 sensor.weather_hourly_summary:
   icon: mdi:weather-sunny
 sensor.weather_minutely_summary:
   icon: mdi:weather-sunny
+  friendly_name: 'Current Conditions'
 sensor.weather_daily_summary:
   icon: mdi:weather-sunny
+  friendly_name: 'Forecast'
 sensor.weather_apparent_temperature:
   icon: mdi:thermometer-lines
+  friendly_name: 'Feels Like'
 sensor.weather_precip:
   icon: mdi:weather-pouring
 sensor.weather_precip_probability:
@@ -25,17 +30,24 @@ sensor.weather_precip_intensity:
 sensor.weather_humidity:
   icon: mdi:water-percent
   friendly_name: 'Outdoor Humidity'
+sensor.living_room_humidity:
+  icon: mdi:water-percent
+  friendly_name: 'Indoor Humidity'
 sensor.weather_cloud_coverage:
   icon: mdi:weather-cloudy
+  friendly_name: 'Cloud Coverage'
 sensor.weather_nearest_storm_distance:
   icon: mdi:weather-lightning
+  friendly_name: 'Nearest Storm'
 sensor.weather_wind_speed:
   icon: mdi:weather-windy
-sensor.main_floor_humidity:
-  icon: mdi:water-percent
+  friendly_name: 'Wind Speed'
 sensor.weather_wind_bearing:
    icon: mdi:weather-windy
+   friendly_name: 'Wind Bearing'
 sensor.weather_ozone:
    icon: mdi:cloud
+   friendly_name: 'Ozone Level'
 sensor.weather_pressure:
    icon: mdi:weight
+   friendly_name: 'Barometric Pressure'
