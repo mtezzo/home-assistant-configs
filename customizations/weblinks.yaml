@@ -1,0 +1,12 @@
+### customizations/weblinks.yaml
+
+##################################
+#### Weblinks                 ####
+##################################
+
+weblink.router_admin:
+  icon: mdi:router-wireless
+weblink.switch_admin:
+  icon: mdi:switch
+weblink.wifi_admin:
+  icon: mdi:wifi

@@ -5,6 +5,6 @@
 ##################################
 
 - platform: wake_on_lan
-  mac_address: "D8:30:62:51:F6:6A"
-  name: "iMac"
-  host: "192.168.0.15"
+  mac_address: 'D8:30:62:51:F6:6A'
+  name: iMac
+  host: '192.168.0.15'
