@@ -9,5 +9,6 @@ action:
   - service: notify.twilio
     data:
       message: 'Installing update for Home Assistant.'
-      target: !secret mobile_michael
+      target:
+        - !secret mobile_michael
   - service: shell_command.upgrade
