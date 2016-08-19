@@ -1,7 +1,7 @@
 ### groups/speed_test.yaml
 
 speedtest:
-  name: Speed Test
+  name: 'Speed Test'
   entities:
     - sensor.speedtest_ping
     - sensor.speedtest_download
