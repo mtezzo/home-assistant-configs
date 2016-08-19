@@ -19,3 +19,11 @@ sensor.living_room_co_status:
 sensor.living_room_smoke_status:
   icon: mdi:fire
   friendly_name: 'Smoke Detector'
+
+##################################
+#### Thermostat               ####
+##################################
+
+thermostat.living_room:
+  icon: mdi:nest-thermostat
+  friendly_name: 'Nest'
