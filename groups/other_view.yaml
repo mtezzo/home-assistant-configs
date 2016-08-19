@@ -6,4 +6,4 @@ other_view:
   view: yes
   entities:
     - group.weather
-    - group.speedtest
+    - group.internet

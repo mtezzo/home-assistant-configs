@@ -1,6 +1,6 @@
 ### groups/office.yaml
 
 office:
-  name: 'Living Room'
+  name: 'Office'
   entities:
     - switch.imac

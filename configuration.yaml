@@ -49,6 +49,9 @@ sun:
 # Allows you to issue voice commands from the frontend
 conversation:
 
+# Expose Home Assistant over Bonjour
+zeroconf:
+
 # Creates port forward mapping in router
 upnp:
 
@@ -111,7 +114,10 @@ device_tracker: !include device_tracker.yaml
 shell_command: !include shell_commands.yaml
 
 # Scripts #
-# script: !include scripts.yaml
+script: !include scripts.yaml
 
 # Groups #
 group: !include_dir_merge_named groups/
+
+# Weblinks #
+weblink: !include weblinks.yaml
