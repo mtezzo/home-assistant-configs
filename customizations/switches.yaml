@@ -1,0 +1,9 @@
+### customizations/switches.yaml
+
+##################################
+#### Switches                 ####
+##################################
+
+switch.imac:
+  icon: mdi:desktop-mac
+  friendly_name: 'iMac'
