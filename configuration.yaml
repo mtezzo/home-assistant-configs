@@ -119,5 +119,5 @@ shell_command: !include shell_commands.yaml
 automation: !include_dir_list automation
 
 # Groups #
-group: !include groups.yaml
+group: !include_dir_named groups
 
