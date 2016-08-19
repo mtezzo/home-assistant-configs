@@ -1,0 +1,10 @@
+### groups/speed_test.yaml
+
+default_view:
+  name: Home
+  icon: mdi:home
+  view: yes
+  entities:
+    - group.weather
+    - group.speedtest
+    - group.living_room

@@ -1,0 +1,7 @@
+### groups/living_room.yaml
+
+living_room:
+  name: Living Room
+  entities:
+    - thermostat.living_room
+
