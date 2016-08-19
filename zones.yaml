@@ -4,9 +4,9 @@
 ### Computer Center                                   ####
 ##########################################################
 - name: 'Computer Center'
-  latitude: 42.729344
-  longitude: -84.480287
-  radius: 150
+  latitude: 42.728715829783
+  longitude: -84.480339313158
+  radius: 130
   icon: mdi:briefcase
 
 ##########################################################
@@ -15,5 +15,5 @@
 - name: 'Main Library'
   latitude: 42.731173
   longitude: -84.483579
-  radius: 150
+  radius: 130
   icon: mdi:briefcase
