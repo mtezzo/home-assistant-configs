@@ -32,12 +32,6 @@ thermostat:
 media_player:
   platform: sonos
 
-switch:
-  platform: wake_on_lan
-  mac_address: "D8:30:62:51:F6:6A"
-  name: "iMac"
-  host: "192.168.0.15"
-
 # Discover some devices automatically
 discovery:
 
@@ -101,6 +95,12 @@ mqtt:
   client_id: otteropolis-ha
   username: !secret mqtt_username
   password: !secret mqtt_password
+
+switch:
+  platform: wake_on_lan
+  mac_address: "D8:30:62:51:F6:6A"
+  name: "iMac"
+  host: "192.168.0.15"
 
 ############
 # INCLUDES #
