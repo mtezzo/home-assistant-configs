@@ -5,7 +5,7 @@
 ##################################
 sensor.weather_temperature:
   friendly_name: 'Outdoor Temperature'
-sensor.living_room_temperature:
+thermostat.living_room.current_temperature:
   friendly_name: 'Indoor Temperature'
 sensor.weather_summary:
   icon: mdi:weather-sunny

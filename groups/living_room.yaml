@@ -5,4 +5,4 @@ living_room:
   entities:
     - thermostat.living_room
     - sensor.living_room_humidity
-
+    - media_player.living_room
