@@ -1,0 +1,21 @@
+### customizations/nest.yaml
+
+##################################
+#### Nest Sensors             ####
+##################################
+
+sensor.living_room_temperature:
+  icon: mdi:thermometer
+  friendly_name: 'Indoor Temperature'
+sensor.living_room_humidity:
+  icon: mdi:water-percent
+  friendly_name: 'Indoor Humidity'
+sensor.living_room_mode:
+  icon: mdi:thermometer-lines
+  friendly_name: 'Mode'
+sensor.living_room_co_status:
+  icon: mdi:gas-cylinder
+  friendly_name: 'Carbon Monoxide'
+sensor.living_room_smoke_status:
+  icon: mdi:fire
+  friendly_name: 'Smoke Detector'

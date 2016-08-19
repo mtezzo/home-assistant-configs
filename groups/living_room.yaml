@@ -4,5 +4,8 @@ living_room:
   name: 'Living Room'
   entities:
     - thermostat.living_room
+    - sensor.living_room_mode
     - sensor.living_room_humidity
     - media_player.living_room
+    - sensor.living_room_co_status
+    - sensor.living_room_smoke_status
