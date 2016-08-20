@@ -5,6 +5,7 @@ default_view:
   icon: mdi:home
   view: yes
   entities:
+    - configurator
     - group.living_room
     - group.dining_room
     - group.basement
