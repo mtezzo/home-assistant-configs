@@ -79,6 +79,11 @@ light:
   host: 192.168.0.16
   allow_unreachable: true
 
+# Z-Wave
+zwave:
+  usb_path: /dev/ttyACM0
+  polling_interval: 60000
+
 # Twilio notifications
 notify:
   platform: twilio_sms

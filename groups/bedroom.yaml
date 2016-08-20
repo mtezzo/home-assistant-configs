@@ -5,5 +5,3 @@ bedroom:
   entities:
     - light.dresser_lamp
     - light.nightstand_lamp
-    - light.michaels_closet
-    - light.julias_closet
