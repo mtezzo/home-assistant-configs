@@ -1,0 +1,13 @@
+### groups/room_view.yaml
+
+room_view:
+  name: Rooms
+  icon: mdi:home-modern
+  view: yes
+  entities:
+    - group.bedroom
+    - group.basement
+    - group.closets
+    - group.basement
+    - group.dining_room
+    - group.living_room

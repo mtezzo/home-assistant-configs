@@ -11,3 +11,7 @@ switch.imac:
 switch.raspberry_pi:
   icon: mdi:raspberrypi
   friendly_name: 'Raspberry Pi'
+
+switch.__switch_2:
+  icon: mdi:lightbulb
+  friendly_name: 'Floor Lamp'
