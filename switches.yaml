@@ -8,3 +8,8 @@
   mac_address: 'D8:30:62:51:F6:6A'
   name: iMac
   host: '192.168.0.15'
+
+- platform: wake_on_lan
+  mac_address: 'B8:27:EB:AA:44:B2'
+  name: 'Raspberry Pi'
+  host: '192.168.0.5'

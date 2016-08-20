@@ -7,4 +7,4 @@ default_view:
   entities:
     - group.living_room
     - group.dining_room
-    - group.office
+    - group.computers

@@ -1,0 +1,8 @@
+### groups/computers.yaml
+
+computers:
+  name: 'Computers'
+  entities:
+    - switch.imac
+    - switch.raspberry_pi
+

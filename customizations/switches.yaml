@@ -7,3 +7,7 @@
 switch.imac:
   icon: mdi:desktop-mac
   friendly_name: 'iMac'
+
+switch.raspberry_pi:
+  icon: mdi:raspberrypi
+  friendly_name: 'Raspberry Pi'

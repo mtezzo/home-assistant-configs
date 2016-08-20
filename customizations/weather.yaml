@@ -33,7 +33,7 @@ sensor.weather_precip_intensity:
 sensor.weather_visibility:
   icon: mdi:weather-fog
   friendly_name: 'Visibility'
-sensor.weather_cloud_cover:
+sensor.weather_cloud_coverage:
   icon: mdi:weather-cloudy
   friendly_name: 'Cloud Coverage'
 sensor.weather_wind_speed:

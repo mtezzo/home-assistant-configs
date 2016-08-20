@@ -1,6 +1,0 @@
-### groups/office.yaml
-
-office:
-  name: 'Office'
-  entities:
-    - switch.imac
