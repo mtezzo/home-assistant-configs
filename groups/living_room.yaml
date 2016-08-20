@@ -10,3 +10,4 @@ living_room:
     - sensor.living_room_co_status
     - sensor.living_room_smoke_status
     - light.table_light
+    - switch.__switch_2
