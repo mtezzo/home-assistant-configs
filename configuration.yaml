@@ -78,6 +78,7 @@ light:
   platform: hue
   host: 192.168.0.16
   allow_unreachable: true
+  filename: hue_token.conf
 
 # Twilio notifications
 notify:
