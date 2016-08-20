@@ -11,3 +11,7 @@ known_devices.yaml
 .idea
 .secret
 phue.conf
+OZW_Log.txt
+*.sqlite
+zwcfg_0xf140694a.xml
+zwscene.xml
