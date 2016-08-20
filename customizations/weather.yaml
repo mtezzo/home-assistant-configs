@@ -30,21 +30,18 @@ sensor.weather_precip_probability:
 sensor.weather_precip_intensity:
   icon: mdi:weather-pouring
   friendly_name: 'Rainfall'
+sensor.weather_visibility:
+  icon: mdi:weather-fog
+  friendly_name: 'Visibility'
 sensor.weather_humidity:
   icon: mdi:water-percent
   friendly_name: 'Outdoor Humidity'
 sensor.weather_cloud_coverage:
   icon: mdi:weather-cloudy
   friendly_name: 'Cloud Coverage'
-sensor.weather_nearest_storm_distance:
-  icon: mdi:weather-lightning
-  friendly_name: 'Nearest Storm'
 sensor.weather_wind_speed:
   icon: mdi:weather-windy
   friendly_name: 'Wind Speed'
-sensor.weather_wind_bearing:
-   icon: mdi:weather-windy
-   friendly_name: 'Wind Bearing'
 sensor.weather_ozone:
    icon: mdi:cloud
    friendly_name: 'Ozone Level'
