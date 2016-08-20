@@ -12,4 +12,4 @@ default_view:
     - group.computers
     - group.people
     - group.bedroom
-
+    - group.closets
