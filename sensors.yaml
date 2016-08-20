@@ -46,16 +46,15 @@
   api_key: !secret forecast_api_key
   monitored_conditions:
     - summary
+    - daily_summary
+    - temperature
+    - apparent_temperature
+    - humidity
+    - pressure
     - precip_type
     - precip_intensity
     - precip_probability
-    - temperature
-    - apparent_temperature
-    - dew_point
-    - wind_speed
-    - cloud_cover
-    - humidity
-    - pressure
     - visibility
-    - daily_summary
+    - cloud_cover
+    - wind_speed
   units: us
