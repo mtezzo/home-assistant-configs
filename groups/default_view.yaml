@@ -5,7 +5,7 @@ default_view:
   icon: mdi:home
   view: yes
   entities:
-    - configurator.philips_hue
+    - configurator.configurator
     - group.living_room
     - group.dining_room
     - group.basement

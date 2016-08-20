@@ -6,7 +6,9 @@
 
 group.default_view:
   order: 1
-group.lights_view:
+group.room_view:
   order: 2
-group.other_view:
+group.lights_view:
   order: 3
+group.other_view:
+  order: 4

@@ -11,7 +11,7 @@
   # The password for your given admin account.
   password: !secret netgear_password
   # The port your router communicates with
-  # port: 5000
+  port: 5000
   # If new discovered devices are tracked by default (default: yes)
   track_new_devices: yes
   # Seconds between each scan for new devices (default: 12)
