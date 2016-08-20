@@ -64,13 +64,13 @@
 ##################################
 
 - platform: mqtt
-  state_topic: "owntracks/michael/otteropolis-ha"
+  state_topic: "owntracks/michael/iphone"
   name: "Michael iPhone Battery"
   unit_of_measurement: "%"
   value_template: "{{ value_json.batt }}"
 
 - platform: mqtt
-  state_topic: "owntracks/julia/otteropolis-ha"
+  state_topic: "owntracks/julia/iphone"
   name: "Julia iPhone Battery"
   unit_of_measurement: "%"
   value_template: "{{ value_json.batt }}"
