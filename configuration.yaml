@@ -67,9 +67,11 @@ nest:
 thermostat:
   platform: nest
 
-# Sonos
+# Media Players
 media_player:
-  platform: sonos
+  - platform: sonos
+  - platform: yamaha
+    name: 'Basement Receiver'
 
 # Twilio notifications
 notify:
