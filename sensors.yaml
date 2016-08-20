@@ -74,3 +74,17 @@
   name: "Julia iPhone Battery"
   unit_of_measurement: "%"
   value_template: "{{ value_json.batt }}"
+
+##################################
+#### System                   ####
+##################################
+
+- platform: cpuspeed
+  name: CPU
+
+- platform: systemmonitor
+  resources:
+    - type: memory_free
+    - type: memory_use_percent
+    - type: processor_use
+    - type: since_last_boot

@@ -7,3 +7,5 @@ other_view:
   entities:
     - group.weather
     - group.internet
+    - group.system
+

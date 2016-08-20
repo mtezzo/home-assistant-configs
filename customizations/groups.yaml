@@ -6,5 +6,7 @@
 
 group.default_view:
   order: 1
-group.other_view:
+group.lights_view:
   order: 2
+group.other_view:
+  order: 3
