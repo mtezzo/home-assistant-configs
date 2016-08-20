@@ -81,7 +81,7 @@ light:
 
 # Z-Wave
 zwave:
-  usb_path: /dev/ttyACM0
+  usb_path: /dev/zwave
   polling_interval: 60000
 
 # Twilio notifications
