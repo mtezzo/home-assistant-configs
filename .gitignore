@@ -10,4 +10,4 @@ known_devices.yaml
 .DS_Store
 .idea
 .secret
-hue_token.conf
+phue.config
