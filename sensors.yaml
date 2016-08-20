@@ -57,8 +57,5 @@
     - humidity
     - pressure
     - visibility
-    - ozone
-    - minutely_summary
-    - hourly_summary
     - daily_summary
   units: us
