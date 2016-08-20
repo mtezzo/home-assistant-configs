@@ -58,3 +58,19 @@
     - cloud_cover
     - wind_speed
   units: us
+
+##################################
+#### Battery                  ####
+##################################
+
+- platform: mqtt
+  state_topic: "owntracks/michael/otteropolis-ha"
+  name: "Michael iPhone Battery"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.batt }}"
+
+- platform: mqtt
+  state_topic: "owntracks/julia/otteropolis-ha"
+  name: "Julia iPhone Battery"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.batt }}"
