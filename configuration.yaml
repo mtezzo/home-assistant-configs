@@ -73,6 +73,12 @@ media_player:
   - platform: yamaha
     name: 'Basement Receiver'
 
+# Philips Hue
+light:
+  platform: hue
+  host: 192.168.0.16
+  allow_unreachable: true
+
 # Twilio notifications
 notify:
   platform: twilio_sms
