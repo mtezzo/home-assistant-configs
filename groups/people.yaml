@@ -1,0 +1,7 @@
+### groups/people.yaml
+
+people:
+  name: People
+  entities:
+    - device_tracker.michael_otteropolisha
+    - device_tracker.julia_otteropolisha

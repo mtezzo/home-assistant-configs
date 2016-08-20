@@ -8,3 +8,4 @@ default_view:
     - group.living_room
     - group.dining_room
     - group.computers
+    - group.people

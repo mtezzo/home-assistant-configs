@@ -5,4 +5,3 @@ computers:
   entities:
     - switch.imac
     - switch.raspberry_pi
-
