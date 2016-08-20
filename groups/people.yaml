@@ -2,6 +2,7 @@
 
 people:
   name: People
+  icon: mdi:account-multiple
   entities:
     - device_tracker.michael_otteropolisha
     - device_tracker.julia_otteropolisha
