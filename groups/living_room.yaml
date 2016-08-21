@@ -9,5 +9,4 @@ living_room:
     - sensor.living_room_co_status
     - sensor.living_room_smoke_status
     - light.table_light
-    - switch.aeotec_zw096_smart_switch_6_switch_4
     - media_player.living_room

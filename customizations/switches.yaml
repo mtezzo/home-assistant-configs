@@ -11,7 +11,3 @@ switch.imac:
 switch.raspberry_pi:
   icon: mdi:raspberrypi
   friendly_name: 'Raspberry Pi'
-
-switch.aeotec_zw096_smart_switch_6_switch_4:
-  icon: mdi:lightbulb
-  friendly_name: 'Floor Lamp'
