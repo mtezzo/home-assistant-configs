@@ -13,5 +13,5 @@ known_devices.yaml
 phue.conf
 OZW_Log.txt
 *.sqlite
-zwcfg_0xf140694a.xml
+zwcfg_*
 zwscene.xml
