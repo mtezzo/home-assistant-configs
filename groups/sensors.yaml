@@ -1,4 +1,8 @@
-### groups/multisensor.yaml
+### groups/sensors.yaml
+
+##################################
+#### Multisensor 6            ####
+##################################
 
 multisensor:
   name: 'multisensor'
