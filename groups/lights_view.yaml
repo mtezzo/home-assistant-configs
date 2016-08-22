@@ -1,0 +1,8 @@
+### groups/lights_view.yaml
+
+lights_view:
+  name: Lights
+  icon: mdi:lightbulb-outline
+  view: yes
+  entities:
+    - group.interior_lights

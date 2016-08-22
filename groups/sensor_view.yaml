@@ -1,0 +1,7 @@
+### groups/sensor_view.yaml
+
+sensor_view:
+  name: Sensors
+  icon: mdi:access-point
+  view: yes
+    - group.multisensor
