@@ -1,0 +1,55 @@
+### groups/rooms.yaml
+
+##################################
+#### BASEMENT                 ####
+##################################
+
+basement:
+  name: 'Basement'
+  entities:
+    - media_player.basement_receiver
+
+##################################
+#### MASTER BEDROOM           ####
+##################################
+
+bedroom:
+  name: 'Bedroom'
+  entities:
+    - light.dresser_lamp
+    - light.nightstand_lamp
+
+##################################
+#### CLOSETS                  ####
+##################################
+
+closets:
+  name: 'Closets'
+  entities:
+    - light.michaels_closet
+    - light.julias_closet
+
+##################################
+#### DINING ROOM              ####
+##################################
+
+dining_room:
+  name: 'Dining Room'
+  entities:
+    - media_player.dining_room
+
+##################################
+#### LIVING ROOM              ####
+##################################
+
+living_room:
+  name: 'Living Room'
+  entities:
+    - thermostat.living_room
+    - sensor.living_room_mode
+    - sensor.living_room_humidity
+    - sensor.living_room_co_status
+    - sensor.living_room_smoke_status
+    - light.table_light
+    - switch.__switch_2
+    - media_player.living_room

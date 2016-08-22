@@ -1,5 +1,9 @@
 ### groups/views.yaml
 
+##################################
+#### DEFAULT                  ####
+##################################
+
 default_view:
   name: Home
   icon: mdi:home
@@ -14,7 +18,11 @@ default_view:
     - group.bedroom
     - group.closets
 
-room_view:
+##################################
+#### ROOMS                    ####
+##################################
+
+rooms_view:
   name: Rooms
   icon: mdi:home-modern
   view: yes
@@ -26,6 +34,10 @@ room_view:
     - group.dining_room
     - group.living_room
 
+##################################
+#### LIGHTS                   ####
+##################################
+
 lights_view:
   name: Lights
   icon: mdi:lightbulb-outline
@@ -33,12 +45,20 @@ lights_view:
   entities:
     - group.interior_lights
 
-sensor_view:
+##################################
+#### SENSORS                  ####
+##################################
+
+sensors_view:
   name: Sensors
   icon: mdi:access-point
   view: yes
   entities:
     - group.multisensor
+
+##################################
+#### MISC                     ####
+##################################
 
 other_view:
   name: Other

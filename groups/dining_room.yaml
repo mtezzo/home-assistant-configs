@@ -1,6 +1,0 @@
-### groups/dining_room.yaml
-
-dining_room:
-  name: 'Dining Room'
-  entities:
-    - media_player.dining_room

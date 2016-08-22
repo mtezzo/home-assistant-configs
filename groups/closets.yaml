@@ -1,7 +1,0 @@
-### groups/closets.yaml
-
-closets:
-  name: 'Closets'
-  entities:
-    - light.michaels_closet
-    - light.julias_closet

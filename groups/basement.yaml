@@ -1,6 +1,0 @@
-### groups/basement.yaml
-
-basement:
-  name: 'Basement'
-  entities:
-    - media_player.basement_receiver
