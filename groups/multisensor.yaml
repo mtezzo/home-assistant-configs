@@ -1,0 +1,10 @@
+### groups/multisensor.yaml
+
+multisensor:
+  name: 'multisensor'
+  entities:
+    - sensor.aeotec_zw100_multisensor_6_burglar_3
+    - sensor.aeotec_zw100_multisensor_6_luminance_3
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity_3
+    - sensor.aeotec_zw100_multisensor_6_temperature_3
+    - sensor.aeotec_zw100_multisensor_6_ultraviolet_3
