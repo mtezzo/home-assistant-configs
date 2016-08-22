@@ -4,4 +4,14 @@ sensor_view:
   name: Sensors
   icon: mdi:access-point
   view: yes
+  entities:
     - group.multisensor
+
+other_view:
+  name: Other
+  icon: mdi:web
+  view: yes
+  entities:
+    - group.weather
+    - group.internet
+    - group.system
