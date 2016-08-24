@@ -70,8 +70,8 @@ thermostat:
 # Media Players
 media_player:
   - platform: sonos
-  - platform: yamaha
-    name: 'Basement Receiver'
+#  - platform: yamaha
+#    name: 'Basement Receiver'
 
 # Philips Hue
 light:
