@@ -3,26 +3,25 @@
 ##########################################################
 ### NETGEAR                                           ####
 ##########################################################
-#- platform: netgear
-#  # The IP address of your router
-#  host: 192.168.0.1
-#  # The username of an user with administrative privileges
-#  username: !secret netgear_username
+- platform: netgear
+  # The IP address of your router
+  host: 192.168.0.1
+  # The username of an user with administrative privileges
+  username: !secret netgear_username
   # The password for your given admin account.
-#  password: !secret netgear_password
+  password: !secret netgear_password
   # The port your router communicates with
   # port: 80
   # If new discovered devices are tracked by default (default: yes)
-#  track_new_devices: yes
+  track_new_devices: yes
   # Seconds between each scan for new devices (default: 12)
-#  interval_seconds: 120
+  interval_seconds: 120
   # Seconds to wait till marking someone as not home after not being seen
   # (default: 180)
-#  consider_home: 3600
+  consider_home: 3600
 
 ##########################################################
 ### OWNTRACKS                                         ####
 ##########################################################
 - platform: owntracks
   max_gps_accuracy: 200
-  consider_home: 3600
