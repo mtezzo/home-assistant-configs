@@ -11,3 +11,7 @@ switch.imac:
 switch.raspberry_pi:
   icon: mdi:raspberrypi
   friendly_name: 'Raspberry Pi'
+
+switch.pc:
+  icon: mdi:desktop
+  friendly_name: 'PC'

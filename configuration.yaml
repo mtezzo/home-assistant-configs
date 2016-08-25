@@ -80,10 +80,10 @@ light:
   allow_unreachable: true
 
 # Z-Wave
-# zwave:
-#  usb_path: /dev/zwave
-#  polling_interval: 60000
-#  config_path: /srv/hass/src/open-zwave-control-panel/config
+zwave:
+  usb_path: /dev/zwave
+  polling_interval: 60000
+  config_path: /srv/hass/src/open-zwave-control-panel/config
 
 # Twilio notifications
 notify:
@@ -99,7 +99,7 @@ ifttt:
 
 # MQTT
 mqtt:
-  broker: 192.168.0.5
+  broker: 127.0.0.1
   port: 1883
   client_id: otteropolis-ha
   username: !secret mqtt_username

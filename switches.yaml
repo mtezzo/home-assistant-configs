@@ -13,3 +13,8 @@
   mac_address: 'B8:27:EB:AA:44:B2'
   name: 'Raspberry Pi'
   host: '192.168.0.5'
+
+- platform: wake_on_lan
+  mac_address: '74:DA:38:41:FE:5D'
+  name: 'PC'
+  host: '192.168.0.6'
