@@ -13,5 +13,5 @@ switch.raspberry_pi:
   friendly_name: 'Raspberry Pi'
 
 switch.pc:
-  icon: mdi:desktop
+  icon: mdi:desktop-tower
   friendly_name: 'PC'
