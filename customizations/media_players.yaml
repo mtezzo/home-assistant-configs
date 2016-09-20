@@ -6,7 +6,6 @@
 
 media_player.basement_receiver:
   icon: mdi:speaker
-  homebridge_hidden: true
 media_player.dining_room:
   icon: mdi:speaker
   friendly_name: 'Dining Room Sonos'

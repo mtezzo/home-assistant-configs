@@ -24,6 +24,6 @@ sensor.living_room_smoke_status:
 #### Thermostat               ####
 ##################################
 
-thermostat.living_room:
+climate.living_room:
   icon: mdi:nest-thermostat
   friendly_name: 'Nest'

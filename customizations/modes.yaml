@@ -7,9 +7,12 @@
 switch.home_mode:
   icon: mdi:home
   friendly_name: 'Home Mode'
+  homebridge_hidden: true
 switch.away_mode:
   icon: mdi:car
   friendly_name: 'Away Mode'
+  homebridge_hidden: true
 switch.night_mode:
   icon: mdi:weather-night
   friendly_name: 'Night Mode'
+  homebridge_hidden: true

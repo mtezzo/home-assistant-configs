@@ -16,6 +16,3 @@ switch.pc:
   icon: mdi:desktop-tower
   friendly_name: 'PC'
 
-switch.__switch_4:
-  icon: mdi:lightbulb
-  friendly_name: 'Floor Lamp'
