@@ -64,7 +64,7 @@ nest:
   username: !secret nest_username
   password: !secret nest_password
 
-thermostat:
+climate:
   platform: nest
 
 # Media Players
@@ -80,10 +80,10 @@ light:
   allow_unreachable: true
 
 # Z-Wave
-zwave:
-  usb_path: /dev/zwave
-  polling_interval: 60000
-  config_path: /srv/hass/src/open-zwave-control-panel/config
+#zwave:
+#  usb_path: /dev/zwave
+#  polling_interval: 60000
+#  config_path: /srv/hass/src/open-zwave-control-panel/config
 
 # Twilio notifications
 notify:
@@ -98,12 +98,12 @@ ifttt:
   key: !secret ifttt_secret
 
 # MQTT
-mqtt:
-  broker: 127.0.0.1
-  port: 1883
-  client_id: otteropolis-ha
-  username: !secret mqtt_username
-  password: !secret mqtt_password
+#mqtt:
+#  broker: 127.0.0.1
+#  port: 1883
+#  client_id: otteropolis-ha
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
 
 ##########################################################
 ### INCLUDES                                          ####

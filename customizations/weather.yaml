@@ -4,38 +4,38 @@
 #### Weather Sensors          ####
 ##################################
 
-sensor.weather_summary:
+sensor.forecastio_summary:
   icon: mdi:weather-sunny
   friendly_name: 'Currently'
-sensor.weather_daily_summary:
+sensor.forecastio_daily_summary:
   icon: mdi:weather-sunny
   friendly_name: 'Forecast'
-sensor.weather_temperature:
+sensor.forecastio_temperature:
   friendly_name: 'Outdoor Temperature'
-sensor.weather_apparent_temperature:
+sensor.forecastio_apparent_temperature:
   icon: mdi:thermometer-lines
   friendly_name: 'Feels Like'
-sensor.weather_humidity:
+sensor.forecastio_humidity:
   icon: mdi:water-percent
   friendly_name: 'Outdoor Humidity'
-sensor.weather_pressure:
+sensor.forecastio_pressure:
    icon: mdi:weight
    friendly_name: 'Barometric Pressure'
-sensor.weather_precip:
+sensor.forecastio_precip:
   icon: mdi:weather-pouring
   friendly_name: 'Precipitation'
-sensor.weather_precip_probability:
+sensor.forecastio_precip_probability:
   icon: mdi:weather-pouring
   friendly_name: 'Precipitation Probability'
-sensor.weather_precip_intensity:
+sensor.forecastio_precip_intensity:
   icon: mdi:weather-pouring
   friendly_name: 'Rainfall'
-sensor.weather_visibility:
+sensor.forecastio_visibility:
   icon: mdi:weather-fog
   friendly_name: 'Visibility'
-sensor.weather_cloud_coverage:
+sensor.forecastio_cloud_coverage:
   icon: mdi:weather-cloudy
   friendly_name: 'Cloud Coverage'
-sensor.weather_wind_speed:
+sensor.forecastio_wind_speed:
   icon: mdi:weather-windy
   friendly_name: 'Wind Speed'
