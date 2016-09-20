@@ -5,12 +5,20 @@
 ##################################
 
 light.dresser_lamp:
+  icon: mdi:lamp
   homebridge_hidden: true
 light.nightstand_lamp:
+  icon: mdi:lamp
   homebridge_hidden: true
 light.julias_closet:
   homebridge_hidden: true
 light.michaels_closet:
   homebridge_hidden: true
 light.table_light:
+  homebridge_hidden: true
+light.floor_lamp:
+  icon: mdi:lamp
+  homebridge_hidden: true
+light.dining_room_spot:
+  icon: mdi:spotlight
   homebridge_hidden: true

@@ -116,7 +116,7 @@ ifttt:
 ##########################################################
 
 # Automation #
-# automation: !include_dir_list automation/
+automation: !include_dir_list automation/
 
 # Zones #
 zone: !include zones.yaml
