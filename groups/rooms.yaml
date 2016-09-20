@@ -28,6 +28,7 @@ closets:
   entities:
     - light.michaels_closet
     - light.julias_closet
+    - light.guest_room_storage
 
 ##################################
 #### DINING ROOM              ####
@@ -37,6 +38,7 @@ dining_room:
   name: 'Dining Room'
   entities:
     - media_player.dining_room
+    - light.dining_room_spot
 
 ##################################
 #### LIVING ROOM              ####
@@ -51,5 +53,4 @@ living_room:
     - sensor.living_room_co_status
     - sensor.living_room_smoke_status
     - light.table_light
-    - switch.__switch_4
     - media_player.living_room

@@ -53,7 +53,7 @@ conversation:
 zeroconf:
 
 # Creates port forward mapping in router
-# upnp:
+upnp:
 
 ##########################################################
 ### SERVICES                                          ####
@@ -70,14 +70,20 @@ climate:
 # Media Players
 media_player:
   - platform: sonos
-#  - platform: yamaha
-#    name: 'Basement Receiver'
+  - platform: yamaha
+    name: 'Basement Receiver'
 
 # Philips Hue
 light:
   platform: hue
   host: 192.168.0.16
   allow_unreachable: true
+
+# Vera platform
+vera:
+  vera_controller_url: http://192.168.0.7:3480/
+  exclude: [2, 3, 4, 5, 8, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 37, 41]
+  lights: [15]
 
 # Z-Wave
 #zwave:

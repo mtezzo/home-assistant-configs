@@ -8,5 +8,5 @@ interior_lights:
     - light.michaels_closet
     - light.julias_closet
     - light.table_light
-    - switch.aeotec_zw096_smart_switch_6_switch_2
-
+    - light.dining_room_spot
+    - light.guest_room_storage
