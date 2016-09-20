@@ -1,0 +1,15 @@
+### customizations/modes.yaml
+
+##################################
+#### Vera Modes               ####
+##################################
+
+switch.home_mode:
+  icon: mdi:home
+  friendly_name: 'Home Mode'
+switch.away_mode:
+  icon: mdi:car
+  friendly_name: 'Away Mode'
+switch.night_mode:
+  icon: mdi:weather-night
+  friendly_name: 'Night Mode'
