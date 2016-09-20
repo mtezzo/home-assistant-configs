@@ -70,3 +70,4 @@ other_view:
     - group.weather
     - group.internet
     - group.system
+    - group.modes

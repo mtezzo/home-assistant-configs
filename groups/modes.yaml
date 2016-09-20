@@ -1,0 +1,8 @@
+### groups/modes.yaml
+
+modes:
+  name: Vera Modes
+  entities:
+    - switch.home_mode
+    - switch.away_mode
+    - switch.night_mode
