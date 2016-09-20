@@ -15,8 +15,9 @@ default_view:
     - group.basement
     - group.computers
     - group.people
-    - group.bedroom
-    - group.closets
+    - group.master_bedroom
+    - group.master_closets
+    - group.guest_room
 
 ##################################
 #### ROOMS                    ####

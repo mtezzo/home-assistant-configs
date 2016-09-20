@@ -13,21 +13,29 @@ basement:
 #### MASTER BEDROOM           ####
 ##################################
 
-bedroom:
-  name: 'Bedroom'
+master_bedroom:
+  name: 'Master Bedroom'
   entities:
     - light.dresser_lamp
     - light.nightstand_lamp
 
 ##################################
-#### CLOSETS                  ####
+#### MASTER CLOSETS           ####
 ##################################
 
-closets:
-  name: 'Closets'
+master_closets:
+  name: 'Master Closets'
   entities:
     - light.michaels_closet
     - light.julias_closet
+
+##################################
+#### GUEST BEDROOM            ####
+##################################
+
+guest_room:
+  name: 'Guest Room'
+  entities:
     - light.guest_room_storage
 
 ##################################
