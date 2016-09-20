@@ -28,9 +28,10 @@ rooms_view:
   icon: mdi:home-modern
   view: yes
   entities:
-    - group.bedroom
+    - group.master_bedroom
     - group.basement
-    - group.closets
+    - group.master_closets
+    - group.guest_room
     - group.basement
     - group.dining_room
     - group.living_room
