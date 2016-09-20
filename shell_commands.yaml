@@ -4,4 +4,4 @@
 ### Upgrade Home Assistant                            ####
 ##########################################################
 
-upgrade: 'source /srv/hass/hass_venv/bin/activate && pip3 install --upgrade homeassistant'
+upgrade: 'source /srv/homeassistant/homeassistant_venv/bin/activate && pip3 install --upgrade homeassistant'
