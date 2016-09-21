@@ -1,14 +1,26 @@
 ### groups/sensors.yaml
 
 ##################################
+#### Fibaro Motion            ####
+##################################
+
+living_room_fibaro:
+  name: 'Fibaro Motion Sensor'
+  entities:
+    - switch.living_room_motion
+    - binary_sensor.living_room_motion
+    - sensor.living_room_light
+    - sensor.living_room_temp
+
+##################################
 #### Multisensor 6            ####
 ##################################
 
-multisensor:
-  name: 'multisensor'
+bedroom_multisensor:
+  name: 'Multisensor'
   entities:
-    - sensor.aeotec_zw100_multisensor_6_burglar_3
-    - sensor.aeotec_zw100_multisensor_6_luminance_3
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity_3
-    - sensor.aeotec_zw100_multisensor_6_temperature_3
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet_3
+    - switch.bedroom_motion
+    - binary_sensor.bedroom_motion
+    - sensor.bedroom_light
+    - sensor.bedroom_humidity
+    - sensor.bedroom_temperature

@@ -56,7 +56,8 @@ sensors_view:
   icon: mdi:access-point
   view: yes
   entities:
-    - group.multisensor
+    - group.living_room_fibaro
+    - group.bedroom_multisensor
 
 ##################################
 #### MISC                     ####

@@ -4,18 +4,25 @@
 #### Sensors                  ####
 ##################################
 
-sensor.aeotec_zw100_multisensor_6_burglar_3:
-  friendly_name: Motion
-  icon: mdi:run
-sensor.aeotec_zw100_multisensor_6_luminance_3:
+sensor.living_room_light:
   friendly_name: Luminance
   icon: mdi:lightbulb
-sensor.aeotec_zw100_multisensor_6_relative_humidity_3:
-  friendly_name: Relative Humidity
-  icon: mdi:water-percent
-sensor.aeotec_zw100_multisensor_6_temperature_3:
+sensor.living_room_temp:
   friendly_name: Temperature
   icon: mdi:thermometer
-sensor.aeotec_zw100_multisensor_6_ultraviolet_3:
-  friendly_name: Ultraviolet
-  icon: mdi:weather-sunny
+binary_sensor.living_room_motion:
+  friendly_name: Motion
+  icon: mdi:run
+
+binary_sensor.bedroom_motion:
+  friendly_name: Motion
+  icon: mdi:run
+sensor.bedroom_light:
+  friendly_name: Luminance
+  icon: mdi:lightbulb
+sensor.bedroom_humidity:
+  friendly_name: Relative Humidity
+  icon: mdi:water-percent
+sensor.bedroom_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
