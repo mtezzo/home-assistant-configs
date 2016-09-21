@@ -18,11 +18,11 @@ switch.pc:
 
 switch.living_room_motion:
   icon: mdi:security
-  friendly_name: 'Living Room Motion Armed'
+  friendly_name: 'Living Room Motion Sensor'
 
 switch.bedroom_motion:
   icon: mdi:security
-  friendly_name: 'Bedroom Motion Armed'
+  friendly_name: 'Bedroom Motion Sensor'
 
 switch.julias_closet_door:
   homebridge_hidden: true
