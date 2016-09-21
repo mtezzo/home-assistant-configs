@@ -18,6 +18,7 @@ default_view:
     - group.master_bedroom
     - group.master_closets
     - group.guest_room
+    - group.automations
 
 ##################################
 #### ROOMS                    ####

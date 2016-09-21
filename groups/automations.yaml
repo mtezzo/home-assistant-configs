@@ -1,0 +1,6 @@
+### groups/automations.yaml
+
+automations:
+  name: 'Automations'
+  entities:
+    - automation.update_available_notifications
