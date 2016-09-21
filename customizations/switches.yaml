@@ -16,3 +16,22 @@ switch.pc:
   icon: mdi:desktop-tower
   friendly_name: 'PC'
 
+switch.living_room_motion:
+  icon: mdi:security
+  friendly_name: 'Living Room Motion Armed'
+
+switch.bedroom_motion:
+  icon: mdi:security
+  friendly_name: 'Bedroom Motion Armed'
+
+switch.julias_closet_door:
+  homebridge_hidden: true
+
+switch.michaels_closet_door:
+  homebridge_hidden: true
+
+switch.laundry_room_co:
+  homebridge_hidden: true
+
+switch.laundry_room_smoke:
+  homebridge_hidden: true

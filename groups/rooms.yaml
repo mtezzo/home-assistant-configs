@@ -16,6 +16,7 @@ basement:
 master_bedroom:
   name: 'Master Bedroom'
   entities:
+    - switch.bedroom_motion
     - light.dresser_lamp
     - light.nightstand_lamp
 
@@ -28,6 +29,15 @@ master_closets:
   entities:
     - light.michaels_closet
     - light.julias_closet
+
+##################################
+#### Garage                   ####
+##################################
+
+garage:
+  name: 'Garage'
+  entities:
+    - light.garage_storage_light
 
 ##################################
 #### GUEST BEDROOM            ####
@@ -61,6 +71,7 @@ living_room:
     - sensor.living_room_humidity
     - sensor.living_room_co_status
     - sensor.living_room_smoke_status
+    - switch.living_room_motion
     - light.table_light
     - light.floor_lamp
     - media_player.living_room

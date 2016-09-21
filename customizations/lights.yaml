@@ -22,3 +22,5 @@ light.floor_lamp:
 light.dining_room_spot:
   icon: mdi:spotlight
   homebridge_hidden: true
+light.guest_room_storage:
+  homebridge_hidden: true
