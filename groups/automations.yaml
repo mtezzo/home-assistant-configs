@@ -3,4 +3,4 @@
 automations:
   name: 'Automations'
   entities:
-    - automation.update_available_notifications
+    - automation.auto_update
