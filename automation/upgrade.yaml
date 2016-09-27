@@ -12,3 +12,4 @@ action:
       target:
         - !secret mobile_michael
   - service: shell_command.upgrade
+  - service: homeassistant.restart
