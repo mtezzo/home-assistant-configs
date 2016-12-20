@@ -61,11 +61,9 @@ upnp:
 
 # Nest Learning Thermosat
 nest:
-  username: !secret nest_username
-  password: !secret nest_password
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
-climate:
-  platform: nest
 
 # Media Players
 media_player:

@@ -4,15 +4,15 @@ weather:
   name: Weather
   entities:
     - sun.sun
-    - sensor.forecastio_summary
-    - sensor.forecastio_daily_summary
-    - sensor.forecastio_temperature
-    - sensor.forecastio_apparent_temperature
-    - sensor.forecastio_humidity
-    - sensor.forecastio_pressure
-    - sensor.forecastio_precip
-    - sensor.forecastio_precip_probability
-    - sensor.forecastio_precip_intensity
-    - sensor.forecastio_visibility
-    - sensor.forecastio_cloud_coverage
-    - sensor.forecastio_wind_speed
+    - sensor.darksky_summary
+    - sensor.darksky_daily_summary
+    - sensor.darksky_temperature
+    - sensor.darksky_apparent_temperature
+    - sensor.darksky_humidity
+    - sensor.darksky_pressure
+    - sensor.darksky_precip
+    - sensor.darksky_precip_probability
+    - sensor.darksky_precip_intensity
+    - sensor.darksky_visibility
+    - sensor.darksky_cloud_coverage
+    - sensor.darksky_wind_speed
