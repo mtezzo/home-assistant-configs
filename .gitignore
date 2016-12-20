@@ -15,3 +15,4 @@ OZW_Log.txt
 *.sqlite
 zwcfg_*
 zwscene.xml
+.uuid
