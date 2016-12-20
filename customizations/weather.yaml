@@ -4,38 +4,38 @@
 #### Weather Sensors          ####
 ##################################
 
-sensor.darksky_summary:
+sensor.dark_sky_summary:
   icon: mdi:weather-sunny
   friendly_name: 'Currently'
-sensor.darksky_daily_summary:
+sensor.dark_sky_daily_summary:
   icon: mdi:weather-sunny
   friendly_name: 'Forecast'
-sensor.darksky_temperature:
+sensor.dark_sky_temperature:
   friendly_name: 'Outdoor Temperature'
-sensor.darksky_apparent_temperature:
+sensor.dark_sky_apparent_temperature:
   icon: mdi:thermometer-lines
   friendly_name: 'Feels Like'
-sensor.darksky_humidity:
+sensor.dark_sky_humidity:
   icon: mdi:water-percent
   friendly_name: 'Outdoor Humidity'
-sensor.darksky_pressure:
+sensor.dark_sky_pressure:
    icon: mdi:weight
    friendly_name: 'Barometric Pressure'
-sensor.darksky_precip:
+sensor.dark_sky_precip:
   icon: mdi:weather-pouring
   friendly_name: 'Precipitation'
-sensor.darksky_precip_probability:
+sensor.dark_sky_precip_probability:
   icon: mdi:weather-pouring
   friendly_name: 'Precipitation Probability'
-sensor.darksky_precip_intensity:
+sensor.dark_sky_precip_intensity:
   icon: mdi:weather-pouring
   friendly_name: 'Rainfall'
-sensor.darksky_visibility:
+sensor.dark_sky_visibility:
   icon: mdi:weather-fog
   friendly_name: 'Visibility'
-sensor.darksky_cloud_coverage:
+sensor.dark_sky_cloud_coverage:
   icon: mdi:weather-cloudy
   friendly_name: 'Cloud Coverage'
-sensor.darksky_wind_speed:
+sensor.dark_sky_wind_speed:
   icon: mdi:weather-windy
   friendly_name: 'Wind Speed'
