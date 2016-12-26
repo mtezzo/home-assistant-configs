@@ -26,7 +26,8 @@ homeassistant:
 # HA Website
 http:
   api_password: !secret ha_password
-  server_port: 8123
+  base_url: !secret ha_url
+  # server_port: 8123
 
 # Discover some devices automatically
 discovery:
@@ -64,12 +65,16 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
-
 # Media Players
 media_player:
   - platform: sonos
+  - platform: roku
   - platform: yamaha
     name: 'Basement Receiver'
+  - platform: webostv
+    host: 192.168.0.9
+    mac: 14:C9:13:7C:BB:FE
+    name: 'Living Room TV'
 
 # Philips Hue
 light:
