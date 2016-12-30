@@ -56,6 +56,12 @@ zeroconf:
 # Creates port forward mapping in router
 upnp:
 
+# Service to open URLs in the default browser
+browser:
+
+# Simulates key presses on the host machine
+keyboard:
+
 ##########################################################
 ### SERVICES                                          ####
 ##########################################################
@@ -96,11 +102,11 @@ vera:
 
 # Twilio notifications
 notify:
-  platform: twilio_sms
-  name: twilio
-  account_sid: !secret twilio_sid
-  auth_token: !secret twilio_token
-  from_number: !secret twilio_number
+  - name: twilio
+    platform: twilio_sms
+    account_sid: !secret twilio_sid
+    auth_token: !secret twilio_token
+    from_number: !secret twilio_number
 
 # IFTTT
 ifttt:
