@@ -1,19 +1,32 @@
-### zones.yaml
 
-##########################################################
-### Computer Center                                   ####
-##########################################################
-- name: 'Computer Center'
-  latitude: 42.72903210174284
-  longitude: -84.48011308908463
-  radius: 130
-  icon: mdi:briefcase
+#https://home-assistant.io/components/zone/
 
-##########################################################
-### Library                                           ####
-##########################################################
-- name: 'Main Library'
-  latitude: 42.730860487784575
-  longitude: -84.48310106992722
-  radius: 130
-  icon: mdi:briefcase
+####################################################
+#                                                  #
+#                    ZONES                         #
+#                                                  #
+####################################################
+
+	- name: 'Computer Center'
+	  latitude: !secret michael_work_latitude
+	  longitude: !secret michael_work_longitude
+	  radius: 150
+	  icon: mdi:briefcase
+
+	- name: 'Main Library'
+	  latitude: !secret julia_work_latitude
+	  longitude: !secret julia_work_longitude
+	  radius: 150
+	  icon: mdi:briefcase
+
+  - name: Home
+    latitude: !secret latitude
+    longitude: !secret longitude
+    radius: 200
+		icon: mdi:home
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################

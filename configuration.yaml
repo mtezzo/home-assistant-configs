@@ -4,7 +4,7 @@
 
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: 'Otter Den'
+  name: 'Otteropolis'
 
   # Location required to calculate the time the sun rises and sets
   latitude: !secret ha_latitude
@@ -18,87 +18,82 @@ homeassistant:
 
   # Pick yours from here:
   # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: America/Detroit
+  time_zone: !secret ha_time_zone
 
   # Customizations
-  customize: !include_dir_merge_named customizations/
+  customize: !include_dir_merge_named customize/
+
+# Enables the frontend
+frontend:
+  javascript_version: latest
+
+# Enables configuration UI
+config:
 
 # HA Website
 http:
+	# Secrets are defined in the file secrets.yaml
   api_password: !secret ha_password
   base_url: !secret ha_url
-  # server_port: 8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
 
 # Discover some devices automatically
 discovery:
 
-# Enables the frontend
-frontend:
+# Allows you to issue voice commands from the frontend
+conversation:
 
 # Enables support for tracking state changes over time.
 history:
 
-# Checks for available updates
-updater:
-
 # View all events in a logbook
 logbook:
+
+# Enables a map showing the location of tracked devices
+map:
 
 # Track the sun
 sun:
 
-# Allows you to issue voice commands from the frontend
-conversation:
+# Text to speech
+tts:
+  - platform: google
 
-# Expose Home Assistant over Bonjour
-zeroconf:
+# Cloud
+cloud:
 
-# Creates port forward mapping in router
-upnp:
-
-# Service to open URLs in the default browser
-browser:
-
-# Simulates key presses on the host machine
-keyboard:
+# iOS
+ios:
 
 ##########################################################
 ### SERVICES                                          ####
 ##########################################################
 
 # Nest Learning Thermosat
+# https://home-assistant.io/components/nest/
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
 # Media Players
 media_player:
-  - platform: sonos
-  - platform: roku
-  - platform: yamaha
-    name: 'Basement Receiver'
   - platform: webostv
     host: 192.168.0.9
     mac: 14:C9:13:7C:BB:FE
     name: 'Living Room TV'
 
-# Philips Hue
-light:
-  platform: hue
-  host: 192.168.0.16
-  allow_unreachable: true
-
-# Vera platform
-vera:
-  vera_controller_url: http://192.168.0.7:3480/
-  exclude: [2, 3, 4, 5, 8, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 37, 41]
-  lights: [15]
-
 # Z-Wave
-#zwave:
-#  usb_path: /dev/zwave
-#  polling_interval: 60000
-#  config_path: /srv/hass/src/open-zwave-control-panel/config
+zwave:
+  usb_path: /dev/ttyACM0
+	network_key: !secret zwave_network_key
 
 # Twilio notifications
 notify:
@@ -112,41 +107,36 @@ notify:
 ifttt:
   key: !secret ifttt_secret
 
-# MQTT
-#mqtt:
-#  broker: 127.0.0.1
-#  port: 1883
-#  client_id: otteropolis-ha
-#  username: !secret mqtt_username
-#  password: !secret mqtt_password
-
-##########################################################
-### INCLUDES                                          ####
-##########################################################
+####################################################
+### INCLUDES                                    ####
+####################################################
 
 # Automation #
 automation: !include_dir_list automation/
 
-# Zones #
-zone: !include zones.yaml
-
-# Sensors #
-sensor: !include sensors.yaml
-
-# Switches #
-switch: !include switches.yaml
-
-# Device Tracker #
-device_tracker: !include device_tracker.yaml
-
-# Shell Commands #
-shell_command: !include shell_commands.yaml
+# Groups #
+group: !include_dir_merge_named groups/
 
 # Scripts #
 script: !include scripts.yaml
 
-# Groups #
-group: !include_dir_merge_named groups/
+# Sensors #
+sensor: !include sensors.yaml
+
+# Shell Commands #
+shell_command: !include shell_commands.yaml
+
+# Switches #
+switch: !include switches.yaml
 
 # Weblinks #
 weblink: !include weblinks.yaml
+
+# Zones #
+zone: !include zones.yaml
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################

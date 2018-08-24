@@ -1,74 +1,113 @@
 ### sensors.yaml
+#https://home-assistant.io/components/sensor/
 
 ##################################
 #### TIME/DATE                ####
 ##################################
 
-- platform: time_date
-  display_options:
-      - 'time'
-      - 'date'
+	- platform: time_date
+	  display_options:
+	      - 'time'
+	      - 'date'
 
 ##################################
 #### Speed Test               ####
 ##################################
 
-- platform: speedtest
-  minute: 30
-  hour:
-    - 0
-    - 6
-    - 12
-    - 18
-  monitored_conditions:
-    - ping
-    - download
-    - upload
+	- platform: speedtest
+	  minute: 30
+	  hour:
+	    - 0
+	    - 6
+	    - 12
+	    - 18
+	  monitored_conditions:
+	    - ping
+	    - download
+	    - upload
 
 ##################################
 #### Nest                     ####
 ##################################
 
-- platform: nest
-  monitored_conditions:
-    - 'temperature'
-    - 'target'
-    - 'humidity'
-    - 'operation_mode'
-    - 'co_status'
-    - 'smoke_status'
+#https://home-assistant.io/components/sensor.nest/
+	- platform: nest
+	  monitored_conditions:
+	    - temperature
+	    - target
+	    - humidity
+	    - operation_mode
+			- hvac_state
+	    - co_status
+	    - smoke_status
 
 ##################################
 #### Weather                  ####
 ##################################
 
-- platform: darksky
-  api_key: !secret darksky_api_key
-  monitored_conditions:
-    - summary
-    - daily_summary
-    - temperature
-    - apparent_temperature
-    - humidity
-    - pressure
-    - precip_type
-    - precip_intensity
-    - precip_probability
-    - visibility
-    - cloud_cover
-    - wind_speed
-  units: us
+	- platform: darksky
+	  api_key: !secret darksky_api_key
+	  monitored_conditions:
+	    - summary
+	    - daily_summary
+	    - temperature
+	    - apparent_temperature
+	    - humidity
+	    - pressure
+	    - precip_type
+	    - precip_intensity
+	    - precip_probability
+	    - visibility
+	    - cloud_cover
+	    - wind_speed
+	  units: us
 
 ##################################
 #### System                   ####
 ##################################
 
-- platform: cpuspeed
-  name: CPU
+#https://home-assistant.io/components/sensor.cpuspeed/
+	- platform: cpuspeed
+	  name: CPU
 
-- platform: systemmonitor
-  resources:
-    - type: memory_free
-    - type: memory_use_percent
-    - type: processor_use
-    - type: since_last_boot
+#https://home-assistant.io/components/sensor.systemmonitor/
+	- platform: systemmonitor
+	  resources:
+	    - type: disk_use_percent
+	      arg: /home
+	    - type: memory_use_percent
+	    - type: processor_use
+	    - type: since_last_boot
+	    - type: network_in
+	      arg: eth0
+	    - type: network_out
+	      arg: eth0
+	    - type: load_1m
+	    - type: load_5m
+	    - type: load_15m
+
+#https://www.home-assistant.io/components/sensor.version/
+  - platform: version
+    name: Installed Version
+
+#https://home-assistant.io/components/sensor.synologydsm/
+  - platform: synologydsm
+    host: 192.168.0.7
+    port: 5000
+    ssl: 'false'
+    username: !secret nas_username
+    password: !secret nas_password
+    monitored_conditions:
+      - cpu_total_load
+      - memory_real_usage
+      - network_up
+      - network_down
+      - disk_smart_status
+      - disk_temp
+      - volume_percentage_used
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################
