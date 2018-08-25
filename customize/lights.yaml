@@ -1,23 +1,38 @@
 ### customizations/lights.yaml
 
-##################################
-#### Lights                   ####
-##################################
+####################################################
+#### Lights                                     ####
+####################################################
 
 light.dresser_lamp:
   homebridge_hidden: true
+
 light.nightstand_lamp:
   homebridge_hidden: true
+
 light.julias_closet:
   homebridge_hidden: true
+
 light.michaels_closet:
   homebridge_hidden: true
+
 light.table_light:
+  icon: mdi:lava-lamp
   homebridge_hidden: true
+
 light.floor_lamp:
+  icon: mdi:floor-lamp
   homebridge_hidden: true
+
 light.dining_room_spot:
-  icon: mdi:spotlight
+  icon: mdi:track-light
   homebridge_hidden: true
+
 light.guest_room_storage:
   homebridge_hidden: true
+
+####################################################
+#                                                  #
+#           END OF CONFIGURATION FILE              #
+#                                                  #
+####################################################

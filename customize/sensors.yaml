@@ -1,45 +1,21 @@
 ### customizations/sensors.yaml
 
-##################################
-#### Sensors                  ####
-##################################
+####################################################
+#### Sensors                                    ####
+####################################################
 
-binary_sensor.living_room_thermostat_fan:
-  friendly_name: HVAC Fan
-  icon: mdi:fan
-
-sensor.living_room_away_mode:
-  friendly_name: Away Mode
-  icon: mdi:home-outline
-
-sensor.living_room_thermostat_humidity:
-  friendly_name: Nest Humidity
-  icon: mdi:water-percent
-
-sensor.living_room_thermostat_hvac_state:
-  friendly_name: Nest Status
-  icon: mdi:thermostat
-
-sensor.living_room_thermostat_operation_mode:
-  friendly_name: Nest Mode Setting
-  icon: mdi:information-outline
-
-sensor.living_room_thermostat_target:
-  friendly_name: Nest Target Temperature
-  icon: mdi:thermometer-lines
-
-sensor.living_room_thermostat_temperature:
-  friendly_name: Nest Temperature
-  icon: mdi:thermometer-lines
-
-
+sensor.since_last_boot_templated:
+  friendly_name: Last Boot
+  icon: mdi:clock
 
 sensor.living_room_light:
   friendly_name: Luminance
   icon: mdi:lightbulb
+
 sensor.living_room_temp:
   friendly_name: Temperature
   icon: mdi:thermometer
+
 binary_sensor.living_room_motion:
   friendly_name: Motion
   icon: mdi:run
@@ -47,12 +23,88 @@ binary_sensor.living_room_motion:
 binary_sensor.bedroom_motion:
   friendly_name: Motion
   icon: mdi:run
+
 sensor.bedroom_light:
   friendly_name: Luminance
   icon: mdi:lightbulb
+
 sensor.bedroom_humidity:
   friendly_name: Relative Humidity
   icon: mdi:water-percent
+
 sensor.bedroom_temperature:
   friendly_name: Temperature
   icon: mdi:thermometer
+
+####################################################
+#### SpeedTest.net Sensors                     ####
+####################################################
+
+sensor.speedtest_ping:
+  friendly_name: Ping
+  icon: mdi:pulse
+
+sensor.speedtest_download:
+  friendly_name: Download
+  icon: mdi:download
+
+sensor.speedtest_upload:
+  friendly_name: Upload
+  icon: mdi:upload
+
+####################################################
+#### Weather Sensors                            ####
+####################################################
+
+sensor.dark_sky_summary:
+  icon: mdi:weather-sunny
+  friendly_name: 'Currently'
+
+sensor.dark_sky_daily_summary:
+  icon: mdi:weather-sunny
+  friendly_name: 'Forecast'
+
+sensor.dark_sky_temperature:
+  friendly_name: 'Outdoor Temperature'
+
+sensor.dark_sky_apparent_temperature:
+  icon: mdi:thermometer-lines
+  friendly_name: 'Feels Like'
+
+sensor.dark_sky_humidity:
+  icon: mdi:water-percent
+  friendly_name: 'Outdoor Humidity'
+
+sensor.dark_sky_pressure:
+   icon: mdi:weight
+   friendly_name: 'Barometric Pressure'
+
+sensor.dark_sky_precip:
+  icon: mdi:weather-pouring
+  friendly_name: 'Precipitation'
+
+sensor.dark_sky_precip_probability:
+  icon: mdi:weather-pouring
+  friendly_name: 'Precipitation Probability'
+
+sensor.dark_sky_precip_intensity:
+  icon: mdi:weather-pouring
+  friendly_name: 'Rainfall'
+
+sensor.dark_sky_visibility:
+  icon: mdi:weather-fog
+  friendly_name: 'Visibility'
+
+sensor.dark_sky_cloud_coverage:
+  icon: mdi:weather-cloudy
+  friendly_name: 'Cloud Coverage'
+
+sensor.dark_sky_wind_speed:
+  icon: mdi:weather-windy
+  friendly_name: 'Wind Speed'
+
+####################################################
+#                                                  #
+#           END OF CONFIGURATION FILE              #
+#                                                  #
+####################################################
