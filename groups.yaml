@@ -62,6 +62,13 @@ people:
 #### SENSORS                                    ####
 ####################################################
 
+humidors:
+  name: 'Humidors'
+  entities:
+    - sensor.wirelesstag_diamond_crown_humidor_humidity
+    - sensor.wirelesstag_diamond_crown_humidor_light
+    - sensor.wirelesstag_diamond_crown_humidor_temperature
+
 ha:
   name: 'HA Server Monitor'
   entities:
@@ -197,6 +204,7 @@ default_view:
     - group.guest_room
     - group.automations
     - group.climate
+    - group.humidors
 
 rooms_view:
   name: Rooms
