@@ -5,5 +5,7 @@
     entity_id: light.dresser_lamp
     to: 'on'
   action:
-    service: homeassistant.turn_on
+    service: light.turn_on
     entity_id: light.nightstand_lamp
+    brightness_pct: 70
+    color_name: red
