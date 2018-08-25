@@ -14,10 +14,9 @@ excluded_entities:
   - weblink.router
 
 views:
-  - title: Home
-views:
   - title: Header
     icon: mdi:car
+    panel: true
     cards:
       - type: vertical-stack
         cards:
