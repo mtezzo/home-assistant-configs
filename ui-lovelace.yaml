@@ -88,6 +88,14 @@ views:
           - light.dining_room_spot
           - light.guest_room_storage
 
+      - type: picture-glance
+        title: Living room
+        entities:
+          - light.table_light
+          - climate.living_room
+          - light.floor_lamp
+        image: /local/living_room.jpg
+
         # The markdown card will render markdown text.
       - type: markdown
         title: Lovelace
