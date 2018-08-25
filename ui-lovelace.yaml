@@ -14,6 +14,55 @@ excluded_entities:
   - weblink.router
 
 views:
+  - title: Home
+views:
+  - title: Header
+    icon: mdi:car
+    panel: true
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: glance
+            entities:
+              - sun.sun
+              - sensor.season
+              - sensor.dark_sky_cloud_coverage
+              - sensor.dark_sky_humidity
+              - sensor.dark_sky_precip_probability
+              - sensor.dark_sky_temperature
+              - sensor.yr_cloudiness
+              - sensor.yr_humidity
+              - sensor.yr_precipitation
+              - sensor.yr_temperature
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    title: Column 1
+                    entities:
+                      - sensor.date
+                      - sensor.time
+                      - sensor.startup_time
+                      - sensor.uptime
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    title: Column 2
+                    entities:
+                      - sensor.current_version
+                      - sensor.github_version
+                      - sensor.pypi_version
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    title: Column 3
+                    show_header_toggle: false
+                    entities:
+                      - script.manual_config_backup
+                      - script.reload_config
+                      - script.update_hass
+                      - script.restart_hass
     # View tab title.
   - icon: mdi:home-assistant
     # Title of the view. Will be used as the tooltip for tab icon

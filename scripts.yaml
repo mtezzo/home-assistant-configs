@@ -6,6 +6,21 @@
 #                                                  #
 ####################################################
 
+manual_config_backup:
+  sequence:
+    - service: shell_command.manual_config_backup
+
+reload_config:
+  sequence:
+    - service: homeassistant.reload_core_config
+
+restart_hass:
+  sequence:
+    - service: homeassistant.restart
+
+update_hass:
+  sequence:
+    - service: shell_command.update_hass
 
 ####################################################
 #                                                  #
