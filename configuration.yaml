@@ -130,7 +130,7 @@ ifttt:
 #automation: !include_dir_list automation/
 
 # Groups #
-group: !include_dir_merge_named groups/
+group: !include groups.yaml
 
 # Scripts #
 script: !include scripts.yaml

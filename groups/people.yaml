@@ -1,9 +1,0 @@
-### groups/people.yaml
-
-people:
-  name: People
-  entities:
-    - device_tracker.michaels_iphone
-    - sensor.michaels_iphone_battery_level
-    - device_tracker.julias_iphone
-    - sensor.julias_iphone_battery_level

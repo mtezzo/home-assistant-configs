@@ -1,0 +1,255 @@
+### groups.yaml
+# https://www.home-assistant.io/components/group/
+
+####################################################
+#### AUTOMATIONS                                ####
+####################################################
+
+####################################################
+#### COMPUTERS                                  ####
+####################################################
+
+computers:
+  name: 'Computers'
+  entities:
+    - switch.imac
+    - switch.raspberry_pi
+    - switch.pc
+
+####################################################
+#### LIGHTS.                                    ####
+####################################################
+
+interior_lights:
+  name: 'Interior Lights'
+  entities:
+    - light.dresser_lamp
+    - light.nightstand_lamp
+    - light.michaels_closet_2
+    - light.julias_closet_2
+    - light.table_light
+    - light.dining_room_spot
+    - light.guest_room_storage
+
+####################################################
+#### INTERNET                                   ####
+####################################################
+
+internet:
+  name: 'Internet'
+  entities:
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - weblink.router_admin
+    - weblink.switch_admin
+    - weblink.wifi_admin
+
+####################################################
+#### PEOPLE                                     ####
+####################################################
+
+people:
+  name: People
+  entities:
+    - device_tracker.michaels_iphone
+    - sensor.michaels_iphone_battery_level
+    - device_tracker.julias_iphone
+    - sensor.julias_iphone_battery_level
+
+
+####################################################
+#### SENSORS                                    ####
+####################################################
+
+ha:
+  name: 'HA Server Monitor'
+  entities:
+    - sensor.processor_use
+    - sensor.disk_use_percent_home
+    - sensor.memory_use_percent
+    - sensor.since_last_boot_templated
+    - sensor.network_in_eth0
+    - sensor.network_out_eth0
+    - sensor.cpu
+    - sensor.cpu_temperature
+    - sensor.load_1m
+    - sensor.load_5m
+    - sensor.load_15m
+
+ha_version:
+  name: 'HA Version Info'
+  entities:
+    - sensor.installed_version
+    - sensor.latest_version
+
+climate:
+  name: 'Climate'
+  entities:
+    - climate.living_room
+    - binary_sensor.living_room_thermostat_fan
+    - sensor.living_room_thermostat_hvac_state
+    - sensor.living_room_thermostat_operation_mode
+    - sensor.living_room_thermostat_target
+    - sensor.living_room_away_mode
+    - sensor.living_room_thermostat_time_to_target
+
+synology_nas:
+  name: 'Mnemosyne'
+  control: hidden
+  entities:
+    - switch.nas_switch
+    - sensor.cpu_load_total
+    - sensor.memory_usage_real
+    - sensor.network_down
+    - sensor.network_up
+    - sensor.status_smart_sda
+    - sensor.status_smart_sdb
+    - sensor.temperature_sda
+    - sensor.temperature_sdb
+    - sensor.volume_used_volume_2
+
+weather:
+  name: Weather
+  entities:
+    - sun.sun
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_pressure
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_precip_intensity
+    - sensor.dark_sky_visibility
+    - sensor.dark_sky_cloud_coverage
+    - sensor.dark_sky_wind_speed
+
+####################################################
+#### ROOMS                                      ####
+####################################################
+basement:
+  name: 'Basement'
+  entities:
+    - media_player.basement_receiver
+
+master_bedroom:
+  name: 'Master Bedroom'
+  entities:
+    - switch.bedroom_motion
+    - light.dresser_lamp
+    - light.nightstand_lamp
+
+master_closets:
+  name: 'Master Closets'
+  entities:
+    - light.michaels_closet_2
+    - light.julias_closet_2
+
+garage:
+  name: 'Garage'
+  entities:
+    - light.garage_storage_light
+
+guest_room:
+  name: 'Guest Room'
+  entities:
+    - light.guest_closet_light
+    - light.guest_room_storage
+
+dining_room:
+  name: 'Dining Room'
+  entities:
+    - media_player.dining_room
+    - light.dining_room_spot
+
+living_room:
+  name: 'Living Room'
+  entities:
+    - climate.living_room
+    - sensor.living_room_thermostat_operation_mode
+    - sensor.living_room_thermostat_humidity
+    - sensor.living_room_nest_protect_co_status
+    - sensor.living_room_nest_protect_smoke_status
+    - switch.living_room_motion
+    - light.table_light
+    - media_player.living_room_2
+    - media_player.living_room_tv
+
+####################################################
+#### VIEWS                                      ####
+####################################################
+
+default_view:
+  name: Home
+  icon: mdi:home
+  view: yes
+  entities:
+    - configurator.configure
+    - group.living_room
+    - group.dining_room
+    - group.basement
+    - group.computers
+    - group.people
+    - group.master_bedroom
+    - group.master_closets
+    - group.guest_room
+    - group.automations
+    - group.climate
+
+rooms_view:
+  name: Rooms
+  icon: mdi:home-modern
+  view: yes
+  entities:
+    - group.master_bedroom
+    - group.basement
+    - group.master_closets
+    - group.guest_room
+    - group.basement
+    - group.dining_room
+    - group.living_room
+
+lights_view:
+  name: Lights
+  icon: mdi:lightbulb-outline
+  view: yes
+  entities:
+    - group.interior_lights
+
+sensors_view:
+  name: Sensors
+  icon: mdi:access-point
+  view: yes
+  entities:
+    - group.living_room_fibaro
+    - group.bedroom_multisensor
+
+other_view:
+  name: Other
+  icon: mdi:web
+  view: yes
+  entities:
+    - group.weather
+    - group.internet
+    - group.modes
+    - group.zwave
+    - group.ha
+    - group.ha_version
+    - group.synology_nas
+
+####################################################
+#                    ZWAVE                         #
+####################################################
+
+zwave:
+  name: Z-Wave
+  entities:
+    - zwave.aeotec_zw090_zstick_gen5_us
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################
