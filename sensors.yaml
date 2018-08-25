@@ -120,7 +120,10 @@
   - platform: template
     sensors:
       wirelesstag_diamond_crown_humidor_battery_level_template:
-        value_template: '{{ states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level }}'
+        value_template: '{{ states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level|float * 100 }}'
+        unit_of_measurement: '%'
+      wirelesstag_laundry_room_battery_level_template:
+        value_template: '{{ states.sensor.wirelesstag_laundry_room_humidity.attributes.battery_level|float * 100 }}'
         unit_of_measurement: '%'
       since_last_boot_templated:
         value_template: >-
