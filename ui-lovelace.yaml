@@ -51,6 +51,9 @@ views:
           - light.dining_room_spot
         camera_image: camera.dining_room
 
+      - type: plant-status
+        entity: plant.diamond_crown
+
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant
     # Title of the view. Will be used as the tooltip for tab icon

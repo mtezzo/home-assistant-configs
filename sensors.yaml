@@ -119,6 +119,9 @@
 # https://home-assistant.io/components/sensor.template/
   - platform: template
     sensors:
+      wirelesstag_diamond_crown_humidor_battery_level_template:
+        value_template: '{{ states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level }}'
+        unit_of_measurement: '%'
       since_last_boot_templated:
         value_template: >-
           {%- set slb = states.sensor.since_last_boot.state.split(' ') -%}

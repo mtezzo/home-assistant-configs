@@ -151,6 +151,9 @@ wirelesstag:
 # Groups #
 group: !include groups.yaml
 
+# Plants #
+plant: !include plants.yaml
+
 # Scripts #
 script: !include scripts.yaml
 

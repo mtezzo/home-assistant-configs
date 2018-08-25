@@ -1,0 +1,23 @@
+### plants.yaml
+# https://www.home-assistant.io/components/plant/
+
+####################################################
+### PLANT                                       ####
+####################################################
+
+diamond_crown:
+  sensors:
+    moisture: sensor.wirelesstag_diamond_crown_humidor_humidity
+    battery: sensor.wirelesstag_diamond_crown_humidor_battery_level_template
+    temperature: sensor.wirelesstag_diamond_crown_humidor_temperature
+    brightness: sensor.wirelesstag_diamond_crown_humidor_light
+  min_moisture: 55
+  max_moisture: 75
+  min_temperature: 50
+  max_temperature: 85
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################
