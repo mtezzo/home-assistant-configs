@@ -43,7 +43,7 @@ views:
         entity: light.julias_closet
 
       - type: weather-forecast
-        entity: weather.darksky
+        entity: weather.dark_sky
 
 
     # Specify a tab icon if you want the view tab to be an icon.

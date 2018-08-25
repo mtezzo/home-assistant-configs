@@ -92,6 +92,13 @@ ios:
 ### SERVICES                                    ####
 ####################################################
 
+camera:
+  - platform: synology
+    url: !secret nas_url
+    username: !secret nas_username
+    password: !secret nas_password
+    verify_ssl: true
+
 # Nest Learning Thermosat
 # https://home-assistant.io/components/nest/
 nest:
