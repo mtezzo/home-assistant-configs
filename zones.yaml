@@ -8,14 +8,14 @@
 ####################################################
 
   - name: 'Computer Center'
-    latitude: !secret michael_work_latitude
-    longitude: !secret michael_work_longitude
+    latitude: !secret computer_center_latitude
+    longitude: !secret computer_center_longitude
     radius: 150
     icon: mdi:laptop
 
   - name: 'Main Library'
-    latitude: !secret julia_work_latitude
-    longitude: !secret julia_work_longitude
+    latitude: !secret main_library_latitude
+    longitude: !secret main_library_longitude
     radius: 150
     icon: mdi:library
 
