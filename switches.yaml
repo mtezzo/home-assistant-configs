@@ -1,20 +1,30 @@
 ### switches.yaml
+# https://home-assistant.io/components/switch/
 
-##################################
-#### Computers                ####
-##################################
+####################################################
+#                                                  #
+#             WAKE ON LAN SWITCHES                 #
+#                                                  #
+####################################################
 
-- platform: wake_on_lan
-  mac_address: 'D8:30:62:51:F6:6A'
-  name: iMac
-  host: '192.168.0.15'
+# https://home-assistant.io/components/switch.wake_on_lan/
+  - platform: wake_on_lan
+    mac_address: 'D8:30:62:51:F6:6A'
+    name: iMac
+    host: '192.168.0.15'
 
-- platform: wake_on_lan
-  mac_address: 'B8:27:EB:AA:44:B2'
-  name: 'Raspberry Pi'
-  host: '192.168.0.5'
+  - platform: wake_on_lan
+    mac_address: 'B8:27:EB:AA:44:B2'
+    name: 'Raspberry Pi'
+    host: '192.168.0.5'
 
-- platform: wake_on_lan
-  mac_address: '74:DA:38:41:FE:5D'
-  name: 'PC'
-  host: '192.168.0.6'
+  - platform: wake_on_lan
+    mac_address: '74:DA:38:41:FE:5D'
+    name: 'PC'
+    host: '192.168.0.6'
+
+####################################################
+#                                                  #
+#           END OF CONFIGURATION FILE              #
+#                                                  #
+####################################################

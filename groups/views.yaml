@@ -19,6 +19,7 @@ default_view:
     - group.master_closets
     - group.guest_room
     - group.automations
+    - group.climate
 
 ##################################
 #### ROOMS                    ####
@@ -60,9 +61,9 @@ sensors_view:
     - group.living_room_fibaro
     - group.bedroom_multisensor
 
-##################################
-#### MISC                     ####
-##################################
+####################################################
+#                    MISC                          #
+####################################################
 
 other_view:
   name: Other
@@ -73,3 +74,13 @@ other_view:
     - group.internet
     - group.system
     - group.modes
+    - group.zwave
+    - group.ha
+    - group.ha_version
+    - group.synology_nas
+
+####################################################
+#                                                  #
+#           END OF CONFIGURATION FILE              #
+#                                                  #
+####################################################

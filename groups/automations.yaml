@@ -1,6 +1,2 @@
 ### groups/automations.yaml
 
-automations:
-  name: 'Automations'
-  entities:
-    - automation.auto_update

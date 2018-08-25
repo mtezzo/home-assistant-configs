@@ -1,5 +1,5 @@
-
-#https://home-assistant.io/components/zone/
+### zones.yaml
+# https://home-assistant.io/components/zone/
 
 ####################################################
 #                                                  #
@@ -7,24 +7,24 @@
 #                                                  #
 ####################################################
 
-	- name: 'Computer Center'
-	  latitude: !secret michael_work_latitude
-	  longitude: !secret michael_work_longitude
-	  radius: 150
-	  icon: mdi:briefcase
+  - name: 'Computer Center'
+    latitude: !secret michael_work_latitude
+    longitude: !secret michael_work_longitude
+    radius: 150
+    icon: mdi:briefcase
 
-	- name: 'Main Library'
-	  latitude: !secret julia_work_latitude
-	  longitude: !secret julia_work_longitude
-	  radius: 150
-	  icon: mdi:briefcase
+  - name: 'Main Library'
+    latitude: !secret julia_work_latitude
+    longitude: !secret julia_work_longitude
+    radius: 150
+    icon: mdi:briefcase
 
   - name: Home
-    latitude: !secret latitude
-    longitude: !secret longitude
+    latitude: !secret ha_latitude
+    longitude: !secret ha_longitude
     radius: 200
-		icon: mdi:home
-
+    icon: mdi:home
+    
 ####################################################
 #                                                  #
 #            END OF CONFIGURATION FILE             #

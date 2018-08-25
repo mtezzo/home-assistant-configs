@@ -3,7 +3,7 @@
 people:
   name: People
   entities:
-    - device_tracker.michael_iphone
-    - sensor.michael_iphone_battery
-    - device_tracker.julia_iphone
-    - sensor.julia_iphone_battery
+    - device_tracker.michaels_iphone
+    - sensor.michael_ezzos_iphone_battery_level
+    - device_tracker.julias_iphone
+    - sensor.julias_iphone_battery_level

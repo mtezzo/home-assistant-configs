@@ -5,11 +5,8 @@ interior_lights:
   entities:
     - light.dresser_lamp
     - light.nightstand_lamp
-    - light.michaels_closet
-    - light.julias_closet
+    - light.michaels_closet_2
+    - light.julias_closet_2
     - light.table_light
-    - light.floor_lamp
     - light.dining_room_spot
-    - light.guest_closet_light
     - light.guest_room_storage
-    - light.garage_storage_light

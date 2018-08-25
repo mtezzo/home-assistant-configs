@@ -1,18 +1,17 @@
-### weblinks.yaml
-
 ####################################################
 #                                                  #
-#                   WEBLINKS                       #
+#                     ZONES                        #
 #                                                  #
 ####################################################
 
-entities:
-  - name: Router Admin
-    url: http://192.168.0.1
-  - name: Switch Admin
-    url: http://192.168.0.2
-  - name: Wifi Admin
-    url: http://192.168.0.3
+zone.michael_work:
+  track_ios: true
+
+zone.julia_work:
+  track_ios: true
+
+zone.home:
+  track_ios: true
 
 ####################################################
 #                                                  #

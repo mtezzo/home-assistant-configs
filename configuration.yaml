@@ -32,9 +32,24 @@ config:
 
 # HA Website
 http:
-	# Secrets are defined in the file secrets.yaml
+  # Secrets are defined in the file secrets.yaml
   api_password: !secret ha_password
   base_url: !secret ha_url
+  cors_allowed_origins:
+      - https://google.com
+      - https://www.home-assistant.io
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+    - 192.168.0.7
+  trusted_networks:
+    - 127.0.0.1
+    - ::1
+    - 192.168.0.0/24
+    - fd00::/8
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -73,9 +88,9 @@ cloud:
 # iOS
 ios:
 
-##########################################################
-### SERVICES                                          ####
-##########################################################
+####################################################
+### SERVICES                                    ####
+####################################################
 
 # Nest Learning Thermosat
 # https://home-assistant.io/components/nest/
@@ -91,19 +106,19 @@ media_player:
     name: 'Living Room TV'
 
 # Z-Wave
+# https://www.home-assistant.io/components/zwave/
 zwave:
   usb_path: /dev/ttyACM0
-	network_key: !secret zwave_network_key
+  network_key: !secret zwave_network_key
 
 # Twilio notifications
-notify:
-  - name: twilio
-    platform: twilio_sms
-    account_sid: !secret twilio_sid
-    auth_token: !secret twilio_token
-    from_number: !secret twilio_number
+# https://www.home-assistant.io/components/twilio/
+twilio:
+  account_sid: !secret twilio_sid
+  auth_token: !secret twilio_token
 
 # IFTTT
+# https://www.home-assistant.io/components/ifttt/
 ifttt:
   key: !secret ifttt_secret
 
@@ -112,7 +127,7 @@ ifttt:
 ####################################################
 
 # Automation #
-automation: !include_dir_list automation/
+#automation: !include_dir_list automation/
 
 # Groups #
 group: !include_dir_merge_named groups/

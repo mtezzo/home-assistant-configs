@@ -27,17 +27,17 @@ master_bedroom:
 master_closets:
   name: 'Master Closets'
   entities:
-    - light.michaels_closet
-    - light.julias_closet
+    - light.michaels_closet_2
+    - light.julias_closet_2
 
 ##################################
 #### Garage                   ####
 ##################################
 
-garage:
-  name: 'Garage'
-  entities:
-    - light.garage_storage_light
+#garage:
+#  name: 'Garage'
+#  entities:
+#    - light.garage_storage_light
 
 ##################################
 #### GUEST BEDROOM            ####
@@ -46,7 +46,7 @@ garage:
 guest_room:
   name: 'Guest Room'
   entities:
-    - light.guest_closet_light
+#    - light.guest_closet_light
     - light.guest_room_storage
 
 ##################################
@@ -71,8 +71,7 @@ living_room:
     - sensor.living_room_thermostat_humidity
     - sensor.living_room_nest_protect_co_status
     - sensor.living_room_nest_protect_smoke_status
-    - switch.living_room_motion
+#    - switch.living_room_motion
     - light.table_light
-    - light.floor_lamp
-    - media_player.living_room
-    - media_player.living_room_tv
+    - media_player.living_room_2
+#    - media_player.living_room_tv
