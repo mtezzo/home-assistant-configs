@@ -11,13 +11,13 @@
     latitude: !secret michael_work_latitude
     longitude: !secret michael_work_longitude
     radius: 150
-    icon: mdi:briefcase
+    icon: mdi:laptop
 
   - name: 'Main Library'
     latitude: !secret julia_work_latitude
     longitude: !secret julia_work_longitude
     radius: 150
-    icon: mdi:briefcase
+    icon: mdi:library
 
   - name: Home
     latitude: !secret ha_latitude

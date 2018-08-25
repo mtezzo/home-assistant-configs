@@ -1,29 +1,56 @@
 ### customizations/nest.yaml
 
-##################################
-#### Nest Sensors             ####
-##################################
+####################################################
+#### Nest Sensors                               ####
+####################################################
 
-sensor.living_room_thermostat_temperature:
-  icon: mdi:thermometer
-  friendly_name: 'Indoor Temperature'
-sensor.living_room_thermostat_humidity:
-  icon: mdi:water-percent
-  friendly_name: 'Indoor Humidity'
-sensor.living_room_thermostat_operation_mode:
-  icon: mdi:thermometer-lines
-  friendly_name: 'Mode'
 sensor.living_room_nest_protect_co_status:
   icon: mdi:gas-cylinder
   friendly_name: 'Carbon Monoxide'
+
 sensor.living_room_nest_protect_smoke_status:
   icon: mdi:fire
   friendly_name: 'Smoke Detector'
 
-##################################
-#### Thermostat               ####
-##################################
+binary_sensor.living_room_thermostat_fan:
+  friendly_name: HVAC Fan
+  icon: mdi:fan
+
+sensor.living_room_away_mode:
+  friendly_name: Away Mode
+  icon: mdi:home-outline
+
+sensor.living_room_thermostat_humidity:
+  friendly_name: Nest Humidity
+  icon: mdi:water-percent
+
+sensor.living_room_thermostat_hvac_state:
+  friendly_name: Nest Status
+  icon: mdi:thermostat
+
+sensor.living_room_thermostat_operation_mode:
+  friendly_name: Nest Mode Setting
+  icon: mdi:information-outline
+
+sensor.living_room_thermostat_target:
+  friendly_name: Nest Target Temperature
+  icon: mdi:thermometer-lines
+
+sensor.living_room_thermostat_temperature:
+  friendly_name: Nest Temperature
+  icon: mdi:thermometer-lines
+
+
+####################################################
+#### Thermostat                                 ####
+####################################################
 
 climate.living_room:
   icon: mdi:nest-thermostat
   friendly_name: 'Nest'
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################

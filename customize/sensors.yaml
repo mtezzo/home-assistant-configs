@@ -4,6 +4,36 @@
 #### Sensors                  ####
 ##################################
 
+binary_sensor.living_room_thermostat_fan:
+  friendly_name: HVAC Fan
+  icon: mdi:fan
+
+sensor.living_room_away_mode:
+  friendly_name: Away Mode
+  icon: mdi:home-outline
+
+sensor.living_room_thermostat_humidity:
+  friendly_name: Nest Humidity
+  icon: mdi:water-percent
+
+sensor.living_room_thermostat_hvac_state:
+  friendly_name: Nest Status
+  icon: mdi:thermostat
+
+sensor.living_room_thermostat_operation_mode:
+  friendly_name: Nest Mode Setting
+  icon: mdi:information-outline
+
+sensor.living_room_thermostat_target:
+  friendly_name: Nest Target Temperature
+  icon: mdi:thermometer-lines
+
+sensor.living_room_thermostat_temperature:
+  friendly_name: Nest Temperature
+  icon: mdi:thermometer-lines
+
+
+
 sensor.living_room_light:
   friendly_name: Luminance
   icon: mdi:lightbulb

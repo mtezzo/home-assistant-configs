@@ -4,10 +4,10 @@
 #                                                  #
 ####################################################
 
-zone.michael_work:
+zone.computer_center:
   track_ios: true
 
-zone.julia_work:
+zone.main_library:
   track_ios: true
 
 zone.home:
