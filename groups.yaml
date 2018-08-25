@@ -68,6 +68,9 @@ humidors:
     - sensor.wirelesstag_diamond_crown_humidor_humidity
     - sensor.wirelesstag_diamond_crown_humidor_light
     - sensor.wirelesstag_diamond_crown_humidor_temperature
+    - sensor.wirelesstag_laundry_room_humidity
+    - sensor.wirelesstag_laundry_room_light
+    - sensor.wirelesstag_laundry_room_temperature
 
 ha:
   name: 'HA Server Monitor'
