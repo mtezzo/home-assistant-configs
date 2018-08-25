@@ -7,7 +7,7 @@
 ####################################################
 
 manual_config_backup: >-
-    $HASS_CONFIG/shell_scripts/backup_config.sh
+  $HASS_CONFIG/shell_scripts/backup_config.sh
 
 update_hass: >-
   /usr/bin/nohup $HASS_CONFIG/shell_scripts/update_hass.sh </dev/null >> $HASS_CONFIG/shell_scripts/update_hass.log 2>&1 &

@@ -5,22 +5,18 @@
 ####################################################
 
 script.manual_config_backup:
-  <<: *customize
   friendly_name: "Manual Config Backup"
   icon: mdi:backup-restore
 
 script.reload_config:
-  <<: *customize
   friendly_name: "Reload Configuration"
   icon: mdi:refresh
 
 script.restart_hass:
-  <<: *customize
   friendly_name: "Restart Home Assistant"
   icon: mdi:power
 
 script.update_hass:
-  <<: *customize
   friendly_name: "Update Home Assistant"
   icon: mdi:upload
 
