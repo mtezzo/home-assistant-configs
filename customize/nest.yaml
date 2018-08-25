@@ -40,13 +40,12 @@ sensor.living_room_thermostat_temperature:
   friendly_name: Nest Temperature
   icon: mdi:thermometer-lines
 
-
 ####################################################
 #### Thermostat                                 ####
 ####################################################
 
 climate.living_room:
-  icon: mdi:nest-thermostat
+  icon: mdi:thermostat
   friendly_name: 'Nest'
 
 ####################################################

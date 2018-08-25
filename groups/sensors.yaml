@@ -11,11 +11,10 @@ ha:
     - sensor.disk_use_percent_home
     - sensor.memory_use_percent
     - sensor.since_last_boot_templated
-    - sensor.network_in_eno1
-    - sensor.network_out_eno1
+    - sensor.network_in_eth0
+    - sensor.network_out_eth0
     - sensor.cpu
     - sensor.cpu_temperature
-    - sensor.lets_encrypt_expiration
     - sensor.load_1m
     - sensor.load_5m
     - sensor.load_15m

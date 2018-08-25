@@ -72,7 +72,6 @@ other_view:
   entities:
     - group.weather
     - group.internet
-    - group.system
     - group.modes
     - group.zwave
     - group.ha
