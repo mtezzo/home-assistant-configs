@@ -122,6 +122,12 @@ twilio:
 ifttt:
   key: !secret ifttt_secret
 
+# WirelessTag
+# https://www.home-assistant.io/components/wirelesstag/
+wirelesstag:
+  username: !secret wirelesstag_username
+  password: !secret wirelesstag_password
+
 ####################################################
 ### INCLUDES                                    ####
 ####################################################

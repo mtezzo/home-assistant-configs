@@ -1,36 +1,21 @@
 ### sensors.yaml
 # https://home-assistant.io/components/sensor/
 
-##################################
-#### TIME/DATE                ####
-##################################
+####################################################
+### TIME/DATE                                   ####
+####################################################
 
+# https://www.home-assistant.io/components/sensor.time_date/
   - platform: time_date
     display_options:
       - 'time'
       - 'date'
 
-##################################
-#### Speed Test               ####
-##################################
+####################################################
+### CLIMATE                                     ####
+####################################################
 
-  - platform: speedtest
-    minute: 30
-    hour:
-      - 0
-      - 6
-      - 12
-      - 18
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-
-##################################
-#### Nest                     ####
-##################################
-
-#https://home-assistant.io/components/sensor.nest/
+# https://home-assistant.io/components/sensor.nest/
   - platform: nest
     monitored_conditions:
       - temperature
@@ -41,9 +26,16 @@
       - co_status
       - smoke_status
 
-##################################
-#### Weather                  ####
-##################################
+# https://www.home-assistant.io/components/sensor.wirelesstag/
+  - platform: wirelesstag
+    monitored_conditions:
+      - temperature
+      - humidity
+      - light
+
+####################################################
+### WEATHER                                     ####
+####################################################
 
 # https://www.home-assistant.io/components/sensor.darksky/
   - platform: darksky
@@ -91,6 +83,19 @@
   - platform: version
     name: Installed Version
 
+# https://www.home-assistant.io/components/sensor.speedtest/
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
 # https://home-assistant.io/components/sensor.synologydsm/
   - platform: synologydsm
     host: 192.168.0.7
@@ -108,9 +113,7 @@
       - volume_percentage_used
 
 ####################################################
-#                                                  #
-#                      TEMPLATE                    #
-#                                                  #
+### TEMPLATE.                                   ####
 ####################################################
 
 # https://home-assistant.io/components/sensor.template/
