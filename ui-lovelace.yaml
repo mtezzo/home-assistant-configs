@@ -45,9 +45,11 @@ views:
       - type: weather-forecast
         entity: weather.dark_sky
 
-      - type: picture-entity
-        entity: light.dining_room_spot
-        camera-image: camera.dining_room
+      - type: picture-glance
+        title: Dining Room
+        entities:
+          - light.dining_room_spot
+        camera_image: camera.dining_room
 
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant
