@@ -146,7 +146,7 @@ wirelesstag:
 ####################################################
 
 # Automation #
-#automation: !include_dir_list automation/
+automation: !include_dir_list automation/
 
 # Groups #
 group: !include groups.yaml

@@ -1,0 +1,9 @@
+# Follow master bedroom lamps when guest automation active
+- alias: "Turn On Nighstand Lamp When Dresser Lamp Turns On"
+  trigger:
+    platform: state
+    entity_id: light.dresser_lamp
+    to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.nightstand_lamp
