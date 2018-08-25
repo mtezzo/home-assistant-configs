@@ -53,11 +53,9 @@ views:
 
       - type: plant-status
         entity: plant.diamond_crown
-        name: Diamond Crown Humidor
 
       - type: plant-status
         entity: plant.laundry_room
-        name: Desktop Humidor
 
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant

@@ -13,6 +13,7 @@ diamond_crown:
     brightness: sensor.wirelesstag_diamond_crown_humidor_light
   min_moisture: 55
   max_moisture: 75
+  min_battery: 10
   min_temperature: 50
   max_temperature: 85
 
@@ -24,6 +25,7 @@ laundry_room:
     brightness: sensor.wirelesstag_laundry_room_light
   min_moisture: 55
   max_moisture: 75
+  min_battery: 10
   min_temperature: 50
   max_temperature: 85
 
