@@ -97,7 +97,7 @@ camera:
     url: !secret nas_url
     username: !secret nas_username
     password: !secret nas_password
-    verify_ssl: true
+    timeout: 15
 
 # Nest Learning Thermosat
 # https://home-assistant.io/components/nest/
