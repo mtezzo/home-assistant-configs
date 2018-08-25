@@ -15,9 +15,11 @@ excluded_entities:
 
 views:
     # View tab title.
-  - title: Example
+  - icon: mdi:home-assistant
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Home
     # Optional unique id for direct access /lovelace/${id}
-    id: example
+    id: home
     # Optional background (overwrites the global background).
     background: radial-gradient(crimson, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.
@@ -51,29 +53,40 @@ views:
           - light.dining_room_spot
         camera_image: camera.dining_room
 
-      - type: plant-status
-        entity: plant.diamond_crown
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.diamond_crown
 
-      - type: plant-status
-        entity: plant.laundry_room
+          - type: plant-status
+            entity: plant.laundry_room
 
     # Specify a tab icon if you want the view tab to be an icon.
-  - icon: mdi:home-assistant
+  - icon: mdi:lightbulb-outline
     # Title of the view. Will be used as the tooltip for tab icon
-    title: Second view
+    title: Devices
+    # Optional unique id for direct access /lovelace/${id}
+    id: devices
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
     cards:
         # Entities card will take a list of entities and show their state.
       - type: entities
         # Title of the entities card
-        title: Example
+        title: Lights
         # The entities here will be shown in the same order as specified.
         # Each entry is an entity ID or a map with extra options.
         entities:
-          - light.table_light
           - light.dresser_lamp
-          - entity: light.nightstand_lamp
-            # Override the name to use
-            name: LR Lights
+          - light.nightstand_lamp
+          - light.michaels_closet_2
+          - light.julias_closet_2
+          - light.table_light
+          - light.dining_room_spot
+          - light.guest_room_storage
 
         # The markdown card will render markdown text.
       - type: markdown
