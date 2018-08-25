@@ -27,8 +27,10 @@ views:
         # The filter card will filter entities for their state
       - type: entity-filter
         entities:
-          - device_tracker.michaels_iphone
-          - device_tracker.julias_iphone
+          - entity: device_tracker.michaels_iphone
+            name: Michael
+          - entity: device_tracker.julias_iphone
+            name: Julia
         state_filter:
           - 'home'
         card:
@@ -39,6 +41,10 @@ views:
       - type: picture-entity
         image: https://www.home-assistant.io/images/default-social.png
         entity: light.julias_closet
+
+      - type: weather-forecast
+        entity: weather.darksky
+
 
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant

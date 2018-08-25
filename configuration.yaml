@@ -122,6 +122,12 @@ twilio:
 ifttt:
   key: !secret ifttt_secret
 
+# Dark Sky
+# https://www.home-assistant.io/components/weather.darksky/
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+
 # WirelessTag
 # https://www.home-assistant.io/components/wirelesstag/
 wirelesstag:

@@ -38,22 +38,22 @@
 ####################################################
 
 # https://www.home-assistant.io/components/sensor.darksky/
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    monitored_conditions:
-      - summary
-      - daily_summary
-      - temperature
-      - apparent_temperature
-      - humidity
-      - pressure
-      - precip_type
-      - precip_intensity
-      - precip_probability
-      - visibility
-      - cloud_cover
-      - wind_speed
-    units: us
+#  - platform: darksky
+#    api_key: !secret darksky_api_key
+#    monitored_conditions:
+#      - summary
+#      - daily_summary
+#      - temperature
+#      - apparent_temperature
+#      - humidity
+#      - pressure
+#      - precip_type
+#      - precip_intensity
+#      - precip_probability
+#      - visibility
+#      - cloud_cover
+#      - wind_speed
+#    units: us
 
 ####################################################
 ### SYSTEM.                                     ####
@@ -100,7 +100,7 @@
   - platform: synologydsm
     host: 192.168.0.7
     port: 5000
-    ssl: 'false'
+    ssl: false
     username: !secret nas_username
     password: !secret nas_password
     monitored_conditions:
