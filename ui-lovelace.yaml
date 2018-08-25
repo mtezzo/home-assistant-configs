@@ -18,7 +18,6 @@ views:
 views:
   - title: Header
     icon: mdi:car
-    panel: true
     cards:
       - type: vertical-stack
         cards:
