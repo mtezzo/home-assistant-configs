@@ -39,8 +39,8 @@
   trigger:
     platform: state
     entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
-    from: 'on'
-    to: 'off'
+    from: 'off'
+    to: 'on'
   action:
     - service: light.turn_on
       entity_id: light.michaels_closet_2
@@ -51,8 +51,8 @@
   trigger:
     platform: state
     entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
-    from: 'off'
-    to: 'on'
+    from: 'on'
+    to: 'off'
   action:
     - service: light.turn_off
       entity_id: light.michaels_closet_2
@@ -65,8 +65,8 @@
   trigger:
     platform: state
     entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_2
-    from: 'on'
-    to: 'off'
+    from: 'off'
+    to: 'on'
   action:
     - service: light.turn_on
       entity_id: light.julias_closet_2
@@ -77,8 +77,8 @@
   trigger:
     platform: state
     entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_2
-    from: 'off'
-    to: 'on'
+    from: 'on'
+    to: 'off'
   action:
     - service: light.turn_off
       entity_id: light.julias_closet_2
@@ -91,8 +91,8 @@
   trigger:
     platform: state
     entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_3
-    from: 'on'
-    to: 'off'
+    from: 'off'
+    to: 'on'
   action:
     - service: light.turn_on
       entity_id: light.guest_room_storage
@@ -103,8 +103,8 @@
   trigger:
     platform: state
     entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_3
-    from: 'off'
-    to: 'on'
+    from: 'on'
+    to: 'off'
   action:
     - service: light.turn_off
       entity_id: light.guest_room_storage
