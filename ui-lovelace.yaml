@@ -85,15 +85,26 @@ views:
           - light.michaels_closet_2
           - light.julias_closet_2
           - light.table_light
+          - entity: switch.aeotec_zw096_smart_switch_6_switch
+            name: Bookshelf Lamp
+          - entity: light.aeotec_zw099_smart_dimmer_6_level_2
+            name: Floor Lamp
           - light.dining_room_spot
           - light.guest_room_storage
+          - entity: light.linear_lb60z1_dimmable_led_light_bulb_level
+            name: Guest Closet Light
+          - entity: light.linear_lb60z1_dimmable_led_light_bulb_level_2
+            name: Garage Storage Light
 
       - type: picture-glance
         title: Living room
         entities:
-          - light.table_light
           - climate.living_room
-          - light.floor_lamp
+          - light.table_light
+          - entity: switch.aeotec_zw096_smart_switch_6_switch
+            name: Bookshelf Lamp
+          - entity: light.aeotec_zw099_smart_dimmer_6_level_2
+            name: Floor Lamp
         image: /local/living_room.jpg
 
         # The markdown card will render markdown text.
