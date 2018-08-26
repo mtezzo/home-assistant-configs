@@ -23,14 +23,21 @@ homeassistant:
   # Customizations
   customize: !include_dir_merge_named customize/
 
+####################################################
+### GENERAL                                     ####
+####################################################
+
 # Enables the frontend
+# https://www.home-assistant.io/components/frontend/
 frontend:
   javascript_version: latest
 
 # Enables configuration UI
+# https://home-assistant.io/components/config/
 config:
 
 # HA Website
+# https://home-assistant.io/components/http/
 http:
   # Secrets are defined in the file secrets.yaml
   api_password: !secret ha_password
@@ -61,21 +68,43 @@ updater:
   include_used_components: true
 
 # Discover some devices automatically
+# https://www.home-assistant.io/components/discovery/
 discovery:
 
 # Allows you to issue voice commands from the frontend
+# https://www.home-assistant.io/components/conversation/
 conversation:
 
 # Enables support for tracking state changes over time.
+# https://home-assistant.io/components/history/
 history:
 
+# Limit History
+# https://home-assistant.io/components/recorder/
+recorder:
+  purge_interval: 1
+  purge_keep_days: 3
+  exclude:
+      domains:
+        - automation
+        - weblink
+        - updater
+      entities:
+        - sun.sun # Don't record sun data
+        - sensor.since_last_boot
+        - sensor.date
+        - sensor.time
+
 # View all events in a logbook
+# https://www.home-assistant.io/components/logbook/
 logbook:
 
 # Enables a map showing the location of tracked devices
+# https://www.home-assistant.io/components/map/
 map:
 
 # Track the sun
+# https://home-assistant.io/components/sun/
 sun:
 
 # Text to speech
@@ -83,15 +112,18 @@ tts:
   - platform: google
 
 # Cloud
+# https://www.home-assistant.io/components/cloud/
 cloud:
 
 # iOS
+# https://www.home-assistant.io/components/ios/
 ios:
 
 ####################################################
 ### SERVICES                                    ####
 ####################################################
 
+# https://www.home-assistant.io/components/camera.synology/
 camera:
   - platform: synology
     url: !secret nas_url
