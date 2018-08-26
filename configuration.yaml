@@ -114,9 +114,9 @@ media_player:
 
 # Z-Wave
 # https://www.home-assistant.io/components/zwave/
-#zwave:
-#  usb_path: /dev/ttyACM0
-#  network_key: !secret zwave_network_key
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: !secret zwave_network_key
 
 # Twilio notifications
 # https://www.home-assistant.io/components/twilio/
