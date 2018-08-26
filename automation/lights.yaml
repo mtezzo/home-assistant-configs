@@ -9,7 +9,7 @@
     - service: light.turn_on
       entity_id: light.aeotec_zw099_smart_dimmer_6_level_2
       data:
-        brightness: 70
+        brightness_pct: 70
     - service: light.turn_on
       entity_id: light.table_light
     - service: switch.turn_on
@@ -25,11 +25,11 @@
     - service: light.turn_on
       entity_id: light.dresser_lamp
       data:
-        brightness: 70
+        brightness_pct: 70
     - service: light.turn_on
       entity_id: light.nightstand_lamp
       data:
-        brightness: 70
+        brightness_pct: 70
 
 ####################################################
 ### MICHAEL's CLOSET                            ####
@@ -45,7 +45,7 @@
     - service: light.turn_on
       entity_id: light.michaels_closet_2
       data:
-        brightness: 100
+        brightness_pct: 100
 
 - alias: "Turn Off Michael's Closet When Door Closes"
   trigger:
@@ -71,7 +71,7 @@
     - service: light.turn_on
       entity_id: light.julias_closet_2
       data:
-        brightness: 100
+        brightness_pct: 100
 
 - alias: "Turn Off Julia's Closet When Door Closes"
   trigger:
@@ -97,7 +97,7 @@
     - service: light.turn_on
       entity_id: light.guest_room_storage
       data:
-        brightness: 100
+        brightness_pct: 100
 
 - alias: "Turn Off Guest Storage Closet When Door Closes"
   trigger:
