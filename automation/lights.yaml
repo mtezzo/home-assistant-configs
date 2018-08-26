@@ -1,0 +1,64 @@
+# Follow master bedroom lamps when guest automation active
+- alias: "Turn On Living Room Lights When Motion"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+    from: 'off'
+    to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.aeotec_zw099_smart_dimmer_6_level_2
+      data:
+        brightness: 70
+    - service: light.turn_on
+      entity_id: light.table_light
+    - service: switch.turn_on
+      entity_id: switch.aeotec_zw096_smart_switch_6_switch
+
+- alias: "Turn On Bedroom Lights When Motion"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
+    from: 'off'
+    to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.dresser_lamp
+      data:
+        brightness: 70
+    - service: light.turn_on
+      entity_id: light.nightstand_lamp
+      data:
+        brightness: 70
+
+####################################################
+### MICHAEL's CLOSET                            ####
+####################################################
+
+- alias: "Turn On Michael's Closet When Door Opens"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
+    from: 'on'
+    to: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.michaels_closet_2
+      data:
+        brightness: 100
+
+- alias: "Turn Off Michael's Closet When Door Closes"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
+    from: 'off'
+    to: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.michaels_closet_2
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################
