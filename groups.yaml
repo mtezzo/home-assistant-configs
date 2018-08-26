@@ -81,8 +81,6 @@ ha:
     - sensor.since_last_boot_templated
     - sensor.network_in_eth0
     - sensor.network_out_eth0
-    - sensor.cpu
-    - sensor.cpu_temperature
     - sensor.load_1m
     - sensor.load_5m
     - sensor.load_15m

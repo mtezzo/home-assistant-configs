@@ -84,6 +84,32 @@
       entity_id: light.julias_closet_2
 
 ####################################################
+### GUEST CLOSET                                ####
+####################################################
+
+- alias: "Turn On Guest Closet When Door Opens"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.fibaro_system_fgk10x_door_opening_sensor_sensor
+    from: 'off'
+    to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.linear_lb60z1_dimmable_led_light_bulb_level
+      data:
+        brightness_pct: 100
+
+- alias: "Turn Off Guest Closet When Door Closes"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.fibaro_system_fgk10x_door_opening_sensor_sensor
+    from: 'on'
+    to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.linear_lb60z1_dimmable_led_light_bulb_level
+
+####################################################
 ### GUEST STORAGE CLOSET                        ####
 ####################################################
 

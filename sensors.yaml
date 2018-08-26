@@ -59,10 +59,6 @@
 ### SYSTEM.                                     ####
 ####################################################
 
-# https://home-assistant.io/components/sensor.cpuspeed/
-  - platform: cpuspeed
-    name: CPU
-
 # https://home-assistant.io/components/sensor.systemmonitor/
   - platform: systemmonitor
     resources:
