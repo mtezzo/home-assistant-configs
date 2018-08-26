@@ -58,6 +58,58 @@
       entity_id: light.michaels_closet_2
 
 ####################################################
+### JULIA's CLOSET                            ####
+####################################################
+
+- alias: "Turn On Julia's Closet When Door Opens"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_2
+    from: 'on'
+    to: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.julias_closet_2
+      data:
+        brightness: 100
+
+- alias: "Turn Off Julia's Closet When Door Closes"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_2
+    from: 'off'
+    to: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.julias_closet_2
+
+####################################################
+### GUEST STORAGE CLOSET                        ####
+####################################################
+
+- alias: "Turn On Guest Storage Closet When Door Opens"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_3
+    from: 'on'
+    to: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.guest_room_storage
+      data:
+        brightness: 100
+
+- alias: "Turn Off Guest Storage Closet When Door Closes"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_3
+    from: 'off'
+    to: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.guest_room_storage
+
+####################################################
 #                                                  #
 #            END OF CONFIGURATION FILE             #
 #                                                  #
