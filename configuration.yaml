@@ -114,6 +114,12 @@ tts:
 # Cloud
 # https://www.home-assistant.io/components/cloud/
 cloud:
+  alexa:
+    filter:
+      exclude_domains:
+        - group
+        - automation
+        - alert
 
 # iOS
 # https://www.home-assistant.io/components/ios/
