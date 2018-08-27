@@ -27,14 +27,51 @@ homeassistant:
 ### GENERAL                                     ####
 ####################################################
 
+# Cloud
+# https://www.home-assistant.io/components/cloud/
+cloud:
+  alexa:
+    filter:
+      exclude_domains:
+        - group
+        - automation
+        - alert
+      exclude_entities:
+        - light.hgrp0000000254
+        - switch.raspberry_pi
+        - switch.pc
+        - switch.imac
+
+# Enables configuration UI
+# https://home-assistant.io/components/config/
+config:
+
+# Allows you to issue voice commands from the frontend
+# https://www.home-assistant.io/components/conversation/
+conversation:
+
+# https://www.home-assistant.io/components/device_tracker
+device_tracker:
+  - platform: netgear
+    host: 192.168.0.1
+    username: !secret admin
+    password: !secret netgear_password
+    new_device_defaults:
+      track_new_devices: False
+      hide_if_away: False
+
+# Discover some devices automatically
+# https://www.home-assistant.io/components/discovery/
+discovery:
+
 # Enables the frontend
 # https://www.home-assistant.io/components/frontend/
 frontend:
   javascript_version: latest
 
-# Enables configuration UI
-# https://home-assistant.io/components/config/
-config:
+# Enables support for tracking state changes over time.
+# https://home-assistant.io/components/history/
+history:
 
 # HA Website
 # https://home-assistant.io/components/http/
@@ -58,26 +95,24 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  include_used_components: true
+# iOS
+# https://www.home-assistant.io/components/ios/
+ios:
 
-# Discover some devices automatically
-# https://www.home-assistant.io/components/discovery/
-discovery:
+# View all events in a logbook
+# https://www.home-assistant.io/components/logbook/
+logbook:
 
-# Allows you to issue voice commands from the frontend
-# https://www.home-assistant.io/components/conversation/
-conversation:
+# Enables a map showing the location of tracked devices
+# https://www.home-assistant.io/components/map/
+map:
 
-# Enables support for tracking state changes over time.
-# https://home-assistant.io/components/history/
-history:
+# Notifications
+# https://www.home-assistant.io/components/notify.twilio_sms/
+notify:
+  - name: twilio_sms
+    platform: twilio
+    from_number: !secret twilio_number
 
 # Limit History
 # https://home-assistant.io/components/recorder/
@@ -95,14 +130,6 @@ recorder:
         - sensor.date
         - sensor.time
 
-# View all events in a logbook
-# https://www.home-assistant.io/components/logbook/
-logbook:
-
-# Enables a map showing the location of tracked devices
-# https://www.home-assistant.io/components/map/
-map:
-
 # Track the sun
 # https://home-assistant.io/components/sun/
 sun:
@@ -111,24 +138,18 @@ sun:
 tts:
   - platform: google
 
-# Cloud
-# https://www.home-assistant.io/components/cloud/
-cloud:
-  alexa:
-    filter:
-      exclude_domains:
-        - group
-        - automation
-        - alert
-      exclude_entities:
-        - light.hgrp0000000254
-        - switch.raspberry_pi
-        - switch.pc
-        - switch.imac
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
 
-# iOS
-# https://www.home-assistant.io/components/ios/
-ios:
+# Zeroconf/Avahi/Bonjour
+# https://www.home-assistant.io/components/zeroconf/
+zeroconf:
 
 ####################################################
 ### SERVICES                                    ####
