@@ -25,8 +25,8 @@ interior_lights:
   entities:
     - light.dresser_lamp
     - light.nightstand_lamp
-    - light.michaels_closet_2
-    - light.julias_closet_2
+    - light.michaels_closet
+    - light.julias_closet
     - light.table_light
     - light.dining_room_spot
     - light.guest_room_storage
@@ -152,8 +152,8 @@ master_bedroom:
 master_closets:
   name: 'Master Closets'
   entities:
-    - light.michaels_closet_2
-    - light.julias_closet_2
+    - light.michaels_closet
+    - light.julias_closet
 
 garage:
   name: 'Garage'
