@@ -120,6 +120,11 @@ cloud:
         - group
         - automation
         - alert
+      exclude_entities:
+        - light.hgrp0000000254
+        - switch.raspberry_pi
+        - switch.pc
+        - switch.imac
 
 # iOS
 # https://www.home-assistant.io/components/ios/
@@ -137,11 +142,18 @@ camera:
     password: !secret nas_password
     timeout: 15
 
-# Nest Learning Thermosat
-# https://home-assistant.io/components/nest/
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
+# Philips Hue
+# https://www.home-assistant.io/components/hue/
+hue:
+  bridges:
+    - host: 192.168.0.16
+      allow_unreachable: true
+      allow_hue_groups: false
+
+# IFTTT
+# https://www.home-assistant.io/components/ifttt/
+ifttt:
+  key: !secret ifttt_secret
 
 # Media Players
 media_player:
@@ -150,11 +162,11 @@ media_player:
     mac: 14:C9:13:7C:BB:FE
     name: 'Living Room TV'
 
-# Z-Wave
-# https://www.home-assistant.io/components/zwave/
-zwave:
-  usb_path: /dev/ttyACM0
-  network_key: !secret zwave_network_key
+# Nest Learning Thermosat
+# https://home-assistant.io/components/nest/
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
 # Twilio notifications
 # https://www.home-assistant.io/components/twilio/
@@ -162,10 +174,11 @@ twilio:
   account_sid: !secret twilio_sid
   auth_token: !secret twilio_token
 
-# IFTTT
-# https://www.home-assistant.io/components/ifttt/
-ifttt:
-  key: !secret ifttt_secret
+# WirelessTag
+# https://www.home-assistant.io/components/wirelesstag/
+wirelesstag:
+  username: !secret wirelesstag_username
+  password: !secret wirelesstag_password
 
 # Dark Sky
 # https://www.home-assistant.io/components/weather.darksky/
@@ -173,11 +186,11 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api_key
 
-# WirelessTag
-# https://www.home-assistant.io/components/wirelesstag/
-wirelesstag:
-  username: !secret wirelesstag_username
-  password: !secret wirelesstag_password
+# Z-Wave
+# https://www.home-assistant.io/components/zwave/
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: !secret zwave_network_key
 
 ####################################################
 ### INCLUDES                                    ####
