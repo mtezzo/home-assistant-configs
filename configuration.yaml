@@ -110,8 +110,8 @@ map:
 # Notifications
 # https://www.home-assistant.io/components/notify.twilio_sms/
 notify:
-  - name: twilio_sms
-    platform: twilio
+  - name: sms
+    platform: twilio_sms
     from_number: !secret twilio_number
 
 # Limit History
