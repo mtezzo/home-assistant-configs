@@ -144,12 +144,6 @@ media_player:
     mac: 14:C9:13:7C:BB:FE
     name: 'Living Room TV'
 
-# Nest Learning Thermosat
-# https://home-assistant.io/components/nest/
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-
 # Twilio notifications
 # https://www.home-assistant.io/components/twilio/
 twilio:

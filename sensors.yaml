@@ -15,17 +15,6 @@
 ### CLIMATE                                     ####
 ####################################################
 
-# https://home-assistant.io/components/sensor.nest/
-  - platform: nest
-    monitored_conditions:
-      - temperature
-      - target
-      - humidity
-      - operation_mode
-      - hvac_state
-      - co_status
-      - smoke_status
-
 # https://www.home-assistant.io/components/sensor.wirelesstag/
   - platform: wirelesstag
     monitored_conditions:

@@ -1,0 +1,104 @@
+################################################################
+## Packages / Nest
+## https://home-assistant.io/components/nest/
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'nest'
+
+    ################################################
+    ## Binary Sensor
+    ################################################
+
+    binary_sensor.living_room_thermostat_fan:
+      <<: *customize
+      friendly_name: HVAC Fan
+      icon: mdi:fan
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.living_room_nest_protect_co_status:
+      <<: *customize
+      friendly_name: 'Carbon Monoxide'
+      icon: mdi:gas-cylinder
+
+    sensor.living_room_nest_protect_smoke_status:
+      <<: *customize
+      friendly_name: 'Smoke Detector'
+      icon: mdi:fire
+
+    sensor.living_room_away_mode:
+      <<: *customize
+      friendly_name: Away Mode
+      icon: mdi:home-outline
+
+    sensor.living_room_thermostat_humidity:
+      <<: *customize
+      friendly_name: Nest Humidity
+      icon: mdi:water-percent
+
+    sensor.living_room_thermostat_hvac_state:
+      <<: *customize
+      friendly_name: Nest Status
+      icon: mdi:thermostat
+
+    sensor.living_room_thermostat_operation_mode:
+      <<: *customize
+      friendly_name: Nest Mode Setting
+      icon: mdi:information-outline
+
+    sensor.living_room_thermostat_target:
+      <<: *customize
+      friendly_name: Nest Target Temperature
+      icon: mdi:thermometer-lines
+
+    sensor.living_room_thermostat_temperature:
+      <<: *customize
+      friendly_name: Nest Temperature
+      icon: mdi:thermometer-lines
+
+    ################################################
+    ## Climate
+    ################################################
+
+    climate.living_room:
+      <<: *customize
+      friendly_name: 'Nest'
+      icon: mdi:thermostat
+
+################################################
+## Sensor
+################################################
+
+# https://home-assistant.io/components/sensor.nest/
+sensor:
+  - platform: nest
+    monitored_conditions:
+      - temperature
+      - target
+      - humidity
+      - operation_mode
+      - hvac_state
+      - co_status
+      - smoke_status
+
+################################################
+## Nest
+################################################
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
