@@ -113,6 +113,20 @@ views:
         content: >
           Welcome to your **Lovelace UI**.
 
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: Automations
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - automation.master_bedroom_motion
+          - automation.living_room_motion
+          - automation.michael_closet_lighting
+          - automation.julia_closet_lighting
+          - automation.guest_closet_lighting
+          - automation.guest_storage_lighting
+
       - type: entities
         title: Column 3
         show_header_toggle: false
