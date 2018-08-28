@@ -59,6 +59,8 @@ device_tracker:
     host: 192.168.0.1
     username: !secret netgear_username
     password: !secret netgear_password
+    interval_seconds: 60
+    consider_home: 180
     new_device_defaults:
       track_new_devices: False
       hide_if_away: False
@@ -149,12 +151,6 @@ media_player:
 twilio:
   account_sid: !secret twilio_sid
   auth_token: !secret twilio_token
-
-# Dark Sky
-# https://www.home-assistant.io/components/weather.darksky/
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
 
 # Z-Wave
 # https://www.home-assistant.io/components/zwave/

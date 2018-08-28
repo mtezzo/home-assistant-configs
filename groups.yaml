@@ -117,23 +117,6 @@ synology_nas:
     - sensor.temperature_sdb
     - sensor.volume_used_volume_2
 
-weather:
-  name: Weather
-  entities:
-    - sun.sun
-    - sensor.dark_sky_summary
-    - sensor.dark_sky_daily_summary
-    - sensor.dark_sky_temperature
-    - sensor.dark_sky_apparent_temperature
-    - sensor.dark_sky_humidity
-    - sensor.dark_sky_pressure
-    - sensor.dark_sky_precip
-    - sensor.dark_sky_precip_probability
-    - sensor.dark_sky_precip_intensity
-    - sensor.dark_sky_visibility
-    - sensor.dark_sky_cloud_coverage
-    - sensor.dark_sky_wind_speed
-
 ####################################################
 #### ROOMS                                      ####
 ####################################################
@@ -240,7 +223,8 @@ other_view:
   icon: mdi:web
   view: yes
   entities:
-    - group.weather
+    - group.weather_general
+    - group.weather_darksky
     - group.internet
     - group.modes
     - group.zwave

@@ -53,57 +53,6 @@ sensor.speedtest_upload:
   icon: mdi:upload
 
 ####################################################
-#### Weather Sensors                            ####
-####################################################
-
-sensor.dark_sky_summary:
-  icon: mdi:weather-sunny
-  friendly_name: 'Currently'
-
-sensor.dark_sky_daily_summary:
-  icon: mdi:weather-sunny
-  friendly_name: 'Forecast'
-
-sensor.dark_sky_temperature:
-  friendly_name: 'Outdoor Temperature'
-
-sensor.dark_sky_apparent_temperature:
-  icon: mdi:thermometer-lines
-  friendly_name: 'Feels Like'
-
-sensor.dark_sky_humidity:
-  icon: mdi:water-percent
-  friendly_name: 'Outdoor Humidity'
-
-sensor.dark_sky_pressure:
-   icon: mdi:weight
-   friendly_name: 'Barometric Pressure'
-
-sensor.dark_sky_precip:
-  icon: mdi:weather-pouring
-  friendly_name: 'Precipitation'
-
-sensor.dark_sky_precip_probability:
-  icon: mdi:weather-pouring
-  friendly_name: 'Precipitation Probability'
-
-sensor.dark_sky_precip_intensity:
-  icon: mdi:weather-pouring
-  friendly_name: 'Rainfall'
-
-sensor.dark_sky_visibility:
-  icon: mdi:weather-fog
-  friendly_name: 'Visibility'
-
-sensor.dark_sky_cloud_coverage:
-  icon: mdi:weather-cloudy
-  friendly_name: 'Cloud Coverage'
-
-sensor.dark_sky_wind_speed:
-  icon: mdi:weather-windy
-  friendly_name: 'Wind Speed'
-
-####################################################
 #                                                  #
 #           END OF CONFIGURATION FILE              #
 #                                                  #

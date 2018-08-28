@@ -1,0 +1,116 @@
+################################################################
+## Packages / Weather
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'weather'
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.weather_darksky:
+      <<: *customize
+      friendly_name: "Dark Sky"
+
+    group.weather_general:
+      <<: *customize
+      friendly_name: "General"
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.dark_sky_cloud_coverage:
+      <<: *customize
+      friendly_name: "Cloud Coverage"
+      icon: mdi:weather-partlycloudy
+
+    sensor.dark_sky_humidity:
+      <<: *customize
+      friendly_name: "Humidity"
+      icon: mdi:water-percent
+
+    sensor.dark_sky_precip_probability:
+      <<: *customize
+      friendly_name: "Precipitation"
+      icon: mdi:weather-rainy
+
+    sensor.dark_sky_precip:
+      <<: *customize
+      friendly_name: 'Precipitation'
+      icon: mdi:weather-pouring
+
+    sensor.dark_sky_temperature:
+      <<: *customize
+      friendly_name: "Temperature"
+      icon: mdi:thermometer
+
+    sensor.dark_sky_wind_speed:
+      <<: *customize
+      friendly_name: 'Wind Speed'
+      icon: mdi:weather-windy
+
+    sensor.season:
+      <<: *customize
+      friendly_name: "Season"
+      icon: mdi:weather-snowy-rainy
+
+################################################
+## Group
+################################################
+
+group:
+  weather_general:
+    control: hidden
+    entities:
+      - sun.sun
+      - sensor.season
+
+  weather_darksky:
+    control: hidden
+    entities:
+      - sensor.dark_sky_cloud_coverage
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_wind_speed
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - cloud_cover
+      - humidity
+      - precip_probability
+      - precip_type
+      - temperature
+      - wind_speed
+
+  - platform: season
+    type: astronomical
+
+################################################
+## Weather
+################################################
+
+# Dark Sky
+# https://www.home-assistant.io/components/weather.darksky/
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key

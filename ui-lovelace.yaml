@@ -43,7 +43,10 @@ views:
           - type: entities
             show_header_toggle: false
             entities:
-              - group.house_mode
+              - sensor.house_mode
+              - input_boolean.guest_mode
+              - input_boolean.vacation_mode
+              - sensor.household
 
         # The picture entity card will represent an entity with a picture
       - type: picture-entity
