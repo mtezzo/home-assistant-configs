@@ -32,7 +32,7 @@ homeassistant:
       <<: *expose
       icon: mdi:laptop
 
-    zone.main_library:
+    zone.library:
       <<: *expose
       icon: mdi:library
 
@@ -41,13 +41,13 @@ homeassistant:
 ################################################
 
 zone:    
-  - name: 'Computer Center'
+  - name: Computer Center
     latitude: !secret computer_center_latitude
     longitude: !secret computer_center_longitude
     radius: 150
     icon: mdi:laptop
 
-  - name: 'Main Library'
+  - name: Library
     latitude: !secret main_library_latitude
     longitude: !secret main_library_longitude
     radius: 150

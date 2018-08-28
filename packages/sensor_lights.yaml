@@ -76,14 +76,17 @@ automation:
           entity_id: light.aeotec_zw099_smart_dimmer_6_level_2
           state: "{{ trigger.to_state.state }}"
           brightness: 178
+          transition: 2
       - service: script.light_control
         data_template:
           entity_id: light.table_light
           state: "{{ trigger.to_state.state }}"
-      - service: script.light_control
-        data_template:
-          entity_id: switch.aeotec_zw096_smart_switch_6_switch
-          state: "{{ trigger.to_state.state }}"
+          brightness: 178
+          effect: colorloop
+#      - service: script.light_control
+#        data_template:
+#          entity_id: switch.aeotec_zw096_smart_switch_6_switch
+#          state: "{{ trigger.to_state.state }}"
 
   - alias: master_bedroom_motion
     trigger:
@@ -102,11 +105,13 @@ automation:
           entity_id: light.dresser_lamp
           state: "{{ trigger.to_state.state }}"
           brightness: 178
+          transition: 2
       - service: script.light_control
         data_template:
           entity_id: light.nightstand_lamp
           state: "{{ trigger.to_state.state }}"
           brightness: 178
+          transition: 2
 
   ################################################
   ## Door Activated Lights
@@ -121,6 +126,8 @@ automation:
         data_template:
           entity_id: light.linear_lb60z1_dimmable_led_light_bulb_level
           state: "{{ trigger.to_state.state }}"
+          brightness: 255
+          transition: 2
 
   - alias: guest_storage_lighting
     trigger:
@@ -131,6 +138,8 @@ automation:
         data_template:
           entity_id: light.guest_room_storage
           state: "{{ trigger.to_state.state }}"
+          brightness: 255
+          transition: 2
 
   - alias: michael_closet_lighting
     trigger:
@@ -141,6 +150,8 @@ automation:
         data_template:
           entity_id: light.michaels_closet
           state: "{{ trigger.to_state.state }}"
+          brightness: 255
+          transition: 2
 
   - alias: julia_closet_lighting
     trigger:
@@ -151,3 +162,5 @@ automation:
         data_template:
           entity_id: light.julias_closet
           state: "{{ trigger.to_state.state }}"
+          brightness: 255
+          transition: 2
