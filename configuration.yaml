@@ -38,6 +38,11 @@ config:
 # https://www.home-assistant.io/components/conversation/
 conversation:
 
+# Device Tracking
+# https://www.home-assistant.io/components/device_tracker.bluetooth_tracker/
+device_tracker:
+  - platform: bluetooth_tracker
+
 # Discover some devices automatically
 # https://www.home-assistant.io/components/discovery/
 discovery:
