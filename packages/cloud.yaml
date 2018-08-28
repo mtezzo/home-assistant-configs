@@ -1,0 +1,35 @@
+################################################################
+## Packages / Cloud
+## https://www.home-assistant.io/components/cloud/
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'cloud'
+
+################################################
+## Cloud
+################################################
+
+cloud:
+  alexa:
+    filter:
+      exclude_domains:
+        - group
+        - automation
+        - alert
+      exclude_entities:
+        - light.hgrp0000000254
+        - switch.raspberry_pi
+        - switch.pc
+        - switch.imac

@@ -1,0 +1,66 @@
+################################################################
+## Packages / Good Morning/Night
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'good_morning_night'
+
+    ################################################
+    ## Script
+    ################################################
+
+    script.good_morning:
+      <<: *customize
+      friendly_name: "Good Morning"
+      icon: mdi:weather-sunny
+
+    script.good_night:
+      <<: *customize
+      friendly_name: "Good Night"
+      icon: mdi:weather-night
+
+################################################
+## Script
+################################################
+
+script:
+  good_morning:
+    sequence:
+      - service: automation.turn_on
+        data:
+          entity_id:
+            - automation.living_room_motion
+            - automation.master_bedroom_motion
+
+#      - service: script.light_control
+#        data:
+#          entity_id: light.master_bedroom
+#          state: 'on'
+#          brightness: 255
+#          color_temp: 370
+#          transition: 5
+
+  good_night:
+    sequence:
+      - service: automation.turn_off
+        data:
+          entity_id:
+            - automation.living_room_motion
+            - automation.master_bedroom_motion
+
+      - service: script.light_control
+        data:
+          entity_id: group.all_lights
+          state: 'off'
+          transition: 5

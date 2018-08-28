@@ -30,21 +30,6 @@ homeassistant:
 ### GENERAL                                     ####
 ####################################################
 
-# Cloud
-# https://www.home-assistant.io/components/cloud/
-cloud:
-  alexa:
-    filter:
-      exclude_domains:
-        - group
-        - automation
-        - alert
-      exclude_entities:
-        - light.hgrp0000000254
-        - switch.raspberry_pi
-        - switch.pc
-        - switch.imac
-
 # Enables configuration UI
 # https://home-assistant.io/components/config/
 config:
