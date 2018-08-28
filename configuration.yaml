@@ -23,6 +23,9 @@ homeassistant:
   # Customizations
   customize: !include_dir_merge_named customize/
 
+  # Packages
+  packages: !include_dir_named packages/
+
 ####################################################
 ### GENERAL                                     ####
 ####################################################

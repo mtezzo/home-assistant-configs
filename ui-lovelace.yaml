@@ -27,17 +27,22 @@ views:
     # The cards to show on this view.
     cards:
         # The filter card will filter entities for their state
-      - type: entity-filter
-        entities:
-          - entity: device_tracker.michaels_iphone
-            name: Michael
-          - entity: device_tracker.julias_iphone
-            name: Julia
-        state_filter:
-          - 'home'
-        card:
-          type: glance
-          title: People that are home
+      - type: vertical-stack
+        cards:
+          - type: entity-filter
+            entities:
+              - entity: device_tracker.michaels_iphone
+                name: Michael
+              - entity: device_tracker.julias_iphone
+                name: Julia
+            state_filter:
+              - 'home'
+            card:
+              type: glance
+              title: People that are home
+          - type: entity
+            entities:
+              - group.house_mode
 
         # The picture entity card will represent an entity with a picture
       - type: picture-entity

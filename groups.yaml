@@ -49,7 +49,7 @@ internet:
 #### PEOPLE                                     ####
 ####################################################
 
-people:
+household:
   name: People
   entities:
     - device_tracker.michaels_iphone
