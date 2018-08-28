@@ -40,7 +40,7 @@ views:
             card:
               type: glance
               title: People that are home
-          - type: entity
+          - type: entities
             entities:
               - group.house_mode
 
