@@ -1,0 +1,60 @@
+################################################################
+## Packages / Zones
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'zones'
+
+      expose: &expose
+        <<: *customize
+        track_ios: true
+
+    ################################################
+    ## Zone
+    ################################################
+
+    zone.home:
+      <<: *expose
+      icon: mdi:home
+
+    zone.computer_center:
+      <<: *expose
+      icon: mdi:laptop
+
+    zone.main_library:
+      <<: *expose
+      icon: mdi:library
+
+################################################
+## Zone
+################################################
+
+zone:    
+  - name: 'Computer Center'
+    latitude: !secret computer_center_latitude
+    longitude: !secret computer_center_longitude
+    radius: 150
+    icon: mdi:laptop
+
+  - name: 'Main Library'
+    latitude: !secret main_library_latitude
+    longitude: !secret main_library_longitude
+    radius: 150
+    icon: mdi:library
+
+  - name: Home
+    latitude: !secret ha_latitude
+    longitude: !secret ha_longitude
+    radius: 200
+    icon: mdi:home

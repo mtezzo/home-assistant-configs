@@ -76,28 +76,6 @@ frontend:
 # https://home-assistant.io/components/history/
 history:
 
-# HA Website
-# https://home-assistant.io/components/http/
-http:
-  # Secrets are defined in the file secrets.yaml
-  api_password: !secret ha_password
-  base_url: !secret ha_url
-  cors_allowed_origins:
-      - https://google.com
-      - https://www.home-assistant.io
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 127.0.0.1
-    - ::1
-    - 192.168.0.7
-  trusted_networks:
-    - 127.0.0.1
-    - ::1
-    - 192.168.0.0/24
-    - fd00::/8
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-
 # iOS
 # https://www.home-assistant.io/components/ios/
 ios:
@@ -116,26 +94,6 @@ notify:
   - name: sms
     platform: twilio_sms
     from_number: !secret twilio_number
-
-# Limit History
-# https://home-assistant.io/components/recorder/
-recorder:
-  purge_interval: 1
-  purge_keep_days: 3
-  exclude:
-      domains:
-        - automation
-        - weblink
-        - updater
-      entities:
-        - sun.sun # Don't record sun data
-        - sensor.since_last_boot
-        - sensor.date
-        - sensor.time
-
-# Track the sun
-# https://home-assistant.io/components/sun/
-sun:
 
 # Text to speech
 tts:
@@ -243,9 +201,6 @@ switch: !include switches.yaml
 
 # Weblinks #
 weblink: !include weblinks.yaml
-
-# Zones #
-zone: !include zones.yaml
 
 ####################################################
 #                                                  #

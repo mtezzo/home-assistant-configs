@@ -41,6 +41,7 @@ views:
               type: glance
               title: People that are home
           - type: entities
+            show_header_toggle: false
             entities:
               - group.house_mode
 
