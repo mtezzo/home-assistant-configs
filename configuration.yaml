@@ -38,21 +38,11 @@ config:
 # https://www.home-assistant.io/components/conversation/
 conversation:
 
-# https://www.home-assistant.io/components/device_tracker
-#device_tracker:
-#  - platform: netgear
-#    host: 192.168.0.1
-#    username: !secret netgear_username
-#    password: !secret netgear_password
-#    interval_seconds: 60
-#    consider_home: 180
-#    new_device_defaults:
-#      track_new_devices: False
-#      hide_if_away: False
-
 # Discover some devices automatically
 # https://www.home-assistant.io/components/discovery/
 discovery:
+  ignore:
+    - apple_tv
 
 # Enables the frontend
 # https://www.home-assistant.io/components/frontend/
