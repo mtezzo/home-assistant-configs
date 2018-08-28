@@ -150,12 +150,6 @@ twilio:
   account_sid: !secret twilio_sid
   auth_token: !secret twilio_token
 
-# WirelessTag
-# https://www.home-assistant.io/components/wirelesstag/
-wirelesstag:
-  username: !secret wirelesstag_username
-  password: !secret wirelesstag_password
-
 # Dark Sky
 # https://www.home-assistant.io/components/weather.darksky/
 weather:
@@ -174,9 +168,6 @@ zwave:
 
 # Groups #
 group: !include groups.yaml
-
-# Plants #
-plant: !include plants.yaml
 
 # Scripts #
 script: !include scripts.yaml
