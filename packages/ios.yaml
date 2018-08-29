@@ -1,0 +1,72 @@
+################################################################
+## Packages / iOS
+## https://www.home-assistant.io/components/ios/
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'ios'
+
+    ################################################
+    ## 
+    ################################################
+
+
+################################################
+## iOS
+################################################
+
+ios:
+  push:
+    categories:
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'SOUND_ALARM'
+            title: 'Sound Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'SILENCE_ALARM'
+            title: 'Silence Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'textInput'
+            textInputButtonTitle: 'Silencio!'
+            textInputPlaceholder: 'Placeholder'
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: Notify iOS app
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+        from: 'off'
+        to: 'on'
+    action:
+      service: notify.ios_michaels_iphone
+      data:
+        message: "Something happened at home!"
+        data:
+          push:
+            badge: 5
+            category: "alarm" # Needs to match the top level identifier you used in the ios configuration

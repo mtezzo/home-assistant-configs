@@ -61,10 +61,6 @@ frontend:
 # https://home-assistant.io/components/history/
 history:
 
-# iOS
-# https://www.home-assistant.io/components/ios/
-ios:
-
 # View all events in a logbook
 # https://www.home-assistant.io/components/logbook/
 logbook:
@@ -109,11 +105,6 @@ camera:
     password: !secret nas_password
     timeout: 15
 
-# IFTTT
-# https://www.home-assistant.io/components/ifttt/
-ifttt:
-  key: !secret ifttt_secret
-
 # Media Players
 media_player:
   - platform: webostv
@@ -126,12 +117,6 @@ media_player:
 twilio:
   account_sid: !secret twilio_sid
   auth_token: !secret twilio_token
-
-# Z-Wave
-# https://www.home-assistant.io/components/zwave/
-zwave:
-  usb_path: /dev/ttyACM0
-  network_key: !secret zwave_network_key
 
 ####################################################
 ### INCLUDES                                    ####

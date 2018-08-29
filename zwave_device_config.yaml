@@ -1,0 +1,19 @@
+################################################################
+## Z-Wave / Device Config
+################################################################
+
+################################################
+## Garage Door
+################################################
+
+sensor.linear_gd00z4_garage_door_opener_remote_controller_sourcenodeid:
+  ignored: true
+
+sensor.linear_gd00z4_garage_door_opener_remote_controller_burglar:
+  ignored: true
+
+sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_level:
+  ignored: true
+
+sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_type:
+  ignored: true

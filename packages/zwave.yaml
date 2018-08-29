@@ -1,0 +1,74 @@
+################################################################
+## Packages / Z-Wave
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'zwave'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+    ################################################
+    ## Lights
+    ################################################
+
+    light.aeotec_zw099_smart_dimmer_6_level_2:
+      <<: *customize
+      friendly_name: Floor Lamp
+      icon: mdi:floor-lamp
+
+    light.linear_lb60z1_dimmable_led_light_bulb_level:
+      <<: *customize
+      friendly_name: Guest Closet Light
+      icon: mdi:ceiling-light
+
+    light.linear_lb60z1_dimmable_led_light_bulb_level_2:
+      <<: *customize
+      friendly_name: Garage Storage Light
+      icon: mdi:ceiling-light
+
+    ################################################
+    ## Switches
+    ################################################
+
+    switch.aeotec_zw096_smart_switch_6_switch:
+      <<: *customize
+      friendly_name: Bookshelf Lamp
+      icon: mdi:desk-lamp
+
+    ################################################
+    ## Z-Wave
+    ################################################
+
+    zwave.aeotec_zw090_zstick_gen5_us:
+      friendly_name: Z-Wave USB Hub
+
+  ################################################
+  ## Customize Domain
+  ################################################
+
+  customize_domain:
+    zwave:
+      <<: *customize
+      # hidden: true
+
+################################################
+## Z-Wave
+################################################
+
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: !secret zwave_network_key
+  device_config: !include ../zwave_device_config.yaml

@@ -17,36 +17,40 @@ homeassistant:
       customize: &customize
         package: 'philips_hue'
 
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: true
+
     ################################################
     ## Lights
     ################################################
 
     light.dresser_lamp:
-      <<: *customize
+      <<: *expose
       icon: mdi:lamp
 
     light.nightstand_lamp:
-      <<: *customize
+      <<: *expose
       icon: mdi:lamp
 
     light.julias_closet:
-      <<: *customize
+      <<: *expose
       icon: mdi:ceiling-light
 
     light.michaels_closet:
-      <<: *customize
+      <<: *expose
       icon: mdi:ceiling-light
 
     light.table_light:
-      <<: *customize
+      <<: *expose
       icon: mdi:lava-lamp
 
     light.dining_room_spot:
-      <<: *customize
+      <<: *expose
       icon: mdi:track-light
 
     light.guest_room_storage:
-      <<: *customize
+      <<: *expose
       icon: mdi:ceiling-light
 
 ################################################
