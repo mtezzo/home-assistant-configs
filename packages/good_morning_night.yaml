@@ -31,11 +31,39 @@ homeassistant:
       icon: mdi:weather-night
 
 ################################################
+## Automation
+################################################
+
+automation:
+  - alias: auto_evening
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-00:30:00"
+    condition:
+      condition: state
+      entity_id: sensor.house_mode
+      state: 'home'
+    action:
+      service: script.good_evening
+
+  - alias: auto_night
+    trigger:
+      platform: time
+      at: "23:30:00"
+    condition:
+      condition: state
+      entity_id: sensor.house_mode
+      state: 'home'
+    action:
+      service: script.good_evening
+
+################################################
 ## Script
 ################################################
 
 script:
-  good_morning:
+  good_evening:
     sequence:
       - service: automation.turn_on
         data:
