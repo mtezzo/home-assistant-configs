@@ -109,14 +109,6 @@ camera:
     password: !secret nas_password
     timeout: 15
 
-# Philips Hue
-# https://www.home-assistant.io/components/hue/
-hue:
-  bridges:
-    - host: 192.168.0.16
-      allow_unreachable: true
-      allow_hue_groups: false
-
 # IFTTT
 # https://www.home-assistant.io/components/ifttt/
 ifttt:

@@ -1,0 +1,60 @@
+################################################################
+## Packages / Philips Hue
+## https://www.home-assistant.io/components/hue/
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'philips_hue'
+
+    ################################################
+    ## Lights
+    ################################################
+
+    light.dresser_lamp:
+      <<: *customize
+      icon: mdi:lamp
+
+    light.nightstand_lamp:
+      <<: *customize
+      icon: mdi:lamp
+
+    light.julias_closet:
+      <<: *customize
+      icon: mdi:ceiling-light
+
+    light.michaels_closet:
+      <<: *customize
+      icon: mdi:ceiling-light
+
+    light.table_light:
+      <<: *customize
+      icon: mdi:lava-lamp
+
+    light.dining_room_spot:
+      <<: *customize
+      icon: mdi:track-light
+
+    light.guest_room_storage:
+      <<: *customize
+      icon: mdi:ceiling-light
+
+################################################
+## Philips Hue
+################################################
+
+hue:
+  bridges:
+    - host: 192.168.0.16
+      allow_unreachable: true
+      allow_hue_groups: false

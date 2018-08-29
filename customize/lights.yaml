@@ -4,36 +4,12 @@
 #### Lights                                     ####
 ####################################################
 
-light.dresser_lamp:
-  homebridge_hidden: true
-
-light.nightstand_lamp:
-  icon: mdi:lamp
-  homebridge_hidden: true
-
-light.julias_closet:
-  homebridge_hidden: true
-
-light.michaels_closet:
-  homebridge_hidden: true
-
-light.table_light:
-  icon: mdi:lava-lamp
-  homebridge_hidden: true
-
 light.aeotec_zw099_smart_dimmer_6_level_2:
   icon: mdi:floor-lamp
   friendly_name: Floor Lamp
 
 switch.aeotec_zw096_smart_switch_6_switch:
   friendly_name: Bookshelf Lamp
-
-light.dining_room_spot:
-  icon: mdi:track-light
-  homebridge_hidden: true
-
-light.guest_room_storage:
-  homebridge_hidden: true
 
 light.linear_lb60z1_dimmable_led_light_bulb_level:
   friendly_name: Guest Closet Light
