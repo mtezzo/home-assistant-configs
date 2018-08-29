@@ -20,10 +20,10 @@ homeassistant:
     ## Script
     ################################################
 
-    script.good_morning:
+    script.good_evening:
       <<: *customize
-      friendly_name: "Good Morning"
-      icon: mdi:weather-sunny
+      friendly_name: "Good Evening"
+      icon: mdi:weather-sunset
 
     script.good_night:
       <<: *customize
@@ -37,26 +37,34 @@ homeassistant:
 automation:
   - alias: auto_evening
     trigger:
-      platform: sun
-      event: sunset
-      offset: "-00:30:00"
+      - platform: sun
+        event: sunset
+        offset: '-00:30:00'
+      - platform: state
+        entity_id: sensor.house_mode
+        to: 'home'
     condition:
-      condition: state
-      entity_id: sensor.house_mode
-      state: 'home'
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: sensor.house_mode
+          state: 'home'
+        - condition: sun
+          after: sunset
+          after_offset: '-00:30:00'
     action:
-      service: script.good_evening
+      - service: script.good_evening
 
   - alias: auto_night
     trigger:
-      platform: time
-      at: "23:30:00"
+      - platform: time
+        at: '23:30:00'
     condition:
-      condition: state
-      entity_id: sensor.house_mode
-      state: 'home'
+      - condition: state
+        entity_id: sensor.house_mode
+        state: 'home'
     action:
-      service: script.good_evening
+      - service: script.good_evening
 
 ################################################
 ## Script
