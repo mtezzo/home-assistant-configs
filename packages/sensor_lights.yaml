@@ -127,7 +127,7 @@ automation:
           entity_id: light.linear_lb60z1_dimmable_led_light_bulb_level
           state: "{{ trigger.to_state.state }}"
           brightness: 255
-          transition: 2
+          transition: 1
 
   - alias: guest_storage_lighting
     trigger:
@@ -139,7 +139,7 @@ automation:
           entity_id: light.guest_room_storage
           state: "{{ trigger.to_state.state }}"
           brightness: 255
-          transition: 2
+          transition: 1
 
   - alias: michael_closet_lighting
     trigger:
@@ -151,7 +151,7 @@ automation:
           entity_id: light.michaels_closet
           state: "{{ trigger.to_state.state }}"
           brightness: 255
-          transition: 2
+          transition: 1
 
   - alias: julia_closet_lighting
     trigger:
@@ -163,4 +163,4 @@ automation:
           entity_id: light.julias_closet
           state: "{{ trigger.to_state.state }}"
           brightness: 255
-          transition: 2
+          transition: 1
