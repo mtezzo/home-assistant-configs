@@ -89,7 +89,7 @@ input_select:
       - "away"
       - "night"
       - "vacation"
-    icon: home-outline
+    icon: mdi:home-outline
 
 ################################################
 ## Sensor
