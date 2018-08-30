@@ -80,6 +80,17 @@ input_boolean:
   vacation_mode:
     initial: off
 
+
+input_select:
+  house_mode:
+    name: House Mode
+    options:
+      - "home"
+      - "away"
+      - "night"
+      - "vacation"
+    icon: home-outline
+
 ################################################
 ## Sensor
 ################################################

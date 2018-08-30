@@ -35,11 +35,11 @@ homeassistant:
 
     light.julias_closet:
       <<: *expose
-      icon: mdi:ceiling-light
+      icon: mdi:lightbulb
 
     light.michaels_closet:
       <<: *expose
-      icon: mdi:ceiling-light
+      icon: mdi:lightbulb
 
     light.table_light:
       <<: *expose
@@ -51,7 +51,7 @@ homeassistant:
 
     light.guest_room_storage:
       <<: *expose
-      icon: mdi:ceiling-light
+      icon: mdi:lightbulb
 
 ################################################
 ## Philips Hue

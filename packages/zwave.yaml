@@ -32,12 +32,12 @@ homeassistant:
     light.linear_lb60z1_dimmable_led_light_bulb_level:
       <<: *customize
       friendly_name: Guest Closet Light
-      icon: mdi:ceiling-light
+      icon: mdi:lightbulb
 
     light.linear_lb60z1_dimmable_led_light_bulb_level_2:
       <<: *customize
       friendly_name: Garage Storage Light
-      icon: mdi:ceiling-light
+      icon: mdi:lightbulb
 
     ################################################
     ## Switches

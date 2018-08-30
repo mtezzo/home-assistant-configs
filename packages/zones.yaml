@@ -45,16 +45,13 @@ zone:
     latitude: !secret computer_center_latitude
     longitude: !secret computer_center_longitude
     radius: 150
-    icon: mdi:laptop
 
   - name: Library
     latitude: !secret main_library_latitude
     longitude: !secret main_library_longitude
     radius: 150
-    icon: mdi:library
 
   - name: Home
     latitude: !secret ha_latitude
     longitude: !secret ha_longitude
     radius: 200
-    icon: mdi:home

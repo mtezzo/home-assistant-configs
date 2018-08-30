@@ -62,11 +62,14 @@ automation:
         entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
         from: 'off'
         to: 'on'
+    condition:
+      - condition: state
+        entity_id: sensor.house_mode
+        state: 'away'
     action:
       service: notify.ios_michaels_iphone
       data:
         message: "Something happened at home!"
         data:
           push:
-            badge: 5
             category: "alarm" # Needs to match the top level identifier you used in the ios configuration
