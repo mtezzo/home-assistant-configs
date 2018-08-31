@@ -51,6 +51,8 @@ device_tracker:
 discovery:
   ignore:
     - apple_tv
+    - netgear_router
+    - philips_hue
 
 # Enables the frontend
 # https://www.home-assistant.io/components/frontend/
