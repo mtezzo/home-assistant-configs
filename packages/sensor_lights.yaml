@@ -158,7 +158,7 @@ automation:
   - alias: julia_closet_lighting
     trigger:
       - platform: state
-        entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_4
+        entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_2
     action:
       - service: script.light_control
         data_template:

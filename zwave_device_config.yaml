@@ -28,8 +28,8 @@ light.linear_lb60z1_dimmable_led_light_bulb_level:
 
 light.linear_lb60z1_dimmable_led_light_bulb_level_2:
   refresh_value: true
-  delay: 4
+  delay: 3
 
 light.linear_lb60z1_dimmable_led_light_bulb_level_3:
   refresh_value: true
-  delay: 5
+  delay: 3
