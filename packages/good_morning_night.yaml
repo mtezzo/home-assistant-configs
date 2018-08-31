@@ -60,11 +60,20 @@ automation:
       - platform: time
         at: '23:30:00'
     condition:
-      - condition: state
-        entity_id: sensor.house_mode
-        state: 'home'
+      condition: and
+      conditions: 
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - sun
+        - condition: state
+          entity_id: sensor.house_mode
+          state: 'home'
     action:
-      - service: script.good_evening
+      - service: script.good_night
 
 ################################################
 ## Script
@@ -100,3 +109,7 @@ script:
           entity_id: group.all_lights
           state: 'off'
           transition: 5
+
+      - service: switch.turn_off
+        data:
+          entity_id: switch.aeotec_zw096_smart_switch_6_switch
