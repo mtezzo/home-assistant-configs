@@ -39,6 +39,11 @@ homeassistant:
       friendly_name: Garage Storage Light
       icon: mdi:lightbulb
 
+    light.linear_lb60z1_dimmable_led_light_bulb_level_3:
+      <<: *customize
+      friendly_name: Dungeon Light
+      icon: mdi:lightbulb
+
     ################################################
     ## Switches
     ################################################
