@@ -26,6 +26,11 @@ homeassistant:
   # Packages
   packages: !include_dir_named packages/
 
+  # Auth Providers
+  auth_providers:
+   - type: homeassistant
+   - type: legacy_api_password
+
 ####################################################
 ### GENERAL                                     ####
 ####################################################
