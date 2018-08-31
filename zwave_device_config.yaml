@@ -24,12 +24,12 @@ sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_type:
 
 light.linear_lb60z1_dimmable_led_light_bulb_level:
   refresh_value: true
-  delay: 3
+  delay: 4
 
 light.linear_lb60z1_dimmable_led_light_bulb_level_2:
   refresh_value: true
-  delay: 3
+  delay: 4
 
 light.linear_lb60z1_dimmable_led_light_bulb_level_3:
   refresh_value: true
-  delay: 3
+  delay: 4
