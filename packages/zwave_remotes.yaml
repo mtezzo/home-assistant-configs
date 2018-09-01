@@ -49,3 +49,50 @@ automation:
           state: 'on'
           brightness: 178
           transition: 2
+  - alias: "Nightstand Light Off"
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 1
+          scene_data: 7680
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.nightstand_lamp
+          state: 'off'
+          brightness: 178
+          transition: 2
+
+
+  - alias: "Dresser Light On"
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 4
+          scene_data: 7680
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.dresser_lamp
+          state: 'on'
+          brightness: 178
+          transition: 2
+  - alias: "Dresser Light Off"
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 3
+          scene_data: 7680
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.dresser_lamp
+          state: 'off'
+          brightness: 178
+          transition: 2
