@@ -70,7 +70,7 @@ automation:
         entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
         from: 'on'
         to: 'off'
-        for: '00:15:00'
+        for: '00:25:00'
     action:
       - service: script.light_control
         data_template:
@@ -100,7 +100,7 @@ automation:
         entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
         from: 'on'
         to: 'off'
-        for: '00:15:00'
+        for: '00:20:00'
     action:
       - service: script.light_control
         data_template:
