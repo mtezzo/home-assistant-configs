@@ -36,12 +36,16 @@ homeassistant:
 automation:
   - alias: "Nightstand Light On"
     trigger:
-      platform: event
-      event_type: zwave.scene_activated
-      event_data:
-        entity_id: zwave.fibaro_keyfob
-        scene_id: 2
-        scene_data: 7680
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 2
+          scene_data: 7680
     action:
-      service: homeassistant.turn_on
-      entity_id: light.nightstand_lamp
+      - service: script.light_control
+        data_template:
+          entity_id: light.nightstand_lamp
+          state: "{{ trigger.to_state.state }}"
+          brightness: 178
+          transition: 2
