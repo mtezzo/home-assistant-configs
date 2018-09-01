@@ -1,0 +1,47 @@
+################################################################
+## Packages / Z-Wave Remotes
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'zwave_remotes'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.keyfob_button_pressed:
+      <<: *customize
+      friendly_name: "Keyfob Button Pressed"
+      hidden: true
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: "Nightstand Light On"
+    trigger:
+      platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.fibaro_keyfob
+        scene_id: 2
+        scene_data: 7680
+    action:
+      service: homeassistant.turn_on
+      entity_id: light.nightstand_lamp

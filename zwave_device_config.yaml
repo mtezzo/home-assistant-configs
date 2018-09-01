@@ -64,5 +64,8 @@ light.linear_lb60z1_dimmable_led_light_bulb_level_3:
 sensor.aeotec_zw100_multisensor_6_sourcenodeid:
   ignored: true
 
+sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  ignored: true
+
 sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid:
   ignored: true
