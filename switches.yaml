@@ -19,7 +19,7 @@
     host: '192.168.0.5'
 
   - platform: wake_on_lan
-    mac_address: '74:DA:38:41:FE:5D'
+    mac_address: '10:DA:43:24:2B:A7'
     name: 'PC'
     host: '192.168.0.6'
 

@@ -73,13 +73,11 @@ group:
   home:
     view: yes
     entities:
-      - group.back_porch
+      - group.basement
       - group.dining_room
       - group.entry
-      - group.front_porch
       - group.garage
       - group.guest_bedroom
-      - group.hallway
       - group.kitchen
       - group.laundry_room
       - group.living_room
@@ -133,5 +131,3 @@ group:
     entities:
       - group.weather_general
       - group.weather_darksky
-      # - group.weather_wunderground
-      - group.weather_yr

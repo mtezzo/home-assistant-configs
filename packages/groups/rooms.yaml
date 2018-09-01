@@ -1,0 +1,135 @@
+################################################################
+## Packages / Groups / Rooms
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'groups/rooms'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.basement:
+      <<: *customize
+      friendly_name: "Basement"
+
+    group.dining_room:
+      <<: *customize
+      friendly_name: "Dining Room"
+
+    group.entry:
+      <<: *customize
+      friendly_name: "Entry"
+
+    group.garage:
+      <<: *customize
+      friendly_name: "Garage"
+
+    group.guest_bedroom:
+      <<: *customize
+      friendly_name: "Guest Bedroom"
+
+    group.kitchen:
+      <<: *customize
+      friendly_name: "Kitchen"
+
+    group.laundry_room:
+      <<: *customize
+      friendly_name: "Laundry Room"
+
+    group.living_room:
+      <<: *customize
+      friendly_name: "Living Room"
+
+    group.master_bedroom:
+      <<: *customize
+      friendly_name: "Master Bedroom"
+
+################################################
+## Group
+################################################
+
+group:
+  basement:
+    control: hidden
+    entities:
+      - light.linear_lb60z1_dimmable_led_light_bulb_level_3
+
+  dining_room:
+    control: hidden
+    entities:
+      - light.dining_room_spot
+      - media_player.dining_room
+      - camera.dining_room
+
+  entry:
+    control: hidden
+    entities:
+      - binary_sensor.aeotec_zw112_door_window_sensor_6_sensor
+
+  garage:
+    control: hidden
+    entities:
+      - light.linear_lb60z1_dimmable_led_light_bulb_level_2
+      - binary_sensor.garage_entry_contact
+
+  guest_bedroom:
+    control: hidden
+    entities:
+      - light.linear_lb60z1_dimmable_led_light_bulb_level
+      - binary_sensor.fibaro_system_fgk10x_door_opening_sensor_sensor
+      - automation.guest_closet_lighting
+      - light.guest_room_storage
+      - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_3
+      - automation.guest_storage_lighting
+
+  kitchen:
+    control: hidden
+    entities:
+      - zwave.aeotec_zw117_range_extender_6
+
+  laundry_room:
+    control: hidden
+    entities:
+      - binary_sensor.fibaro_system_fgfs101_zwave_flood_sensor_sensor
+      - sensor.fibaro_system_fgfs101_zwave_flood_sensor_temperature
+      - zwave.aeotec_zw117_range_extender_6_2
+
+  living_room:
+    control: hidden
+    entities:
+      - light.table_light
+      - switch.aeotec_zw096_smart_switch_6_switch
+      - light.aeotec_zw099_smart_dimmer_6_level_2
+      - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+      - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+      - automation.living_room_motion
+
+  master_bedroom:
+    control: hidden
+    entities:
+      - light.dresser_lamp
+      - light.nightstand_lamp
+      - binary_sensor.aeotec_zw100_multisensor_6_sensor
+      - sensor.aeotec_zw100_multisensor_6_temperature
+      - sensor.aeotec_zw100_multisensor_6_relative_humidity
+      - automation.master_bedroom_motion
+      - light.michaels_closet
+      - automation.michael_closet_lighting
+      - light.julias_closet
+      - automation.julia_closet_lighting
