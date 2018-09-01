@@ -96,3 +96,15 @@ automation:
           state: 'off'
           brightness: 178
           transition: 2
+
+
+  - alias: "Night Mode"
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 5
+          scene_data: 7680
+    action:
+      - service: script.good_night
