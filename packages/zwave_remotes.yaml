@@ -46,6 +46,6 @@ automation:
       - service: script.light_control
         data_template:
           entity_id: light.nightstand_lamp
-          state: "{{ trigger.to_state.state }}"
+          state: 'on'
           brightness: 178
           transition: 2
