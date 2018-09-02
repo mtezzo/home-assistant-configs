@@ -95,11 +95,12 @@ group:
   guest_bedroom:
     control: hidden
     entities:
-      - light.guest_closet
+      - light.guest_bedroom_closet
       - binary_sensor.fibaro_system_fgk10x_door_opening_sensor_sensor
-      - automation.guest_closet_lighting
-      - light.guest_room_storage
-      - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_3
+      - automation.guest_bedroom_closet_lighting
+      - light.guest_bedroom_storage
+      - binary_sensor.guest_bedroom_storage_door_contact
+      - sensor.guest_bedroom_storage_door_contact_battery
       - automation.guest_storage_lighting
 
   kitchen:

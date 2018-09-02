@@ -29,7 +29,7 @@ homeassistant:
       friendly_name: Floor Lamp
       icon: mdi:floor-lamp
 
-    light.guest_closet:
+    light.guest_bedroom_closet:
       <<: *customize
       friendly_name: Guest Closet Light
       icon: mdi:lightbulb

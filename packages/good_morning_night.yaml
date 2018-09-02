@@ -17,6 +17,20 @@ homeassistant:
         package: 'good_morning_night'
 
     ################################################
+    ## Automation
+    ################################################
+
+    automation.auto_evening:
+      <<: *customize
+      friendly_name: "Auto Evening"
+      icon: mdi:robot
+
+    automation.auto_night:
+      <<: *customize
+      friendly_name: "Auto Night"
+      icon: mdi:robot
+
+    ################################################
     ## Script
     ################################################
 

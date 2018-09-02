@@ -49,7 +49,7 @@ homeassistant:
       <<: *expose
       icon: mdi:track-light
 
-    light.guest_room_storage:
+    light.guest_bedroom_storage:
       <<: *expose
       icon: mdi:lightbulb
 

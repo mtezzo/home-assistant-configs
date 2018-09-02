@@ -23,32 +23,32 @@ homeassistant:
     automation.living_room_motion:
       <<: *customize
       friendly_name: "Living Room Motion"
-      icon: mdi:walk
+      icon: mdi:robot
 
     automation.master_bedroom_motion:
       <<: *customize
       friendly_name: "Bedroom Motion"
-      icon: mdi:walk
+      icon: mdi:robot
 
-    automation.guest_closet_lighting:
+    automation.guest_bedroom_closet_lighting:
       <<: *customize
       friendly_name: "Guest Closet Lighting"
-      icon: mdi:lightbulb
+      icon: mdi:robot
 
-    automation.guest_storage_lighting:
+    automation.guest_bedroom_storage_lighting:
       <<: *customize
       friendly_name: "Guest Storage Lighting"
-      icon: mdi:lightbulb
+      icon: mdi:robot
 
     automation.michaels_closet_lighting:
       <<: *customize
       friendly_name: "Michael's Closet Lighting"
-      icon: mdi:lightbulb
+      icon: mdi:robot
   
     automation.julias_closet_lighting:
       <<: *customize
       friendly_name: "Julia's Closet Lighting"
-      icon: mdi:lightbulb
+      icon: mdi:robot
 
 ################################################
 ## Automation
@@ -119,26 +119,26 @@ automation:
   ## Door Activated Lights
   ################################################
 
-  - alias: guest_closet_lighting
+  - alias: guest_bedroom_closet_lighting
     trigger:
       - platform: state
         entity_id: binary_sensor.fibaro_system_fgk10x_door_opening_sensor_sensor
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.guest_closet
+          entity_id: light.guest_bedroom_closet
           state: "{{ trigger.to_state.state }}"
           brightness: 255
           transition: 1
 
-  - alias: guest_storage_lighting
+  - alias: guest_bedroom_storage_lighting
     trigger:
       - platform: state
-        entity_id: binary_sensor.guest_storage_door_contact
+        entity_id: binary_sensor.guest_bedroom_storage_door_contact
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.guest_room_storage
+          entity_id: light.guest_bedroom_storage
           state: "{{ trigger.to_state.state }}"
           brightness: 255
           transition: 1
