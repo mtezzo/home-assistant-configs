@@ -138,9 +138,12 @@ group:
     entities:
       - light.dresser_lamp
       - light.nightstand_lamp
-      - binary_sensor.aeotec_zw100_multisensor_6_sensor
-      - sensor.aeotec_zw100_multisensor_6_temperature
-      - sensor.aeotec_zw100_multisensor_6_relative_humidity
+      - sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level
+      - binary_sensor.master_bedroom_motion_sensor
+      - sensor.master_bedroom_motion_sensor_burglar
+      - sensor.master_bedroom_motion_sensor_temperature
+      - sensor.master_bedroom_motion_sensor_relative_humidity
+      - sensor.master_bedroom_motion_sensor_luminance
       - automation.master_bedroom_motion
 
   master_closets:

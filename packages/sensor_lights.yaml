@@ -93,11 +93,11 @@ automation:
     initial_state: 'off'
     trigger:
       - platform: state
-        entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
+        entity_id: binary_sensor.master_bedroom_motion_sensor
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
+        entity_id: binary_sensor.master_bedroom_motion_sensor
         from: 'on'
         to: 'off'
         for: '00:20:00'
