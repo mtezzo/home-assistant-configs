@@ -37,6 +37,47 @@ homeassistant:
       <<: *customize
       friendly_name: 'Desktop Humidor'
 
+    ################################################
+    ## Sensor
+    ################################################
+    sensor.wirelesstag_diamond_crown_humidor_battery:
+      <<: *customize
+      friendly_name: 'Diamond Crown Humidor Battery Level'
+
+    sensor.wirelesstag_diamond_crown_humidor_humidity:
+      <<: *customize
+      friendly_name: 'Diamond Crown Humidor Humidity'
+      icon: mdi:water-percent
+
+    sensor.wirelesstag_diamond_crown_humidor_light:
+      <<: *customize
+      friendly_name: 'Diamond Crown Humidor Luminance'
+      icon: mdi:weather-sunny
+
+    sensor.wirelesstag_diamond_crown_humidor_temperature:
+      <<: *customize
+      friendly_name: 'Diamond Crown Humidor Temperature'
+      icon: mdi:thermometer
+
+    sensor.wirelesstag_laundry_room_battery:
+      <<: *customize
+      friendly_name: 'Desktop Humidor Battery Level'
+
+    sensor.wirelesstag_laundry_room_humidity:
+      <<: *customize
+      friendly_name: 'Desktop Humidor Humidity'
+      icon: mdi:water-percent
+
+    sensor.wirelesstag_laundry_room_light:
+      <<: *customize
+      friendly_name: 'Desktop Humidor Luminance'
+      icon: mdi:weather-sunny
+
+    sensor.wirelesstag_laundry_room_temperature:
+      <<: *customize
+      friendly_name: 'Desktop Humidor Temperature'
+      icon: mdi:thermometer
+
 ################################################
 ## Group
 ################################################
