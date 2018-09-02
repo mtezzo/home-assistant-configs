@@ -73,7 +73,7 @@ automation:
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.aeotec_zw099_smart_dimmer_6_level_2
+          entity_id: light.living_room_floor_lamp
           state: "{{ trigger.to_state.state }}"
           brightness: 178
           transition: 2

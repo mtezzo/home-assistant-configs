@@ -95,7 +95,7 @@ views:
           - light.julias_closet
           - light.table_light
           - switch.living_room_bookshelf_lamp
-          - light.aeotec_zw099_smart_dimmer_6_level_2
+          - light.living_room_floor_lamp
           - light.dining_room_spot
           - light.guest_bedroom_storage
           - light.guest_bedroom_closet
@@ -108,7 +108,7 @@ views:
           - climate.living_room
           - light.table_light
           - switch.living_room_bookshelf_lamp
-          - light.aeotec_zw099_smart_dimmer_6_level_2
+          - light.living_room_floor_lamp
         image: /local/living_room.jpg
 
         # The markdown card will render markdown text.

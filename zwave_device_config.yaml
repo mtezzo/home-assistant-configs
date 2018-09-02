@@ -87,6 +87,24 @@ sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_type:
 ## Lights
 ################################################
 
+light.aeotec_zw099_smart_dimmer_6_level:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_current:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_energy:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_power:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_voltage:
+  ignored: true
+
 light.guest_bedroom_closet:
   refresh_value: true
   delay: 3

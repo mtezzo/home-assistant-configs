@@ -127,7 +127,7 @@ group:
       - sensor.living_room_nest_protect_smoke_status
       - light.table_light
       - switch.living_room_bookshelf_lamp
-      - light.aeotec_zw099_smart_dimmer_6_level_2
+      - light.living_room_floor_lamp
       - binary_sensor.living_room_motion_sensor
       - sensor.living_room_motion_sensor_temperature
       - sensor.living_room_motion_sensor_luminance

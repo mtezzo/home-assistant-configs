@@ -24,7 +24,7 @@ homeassistant:
     ## Lights
     ################################################
 
-    light.aeotec_zw099_smart_dimmer_6_level_2:
+    light.living_room_floor_lamp:
       <<: *customize
       friendly_name: Floor Lamp
       icon: mdi:floor-lamp
@@ -62,7 +62,10 @@ homeassistant:
 
     zwave.dungeon_light_bulb:
       friendly_name: "Dungeon Light Bulb"
-      
+
+    zwave.entrance_front_door_contact:
+      friendly_name: "Entrance Front Door Contact"
+
     zwave.garage_storage_light_bulb:
       friendly_name: "Garage Storage Light Bulb"
 
@@ -92,6 +95,12 @@ homeassistant:
 
     zwave.laundry_room_smoke_and_carbon_monoxide_detector:
       friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector"
+
+    zwave.living_room_bookshelf_lamp:
+      friendly_name: "Living Room Bookshelf Lamp"
+
+    zwave.living_room_floor_lamp:
+      friendly_name: "Living Room Floor Lamp"
 
     zwave.living_room_motion_sensor:
       friendly_name: "Living Room Motion Sensor"
