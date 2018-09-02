@@ -48,7 +48,7 @@ homeassistant:
     ## Switches
     ################################################
 
-    switch.aeotec_zw096_smart_switch_6_switch:
+    switch.living_room_bookshelf_lamp:
       <<: *customize
       friendly_name: Bookshelf Lamp
       icon: mdi:desk-lamp

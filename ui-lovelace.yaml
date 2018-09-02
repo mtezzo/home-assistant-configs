@@ -94,7 +94,7 @@ views:
           - light.michaels_closet
           - light.julias_closet
           - light.table_light
-          - switch.aeotec_zw096_smart_switch_6_switch
+          - switch.living_room_bookshelf_lamp
           - light.aeotec_zw099_smart_dimmer_6_level_2
           - light.dining_room_spot
           - light.guest_bedroom_storage
@@ -107,7 +107,7 @@ views:
         entities:
           - climate.living_room
           - light.table_light
-          - switch.aeotec_zw096_smart_switch_6_switch
+          - switch.living_room_bookshelf_lamp
           - light.aeotec_zw099_smart_dimmer_6_level_2
         image: /local/living_room.jpg
 

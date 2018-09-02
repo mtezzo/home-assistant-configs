@@ -126,7 +126,7 @@ group:
       - sensor.living_room_nest_protect_co_status
       - sensor.living_room_nest_protect_smoke_status
       - light.table_light
-      - switch.aeotec_zw096_smart_switch_6_switch
+      - switch.living_room_bookshelf_lamp
       - light.aeotec_zw099_smart_dimmer_6_level_2
       - binary_sensor.living_room_motion_sensor
       - sensor.living_room_motion_sensor_temperature
@@ -134,6 +134,8 @@ group:
       - sensor.living_room_motion_sensor_seismic_intensity
       - sensor.living_room_motion_sensor_burglar
       - automation.living_room_motion
+      - media_player.living_room
+      - media_player.living_room_tv
 
   master_bedroom:
     control: hidden

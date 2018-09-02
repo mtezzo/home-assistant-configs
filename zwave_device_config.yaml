@@ -139,3 +139,22 @@ sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type_2:
 
 sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type_3:
   ignored: true
+
+################################################
+## Switch
+################################################
+
+sensor.aeotec_zw096_smart_switch_6_current:
+  ignored: true
+
+sensor.aeotec_zw096_smart_switch_6_energy:
+  ignored: true
+
+sensor.aeotec_zw096_smart_switch_6_power:
+  ignored: true
+
+sensor.aeotec_zw096_smart_switch_6_previous_reading:
+  ignored: true
+
+sensor.aeotec_zw096_smart_switch_6_voltage:
+  ignored: true

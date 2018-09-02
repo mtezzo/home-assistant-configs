@@ -126,4 +126,4 @@ script:
 
       - service: switch.turn_off
         data:
-          entity_id: switch.aeotec_zw096_smart_switch_6_switch
+          entity_id: switch.living_room_bookshelf_lamp
