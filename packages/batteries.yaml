@@ -18,14 +18,14 @@ homeassistant:
 
       expose: &expose
         <<: *customize
-        homebridge_hidden: false
+        homebridge_hidden: true
 
     ################################################
     ## Group
     ################################################
 
     group.batteries:
-      <<: *expose
+      <<: *customize
       friendly_name: "Batteries"
 
     ################################################
@@ -51,6 +51,10 @@ homeassistant:
     sensor.julias_iphone_battery:
       <<: *expose
       friendly_name: "Julia's iPhone"
+
+    sensor.laundry_room_flood_sensor_battery:
+      <<: *customize
+      friendly_name: "Laundry Room Flood Sensor"
 
     sensor.living_room_motion_sensor_battery:
       <<: *customize
@@ -81,6 +85,7 @@ group:
       - guest_bedroom_smoke_and_carbon_monoxide_detector_battery
       - julias_closet_door_contact_battery
       - julias_iphone_battery
+      - laundry_room_flood_sensor_battery
       - living_room_motion_sensor_battery
       - master_bedroom_smoke_and_carbon_monoxide_detector_battery
       - michaels_closet_door_contact_battery
@@ -191,6 +196,25 @@ sensor:
 
             mdi:battery-charging-{{ battery_round }}
           {% else %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+
+      laundry_room_flood_sensor_battery:
+        entity_id: zwave.laundry_room_flood_sensor
+        value_template: "{{ (states.zwave.laundry_room_flood_sensor.attributes|default).battery_level|default|int('unknown') }}"
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% set battery_level = states('sensor.laundry_room_flood_sensor_battery')|int('unknown') %}
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% else %}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
             {% if battery_round >= 100 %}
               mdi:battery
             {% elif battery_round > 0 %}

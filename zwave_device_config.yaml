@@ -42,6 +42,21 @@ sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type_3:
 sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid_3:
   ignored: true
 
+sensor.fibaro_system_fgk10x_door_opening_sensor_access_control:
+  ignored: true
+
+sensor.fibaro_system_fgk10x_door_opening_sensor_alarm_level:
+  ignored: true
+
+sensor.fibaro_system_fgk10x_door_opening_sensor_alarm_type:
+  ignored: true
+
+sensor.fibaro_system_fgk10x_door_opening_sensor_burglar:
+  ignored: true
+
+sensor.fibaro_system_fgk10x_door_opening_sensor_general:
+  ignroed: true
+
 sensor.fibaro_system_fgk10x_door_opening_sensor_sourcenodeid:
   ignored: true
 
