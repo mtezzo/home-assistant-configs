@@ -107,7 +107,6 @@ group:
   sensors:
     view: yes
     entities:
-      - group.weather
       - group.batteries
       - group.temperature
       - group.motion
