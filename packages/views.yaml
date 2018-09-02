@@ -102,8 +102,7 @@ group:
   cameras:
     view: yes
     entities:
-      - group.cameras_indoor
-      - group.cameras_outdoor
+      - camera.dining_room
 
   sensors:
     view: yes

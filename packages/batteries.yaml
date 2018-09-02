@@ -21,16 +21,70 @@ homeassistant:
         homebridge_hidden: false
 
     ################################################
+    ## Group
+    ################################################
+
+    group.batteries:
+      <<: *expose
+      friendly_name: "Batteries"
+
+    ################################################
     ## Sensor
     ################################################
 
-    sensor.iphone_battery:
+    sensor.guest_bedroom_closet_door_contact_battery:
       <<: *customize
-      friendly_name: "iPhone Battery"
+      friendly_name: "Guest Bedroom Closet Door"
+
+    sensor.guest_bedroom_storage_door_contact_battery:
+      <<: *customize
+      friendly_name: "Guest Bedroom Storage Door"
+
+    sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
+      <<: *customize
+      friendly_name: "Guest Bedroom Smoke Detector"
+
+    sensor.julias_closet_door_contact_battery:
+      <<: *customize
+      friendly_name: "Julia's Closet Door"
+
+    sensor.julias_iphone_battery:
+      <<: *expose
+      friendly_name: "Julia's iPhone"
 
     sensor.living_room_motion_sensor_battery:
       <<: *customize
-      friendly_name: "Living Room Motion Sensor Battery"
+      friendly_name: "Living Room Motion Sensor"
+
+    sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery:
+      <<: *customize
+      friendly_name: "Master Bedroom Smoke Detector"
+
+    sensor.michaels_closet_door_contact_battery:
+      <<: *customize
+      friendly_name: "Michael's Closet Door"
+
+    sensor.michaels_iphone_battery:
+      <<: *expose
+      friendly_name: "Michael's iPhone"
+
+################################################
+## Group
+################################################
+
+group:
+  batteries:
+    control: hidden
+    entities:
+      - guest_bedroom_closet_door_contact_battery
+      - guest_bedroom_storage_door_contact_battery
+      - guest_bedroom_smoke_and_carbon_monoxide_detector_battery
+      - julias_closet_door_contact_battery
+      - julias_iphone_battery
+      - living_room_motion_sensor_battery
+      - master_bedroom_smoke_and_carbon_monoxide_detector_battery
+      - michaels_closet_door_contact_battery
+      - michaels_iphone_battery
 
 ################################################
 ## Sensor
@@ -39,12 +93,50 @@ homeassistant:
 sensor:
   - platform: template
     sensors:
+      guest_bedroom_closet_door_contact_battery:
+        entity_id: zwave.guest_bedroom_closet_door_contact
+        value_template: "{{ (states.zwave.guest_bedroom_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% set battery_level = states('sensor.guest_bedroom_closet_door_contact_battery')|int('unknown') %}
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% else %}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+
       guest_bedroom_storage_door_contact_battery:
         entity_id: zwave.guest_bedroom_storage_door_contact
         value_template: "{{ (states.zwave.guest_bedroom_storage_door_contact.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
         icon_template: >-
           {% set battery_level = states('sensor.guest_bedroom_storage_door_contact_battery')|int('unknown') %}
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% else %}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+
+      guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
+        entity_id: zwave.guest_bedroom_smoke_and_carbon_monoxide_detector
+        value_template: "{{ (states.zwave.guest_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% set battery_level = states('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery')|int('unknown') %}
           {% if battery_level == 'unknown' %}
             mdi:battery-unknown
           {% else %}
@@ -114,6 +206,25 @@ sensor:
         unit_of_measurement: '%'
         icon_template: >-
           {% set battery_level = states('sensor.living_room_motion_sensor_battery')|int('unknown') %}
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% else %}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+
+      master_bedroom_smoke_and_carbon_monoxide_detector_battery:
+        entity_id: zwave.master_bedroom_smoke_and_carbon_monoxide_detector
+        value_template: "{{ (states.zwave.master_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% set battery_level = states('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery')|int('unknown') %}
           {% if battery_level == 'unknown' %}
             mdi:battery-unknown
           {% else %}
