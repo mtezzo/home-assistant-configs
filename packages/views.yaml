@@ -84,12 +84,6 @@ group:
       - group.master_bedroom
       - group.master_closets
 
-#  household:
-#    view: yes
-#    entities:
-#      - group.person_dale
-#      - group.guests
-
   network:
     view: yes
     entities:

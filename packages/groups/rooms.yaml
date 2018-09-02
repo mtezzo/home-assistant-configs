@@ -95,12 +95,12 @@ group:
   guest_bedroom:
     control: hidden
     entities:
+      - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level
       - light.guest_bedroom_closet
       - binary_sensor.guest_bedroom_closet_door_contact
       - automation.guest_bedroom_closet_lighting
       - light.guest_bedroom_storage
       - binary_sensor.guest_bedroom_storage_door_contact
-      - sensor.guest_bedroom_storage_door_contact_battery
       - sensor.guest_bedrrom_storage_door_contact_burglar
       - automation.guest_storage_lighting
 
@@ -112,6 +112,7 @@ group:
   laundry_room:
     control: hidden
     entities:
+      - sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level
       - binary_sensor.fibaro_system_fgfs101_zwave_flood_sensor_sensor
       - sensor.fibaro_system_fgfs101_zwave_flood_sensor_temperature
       - zwave.laundry_room_range_extender
@@ -132,7 +133,6 @@ group:
       - sensor.living_room_motion_sensor_luminance
       - sensor.living_room_motion_sensor_seismic_intensity
       - sensor.living_room_motion_sensor_burglar
-      - sensor.living_room_motion_sensor_battery
       - automation.living_room_motion
 
   master_bedroom:
@@ -154,10 +154,8 @@ group:
       - light.michaels_closet
       - binary_sensor.michaels_closet_door_contact
       - sensor.michaels_closet_door_contact_burglar
-      - sensor.michaels_closet_door_contact_battery
       - automation.michaels_closet_lighting
       - light.julias_closet
       - binary_sensor.julias_closet_door_contact
       - sensor.julias_closet_door_contact_burglar
-      - sensor.julias_closet_door_contact_battery
       - automation.julias_closet_lighting
