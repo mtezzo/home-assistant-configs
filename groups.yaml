@@ -62,16 +62,6 @@ household:
 #### SENSORS                                    ####
 ####################################################
 
-humidors:
-  name: 'Humidors'
-  entities:
-    - sensor.wirelesstag_diamond_crown_humidor_humidity
-    - sensor.wirelesstag_diamond_crown_humidor_light
-    - sensor.wirelesstag_diamond_crown_humidor_temperature
-    - sensor.wirelesstag_laundry_room_humidity
-    - sensor.wirelesstag_laundry_room_light
-    - sensor.wirelesstag_laundry_room_temperature
-
 ha:
   name: 'HA Server Monitor'
   entities:
@@ -116,80 +106,6 @@ synology_nas:
     - sensor.temperature_sda
     - sensor.temperature_sdb
     - sensor.volume_used_volume_2
-
-####################################################
-#### ROOMS                                      ####
-####################################################
-
-guest_room:
-  name: 'Guest Room'
-  entities:
-    - light.guest_closet_light
-    - light.guest_room_storage
-
-####################################################
-#### VIEWS                                      ####
-####################################################
-
-default_view:
-  name: Home
-  icon: mdi:home
-  view: yes
-  entities:
-    - configurator.configure
-    - group.living_room
-    - group.dining_room
-    - group.basement
-    - group.computers
-    - group.people
-    - group.master_bedroom
-    - group.master_closets
-    - group.guest_room
-    - group.automations
-    - group.climate
-    - group.humidors
-
-rooms_view:
-  name: Rooms
-  icon: mdi:home-modern
-  view: yes
-  entities:
-    - group.master_bedroom
-    - group.basement
-    - group.master_closets
-    - group.guest_room
-    - group.basement
-    - group.dining_room
-    - group.living_room
-
-lights_view:
-  name: Lights
-  icon: mdi:lightbulb-outline
-  view: yes
-  entities:
-    - group.interior_lights
-
-sensors_view:
-  name: Sensors
-  icon: mdi:access-point
-  view: yes
-  entities:
-    - group.living_room_fibaro
-    - group.bedroom_multisensor
-
-other_view:
-  name: Other
-  icon: mdi:web
-  view: yes
-  entities:
-    - group.weather_general
-    - group.weather_darksky
-    - group.internet
-    - group.modes
-    - group.zwave
-    - group.ha
-    - group.ha_version
-    - group.synology_nas
 
 ####################################################
 #                    ZWAVE                         #

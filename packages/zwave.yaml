@@ -29,17 +29,17 @@ homeassistant:
       friendly_name: Floor Lamp
       icon: mdi:floor-lamp
 
-    light.linear_lb60z1_dimmable_led_light_bulb_level:
+    light.guest_closet:
       <<: *customize
       friendly_name: Guest Closet Light
       icon: mdi:lightbulb
 
-    light.linear_lb60z1_dimmable_led_light_bulb_level_2:
+    light.garage_storage:
       <<: *customize
       friendly_name: Garage Storage Light
       icon: mdi:lightbulb
 
-    light.linear_lb60z1_dimmable_led_light_bulb_level_3:
+    light.dungeon:
       <<: *customize
       friendly_name: Dungeon Light
       icon: mdi:lightbulb

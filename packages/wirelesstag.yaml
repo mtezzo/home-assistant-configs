@@ -15,7 +15,15 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'zones'
+        package: 'wirelesstag'
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.humidors:
+      <<: *customize
+      friendly_name: "Humidors"
 
     ################################################
     ## Plant
@@ -28,6 +36,20 @@ homeassistant:
     plant.laundry_room:
       <<: *customize
       friendly_name: 'Desktop Humidor'
+
+################################################
+## Group
+################################################
+
+humidors:
+  control: hidden
+  entities:
+    - sensor.wirelesstag_diamond_crown_humidor_humidity
+    - sensor.wirelesstag_diamond_crown_humidor_light
+    - sensor.wirelesstag_diamond_crown_humidor_temperature
+    - sensor.wirelesstag_laundry_room_humidity
+    - sensor.wirelesstag_laundry_room_light
+    - sensor.wirelesstag_laundry_room_temperature
 
 ################################################
 ## Sensors

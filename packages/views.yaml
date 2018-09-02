@@ -58,7 +58,7 @@ homeassistant:
     group.sensors:
       <<: *customize
       friendly_name: "Sensors"
-      icon: mdi:gauge
+      icon: mdi:access-point
 
     group.weather:
       <<: *customize
@@ -82,6 +82,7 @@ group:
       - group.laundry_room
       - group.living_room
       - group.master_bedroom
+      - group.master_closets
 
 #  household:
 #    view: yes
@@ -111,7 +112,6 @@ group:
       - group.batteries
       - group.temperature
       - group.motion
-      - group.occupancy
 
   media:
     view: yes

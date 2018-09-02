@@ -24,12 +24,6 @@ switch.bedroom_motion:
   icon: mdi:security
   friendly_name: 'Bedroom Motion Sensor'
 
-switch.julias_closet_door:
-  homebridge_hidden: true
-
-switch.michaels_closet_door:
-  homebridge_hidden: true
-
 switch.laundry_room_co:
   homebridge_hidden: true
 

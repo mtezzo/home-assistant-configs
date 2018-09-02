@@ -105,14 +105,14 @@ group:
   kitchen:
     control: hidden
     entities:
-      - zwave.aeotec_zw117_range_extender_6
+      - zwave.kitchen_range_extender
 
   laundry_room:
     control: hidden
     entities:
       - binary_sensor.fibaro_system_fgfs101_zwave_flood_sensor_sensor
       - sensor.fibaro_system_fgfs101_zwave_flood_sensor_temperature
-      - zwave.aeotec_zw117_range_extender_6_2
+      - zwave.laundry_room_range_extender
 
   living_room:
     control: hidden
