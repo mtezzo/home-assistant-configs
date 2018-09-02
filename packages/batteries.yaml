@@ -1,0 +1,91 @@
+################################################################
+## Packages / Batteries
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'batteries'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.iphone_battery:
+      <<: *customize
+      friendly_name: "iPhone Battery"
+
+    sensor.living_room_motion_sensor_battery:
+      <<: *customize
+      friendly_name: "Living Room Motion Sensor Battery"
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: template
+    sensors:
+      michaels_iphone_battery:
+        entity_id: device_tracker.michaels_iphone
+        value_template: "{{ (states.device_tracker.michaels_iphone.attributes|default).battery|default|int('unknown') }}"
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% set battery_state = states('sensor.michaels_iphone_battery_state')|lower %}
+          {% set battery_level = states('sensor.michaels_iphone_battery_level')|int('unknown') %}
+          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% elif battery_state == 'charging' %}
+            {% if battery_round < 20 %}
+              {% set battery_round = 20 %}
+            {% elif battery_round == 50 %}
+              {% set battery_round = 60 %}
+            {% elif battery_round == 70 %}
+              {% set battery_round = 80 %}
+            {% endif %}
+
+            mdi:battery-charging-{{ battery_round }}
+          {% else %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+
+      living_room_motion_sensor_battery:
+        entity_id: zwave.living_room_motion_sensor
+        value_template: "{{ (states.zwave.living_room_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% set battery_level = states('sensor.living_room_motion_sensor_battery')|int('unknown') %}
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% else %}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+
