@@ -34,7 +34,7 @@ homeassistant:
 ################################################
 
 automation:
-  - alias: "Nightstand Light On"
+  - alias: "Circle Button Tap Nightstand Light On"
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -49,7 +49,7 @@ automation:
           state: 'on'
           brightness: 178
           transition: 2
-  - alias: "Nightstand Light Off"
+  - alias: "Square Button Tap Nightstand Light Off"
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -66,7 +66,7 @@ automation:
           transition: 2
 
 
-  - alias: "Dresser Light On"
+  - alias: "Tringle Button Tap Dresser Light On"
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -81,7 +81,7 @@ automation:
           state: 'on'
           brightness: 178
           transition: 2
-  - alias: "Dresser Light Off"
+  - alias: "X Button Tap Dresser Light Off"
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -97,14 +97,49 @@ automation:
           brightness: 178
           transition: 2
 
+  ################################################
+  ## Minus Button
+  ################################################
 
-  - alias: "Night Mode"
+  - alias: "Minus Button Hold Night Mode On"
     trigger:
       - platform: event
         event_type: zwave.scene_activated
         event_data:
           entity_id: zwave.fibaro_system_fgkf601_keyfob
           scene_id: 5
-          scene_data: 7680
+          scene_data: 7800
     action:
       - service: script.good_night
+
+  ################################################
+  ## Plus Button
+  ################################################
+
+  - alias: "Plus Button Hold Bedroom Motion Off"
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 6
+          scene_data: 7800
+    action:
+      - service: automation.turn_off
+        data:
+          entity_id:
+            - automation.master_bedroom_motion
+
+  - alias: "Plus Button Tap Bedroom Motion On"
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 6
+          scene_data: 7680
+    action:
+      - service: automation.turn_on
+        data:
+          entity_id:
+            - automation.master_bedroom_motion
