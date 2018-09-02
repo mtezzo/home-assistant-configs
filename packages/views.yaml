@@ -75,7 +75,7 @@ group:
     entities:
       - group.basement
       - group.dining_room
-      - group.entry
+      - group.entrance
       - group.garage
       - group.guest_bedroom
       - group.kitchen

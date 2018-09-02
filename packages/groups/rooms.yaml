@@ -34,7 +34,7 @@ homeassistant:
 
     group.entry:
       <<: *customize
-      friendly_name: "Entry"
+      friendly_name: "Entrance"
 
     group.garage:
       <<: *customize
@@ -81,7 +81,7 @@ group:
       - media_player.dining_room
       - camera.dining_room
 
-  entry:
+  entrance:
     control: hidden
     entities:
       - binary_sensor.aeotec_zw112_door_window_sensor_6_sensor
