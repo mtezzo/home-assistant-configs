@@ -61,11 +61,39 @@ light.linear_lb60z1_dimmable_led_light_bulb_level_3:
 ## Multisensor
 ################################################
 
+sensor.aeotec_zw100_multisensor_6_alarm_level:
+  ignored: true
+
+sensor.aeotec_zw100_multisensor_6_alarm_type:
+  ignored: true
+
 sensor.aeotec_zw100_multisensor_6_sourcenodeid:
   ignored: true
 
 sensor.aeotec_zw100_multisensor_6_ultraviolet:
   ignored: true
 
+sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level:
+  ignored: true
+
+sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type:
+  ignored: true
+
+sensor.fibaro_system_fgms001zw5_motion_sensor_general:
+  ignored: true
+
 sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid:
+  ignored: true
+
+################################################
+## Smoke Detectors
+################################################
+
+sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type:
+  ignored: true
+
+sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type_2:
+  ignored: true
+
+sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type_3:
   ignored: true
