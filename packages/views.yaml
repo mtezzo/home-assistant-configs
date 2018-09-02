@@ -121,7 +121,6 @@ group:
   automation:
     view: yes
     entities:
-      - group.automation_override
       - group.all_automations
       - group.all_scripts
 
