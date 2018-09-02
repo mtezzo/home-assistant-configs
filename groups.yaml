@@ -53,9 +53,9 @@ household:
   name: People
   entities:
     - device_tracker.michaels_iphone
-    - sensor.michaels_iphone_battery_level
+    - sensor.michaels_iphone_battery
     - device_tracker.julias_iphone
-    - sensor.julias_iphone_battery_level
+    - sensor.julias_iphone_battery
 
 
 ####################################################
@@ -106,15 +106,6 @@ synology_nas:
     - sensor.temperature_sda
     - sensor.temperature_sdb
     - sensor.volume_used_volume_2
-
-####################################################
-#                    ZWAVE                         #
-####################################################
-
-zwave:
-  name: Z-Wave
-  entities:
-    - zwave.aeotec_zw090_zstick_gen5_us
 
 ####################################################
 #                                                  #

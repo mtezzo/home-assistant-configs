@@ -80,16 +80,16 @@ group:
   batteries:
     control: hidden
     entities:
-      - guest_bedroom_closet_door_contact_battery
-      - guest_bedroom_storage_door_contact_battery
-      - guest_bedroom_smoke_and_carbon_monoxide_detector_battery
-      - julias_closet_door_contact_battery
-      - julias_iphone_battery
-      - laundry_room_flood_sensor_battery
-      - living_room_motion_sensor_battery
-      - master_bedroom_smoke_and_carbon_monoxide_detector_battery
-      - michaels_closet_door_contact_battery
-      - michaels_iphone_battery
+      - sensor.guest_bedroom_closet_door_contact_battery
+      - sensor.guest_bedroom_storage_door_contact_battery
+      - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery
+      - sensor.julias_closet_door_contact_battery
+      - sensor.julias_iphone_battery
+      - sensor.laundry_room_flood_sensor_battery
+      - sensor.living_room_motion_sensor_battery
+      - sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery
+      - sensor.michaels_closet_door_contact_battery
+      - sensor.michaels_iphone_battery
 
 ################################################
 ## Sensor
