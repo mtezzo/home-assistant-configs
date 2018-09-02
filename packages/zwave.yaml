@@ -58,7 +58,52 @@ homeassistant:
     ################################################
 
     zwave.aeotec_zw090_zstick_gen5_us:
-      friendly_name: Z-Wave USB Hub
+      friendly_name: "Z-Wave USB Hub"
+
+    zwave.dungeon_light_bulb:
+      friendly_name: "Dungeon Light Bulb"
+      
+    zwave.garage_storage_light_bulb:
+      friendly_name: "Garage Storage Light Bulb"
+
+    zwave.guest_bedroom_closet_door_contact:
+      friendly_name: "Guest Bedroom Closet Door Contact"
+
+    zwave.guest_bedroom_closet_light_bulb:
+      friendly_name: "Guest Bedroom Closet Light Bulb"
+
+    zwave.guest_bedroom_smoke_and_carbon_monoxide_detector:
+      friendly_name: "Guest Bedroom Smoke and Carbon Monoxide Detector"
+
+    zwave.guest_bedroom_storage_door_contact:
+      friendly_name: "Guest Bedroom Storage Door Contact"
+
+    zwave.julias_closet_door_contact:
+      friendly_name: "Julia's Closet Door Contact"
+
+    zwave.kitchen_range_extender:
+      friendly_name: "Kitchen Range Extender"
+
+    zwave.laundry_room_flood_sensor:
+      friendly_name: "Laundry Room Flood Sensor"
+
+    zwave.laundry_room_range_extender:
+      friendly_name: "Laundry Room Range Extender"
+
+    zwave.laundry_room_smoke_and_carbon_monoxide_detector:
+      friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector"
+
+    zwave.living_room_motion_sensor:
+      friendly_name: "Living Room Motion Sensor"
+
+    zwave.master_bedroom_motion_sensor:
+      friendly_name: "Master Bedroom Motion Sensor"
+
+    zwave.master_bedroom_smoke_and_carbon_monoxide_detector:
+      friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector"
+
+    zwave.michaels_closet_door_contact:
+      friendly_name: "Michael's Closet Door Contact"
 
   ################################################
   ## Customize Domain
