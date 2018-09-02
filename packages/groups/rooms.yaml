@@ -72,7 +72,7 @@ group:
   basement:
     control: hidden
     entities:
-      - light.linear_lb60z1_dimmable_led_light_bulb_level_3
+      - light.dungeon_light
 
   dining_room:
     control: hidden
@@ -89,13 +89,13 @@ group:
   garage:
     control: hidden
     entities:
-      - light.linear_lb60z1_dimmable_led_light_bulb_level_2
+      - light.garage_storage
       - binary_sensor.garage_entry_contact
 
   guest_bedroom:
     control: hidden
     entities:
-      - light.linear_lb60z1_dimmable_led_light_bulb_level
+      - light.guest_closet
       - binary_sensor.fibaro_system_fgk10x_door_opening_sensor_sensor
       - automation.guest_closet_lighting
       - light.guest_room_storage
