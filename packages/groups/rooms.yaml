@@ -60,6 +60,10 @@ homeassistant:
       <<: *customize
       friendly_name: "Master Bedroom"
 
+    group.master_closets:
+      <<: *customize
+      friendly_name: "Master Closets"
+
 ################################################
 ## Group
 ################################################
@@ -113,11 +117,20 @@ group:
   living_room:
     control: hidden
     entities:
+      - climate.living_room
+      - sensor.living_room_thermostat_operation_mode
+      - sensor.living_room_thermostat_humidity
+      - sensor.living_room_nest_protect_co_status
+      - sensor.living_room_nest_protect_smoke_status
       - light.table_light
       - switch.aeotec_zw096_smart_switch_6_switch
       - light.aeotec_zw099_smart_dimmer_6_level_2
-      - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+      - binary_sensor.living_room_motion_sensor
+      - sensor.living_room_motion_sensor_temperature
+      - sensor.living_room_motion_sensor_luminance
+      - sensor.living_room_motion_sensor_seismic_intensity
+      - sensor.living_room_motion_sensor_burglar
+      - sensor.living_room_motion_sensor_battery
       - automation.living_room_motion
 
   master_bedroom:
@@ -129,7 +142,17 @@ group:
       - sensor.aeotec_zw100_multisensor_6_temperature
       - sensor.aeotec_zw100_multisensor_6_relative_humidity
       - automation.master_bedroom_motion
+
+  master_closets:
+    control: hidden
+    entities:
       - light.michaels_closet
-      - automation.michael_closet_lighting
+      - binary_sensor.michaels_closet_door_contact
+      - sensor.michaels_closet_door_contact_burglar
+      - sensor.michaels_closet_door_contact_battery
+      - automation.michaels_closet_lighting
       - light.julias_closet
-      - automation.julia_closet_lighting
+      - binary_sensor.julias_closet_door_contact
+      - sensor.julias_closet_door_contact_burglar
+      - sensor.julias_closet_door_contact_battery
+      - automation.julias_closet_lighting

@@ -40,12 +40,12 @@ homeassistant:
       friendly_name: "Guest Storage Lighting"
       icon: mdi:lightbulb
 
-    automation.michael_closet_lighting:
+    automation.michaels_closet_lighting:
       <<: *customize
       friendly_name: "Michael's Closet Lighting"
       icon: mdi:lightbulb
   
-    automation.julia_closet_lighting:
+    automation.julias_closet_lighting:
       <<: *customize
       friendly_name: "Julia's Closet Lighting"
       icon: mdi:lightbulb
@@ -143,7 +143,7 @@ automation:
           brightness: 255
           transition: 1
 
-  - alias: michael_closet_lighting
+  - alias: michaels_closet_lighting
     trigger:
       - platform: state
         entity_id: binary_sensor.michaels_closet_door_contact
@@ -155,7 +155,7 @@ automation:
           brightness: 255
           transition: 1
 
-  - alias: julia_closet_lighting
+  - alias: julias_closet_lighting
     trigger:
       - platform: state
         entity_id: binary_sensor.julias_closet_door_contact
