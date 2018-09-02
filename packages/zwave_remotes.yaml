@@ -101,6 +101,20 @@ automation:
   ## Minus Button
   ################################################
 
+  - alias: "Minus Button Tap Bedroom Motion Off"
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.fibaro_system_fgkf601_keyfob
+          scene_id: 5
+          scene_data: 7680
+    action:
+      - service: automation.turn_off
+        data:
+          entity_id:
+            - automation.master_bedroom_motion
+
   - alias: "Minus Button Hold Night Mode On"
     trigger:
       - platform: event
@@ -116,19 +130,6 @@ automation:
   ## Plus Button
   ################################################
 
-  - alias: "Plus Button Hold Bedroom Motion Off"
-    trigger:
-      - platform: event
-        event_type: zwave.scene_activated
-        event_data:
-          entity_id: zwave.fibaro_system_fgkf601_keyfob
-          scene_id: 6
-          scene_data: 7800
-    action:
-      - service: automation.turn_off
-        data:
-          entity_id:
-            - automation.master_bedroom_motion
 
   - alias: "Plus Button Tap Bedroom Motion On"
     trigger:
