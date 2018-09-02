@@ -89,7 +89,7 @@ sensor:
         value_template: '{{ states.sensor.wirelesstag_laundry_room_humidity.attributes.battery_level|float * 100 }}'
         unit_of_measurement: '%'
         icon_template: >-
-          {% set battery_level = states('sensor.wirelesstag_laundry_room_battery_battery')|float * 100 %}
+          {% set battery_level = states('sensor.wirelesstag_laundry_room_battery')|float * 100 %}
           {% if battery_level == 'unknown' %}
             mdi:battery-unknown
           {% else %}
