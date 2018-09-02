@@ -97,8 +97,8 @@ views:
           - switch.aeotec_zw096_smart_switch_6_switch
           - light.aeotec_zw099_smart_dimmer_6_level_2
           - light.dining_room_spot
-          - light.guest_room_storage
-          - light.guest_closet
+          - light.guest_bedroom_storage
+          - light.guest_bedroom_closet
           - light.garage_storage
           - light.dungeon
 
@@ -128,8 +128,8 @@ views:
           - automation.living_room_motion
           - automation.michaels_closet_lighting
           - automation.julias_closet_lighting
-          - automation.guest_closet_lighting
-          - automation.guest_storage_lighting
+          - automation.guest_bedroom_closet_lighting
+          - automation.guest_bedroom_storage_lighting
 
 ####################################################
 #                                                  #
