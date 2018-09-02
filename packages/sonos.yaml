@@ -1,0 +1,62 @@
+################################################################
+## Packages / Sonos
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'sonos'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+    ################################################
+    ## Media Player
+    ################################################
+
+    media_player.dining_room:
+      <<: *expose
+      friendly_name: 'Dining Room Sonos'
+      icon: mdi:speaker
+
+    media_player.living_room:
+      <<: *expose
+      friendly_name: 'Living Room Sonos'
+      icon: mdi:speaker
+
+################################################
+## Script
+################################################
+
+script:
+  sonos_say:
+    alias: "Sonos TTS script"
+    sequence:
+     - service: media_player.sonos_snapshot
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+     - service: media_player.sonos_unjoin
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+     - service: media_player.volume_set
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+         volume_level: "{{ volume }}"
+     - service: tts.voicerss_say
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+         message: "{{ message }}"
+     - delay: "{{ delay }}"
+     - service: media_player.sonos_restore
+       data_template:
+         entity_id: "{{ sonos_entity }}"

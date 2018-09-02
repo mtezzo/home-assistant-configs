@@ -132,14 +132,8 @@ twilio:
 # Groups #
 group: !include groups.yaml
 
-# Scripts #
-script: !include scripts.yaml
-
 # Sensors #
 sensor: !include sensors.yaml
-
-# Shell Commands #
-shell_command: !include shell_commands.yaml
 
 # Switches #
 switch: !include switches.yaml
