@@ -63,11 +63,11 @@ automation:
     initial_state: 'off'
     trigger:
       - platform: state
-        entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+        entity_id: binary_sensor.living_room_motion_sensor
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+        entity_id: binary_sensor.living_room_motion_sensor
         from: 'on'
         to: 'off'
         for: '00:25:00'
@@ -134,7 +134,7 @@ automation:
   - alias: guest_storage_lighting
     trigger:
       - platform: state
-        entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_3
+        entity_id: binary_sensor.guest_storage_door_contact
     action:
       - service: script.light_control
         data_template:
@@ -146,7 +146,7 @@ automation:
   - alias: michael_closet_lighting
     trigger:
       - platform: state
-        entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
+        entity_id: binary_sensor.michaels_closet_door_contact
     action:
       - service: script.light_control
         data_template:
@@ -158,7 +158,7 @@ automation:
   - alias: julia_closet_lighting
     trigger:
       - platform: state
-        entity_id: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor_2
+        entity_id: binary_sensor.julias_closet_door_contact
     action:
       - service: script.light_control
         data_template:

@@ -6,10 +6,37 @@
 ## Door/Window Sensor
 ################################################
 
+sensor.aeotec_zw120_door_window_sensor_gen5_access_control:
+  ignored: true
+
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level:
+  ignored: true
+
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type:
+  ignored: true
+
 sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid:
   ignored: true
 
+sensor.aeotec_zw120_door_window_sensor_gen5_access_control_2:
+  ignored: true
+
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level_2:
+  ignored: true
+
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type_2:
+  ignored: true
+
 sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid_2:
+  ignored: true
+
+sensor.aeotec_zw120_door_window_sensor_gen5_access_control_3:
+  ignored: true
+
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level_3:
+  ignored: true
+
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type_3:
   ignored: true
 
 sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid_3:
