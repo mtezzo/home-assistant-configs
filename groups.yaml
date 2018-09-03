@@ -31,19 +31,6 @@ internet:
     - weblink.wifi_admin
 
 ####################################################
-#### PEOPLE                                     ####
-####################################################
-
-household:
-  name: People
-  entities:
-    - device_tracker.michaels_iphone
-    - sensor.michaels_iphone_battery
-    - device_tracker.julias_iphone
-    - sensor.julias_iphone_battery
-
-
-####################################################
 #### SENSORS                                    ####
 ####################################################
 

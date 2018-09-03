@@ -18,7 +18,6 @@ homeassistant:
 
       expose: &expose
         <<: *customize
-        haaska_hidden: false
         homebridge_hidden: false
 
     ################################################
@@ -38,6 +37,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Guest Mode"
       icon: mdi:account
+
+    input_boolean.night_mode:
+      <<: *customize
+      friendly_name: "Night Mode"
+      icon: mdi:weather-night
 
     input_boolean.vacation_mode:
       <<: *customize
@@ -75,21 +79,10 @@ group:
 
 input_boolean:
   guest_mode:
-    initial: off
+
+  night_mode:
 
   vacation_mode:
-    initial: off
-
-
-input_select:
-  house_mode:
-    name: House Mode
-    options:
-      - "home"
-      - "away"
-      - "night"
-      - "vacation"
-    icon: mdi:home-outline
 
 ################################################
 ## Sensor
@@ -99,15 +92,15 @@ sensor:
   - platform: template
     sensors:
       household:
-        entity_id: group.household
+        entity_id: group.all_devices
         value_template: >-
-          {% if is_state('group.household', 'home') %}
+          {% if is_state('group.all_devices', 'home') %}
             home
           {% else %}
             away
           {% endif %}
         icon_template: >-
-          {% if is_state('group.household', 'home') %}
+          {% if is_state('group.all_devices', 'home') %}
             mdi:home
           {% else %}
             mdi:home-outline
@@ -116,11 +109,14 @@ sensor:
       house_mode:
         entity_id:
           - input_boolean.guest_mode
+          - input_boolean.night_mode
           - input_boolean.vacation_mode
           - sensor.household
         value_template: >-
           {% if is_state('input_boolean.guest_mode', 'on') %}
             guest
+          {% elif is_state('input_boolean.night_mode', 'on') %}
+            night
           {% elif is_state('sensor.household', 'home') %}
             home
           {% elif is_state('input_boolean.vacation_mode', 'on') %}
@@ -131,6 +127,8 @@ sensor:
         icon_template: >-
           {% if is_state('input_boolean.guest_mode', 'on') %}
             mdi:account
+          {% elif is_state('input_boolean.night_mode', 'on') %}
+            mdi:weather-night
           {% elif is_state('sensor.household', 'home') %}
             mdi:home
           {% elif is_state('input_boolean.vacation_mode', 'on') %}

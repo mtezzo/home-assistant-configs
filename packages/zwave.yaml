@@ -21,6 +21,45 @@ homeassistant:
         homebridge_hidden: false
 
     ################################################
+    ## Binary Sensor
+    ################################################
+
+    binary_sensor.entrance_front_door_contact:
+      <<: *customize
+      friendly_name: Entrance Front Door
+      icon: mdi:door
+
+    binary_sensor.guest_bedroom_closet_door_contact:
+      <<: *customize
+      friendly_name: Guest Bedroom Closet Door
+      icon: mdi:door
+
+    binary_sensor.guest_bedroom_storage_door_contact:
+      <<: *customize
+      friendly_name: Guest Bedroom Storage Door
+      icon: mdi:door
+
+    binary_sensor.julias_closet_door_contact:
+      <<: *customize
+      friendly_name: "Julia's Closet Door"
+      icon: mdi:door
+
+    binary_sensor.living_room_motion_sensor:
+      <<: *customize
+      friendly_name: "Living Room Motion Sensor"
+      icon: mdi:run
+
+    binary_sensor.master_bedroom_motion_sensor:
+      <<: *customize
+      friendly_name: "Master Bedroom Motion Sensor"
+      icon: mdi:run
+
+    binary_sensor.michaels_closet_door_contact:
+      <<: *customize
+      friendly_name: "Michael's Closet Door"
+      icon: mdi:door
+
+    ################################################
     ## Lights
     ################################################
 
@@ -43,6 +82,80 @@ homeassistant:
       <<: *customize
       friendly_name: Dungeon Light
       icon: mdi:lightbulb
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
+      <<: *customize
+      friendly_name: Guest Bedroom Smoke Detector
+      icon: mdi:smoke-detector
+
+    sensor.guest_bedroom_storage_door_contact_burglar:
+      <<: *customize
+      friendly_name: "Guest Bedroom Closet Door Contact Burglar"
+      icon: mdi:alarm-bell
+
+    sensor.julias_closet_door_contact_burglar:
+      <<: *customize
+      friendly_name: "Julia's Closet Door Contact Burglar"
+      icon: mdi:alarm-bell
+
+    sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level:
+      <<: *customize
+      friendly_name: Laundry Room Smoke Detector
+      icon: mdi:smoke-detector
+
+    sensor.living_room_motion_sensor_burglar:
+      <<: *customize
+      friendly_name: Living Room Motion Sensor Burglar
+      icon: mdi:alarm-bell
+
+    sensor.living_room_motion_sensor_luminance:
+      <<: *customize
+      friendly_name: Living Room Motion Sensor Luminance
+      icon: mdi:weather_sunny
+
+    sensor.living_room_motion_sensor_seismic_intensity:
+      <<: *customize
+      friendly_name: Living Room Motion Sensor Seismic Intensity
+      icon: mdi:vibrate
+
+    sensor.living_room_motion_sensor_temperature:
+      <<: *customize
+      friendly_name: Living Room Motion Sensor Temperature
+      icon: mdi:thermometer
+
+    sensor.master_bedroom_motion_sensor_burglar:
+      <<: *customize
+      friendly_name: Master Bedroom Motion Sensor Burglar
+      icon: mdi:alarm-bell
+
+    sensor.master_bedroom_motion_sensor_luminance:
+      <<: *customize
+      friendly_name: Master Bedroom Motion Sensor Luminance
+      icon: mdi:weather-sunny
+
+    sensor.master_bedroom_motion_sensor_humidity:
+      <<: *customize
+      friendly_name: Master Bedroom Motion Sensor Humidity
+      icon: mdi:water-percent
+
+    sensor.master_bedroom_motion_sensor_temperature:
+      <<: *customize
+      friendly_name: Master Bedroom Motion Sensor Temperature
+      icon: mdi:thermometer
+
+    sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
+      <<: *customize
+      friendly_name: Master Bedroom Smoke Detector
+      icon: mdi:smoke-detector
+
+    sensor.michaels_closet_door_contact_burglar:
+      <<: *customize
+      friendly_name: "Michael's Closet Door Contact Burglar"
+      icon: mdi:alarm-bell
 
     ################################################
     ## Switches
@@ -110,6 +223,9 @@ homeassistant:
 
     zwave.master_bedroom_smoke_and_carbon_monoxide_detector:
       friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector"
+
+    zwave.master_bedroom_remote:
+      friendly_name: "Master Bedroom Remote"
 
     zwave.michaels_closet_door_contact:
       friendly_name: "Michael's Closet Door Contact"

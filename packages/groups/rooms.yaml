@@ -84,7 +84,7 @@ group:
   entrance:
     control: hidden
     entities:
-      - binary_sensor.aeotec_zw112_door_window_sensor_6_sensor
+      - binary_sensor.entrance_front_door_contact
 
   garage:
     control: hidden
