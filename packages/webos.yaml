@@ -36,7 +36,7 @@ media_player:
     turn_on_action:
       service: wake_on_lan.send_magic_packet
       data:
-        mac: "14:C9:13:7C:BB:FE"
+        mac: "14-C9-13-7C-BB-FE"
 
 ################################################
 ## Notify
@@ -44,6 +44,6 @@ media_player:
 
 notify:
   - platform: webostv
-      host: 192.168.0.9
-      name: living_room_tv
-      filename: webostv.conf
+    host: 192.168.0.9
+    name: living_room_tv
+    filename: webostv.conf
