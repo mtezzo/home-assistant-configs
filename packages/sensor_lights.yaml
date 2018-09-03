@@ -83,10 +83,6 @@ automation:
           state: "{{ trigger.to_state.state }}"
           brightness: 178
           effect: colorloop
-#      - service: script.light_control
-#        data_template:
-#          entity_id: switch.living_room_bookshelf_lamp
-#          state: "{{ trigger.to_state.state }}"
 
   - alias: master_bedroom_motion
     trigger:

@@ -11,7 +11,9 @@ title: Otteropolis
 
 # Exclude entities from "Unused entities" view
 excluded_entities:
-  - weblink.router
+  - weblink.router_admin
+  - weblink.swtich_admin
+  - weblink.wifi_admin
 
 views:
     # Specify a tab icon if you want the view tab to be an icon.
@@ -44,6 +46,7 @@ views:
             show_header_toggle: false
             entities:
               - sensor.house_mode
+              - input_boolean.night_mode
               - input_boolean.guest_mode
               - input_boolean.vacation_mode
               - sensor.household
@@ -93,13 +96,18 @@ views:
           - light.nightstand_lamp
           - light.michaels_closet
           - light.julias_closet
+          - type: divider
           - light.table_light
           - switch.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
+          - type: divider
           - light.dining_room_spot
+          - type: divider
           - light.guest_bedroom_storage
           - light.guest_bedroom_closet
+          - type: divider
           - light.garage_storage
+          - type: divider
           - light.dungeon
 
       - type: picture-glance
@@ -117,6 +125,18 @@ views:
         content: >
           Welcome to your **Lovelace UI**.
 
+    # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:robot
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Automations
+    # Optional unique id for direct access /lovelace/${id}
+    id: automations
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
         # Entities card will take a list of entities and show their state.
       - type: entities
         # Title of the entities card
@@ -130,6 +150,11 @@ views:
           - automation.julias_closet_lighting
           - automation.guest_bedroom_closet_lighting
           - automation.guest_bedroom_storage_lighting
+      - type: history-graph
+        title: 'History'
+        entities:
+          - sensors.household
+
 
 ####################################################
 #                                                  #
