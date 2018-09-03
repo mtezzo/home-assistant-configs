@@ -18,14 +18,6 @@ homeassistant:
         package: 'wirelesstag'
 
     ################################################
-    ## Group
-    ################################################
-
-    group.humidors:
-      <<: *customize
-      friendly_name: "Humidors"
-
-    ################################################
     ## Plant
     ################################################
 
@@ -77,23 +69,6 @@ homeassistant:
       <<: *customize
       friendly_name: 'Desktop Humidor Temperature'
       icon: mdi:thermometer
-
-################################################
-## Group
-################################################
-
-group:
-  humidors:
-    control: hidden
-    entities:
-      - sensor.wirelesstag_diamond_crown_humidor_humidity
-      - sensor.wirelesstag_diamond_crown_humidor_light
-      - sensor.wirelesstag_diamond_crown_humidor_temperature
-      - sensor.wirelesstag_diamond_crown_humidor_battery
-      - sensor.wirelesstag_laundry_room_humidity
-      - sensor.wirelesstag_laundry_room_light
-      - sensor.wirelesstag_laundry_room_temperature
-      - sensor.wirelesstag_laundry_room_battery
 
 ################################################
 ## Sensors
