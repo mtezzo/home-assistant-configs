@@ -27,6 +27,14 @@ homeassistant:
       icon: mdi:fan
 
     ################################################
+    ## Group
+    ################################################
+
+    group.climate:
+      <<: *customize
+      friendly_name: 'Climate'
+
+    ################################################
     ## Sensor
     ################################################
 
@@ -78,6 +86,22 @@ homeassistant:
       <<: *customize
       friendly_name: 'Nest'
       icon: mdi:thermostat
+
+################################################
+## Group
+################################################
+
+group:
+  climate:
+    control: hidden
+    entities:
+      - climate.living_room
+      - binary_sensor.living_room_thermostat_fan
+      - sensor.living_room_thermostat_hvac_state
+      - sensor.living_room_thermostat_operation_mode
+      - sensor.living_room_thermostat_target
+      - sensor.living_room_away_mode
+      - sensor.living_room_thermostat_time_to_target
 
 ################################################
 ## Sensor

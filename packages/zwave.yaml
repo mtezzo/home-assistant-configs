@@ -137,7 +137,7 @@ homeassistant:
       friendly_name: Master Bedroom Motion Sensor Luminance
       icon: mdi:weather-sunny
 
-    sensor.master_bedroom_motion_sensor_humidity:
+    sensor.master_bedroom_motion_sensor_relative_humidity:
       <<: *customize
       friendly_name: Master Bedroom Motion Sensor Humidity
       icon: mdi:water-percent

@@ -76,6 +76,8 @@ group:
   batteries:
     control: hidden
     entities:
+      - sensor.wirelesstag_laundry_room_battery
+      - sensor.wirelesstag_diamond_crown_humidor_battery
       - sensor.guest_bedroom_closet_door_contact_battery
       - sensor.guest_bedroom_storage_door_contact_battery
       - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery

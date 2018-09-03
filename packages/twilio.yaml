@@ -1,0 +1,41 @@
+################################################################
+## Packages / Twilio
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'twilio'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+################################################
+## Twilio
+################################################
+
+# Twilio notifications
+# https://www.home-assistant.io/components/twilio/
+twilio:
+  account_sid: !secret twilio_sid
+  auth_token: !secret twilio_token
+
+################################################
+## Notify
+################################################
+
+# https://www.home-assistant.io/components/notify.twilio_sms/
+notify:
+  - name: sms
+    platform: twilio_sms
+    from_number: !secret twilio_number

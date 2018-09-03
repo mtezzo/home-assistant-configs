@@ -21,7 +21,7 @@ homeassistant:
   time_zone: !secret ha_time_zone
 
   # Customizations
-  customize: !include_dir_merge_named customize/
+  customize: !include customize.yaml
 
   # Packages
   packages: !include_dir_named packages/
@@ -76,13 +76,6 @@ logbook:
 # https://www.home-assistant.io/components/map/
 map:
 
-# Notifications
-# https://www.home-assistant.io/components/notify.twilio_sms/
-notify:
-  - name: sms
-    platform: twilio_sms
-    from_number: !secret twilio_number
-
 # Text to speech
 tts:
   - platform: google
@@ -118,25 +111,6 @@ media_player:
     host: 192.168.0.9
     mac: 14:C9:13:7C:BB:FE
     name: 'Living Room TV'
-
-# Twilio notifications
-# https://www.home-assistant.io/components/twilio/
-twilio:
-  account_sid: !secret twilio_sid
-  auth_token: !secret twilio_token
-
-####################################################
-### INCLUDES                                    ####
-####################################################
-
-# Groups #
-group: !include groups.yaml
-
-# Switches #
-switch: !include switches.yaml
-
-# Weblinks #
-weblink: !include weblinks.yaml
 
 ####################################################
 #                                                  #

@@ -95,8 +95,7 @@ group:
       - sensor.load_1m
       - sensor.load_5m
       - sensor.load_15m
-      - sensor.installed_version
-      - sensor.latest_version
+      - sensor.current_version
 
   internet:
     name: 'Internet'
@@ -127,7 +126,8 @@ automation:
       - service: notify.sms
         data:
           message: "Home Assistant is now up and running."
-          to_number: !secret mobile_michael
+          target:
+            - !secret mobile_michael
 #      - service: automation.trigger
 #        data:
 #          entity_id: automation.update_global_brightness
@@ -141,7 +141,8 @@ automation:
       - service: notify.sms
         data:
           message: 'There is a new Home Assistant release available.'
-          to_number: !secret mobile_michael
+          target:
+            - !secret mobile_michael
 
 ################################################
 ## Sensor
