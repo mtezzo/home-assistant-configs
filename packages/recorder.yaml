@@ -29,6 +29,7 @@ recorder:
         - camera
         - media_player
         - sun
+        - weblink
       entities:
         - sensor.since_last_boot
         - sensor.date
