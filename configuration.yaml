@@ -101,7 +101,7 @@ media_player:
     turn_on_action:
       service: wake_on_lan.send_magic_packet
       data:
-        mac: "14-C9-13-7C-BB-FE"
+        mac: "14:C9:13:7C:BB:FE"
 
 ####################################################
 #                                                  #
