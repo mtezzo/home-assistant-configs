@@ -89,19 +89,12 @@ updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
 
+# Enable Wake-On-LAN
+wake_on_lan:
+
 # Zeroconf/Avahi/Bonjour
 # https://www.home-assistant.io/components/zeroconf/
 zeroconf:
-
-# Media Players
-media_player:
-  - platform: webostv
-    host: 192.168.0.9
-    name: 'Living Room TV'
-    turn_on_action:
-      service: wake_on_lan.send_magic_packet
-      data:
-        mac: "14:C9:13:7C:BB:FE"
 
 ####################################################
 #                                                  #
