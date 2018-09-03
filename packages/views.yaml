@@ -88,9 +88,8 @@ group:
     view: yes
     entities:
       - group.network_devices
-      - group.web_power_switch
+      - group.internet
       - group.system
-      - group.ups
       - group.utilities
 
   cameras:

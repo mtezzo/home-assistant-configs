@@ -132,9 +132,6 @@ twilio:
 # Groups #
 group: !include groups.yaml
 
-# Sensors #
-sensor: !include sensors.yaml
-
 # Switches #
 switch: !include switches.yaml
 

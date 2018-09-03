@@ -2,10 +2,6 @@
 # https://www.home-assistant.io/components/group/
 
 ####################################################
-#### AUTOMATIONS                                ####
-####################################################
-
-####################################################
 #### COMPUTERS                                  ####
 ####################################################
 
@@ -15,43 +11,6 @@ computers:
     - switch.imac
     - switch.raspberry_pi
     - switch.pc
-
-####################################################
-#### INTERNET                                   ####
-####################################################
-
-internet:
-  name: 'Internet'
-  entities:
-    - sensor.speedtest_ping
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
-    - weblink.router_admin
-    - weblink.switch_admin
-    - weblink.wifi_admin
-
-####################################################
-#### SENSORS                                    ####
-####################################################
-
-ha:
-  name: 'HA Server Monitor'
-  entities:
-    - sensor.processor_use
-    - sensor.disk_use_percent_home
-    - sensor.memory_use_percent
-    - sensor.since_last_boot_templated
-    - sensor.network_in_eth0
-    - sensor.network_out_eth0
-    - sensor.load_1m
-    - sensor.load_5m
-    - sensor.load_15m
-
-ha_version:
-  name: 'HA Version Info'
-  entities:
-    - sensor.installed_version
-    - sensor.latest_version
 
 climate:
   name: 'Climate'
@@ -63,21 +22,6 @@ climate:
     - sensor.living_room_thermostat_target
     - sensor.living_room_away_mode
     - sensor.living_room_thermostat_time_to_target
-
-synology_nas:
-  name: 'Mnemosyne'
-  control: hidden
-  entities:
-    - switch.nas_switch
-    - sensor.cpu_load_total
-    - sensor.memory_usage_real
-    - sensor.network_down
-    - sensor.network_up
-    - sensor.status_smart_sda
-    - sensor.status_smart_sdb
-    - sensor.temperature_sda
-    - sensor.temperature_sdb
-    - sensor.volume_used_volume_2
 
 ####################################################
 #                                                  #

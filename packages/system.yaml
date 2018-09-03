@@ -1,0 +1,209 @@
+################################################################
+## Packages / System
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'system'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.startup_notification:
+      <<: *customize
+      friendly_name: "Startup Notification"
+      icon: mdi:message-text
+
+    automation.update_notification:
+      <<: *customize
+      friendly_name: "Update Notification"
+      icon: mdi:message-text
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.system:
+      <<: *customize
+      friendly_name: "System"
+      icon: mdi:settings-box
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.date:
+      <<: *customize
+      friendly_name: "System Date"
+      icon: mdi:calendar
+
+    sensor.since_last_boot_templated:
+      friendly_name: Last Boot
+      icon: mdi:clock
+
+    sensor.speedtest_ping:
+      <<: *customize
+      friendly_name: Ping
+      icon: mdi:pulse
+
+    sensor.speedtest_download:
+      <<: *customize
+      friendly_name: Download
+      icon: mdi:download
+
+    sensor.speedtest_upload:
+      <<: *customize
+      friendly_name: Upload
+      icon: mdi:upload
+
+    sensor.time:
+      <<: *customize
+      friendly_name: "System Time"
+      icon: mdi:clock
+
+################################################
+## Group
+################################################
+
+group:
+  system:
+    control: hidden
+    entities:
+      - sensor.date
+      - sensor.time
+      - sensor.processor_use
+      - sensor.disk_use_percent_home
+      - sensor.memory_use_percent
+      - sensor.since_last_boot_templated
+      - sensor.network_in_eth0
+      - sensor.network_out_eth0
+      - sensor.load_1m
+      - sensor.load_5m
+      - sensor.load_15m
+      - sensor.installed_version
+      - sensor.latest_version
+
+  internet:
+    name: 'Internet'
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - weblink.router_admin
+      - weblink.switch_admin
+      - weblink.wifi_admin
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: startup_notification
+    initial_state: 'on'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: time
+        seconds: '/5'
+    action:
+      - service: automation.turn_off
+        data:
+          entity_id: automation.startup_notification
+      - service: notify.sms
+        data:
+          message: "Home Assistant is now up and running."
+          to_number: !secret mobile_michael
+#      - service: automation.trigger
+#        data:
+#          entity_id: automation.update_global_brightness
+
+  - alias: update_notification
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+    action:
+      - service: notify.sms
+        data:
+          message: 'There is a new Home Assistant release available.'
+          to_number: !secret mobile_michael
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  # https://www.home-assistant.io/components/sensor.time_date/
+  - platform: time_date
+    display_options:
+      - date
+      - time
+
+  # https://home-assistant.io/components/sensor.systemmonitor/
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_use_percent
+      - type: processor_use
+      - type: since_last_boot
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+
+  # https://www.home-assistant.io/components/sensor.version/
+  - platform: version
+
+  # https://www.home-assistant.io/components/sensor.speedtest/
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+  # https://home-assistant.io/components/sensor.template/
+  - platform: template
+    sensors:
+      since_last_boot_templated:
+        value_template: >-
+          {%- set slb = states.sensor.since_last_boot.state.split(' ') -%}
+          {%- set count = slb | length -%}
+          {%- set hms = slb[count - 1] -%}
+          {%- set hms_trimmed = hms.split('.')[0] -%}
+          {%- set hms_split = hms_trimmed.split(':') -%}
+          {%- set hours = hms_split[0] | int -%}
+          {%- if count == 3 -%}
+            {{ slb[0] ~ ' ' ~ slb[1] ~ ' ' }}
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if hours == 1 -%}
+              1 hour
+            {%- else -%}
+              {{ hours }} hours
+            {%- endif -%}
+          {%- endif -%}
