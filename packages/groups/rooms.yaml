@@ -32,7 +32,7 @@ homeassistant:
       <<: *customize
       friendly_name: "Dining Room"
 
-    group.entry:
+    group.entrance:
       <<: *customize
       friendly_name: "Entrance"
 
@@ -72,7 +72,7 @@ group:
   basement:
     control: hidden
     entities:
-      - light.dungeon_light
+      - light.dungeon
 
   dining_room:
     control: hidden
@@ -98,6 +98,7 @@ group:
       - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level
       - light.guest_bedroom_closet
       - binary_sensor.guest_bedroom_closet_door_contact
+      - sensor.guest_bedroom_storage_door_contact_burglar
       - automation.guest_bedroom_closet_lighting
       - light.guest_bedroom_storage
       - binary_sensor.guest_bedroom_storage_door_contact
