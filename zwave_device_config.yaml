@@ -89,14 +89,17 @@ sensor.fibaro_system_fgfs101_zwave_flood_sensor_sourcenodeid:
 sensor.linear_gd00z4_garage_door_opener_remote_controller_sourcenodeid:
   ignored: true
 
-sensor.linear_gd00z4_garage_door_opener_remote_controller_burglar:
-  ignored: false
+sensor.linear_gd00z4_garage_door_opener_remote_controller_access_control:
+  ignored: true
 
 sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_level:
-  ignored: false
+  ignored: true
 
 sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_type:
-  ignored: false
+  ignored: true
+
+sensor.linear_gd00z4_garage_door_opener_remote_controller_burglar:
+  ignored: true
 
 ################################################
 ## Lights

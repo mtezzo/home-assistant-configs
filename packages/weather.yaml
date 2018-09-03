@@ -44,7 +44,7 @@ homeassistant:
 
     sensor.dark_sky_precip_probability:
       <<: *customize
-      friendly_name: "Precipitation"
+      friendly_name: "Chance Precipitation"
       icon: mdi:weather-rainy
 
     sensor.dark_sky_precip:

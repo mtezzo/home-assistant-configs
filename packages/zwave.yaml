@@ -194,6 +194,9 @@ homeassistant:
     zwave.entrance_front_door_contact:
       friendly_name: "Entrance Front Door Contact"
 
+    zwave.garage_door_opener:
+      friendly_name: "Garage Door Opener"
+
     zwave.garage_storage_light_bulb:
       friendly_name: "Garage Storage Light Bulb"
 

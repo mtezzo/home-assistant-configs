@@ -93,24 +93,15 @@ updater:
 # https://www.home-assistant.io/components/zeroconf/
 zeroconf:
 
-####################################################
-### SERVICES                                    ####
-####################################################
-
-# https://www.home-assistant.io/components/camera.synology/
-camera:
-  - platform: synology
-    url: !secret nas_url
-    username: !secret nas_username
-    password: !secret nas_password
-    timeout: 15
-
 # Media Players
 media_player:
   - platform: webostv
     host: 192.168.0.9
-    mac: 14:C9:13:7C:BB:FE
     name: 'Living Room TV'
+    turn_on_action:
+      service: wake_on_lan.send_magic_packet
+      data:
+        mac: "14-C9-13-7C-BB-FE"
 
 ####################################################
 #                                                  #

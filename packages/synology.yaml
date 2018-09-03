@@ -1,0 +1,47 @@
+################################################################
+## Packages / Synology
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'synology'
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.indoor_cameras:
+      <<: *customize
+      friendly_name: "Indoor Cameras"
+
+################################################
+## Group
+################################################
+
+group:
+  indoor_cameras:
+    control: hidden
+    entities:
+      - camera.dining_room
+
+################################################
+## Camera
+################################################
+
+# https://www.home-assistant.io/components/camera.synology/
+camera:
+  - platform: synology
+    url: !secret nas_url
+    username: !secret nas_username
+    password: !secret nas_password
+    timeout: 15
