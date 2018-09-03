@@ -65,14 +65,6 @@ views:
           - light.dining_room_spot
         camera_image: camera.dining_room
 
-      - type: vertical-stack
-        cards:
-          - type: plant-status
-            entity: plant.diamond_crown
-
-          - type: plant-status
-            entity: plant.laundry_room
-
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:lightbulb-outline
     # Title of the view. Will be used as the tooltip for tab icon
@@ -126,6 +118,42 @@ views:
           Welcome to your **Lovelace UI**.
 
     # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:camcorder
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Cameras
+    # Optional unique id for direct access /lovelace/${id}
+    id: cameras
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+      - type: picture-entity
+        title: Dining Room
+        entity: camera.dining_room
+
+    # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:access-point
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Sensors
+    # Optional unique id for direct access /lovelace/${id}
+    id: sensors
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.diamond_crown
+
+          - type: plant-status
+            entity: plant.laundry_room
+
+    # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:robot
     # Title of the view. Will be used as the tooltip for tab icon
     title: Automations
@@ -153,7 +181,7 @@ views:
       - type: history-graph
         title: 'History'
         entities:
-          - sensors.household
+          - sensor.household
 
 
 ####################################################
