@@ -89,7 +89,6 @@ group:
       - group.network_devices
       - group.internet
       - group.system
-      - group.utilities
 
   cameras:
     view: yes
