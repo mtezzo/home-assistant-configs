@@ -103,9 +103,6 @@ group:
       - sensor.speedtest_ping
       - sensor.speedtest_download
       - sensor.speedtest_upload
-      - weblink.router_admin
-      - weblink.switch_admin
-      - weblink.wifi_admin
 
 ################################################
 ## Automation

@@ -96,12 +96,15 @@ group:
     control: hidden
     entities:
       - climate.living_room
+      - binary_sensor.otter_den_away
       - binary_sensor.living_room_thermostat_fan
+      - sensor.living_room_thermostat_humidity
       - sensor.living_room_thermostat_hvac_state
       - sensor.living_room_thermostat_operation_mode
       - sensor.living_room_thermostat_target
+      - sensor.living_room_thermostat_temperature
       - sensor.living_room_away_mode
-      - sensor.living_room_thermostat_time_to_target
+      - sensor.otter_den_eta
 
 ################################################
 ## Sensor
