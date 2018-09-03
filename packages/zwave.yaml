@@ -102,6 +102,21 @@ homeassistant:
       friendly_name: "Julia's Closet Door Contact Burglar"
       icon: mdi:alarm-bell
 
+    sensor.laundry_room_flood_sensor:
+      <<: *customize
+      friendly_name: "Laundry Room Flood Sensor"
+      icon: mdi:water
+
+    sensor.laundry_room_flood_sensor_burglar:
+      <<: *customize
+      friendly_name: "Laundry Room Flood Sensor Burglar"
+      icon: mdi:alarm-bell
+
+    sensor.laundry_room_flood_sensor_temperature:
+      <<: *customize
+      friendly_name: "Laundry Room Flood Sensor Temperature"
+      icon: mdi:thermometer
+
     sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level:
       <<: *customize
       friendly_name: Laundry Room Smoke Detector

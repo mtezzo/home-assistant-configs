@@ -115,7 +115,9 @@ group:
     entities:
       - sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level
       - binary_sensor.fibaro_system_fgfs101_zwave_flood_sensor_sensor
-      - sensor.fibaro_system_fgfs101_zwave_flood_sensor_temperature
+      - sensor.laundry_room_flood_sensor
+      - sensor.laundry_room_flood_sensor_burglar
+      - sensor.laundry_room_flood_sensor_temperature
       - zwave.laundry_room_range_extender
 
   living_room:

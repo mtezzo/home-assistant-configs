@@ -64,6 +64,18 @@ sensor.fibaro_system_fgk10x_door_opening_sensor_sourcenodeid:
 ## Flood Sensor
 ################################################
 
+sensor.fibaro_system_fgfs101_zwave_flood_sensor_alarm_level:
+  ignored: true
+
+sensor.fibaro_system_fgfs101_zwave_flood_sensor_alarm_type:
+  ignored: true
+
+sensor.fibaro_system_fgfs101_zwave_flood_sensor_flood_2:
+  ignored: true
+
+sensor.fibaro_system_fgfs101_zwave_flood_sensor_general:
+  ignored: true
+
 sensor.fibaro_system_fgfs101_zwave_flood_sensor_sourcenodeid:
   ignored: true
 
