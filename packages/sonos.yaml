@@ -21,6 +21,14 @@ homeassistant:
         homebridge_hidden: false
 
     ################################################
+    ## Group
+    ################################################
+
+    group.media_players:
+      <<: *customize
+      friendly_name: "Media Players"
+
+    ################################################
     ## Media Player
     ################################################
 
@@ -33,6 +41,17 @@ homeassistant:
       <<: *expose
       friendly_name: 'Living Room Sonos'
       icon: mdi:speaker
+
+################################################
+## Group
+################################################
+
+group:
+  media_players:
+    control: hidden
+    entities:
+      - media_player.dining_room
+      - media_player.living_room
 
 ################################################
 ## Script
