@@ -60,12 +60,17 @@ automation:
     condition:
       condition: and
       conditions:
-        - condition: state
-          entity_id: sensor.house_mode
-          state: 'home'
         - condition: sun
           after: sunset
           after_offset: '-00:30:00'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: sensor.house_mode
+              state: 'Home'
+            - condition: state
+              entity_id: sensor.house_mode
+              state: 'Guest'
     action:
       - service: script.good_evening
 
@@ -73,6 +78,10 @@ automation:
     trigger:
       - platform: time
         at: '23:30:00'
+      - platform: state
+        entity_id: input_boolean.night_mode
+        to: 'on'
+        from: 'off'
     condition:
       condition: and
       conditions: 
@@ -85,7 +94,7 @@ automation:
             - sun
         - condition: state
           entity_id: sensor.house_mode
-          state: 'home'
+          state: 'Home'
     action:
       - service: script.good_night
 
@@ -112,6 +121,10 @@ script:
 
   good_night:
     sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.night_mode
+
       - service: automation.turn_off
         data:
           entity_id:
