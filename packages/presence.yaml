@@ -262,3 +262,15 @@ automation:
               input_select.michaels_status
             {% endif %}
           option: Extended Away
+
+################################################
+## Device Tracker
+################################################
+
+# Device Tracking
+# https://www.home-assistant.io/components/device_tracker.bluetooth_tracker/
+device_tracker:
+  - platform: bluetooth_tracker
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
