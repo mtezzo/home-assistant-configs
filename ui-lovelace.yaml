@@ -16,19 +16,12 @@ excluded_entities:
   - weblink.wifi_admin
 
 views:
-    # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant
-    # Title of the view. Will be used as the tooltip for tab icon
     title: Home
-    # Optional unique id for direct access /lovelace/${id}
     id: home
-    # Optional background (overwrites the global background).
     background: radial-gradient(crimson, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
     theme: dark-mode
-    # The cards to show on this view.
     cards:
-        # The filter card will filter entities for their state
       - type: vertical-stack
         cards:
           - type: entity-filter
@@ -37,6 +30,7 @@ views:
               - entity: input_select.julias_status
             state_filter:
               - 'Home'
+              - 'Just Arrived'
             card:
               type: glance
               title: People that are home
@@ -48,27 +42,30 @@ views:
               - input_boolean.guest_mode
               - input_boolean.vacation_mode
               - sensor.household
+
       - type: weather-forecast
         entity: weather.dark_sky
 
-    # Specify a tab icon if you want the view tab to be an icon.
-  - icon: mdi:lightbulb-outline
-    # Title of the view. Will be used as the tooltip for tab icon
-    title: Devices
-    # Optional unique id for direct access /lovelace/${id}
-    id: devices
-    # Optional background (overwrites the global background).
-    background: radial-gradient(crimson, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
-    theme: dark-mode
-    # The cards to show on this view.
-    cards:
-        # Entities card will take a list of entities and show their state.
       - type: entities
-        # Title of the entities card
+        title: Favorites
+        entities:
+          - light.dresser_lamp
+          - light.nightstand_lamp
+          - type: divider
+          - light.table_light
+          - switch.living_room_bookshelf_lamp
+          - light.living_room_floor_lamp
+          - type: divider
+          - light.dining_room_spot
+
+  - icon: mdi:lightbulb-outline
+    title: Devices
+    id: devices
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - type: entities
         title: Lights
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
         entities:
           - light.dresser_lamp
           - light.nightstand_lamp
@@ -88,17 +85,11 @@ views:
           - type: divider
           - light.dungeon
 
-    # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:floor-plan
-    # Title of the view. Will be used as the tooltip for tab icon
     title: Rooms
-    # Optional unique id for direct access /lovelace/${id}
     id: rooms
-    # Optional background (overwrites the global background).
     background: radial-gradient(blueviolet, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
     theme: dark-mode
-    # The cards to show on this view.
     cards:
       - type: picture-glance
         title: Living room
@@ -108,46 +99,31 @@ views:
           - switch.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
         image: /local/living_room.jpg
+
       - type: picture-glance
         title: Dining Room
         entities:
           - light.dining_room_spot
         camera_image: camera.dining_room
 
-
-    # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:camcorder
-    # Title of the view. Will be used as the tooltip for tab icon
     title: Cameras
-    # Optional unique id for direct access /lovelace/${id}
     id: cameras
-    # Optional background (overwrites the global background).
     background: radial-gradient(blueviolet, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
     theme: dark-mode
-    # The cards to show on this view.
     cards:
       - type: picture-entity
         title: Dining Room
         entity: camera.dining_room
 
-    # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:access-point
-    # Title of the view. Will be used as the tooltip for tab icon
     title: Sensors
-    # Optional unique id for direct access /lovelace/${id}
     id: sensors
-    # Optional background (overwrites the global background).
     background: radial-gradient(blueviolet, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
     theme: dark-mode
-    # The cards to show on this view.
     cards:
       - type: entities
-        # Title of the entities card
         title: Temperature Sensors
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
         entities:
           - sensor.laundry_room_flood_sensor_temperature
           - sensor.living_room_motion_sensor_temperature
@@ -155,20 +131,20 @@ views:
           - sensor.master_bedroom_motion_sensor_temperature
           - sensor.wirelesstag_laundry_room_temperature
           - sensor.wirelesstag_diamond_crown_humidor_temperature
+
       - type: entities
-        # Title of the entities card
         title: Motion Sensors
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
         entities:
           - binary_sensor.master_bedroom_motion_sensor
           - binary_sensor.living_room_motion_sensor
+
       - type: history-graph
         title: 'History'
         entities:
           - sensor.household
           - device_tracker.julias_iphone
           - device_tracker.michaels_iphone
+
       - type: vertical-stack
         cards:
           - type: plant-status
@@ -177,24 +153,14 @@ views:
           - type: plant-status
             entity: plant.laundry_room
 
-    # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:robot
-    # Title of the view. Will be used as the tooltip for tab icon
     title: Automations
-    # Optional unique id for direct access /lovelace/${id}
     id: automations
-    # Optional background (overwrites the global background).
     background: radial-gradient(orange, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
     theme: dark-mode
-    # The cards to show on this view.
     cards:
-        # Entities card will take a list of entities and show their state.
       - type: entities
-        # Title of the entities card
         title: Automations
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
         entities:
           - automation.master_bedroom_motion
           - automation.living_room_motion
@@ -202,7 +168,6 @@ views:
           - automation.julias_closet_lighting
           - automation.guest_bedroom_closet_lighting
           - automation.guest_bedroom_storage_lighting
-
 
 ####################################################
 #                                                  #
