@@ -24,66 +24,59 @@ homeassistant:
     ## Automation
     ################################################
 
-    automation.presence_detection:
+    automation.person_just_arrived:
       <<: *expose
-      friendly_name: "Presence Detection"
+      friendly_name: "Mark person as just arrived"
       icon: mdi:map-marker
 
-    ################################################
-    ## Group
-    ################################################
+    automation.person_home:
+      <<: *customize
+      friendly_name: "Mark person as home"
+      icon: mdi:map-marker
 
-    group.arrival_lights:
-      <<: *expose
-      friendly_name: "Arrival Lights"
-      icon: mdi:lightbulb
+    automation.person_just_left:
+      <<: *customize
+      friendly_name: "Mark person as just left"
+      icon: mdi:map-marker
+
+    automation.person_away:
+      <<: *customize
+      friendly_name: "Mark person as away"
+      icon: mdi:map-marker
+
+    automation.person_extended_away:
+      <<: *customize
+      friendly_name: "Mark person as extended away"
+      icon: mdi:map-marker
 
     ################################################
     ## Input Select
     ################################################
 
-    input_select.julia_status_select:
-      <<: *expose
-      friendly_name: "Julia"
-
-    input_select.michael_status_select:
-      <<: *expose
-      friendly_name: "Michael"
-
-    ################################################
-    ## Sensor
-    ################################################
-
-    sensor.julia_status:
+    input_select.julias_status:
       <<: *customize
       friendly_name: "Julia"
       entity_picture: /local/julia.jpg
 
-    sensor.michael_status:
+    input_select.michaels_status:
       <<: *customize
       friendly_name: "Michael"
       entity_picture: /local/michael.jpg
 
     ################################################
-    ## Script
+    ## Sensor
     ################################################
 
-    script.arrival:
-      <<: *expose
-      friendly_name: "Arrival"
-      icon: mdi:map-marker
-
-    script.departure:
-      <<: *expose
-      friendly_name: "Departure"
-      icon: mdi:map-marker-off
+    sensor.household:
+      <<: *customize
+      friendly_name: "Household"
 
 ################################################
 ## Input Select
 ################################################
 
 input_select:
-  julia_status_select:
+  julias_status:
     options:
       - Home
       - Just Arrived
@@ -91,7 +84,7 @@ input_select:
       - Away
       - Extended Away
 
-  michael_status_select:
+  michaels_status:
     options:
       - Home
       - Just Arrived
@@ -106,28 +99,31 @@ input_select:
 sensor:
   - platform: template
     sensors:
-      julia_status:
-        value_template: '{{ states.input_select.julia_status_select.state }}'
-      michael_status:
-        value_template: '{{ states.input_select.michael_status_select.state }}'
-
-################################################
-## Group
-################################################
-
-group:
-  people_status:
-    name: People Status
-    entities:
-      - sensor.julia_status
-      - sensor.michael_status
+      household:
+        entity_id:
+          - input_select.julias_status
+          - input_select.michaels_status
+        value_template: >-
+          {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.julias_status', 'Just Arrived') or is_state('input_select.michaels_status', 'Home') or is_state('input_select.michaels_status', 'Just Arrived') %}
+            home
+          {% else %}
+            away
+          {% endif %}
+        icon_template: >-
+          {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.julias_status', 'Just Arrived') or is_state('input_select.michaels_status', 'Home') or is_state('input_select.michaels_status', 'Just Arrived') %}
+            mdi:home
+          {% else %}
+            mdi:home-outline
+          {% endif %}
 
 ################################################
 ## Automation
 ################################################
 
 automation:
-  - alias: Mark person as just arrived
+  - alias: person_just_arrived
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: device_tracker.julias_iphone
@@ -142,57 +138,61 @@ automation:
         data_template:
           entity_id: >-
             {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
-              input_select.julia_status_select
+              input_select.julias_status
             {% else %}
-              input_select.michael_status_select
+              input_select.michaels_status
             {% endif %}
           option: >-
             {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
-              {% if states.input_select.julia_status_select.state == 'Just Left' %}
+              {% if states.input_select.julias_status.state == 'Just Left' %}
                 Home
               {% else %}
                 Just Arrived
               {% endif %}
             {% else %}
-              {% if states.input_select.michael_status_select.state == 'Just Left' %}
+              {% if states.input_select.michaels_status.state == 'Just Left' %}
                 Home
               {% else %}
                 Just Arrived
               {% endif %}
             {% endif %}
  
-  - alias: Mark person as home
+  - alias: person_home
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julia_status_select
+        entity_id: input_select.julias_status
         to: 'Just Arrived'
         for:
           minutes: 10
       - platform: state
-        entity_id: input_select.michael_status_select
+        entity_id: input_select.michaels_status
         to: 'Just Arrived'
         for:
           minutes: 10
       - platform: state
-        entity_id: input_select.julia_status_select
+        entity_id: input_select.julias_status
         from: 'Just Left'
         to: 'Just Arrived'
       - platform: state
-        entity_id: input_select.michael_status_select
+        entity_id: input_select.michaels_status
         from: 'Just Left'
         to: 'Just Arrived'
     action:
       - service: input_select.select_option
         data_template:
           entity_id: >
-            {% if trigger.entity_id == 'input_select.julia_status_select' %}
-              input_select.julia_status_select
+            {% if trigger.entity_id == 'input_select.julias_status' %}
+              input_select.julias_status
             {% else %}
-              input_select.michael_status_select
+              input_select.michaels_status
             {% endif %}
           option: Home
  
-  - alias: Mark person as just left
+  - alias: person_just_left
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: device_tracker.julias_iphone
@@ -207,21 +207,23 @@ automation:
         data_template:
           entity_id: >
             {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
-              input_select.julia_status_select
+              input_select.julias_status
             {% else %}
-              input_select.michael_status_select
+              input_select.michaels_status
             {% endif %}
           option: Just Left
  
-  - alias: Mark person as away
+  - alias: person_away
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julia_status_select
+        entity_id: input_select.julias_status
         to: 'Just Left'
         for:
           minutes: 10
       - platform: state
-        entity_id: input_select.michael_status_select
+        entity_id: input_select.michaels_status
         to: 'Just Left'
         for:
           minutes: 10
@@ -229,22 +231,24 @@ automation:
       - service: input_select.select_option
         data_template:
           entity_id: >
-            {% if trigger.entity_id == 'input_select.julia_status_select' %}
-              input_select.julia_status_select
+            {% if trigger.entity_id == 'input_select.julias_status' %}
+              input_select.julias_status
             {% else %}
-              input_select.michael_status_select
+              input_select.michaels_status
             {% endif %}
           option: Away
  
-  - alias: Mark person as extended away
+  - alias: person_extended_away
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julia_status_select
+        entity_id: input_select.julias_status
         to: 'Away'
         for:
           hours: 24
       - platform: state
-        entity_id: input_select.michael_status_select
+        entity_id: input_select.michaels_status
         to: 'Away'
         for:
           hours: 24
@@ -252,84 +256,9 @@ automation:
       - service: input_select.select_option
         data_template:
           entity_id: >
-            {% if trigger.entity_id == 'input_select.julia_status_select' %}
-              input_select.julia_status_select
+            {% if trigger.entity_id == 'input_select.julias_status' %}
+              input_select.julias_status
             {% else %}
-              input_select.michael_status_select
+              input_select.michaels_status
             {% endif %}
           option: Extended Away
-  
-  
-  
-  
-#  - alias: presence_detection
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: group.household
-#        from: 'not_home'
-#        to: 'home'
-#      - platform: state
-#        entity_id: group.household
-#        from: 'home'
-#        to: 'not_home'
-    # condition:
-    #   - condition: state
-    #     entity_id: input_boolean.guest_mode
-    #     state: 'off'
-#    action:
-#      - service_template: >-
-#          {% if trigger.to_state.state == 'home' %}
-#            script.arrival
-#          {% elif trigger.from_state.state == 'home' %}
-#            script.departure
-#          {% endif %}
-
-
-################################################
-## Script
-################################################
-
-script:
-  arrival:
-    sequence:
-      # - service: script.ios_notify_arrival
-      - service: cover.open_cover
-        data:
-          entity_id: cover.garage_door
-      - service: lock.unlock
-        data:
-          entity_id: lock.front_door_locked
-      - service: script.light_control
-        data:
-          # entity_id for light_control currently does not handle lists
-          entity_id: group.arrival_lights
-          state: 'on'
-      - service: script.front_porch_light
-      - service: climate.set_hold_mode
-        data:
-          entity_id: climate.ecobee3
-          hold_mode: 'home'
-      - service: switch.turn_on
-        data:
-          entity_id:
-            - switch.eventghost_blueiris
-            - switch.eventghost_monitor
-
-  departure:
-    sequence:
-      - service: lock.lock
-        data:
-          entity_id: lock.front_door_locked
-      - service: script.light_control
-        data:
-          entity_id: group.all_lights
-          state: 'off'
-      - service: script.front_porch_light
-      - service: climate.set_hold_mode
-        data:
-          entity_id: climate.ecobee3
-          hold_mode: 'away'
-      - service: switch.turn_off
-        data:
-          entity_id: switch.eventghost_monitor

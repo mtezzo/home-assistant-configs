@@ -33,12 +33,10 @@ views:
         cards:
           - type: entity-filter
             entities:
-              - entity: device_tracker.michaels_iphone
-                name: Michael
-              - entity: device_tracker.julias_iphone
-                name: Julia
+              - entity: input_select.michaels_status
+              - entity: input_select.julias_status
             state_filter:
-              - 'home'
+              - 'Home'
             card:
               type: glance
               title: People that are home
