@@ -50,20 +50,8 @@ views:
               - input_boolean.guest_mode
               - input_boolean.vacation_mode
               - sensor.household
-
-        # The picture entity card will represent an entity with a picture
-      - type: picture-entity
-        image: https://www.home-assistant.io/images/default-social.png
-        entity: light.julias_closet
-
       - type: weather-forecast
         entity: weather.dark_sky
-
-      - type: picture-glance
-        title: Dining Room
-        entities:
-          - light.dining_room_spot
-        camera_image: camera.dining_room
 
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:lightbulb-outline
@@ -102,6 +90,18 @@ views:
           - type: divider
           - light.dungeon
 
+    # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:floor-plan
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Rooms
+    # Optional unique id for direct access /lovelace/${id}
+    id: home
+    # Optional background (overwrites the global background).
+    background: radial-gradient(yellow, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
       - type: picture-glance
         title: Living room
         entities:
@@ -110,12 +110,12 @@ views:
           - switch.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
         image: /local/living_room.jpg
+      - type: picture-glance
+        title: Dining Room
+        entities:
+          - light.dining_room_spot
+        camera_image: camera.dining_room
 
-        # The markdown card will render markdown text.
-      - type: markdown
-        title: Lovelace
-        content: >
-          Welcome to your **Lovelace UI**.
 
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:camcorder
@@ -124,7 +124,7 @@ views:
     # Optional unique id for direct access /lovelace/${id}
     id: cameras
     # Optional background (overwrites the global background).
-    background: radial-gradient(crimson, skyblue)
+    background: radial-gradient(blueviolet, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.
     theme: dark-mode
     # The cards to show on this view.
