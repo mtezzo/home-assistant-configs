@@ -116,11 +116,11 @@ sensor:
         icon_template: >-
           {% set household_status = states('sensor.household') %}
           {% if household_status == 'Home' or household_status == 'Arrival' %}
-            mdi:home
+            mdi:map-marker-radius
           {% elif household_status == 'Extended Away' %}
             mdi:beach
           {% else %}
-            mdi:home-outline
+            mdi:car
           {% endif %}
 
 ################################################
