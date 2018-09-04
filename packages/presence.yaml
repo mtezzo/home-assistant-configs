@@ -104,14 +104,21 @@ sensor:
           - input_select.julias_status
           - input_select.michaels_status
         value_template: >-
-          {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.julias_status', 'Just Arrived') or is_state('input_select.michaels_status', 'Home') or is_state('input_select.michaels_status', 'Just Arrived') %}
-            home
+          {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.michaels_status', 'Home') %}
+            Home
+          {% elif is_state('input_select.julias_status', 'Just Arrived') or is_state('input_select.michaels_status', 'Just Arrived') %}
+            Arrival
+          {% elif is_state('input_select.julias_status', 'Extended Away') and is_state('input_select.michaels_status', 'Extended Away') %}
+            Vacation
           {% else %}
-            away
+            Away
           {% endif %}
         icon_template: >-
-          {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.julias_status', 'Just Arrived') or is_state('input_select.michaels_status', 'Home') or is_state('input_select.michaels_status', 'Just Arrived') %}
+          {% set household_status = states('sensor.household') %}
+          {% if household_status == 'Home' or household_status == 'Arrival' %}
             mdi:home
+          {% elif household_status == 'Extended Away' %}
+            mdi:beach
           {% else %}
             mdi:home-outline
           {% endif %}
