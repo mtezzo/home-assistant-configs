@@ -95,7 +95,7 @@ views:
     # Title of the view. Will be used as the tooltip for tab icon
     title: Rooms
     # Optional unique id for direct access /lovelace/${id}
-    id: home
+    id: rooms
     # Optional background (overwrites the global background).
     background: radial-gradient(yellow, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.
@@ -160,7 +160,7 @@ views:
     # Optional unique id for direct access /lovelace/${id}
     id: automations
     # Optional background (overwrites the global background).
-    background: radial-gradient(crimson, skyblue)
+    background: radial-gradient(orange, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.
     theme: dark-mode
     # The cards to show on this view.
