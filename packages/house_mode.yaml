@@ -88,23 +88,26 @@ sensor:
         value_template: >-
           {% if is_state('input_boolean.guest_mode', 'on') %}
             Guest
-          {% elif is_state('input_boolean.night_mode', 'on') %}
-            Night
           {% elif is_state('sensor.household', 'Home') or is_state('sensor.household', 'Arrival') %}
-            Home
+            {% if is_state('input_boolean.night_mode', 'on') %}
+              Night
+            {% else %}
+              Home
+            {% endif %}
           {% elif is_state('sensor.household', 'Vacation') %}
             Vacation
           {% else %}
             Away
           {% endif %}
         icon_template: >-
-          {% if is_state('input_boolean.guest_mode', 'on') %}
+          {% set mode = states('sensor.house_mode') %}
+          {% if mode == 'Guest' %}
             mdi:account
-          {% elif is_state('input_boolean.night_mode', 'on') %}
-            mdi:weather-night
-          {% elif is_state('sensor.household', 'Home') %}
+          {% elif mode == 'Home' %}
             mdi:home
-          {% elif is_state('sensor.household', 'Vacation') %}
+          {% elif mode == 'Night' %}
+            mdi:weather-night
+          {% elif mode == 'Vacation' %}
             mdi:beach
           {% else %}
             mdi:home-outline

@@ -20,6 +20,11 @@ homeassistant:
     ## Automation
     ################################################
 
+    automation.auto_morning:
+      <<: *customize
+      friendly_name: "Auto Morning"
+      icon: mdi:robot
+
     automation.auto_evening:
       <<: *customize
       friendly_name: "Auto Evening"
@@ -49,6 +54,25 @@ homeassistant:
 ################################################
 
 automation:
+  - alias: auto_morning
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: '-00:30:00'
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.house_mode
+            state: 'Night'
+          - condition: state
+            entity_id: sensor.house_mode
+            state: 'Guest'
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.night_mode
+
   - alias: auto_evening
     trigger:
       - platform: sun
@@ -56,7 +80,7 @@ automation:
         offset: '-00:30:00'
       - platform: state
         entity_id: sensor.house_mode
-        to: 'home'
+        to: 'Home'
     condition:
       condition: and
       conditions:
@@ -110,14 +134,6 @@ script:
           entity_id:
             - automation.living_room_motion
             - automation.master_bedroom_motion
-
-#      - service: script.light_control
-#        data:
-#          entity_id: light.master_bedroom
-#          state: 'on'
-#          brightness: 255
-#          color_temp: 370
-#          transition: 5
 
   good_night:
     sequence:

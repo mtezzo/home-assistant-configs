@@ -124,7 +124,9 @@ automation:
           scene_id: 5
           scene_data: 7800
     action:
-      - service: script.good_night
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.night_mode
 
   ################################################
   ## Plus Button
