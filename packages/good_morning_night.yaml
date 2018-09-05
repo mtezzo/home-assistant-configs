@@ -102,10 +102,6 @@ automation:
     trigger:
       - platform: time
         at: '23:30:00'
-      - platform: state
-        entity_id: input_boolean.night_mode
-        to: 'on'
-        from: 'off'
     condition:
       condition: and
       conditions: 
@@ -119,6 +115,15 @@ automation:
         - condition: state
           entity_id: sensor.house_mode
           state: 'Home'
+    action:
+      - service: script.good_night
+
+  - alias: manual_night
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        to: 'on'
+        from: 'off'
     action:
       - service: script.good_night
 
