@@ -79,18 +79,18 @@ input_select:
   julias_status:
     options:
       - Home
-      - Just Arrived
-      - Just Left
+      - Arriving
+      - Departing
       - Away
-      - Extended Away
+      - Vacation
 
   michaels_status:
     options:
       - Home
-      - Just Arrived
-      - Just Left
+      - Arriving
+      - Departing
       - Away
-      - Extended Away
+      - Vacation
 
 ################################################
 ## Sensor
@@ -106,20 +106,20 @@ sensor:
         value_template: >-
           {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.michaels_status', 'Home') %}
             Home
-          {% elif is_state('input_select.julias_status', 'Just Arrived') or is_state('input_select.michaels_status', 'Just Arrived') %}
-            Arrival
-          {% elif is_state('input_select.julias_status', 'Just Left') or is_state('input_select.michaels_status', 'Just Left') %}
-            Departure
-          {% elif is_state('input_select.julias_status', 'Extended Away') and is_state('input_select.michaels_status', 'Extended Away') %}
+          {% elif is_state('input_select.julias_status', 'Arriving') or is_state('input_select.michaels_status', 'Arriving') %}
+            Arriving
+          {% elif is_state('input_select.julias_status', 'Departing') or is_state('input_select.michaels_status', 'Departing') %}
+            Departing
+          {% elif is_state('input_select.julias_status', 'Vacation') and is_state('input_select.michaels_status', 'Vacation') %}
             Vacation
           {% else %}
             Away
           {% endif %}
         icon_template: >-
           {% set household_status = states('sensor.household') %}
-          {% if household_status == 'Home' or household_status == 'Arrival' %}
+          {% if household_status == 'Home' or household_status == 'Arriving' %}
             mdi:map-marker-radius
-          {% elif household_status == 'Extended Away' %}
+          {% elif household_status == 'Vacation' %}
             mdi:beach
           {% else %}
             mdi:car
@@ -135,11 +135,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: device_tracker.julias_iphone
-        from: 'not_home'
-        to: 'home'
-      - platform: state
-        entity_id: device_tracker.michaels_iphone
+        entity_id: device_tracker.julias_iphone, device_tracker.michaels_iphone
         from: 'not_home'
         to: 'home'
     action:
@@ -153,16 +149,16 @@ automation:
             {% endif %}
           option: >-
             {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
-              {% if states.input_select.julias_status.state == 'Just Left' %}
+              {% if states.input_select.julias_status.state == 'Departing' %}
                 Home
               {% else %}
-                Just Arrived
+                Arriving
               {% endif %}
             {% else %}
-              {% if states.input_select.michaels_status.state == 'Just Left' %}
+              {% if states.input_select.michaels_status.state == 'Departing' %}
                 Home
               {% else %}
-                Just Arrived
+                Arriving
               {% endif %}
             {% endif %}
  
@@ -171,23 +167,14 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julias_status
-        to: 'Just Arrived'
+        entity_id: input_select.julias_status, input_select.michaels_status
+        to: 'Arriving'
         for:
           minutes: 10
       - platform: state
-        entity_id: input_select.michaels_status
-        to: 'Just Arrived'
-        for:
-          minutes: 10
-      - platform: state
-        entity_id: input_select.julias_status
-        from: 'Just Left'
-        to: 'Just Arrived'
-      - platform: state
-        entity_id: input_select.michaels_status
-        from: 'Just Left'
-        to: 'Just Arrived'
+        entity_id: input_select.julias_status, input_select.michaels_status
+        from: 'Departing'
+        to: 'Arriving'
     action:
       - service: input_select.select_option
         data_template:
@@ -204,11 +191,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: device_tracker.julias_iphone
-        from: 'home'
-        to: 'not_home'
-      - platform: state
-        entity_id: device_tracker.michaels_iphone
+        entity_id: device_tracker.julias_iphone, device_tracker.michaels_iphone
         from: 'home'
         to: 'not_home'
     action:
@@ -220,20 +203,15 @@ automation:
             {% else %}
               input_select.michaels_status
             {% endif %}
-          option: Just Left
+          option: Departing
  
   - alias: person_away
     hide_entity: true
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julias_status
-        to: 'Just Left'
-        for:
-          minutes: 10
-      - platform: state
-        entity_id: input_select.michaels_status
-        to: 'Just Left'
+        entity_id: input_select.julias_status, input_select.michaels_status
+        to: 'Departing'
         for:
           minutes: 10
     action:
@@ -252,12 +230,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julias_status
-        to: 'Away'
-        for:
-          hours: 24
-      - platform: state
-        entity_id: input_select.michaels_status
+        entity_id: input_select.julias_status, input_select.michaels_status
         to: 'Away'
         for:
           hours: 24
@@ -270,7 +243,7 @@ automation:
             {% else %}
               input_select.michaels_status
             {% endif %}
-          option: Extended Away
+          option: Vacation
 
 ################################################
 ## Device Tracker
