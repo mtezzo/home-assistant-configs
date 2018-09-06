@@ -27,6 +27,10 @@ homeassistant:
     zone.home:
       <<: *expose
       icon: mdi:home
+      beacon:
+        uuid: !secret beacon_uuid
+        major: !secret beacon_major
+        minor: !secret beacon_minor
 
     zone.computer_center:
       <<: *expose
@@ -54,4 +58,4 @@ zone:
   - name: Home
     latitude: !secret ha_latitude
     longitude: !secret ha_longitude
-    radius: 200
+    radius: 100
