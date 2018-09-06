@@ -108,6 +108,8 @@ sensor:
             Home
           {% elif is_state('input_select.julias_status', 'Just Arrived') or is_state('input_select.michaels_status', 'Just Arrived') %}
             Arrival
+          {% elif is_state('input_select.julias_status', 'Just Left') or is_state('input_select.michaels_status', 'Just Left') %}
+            Departure
           {% elif is_state('input_select.julias_status', 'Extended Away') and is_state('input_select.michaels_status', 'Extended Away') %}
             Vacation
           {% else %}
