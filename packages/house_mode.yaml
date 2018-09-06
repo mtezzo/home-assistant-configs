@@ -88,7 +88,7 @@ sensor:
         value_template: >-
           {% if is_state('input_boolean.guest_mode', 'on') %}
             Guest
-          {% elif is_state('sensor.household', 'Home') or is_state('sensor.household', 'Arrival') %}
+          {% elif is_state('sensor.household', 'Home') or is_state('sensor.household', 'Arriving') or is_state('sensor.household', 'Departing') %}
             {% if is_state('input_boolean.night_mode', 'on') %}
               Night
             {% else %}
