@@ -116,7 +116,9 @@ automation:
           entity_id: sensor.house_mode
           state: 'Home'
     action:
-      - service: script.good_night
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.night_mode
 
   - alias: manual_night
     trigger:
@@ -142,10 +144,6 @@ script:
 
   good_night:
     sequence:
-      - service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.night_mode
-
       - service: automation.turn_off
         data:
           entity_id:
