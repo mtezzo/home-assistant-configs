@@ -47,4 +47,4 @@ cloud:
         name: Laundry Room Temperature
         display_categories: TEMPERATURE_SENSOR
       switch.living_room_bookshelf_lamp:
-        display_categories: SMART-PLUG
+        display_categories: LIGHT

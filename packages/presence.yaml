@@ -171,10 +171,10 @@ automation:
         to: 'Arriving'
         for:
           minutes: 10
-      - platform: state
-        entity_id: input_select.julias_status, input_select.michaels_status
-        from: 'Departing'
-        to: 'Arriving'
+#      - platform: state
+#        entity_id: input_select.julias_status, input_select.michaels_status
+#        from: 'Departing'
+#        to: 'Arriving'
     action:
       - service: input_select.select_option
         data_template:
@@ -251,8 +251,8 @@ automation:
 
 # Device Tracking
 # https://www.home-assistant.io/components/device_tracker.bluetooth_tracker/
-device_tracker:
-  - platform: bluetooth_tracker
-    new_device_defaults:
-      track_new_devices: false
-      hide_if_away: false
+#device_tracker:
+#  - platform: bluetooth_tracker
+#    new_device_defaults:
+#      track_new_devices: false
+#      hide_if_away: false
