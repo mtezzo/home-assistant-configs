@@ -21,6 +21,20 @@ homeassistant:
         homebridge_hidden: false
 
     ################################################
+    ## Automation
+    ################################################
+
+    automation.auto_away:
+      <<: *customize
+      friendly_name: "Auto Away"
+      icon: mdi:robot
+
+    automation.auto_home:
+      <<: *customize
+      friendly_name: "Auto Away"
+      icon: mdi:robot
+
+    ################################################
     ## Group
     ################################################
 
@@ -112,3 +126,40 @@ sensor:
           {% else %}
             mdi:home-outline
           {% endif %}
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: auto_away
+    trigger:
+      - platform: state
+        entity_id: sensor.house_mode
+        to:
+          - 'Away'
+          - 'Vacation'
+    action:
+      - service: script.light_control
+        data:
+          entity_id: group.all_lights
+          state: 'off'
+          transition: 5
+      - service: switch.turn_off
+        data:
+          entity_id: switch.living_room_bookshelf_lamp
+      - service: nest.set_mode
+        data:
+          home_mode: away
+
+  - alias: auto_home
+    trigger:
+      - platform: state
+        entity_id: sensor.house_mode
+        to: 'Home'
+    condition: template
+      value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
+    action:
+      - service: nest.set_mode
+        data:
+          home_mode: home
