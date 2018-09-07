@@ -157,7 +157,8 @@ automation:
       - platform: state
         entity_id: sensor.house_mode
         to: 'Home'
-    condition: template
+    condition:
+      condition: template
       value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
     action:
       - service: nest.set_mode
