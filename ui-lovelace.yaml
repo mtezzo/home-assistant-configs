@@ -137,12 +137,22 @@ views:
           - binary_sensor.master_bedroom_motion_sensor
           - binary_sensor.living_room_motion_sensor
 
+      - type: entities
+        title: Door Sensors
+        entities:
+          - binary_sensor.entrance_front_door_contact
+          - binary_sensor.guest_bedroom_closet_door_contact
+          - binary_sensor.guest_bedroom_storage_door_contact
+          - binary_sensor.julias_closet_door_contact
+          - binary_sensor.michaels_closet_door_contact
+
       - type: history-graph
-        title: 'History'
+        title: 'Presence History'
         entities:
           - sensor.household
-          - device_tracker.julias_iphone
-          - device_tracker.michaels_iphone
+          - input_select.julias_status
+          - input_select.michaels_status
+          - sensor.house_mode
 
       - type: vertical-stack
         cards:
@@ -159,7 +169,7 @@ views:
     theme: dark-mode
     cards:
       - type: entities
-        title: Automations
+        title: Lighting Automations
         entities:
           - automation.master_bedroom_motion
           - automation.living_room_motion
@@ -167,6 +177,11 @@ views:
           - automation.julias_closet_lighting
           - automation.guest_bedroom_closet_lighting
           - automation.guest_bedroom_storage_lighting
+      - type: entities
+        title: Presence Automations
+        entities:
+          - automation.auto_away
+          - automation.auto_home
 
 ####################################################
 #                                                  #

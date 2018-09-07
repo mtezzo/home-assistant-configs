@@ -31,7 +31,7 @@ homeassistant:
 
     automation.auto_home:
       <<: *customize
-      friendly_name: "Auto Away"
+      friendly_name: "Auto Home"
       icon: mdi:robot
 
     ################################################

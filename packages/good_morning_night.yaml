@@ -55,6 +55,7 @@ homeassistant:
 
 automation:
   - alias: auto_morning
+    initial_state: 'on'
     trigger:
       - platform: sun
         event: sunrise
