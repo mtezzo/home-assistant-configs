@@ -33,3 +33,18 @@ cloud:
         - switch.raspberry_pi
         - switch.pc
         - switch.imac
+        - sensor.wirelesstag_laundry_room_temperature
+        - sensor.wirelesstag_diamond_crown_humidor_temperature
+        - sensor.dark_sky_temperature
+    entity_config:
+      sensor.living_room_motion_sensor_temperature:
+        name: Living Room Temperature
+        display_categories: TEMPERATURE_SENSOR
+      sensor.master_bedroom_motion_sensor_temperature:
+        name: Bedroom Temperature
+        display_categories: TEMPERATURE_SENSOR
+      sensor.laundry_room_flood_sensor_temperature:
+        name: Laundry Room Temperature
+        display_categories: TEMPERATURE_SENSOR
+      switch.living_room_bookshelf_lamp:
+        display_categories: SMART-PLUG
