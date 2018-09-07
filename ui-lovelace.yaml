@@ -37,6 +37,7 @@ views:
           - type: entities
             show_header_toggle: false
             entities:
+              - alarm_control_panel.alarm_system
               - sensor.house_mode
               - input_boolean.night_mode
               - input_boolean.guest_mode
