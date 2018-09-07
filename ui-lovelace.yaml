@@ -101,6 +101,20 @@ views:
         image: /local/living_room.jpg
 
       - type: picture-glance
+        title: Master Bedroom
+        entities:
+          - light.dresser_lamp
+          - light.nightstand_lamp
+        image: /local/master_bedroom.jpg
+
+      - type: picture-glance
+        title: Guest Bedroom
+        entities:
+          - light.guest_bedroom_storage
+          - light.guest_bedroom_closet
+        image: /local/guest_bedroom.jpg
+
+      - type: picture-glance
         title: Dining Room
         entities:
           - light.dining_room_spot
