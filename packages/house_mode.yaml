@@ -136,9 +136,10 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.house_mode
-        to:
-          - 'Away'
-          - 'Vacation'
+        to: 'Away'
+      - platform: state
+        entity_id: sensor.house_mode
+        to: 'Vacation'
     action:
       - service: script.light_control
         data:
@@ -156,9 +157,11 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.house_mode
-        from:
-          - 'Away'
-          - 'Vacation'
+        from: 'Away'
+        to: 'Home'
+      - platform: state
+        entity_id: sensor.house_mode
+        from: 'Vacation'
         to: 'Home'
     action:
       - service: nest.set_mode
