@@ -29,7 +29,6 @@ cloud:
         - automation
         - alert
       exclude_entities:
-        - light.hgrp0000000254
         - switch.raspberry_pi
         - switch.pc
         - switch.imac

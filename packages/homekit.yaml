@@ -45,7 +45,13 @@ homekit:
       - script
       - remote
     exclude_entities:
-      - light.hgrp0000000254
+      - binary_sensor.living_room_nest_protect_online
+      - binary_sensor.living_room_thermostat_fan
+      - binary_sensor.living_room_thermostat_has_leaf
+      - binary_sensor.living_room_thermostat_is_locked
+      - binary_sensor.living_room_thermostat_is_using_emergency_heat
+      - binary_sensor.living_room_thermostat_online
+      - binary_sensor.otter_den_away
       - light.dresser_lamp
       - light.nightstand_lamp
       - light.julias_closet
