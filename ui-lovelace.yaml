@@ -44,7 +44,6 @@ views:
             entity: alarm_control_panel.alarm_system
             title: Alarm System
             states:
-              - arm_home
               - arm_away
               - arm_night
           - type: entities
@@ -74,6 +73,7 @@ views:
         title: Nest
         entity: climate.living_room
         chevron_size: 50
+        step: 1
 
   - icon: mdi:lightbulb-outline
     title: Devices
