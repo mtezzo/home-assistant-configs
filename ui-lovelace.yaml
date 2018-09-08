@@ -18,6 +18,8 @@ excluded_entities:
 resources:
   - url: /local/alarm_control_panel-card.js?v=1
     type: js
+  - url: /local/thermostat-card.js?v=1
+    type: module
 
 views:
   - icon: mdi:home-assistant
@@ -67,6 +69,11 @@ views:
           - light.living_room_floor_lamp
           - type: divider
           - light.dining_room_spot
+
+      - type: custom:thermostat-card
+        title: Nest
+        entity: climate.living_room
+        chevron_size: 50
 
   - icon: mdi:lightbulb-outline
     title: Devices
