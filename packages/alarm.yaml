@@ -53,4 +53,4 @@ group:
 alarm_control_panel:
   - platform: manual
     name: alarm_system
-    code: !secret alarm_code
+#    code: !secret alarm_code
