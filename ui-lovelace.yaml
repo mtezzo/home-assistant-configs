@@ -15,6 +15,10 @@ excluded_entities:
   - weblink.swtich_admin
   - weblink.wifi_admin
 
+resources:
+  - url: /local/alarm_control_panel-card.js?v=1
+    type: js
+
 views:
   - icon: mdi:home-assistant
     title: Home
@@ -34,10 +38,16 @@ views:
             card:
               type: glance
               title: People that are home
+          - type: custom:alarm_control_panel-card
+            entity: alarm_control_panel.alarm_system
+            title: Alarm System
+            states:
+              - arm_home
+              - arm_away
+              - arm_night
           - type: entities
             show_header_toggle: false
             entities:
-              - alarm_control_panel.alarm_system
               - sensor.house_mode
               - input_boolean.night_mode
               - input_boolean.guest_mode
