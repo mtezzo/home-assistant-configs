@@ -1,0 +1,58 @@
+################################################################
+## Packages / Homekit
+## https://www.home-assistant.io/components/homekit/
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'homekit'
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: 'Start HomeKit'
+    trigger:
+      - platform: event
+        event_type: zwave.network_ready
+      - platform: event
+        event_type: zwave.network_complete
+    action:
+      - service: homekit.start
+
+################################################
+## Homekit
+################################################
+
+homekit:
+  auto_start: false
+  filter:
+    exclude_domains:
+      - automation
+      - device_tracker
+      - sensor
+      - script
+      - remote
+    exclude_entities:
+      - light.hgrp0000000254
+      - light.dresser_lamp
+      - light.nightstand_lamp
+      - light.julias_closet
+      - light.michaels_closet
+      - light.table_light
+      - light.dining_room_spot
+      - light.guest_bedroom_storage
+      - switch.raspberry_pi
+      - switch.pc
+      - switch.imac

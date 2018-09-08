@@ -28,24 +28,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Alarm System"
 
-    ################################################
-    ## Group
-    ################################################
-
-    group.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-################################################
-## Group
-################################################
-
-group:
-  alarm_system:
-    control: hidden
-    entities:
-      - alarm_control_panel.alarm_system
-
 ################################################
 ## Alarm Control Panel
 ################################################
@@ -54,3 +36,14 @@ alarm_control_panel:
   - platform: manual
     name: alarm_system
 #    code: !secret alarm_code
+    pending_time: 45
+    delay_time: 45
+    trigger_time: 120
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+    armed_night:
+      pending_time: 0
+      delay_time: 0
