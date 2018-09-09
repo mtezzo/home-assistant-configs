@@ -62,3 +62,6 @@ homekit:
       - switch.raspberry_pi
       - switch.pc
       - switch.imac
+    include_entities:
+      - automation.master_bedroom_motion
+      - automation.living_room_motion
