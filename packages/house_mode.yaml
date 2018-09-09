@@ -160,7 +160,7 @@ automation:
         to: 'Home'
     condition:
       condition: template
-      value_template: "{{ trigger.from_state == 'Away' or trigger.from_state == 'Vacation' }}"
+      value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
     action:
       - service: nest.set_mode
         data:
