@@ -24,28 +24,28 @@ homeassistant:
     ## Automation
     ################################################
 
-    automation.person_just_arrived:
+    automation.person_arriving:
       <<: *expose
       friendly_name: "Mark person as just arrived"
       icon: mdi:map-marker
 
     automation.person_home:
-      <<: *customize
+      <<: *expose
       friendly_name: "Mark person as home"
       icon: mdi:map-marker
 
-    automation.person_just_left:
-      <<: *customize
+    automation.person_departing:
+      <<: *expose
       friendly_name: "Mark person as just left"
       icon: mdi:map-marker
 
     automation.person_away:
-      <<: *customize
+      <<: *expose
       friendly_name: "Mark person as away"
       icon: mdi:map-marker
 
-    automation.person_extended_away:
-      <<: *customize
+    automation.person_vacation:
+      <<: *expose
       friendly_name: "Mark person as extended away"
       icon: mdi:map-marker
 
@@ -130,7 +130,7 @@ sensor:
 ################################################
 
 automation:
-  - alias: person_just_arrived
+  - alias: person_arriving
     hide_entity: true
     initial_state: 'on'
     trigger:
@@ -178,15 +178,10 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: >
-            {% if trigger.entity_id == 'input_select.julias_status' %}
-              input_select.julias_status
-            {% else %}
-              input_select.michaels_status
-            {% endif %}
-          option: Home
+          entity_id: {{ trigger.entity_id }}
+          option: 'Home'
  
-  - alias: person_just_left
+  - alias: person_departing
     hide_entity: true
     initial_state: 'on'
     trigger:
@@ -197,7 +192,7 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: >
+          entity_id: >-
             {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
               input_select.julias_status
             {% else %}
@@ -217,15 +212,10 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: >
-            {% if trigger.entity_id == 'input_select.julias_status' %}
-              input_select.julias_status
-            {% else %}
-              input_select.michaels_status
-            {% endif %}
-          option: Away
+          entity_id: {{ trigger.entity_id }}
+          option: 'Away'
  
-  - alias: person_extended_away
+  - alias: person_vacation
     hide_entity: true
     initial_state: 'on'
     trigger:
@@ -237,13 +227,8 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: >
-            {% if trigger.entity_id == 'input_select.julias_status' %}
-              input_select.julias_status
-            {% else %}
-              input_select.michaels_status
-            {% endif %}
-          option: Vacation
+          entity_id: {{ trigger.entity_id }}
+          option: 'Vacation'
 
 ################################################
 ## Device Tracker

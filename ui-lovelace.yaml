@@ -36,7 +36,8 @@ views:
               - entity: input_select.julias_status
             state_filter:
               - 'Home'
-              - 'Just Arrived'
+              - 'Arriving'
+              - 'Departing'
             card:
               type: glance
               title: People that are home
