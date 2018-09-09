@@ -24,6 +24,9 @@ homeassistant:
 cloud:
   alexa:
     filter:
+      include_entities:
+        - automation.master_bedroom_motion
+        - automation.living_room_motion
       exclude_domains:
         - group
         - automation
