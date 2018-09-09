@@ -178,7 +178,7 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: {{ trigger.entity_id }}
+          entity_id: '{{ trigger.entity_id }}'
           option: 'Home'
  
   - alias: person_departing
@@ -212,7 +212,7 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: {{ trigger.entity_id }}
+          entity_id: '{{ trigger.entity_id }}'
           option: 'Away'
  
   - alias: person_vacation
@@ -227,7 +227,7 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: {{ trigger.entity_id }}
+          entity_id: '{{ trigger.entity_id }}'
           option: 'Vacation'
 
 ################################################
