@@ -147,31 +147,22 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: device_tracker.julias_iphone, device_tracker.michaels_iphone
+        entity_id: device_tracker.julias_iphone
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.michaels_iphone
         from: 'not_home'
         to: 'home'
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: >-
-            {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
-              input_select.julias_status
-            {% else %}
-              input_select.michaels_status
-            {% endif %}
+          entity_id: "{{ state_attr(trigger.entity_id, 'status') }}"
           option: >-
-            {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
-              {% if states.input_select.julias_status.state == 'Departing' %}
-                Home
-              {% else %}
-                Arriving
-              {% endif %}
+            {% if is_state(state_attr(trigger.entity_id, 'status'), 'Departing') %}
+              Home
             {% else %}
-              {% if states.input_select.michaels_status.state == 'Departing' %}
-                Home
-              {% else %}
-                Arriving
-              {% endif %}
+              Arriving
             {% endif %}
  
   - alias: person_home
@@ -179,14 +170,15 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julias_status, input_select.michaels_status
+        entity_id: input_select.julias_status
         to: 'Arriving'
         for:
           minutes: 10
-#      - platform: state
-#        entity_id: input_select.julias_status, input_select.michaels_status
-#        from: 'Departing'
-#        to: 'Arriving'
+      - platform: state
+        entity_id: input_select.michaels_status
+        to: 'Arriving'
+        for:
+          minutes: 10
     action:
       - service: input_select.select_option
         data_template:
@@ -198,18 +190,17 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: device_tracker.julias_iphone, device_tracker.michaels_iphone
+        entity_id: device_tracker.julias_iphone
+        from: 'home'
+        to: 'not_home'
+      - platform: state
+        entity_id: device_tracker.michaels_iphone
         from: 'home'
         to: 'not_home'
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: >-
-            {% if trigger.entity_id == 'device_tracker.julias_iphone' %}
-              input_select.julias_status
-            {% else %}
-              input_select.michaels_status
-            {% endif %}
+          entity_id: "{{ state_attr(trigger.entity_id, 'status') }}"
           option: 'Departing'
  
   - alias: person_away
@@ -217,7 +208,12 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julias_status, input_select.michaels_status
+        entity_id: input_select.julias_status
+        to: 'Departing'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.michaels_status
         to: 'Departing'
         for:
           minutes: 10
@@ -232,7 +228,12 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: input_select.julias_status, input_select.michaels_status
+        entity_id: input_select.julias_status
+        to: 'Away'
+        for:
+          hours: 24
+      - platform: state
+        entity_id: input_select.michaels_status
         to: 'Away'
         for:
           hours: 24
