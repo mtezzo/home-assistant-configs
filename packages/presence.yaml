@@ -54,11 +54,11 @@ homeassistant:
     ################################################
 
     device_tracker.julias_iphone:
-      customize: &customize
+      <<: *customize
       status: input_select.julias_status
 
     device_tracker.michaels_iphone:
-      customize: &customize
+      <<: *customize
       status: input_select.michaels_status
 
     ################################################
