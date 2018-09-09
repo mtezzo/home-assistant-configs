@@ -198,7 +198,7 @@ automation:
             {% else %}
               input_select.michaels_status
             {% endif %}
-          option: Departing
+          option: 'Departing'
  
   - alias: person_away
     hide_entity: true
