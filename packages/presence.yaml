@@ -55,11 +55,11 @@ homeassistant:
 
     device_tracker.julias_iphone:
       <<: *customize
-      status: input_select.julias_status
+      status_select: input_select.julias_status
 
     device_tracker.michaels_iphone:
       <<: *customize
-      status: input_select.michaels_status
+      status_select: input_select.michaels_status
 
     ################################################
     ## Input Select
@@ -157,9 +157,9 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: "{{ state_attr(trigger.entity_id, 'status') }}"
+          entity_id: "{{ state_attr(trigger.entity_id, 'status_select') }}"
           option: >-
-            {% if is_state(state_attr(trigger.entity_id, 'status'), 'Departing') %}
+            {% if is_state(state_attr(trigger.entity_id, 'status_select'), 'Departing') %}
               Home
             {% else %}
               Arriving
@@ -200,7 +200,7 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: "{{ state_attr(trigger.entity_id, 'status') }}"
+          entity_id: "{{ state_attr(trigger.entity_id, 'status_select') }}"
           option: 'Departing'
  
   - alias: person_away
