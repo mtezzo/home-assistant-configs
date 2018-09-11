@@ -181,6 +181,11 @@ homeassistant:
     ## Switches
     ################################################
 
+    switch.aeotec_zw090_zstick_gen5_us_disco_light:
+      <<: *customize
+      friendly_name: Z-Wave USB Hub Disco Light
+      icon: mdi:chart-donut
+
     switch.basement_task_light:
       <<: *customize
       friendly_name: Basement Task Light
@@ -264,6 +269,18 @@ homeassistant:
     zwave:
       <<: *customize
       # hidden: true
+
+################################################
+## Switch
+################################################
+
+switch:
+  - platform: command_line
+    switches:
+      aeotec_zw090_zstick_gen5_us_disco_light:
+        friendly_name: 'Z-Wave USB Hub Disco Light'
+        command_on: 'echo -e -n "\x01\x08\x00\xF2\x51\x01\x01\x05\x01\x50" > /dev/ttyACM0'
+        command_off: 'echo -e -n "\x01\x08\x00\xF2\x51\x01\x00\x05\x01\x51" > /dev/ttyACM0'
 
 ################################################
 ## Z-Wave

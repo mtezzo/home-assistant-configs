@@ -124,6 +124,10 @@ automation:
         entity_id: alarm_control_panel.alarm_system
         to: 'armed_night'
         from: 'armed_home'
+      - platform: state
+        entity_id: alarm_control_panel.alarm_system
+        to: 'armed_night'
+        from: 'disarmed'
     action:
       - service: script.good_night
 
