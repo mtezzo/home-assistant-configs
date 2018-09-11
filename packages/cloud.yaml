@@ -35,6 +35,7 @@ cloud:
         - switch.raspberry_pi
         - switch.pc
         - switch.imac
+        - switch.aeotec_zstick_disco_light
         - sensor.wirelesstag_laundry_room_temperature
         - sensor.wirelesstag_diamond_crown_humidor_temperature
         - sensor.dark_sky_temperature
