@@ -106,22 +106,40 @@ sensor.linear_gd00z4_garage_door_opener_remote_controller_burglar:
 ################################################
 
 light.aeotec_zw099_smart_dimmer_6_level:
-  ignored: false
+  ignored: true
 
 sensor.aeotec_zw099_smart_dimmer_6_current:
-  ignored: false
+  ignored: true
 
 sensor.aeotec_zw099_smart_dimmer_6_energy:
-  ignored: false
+  ignored: true
 
 sensor.aeotec_zw099_smart_dimmer_6_power:
-  ignored: false
+  ignored: true
 
 sensor.aeotec_zw099_smart_dimmer_6_previous_reading:
-  ignored: false
+  ignored: true
 
 sensor.aeotec_zw099_smart_dimmer_6_voltage:
-  ignored: false
+  ignored: true
+
+light.aeotec_zw099_smart_dimmer_6_level_2:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_current_2:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_energy_2:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_power_2:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading_2:
+  ignored: true
+
+sensor.aeotec_zw099_smart_dimmer_6_voltage_2:
+  ignored: true
 
 light.guest_bedroom_closet:
   refresh_value: true

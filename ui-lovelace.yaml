@@ -69,6 +69,8 @@ views:
           - light.living_room_floor_lamp
           - type: divider
           - light.dining_room_spot
+          - type: divider
+          - switch.basement_task_light
 
       - type: custom:thermostat-card
         title: Nest
@@ -101,6 +103,7 @@ views:
           - type: divider
           - light.garage_storage
           - type: divider
+          - switch.basement_task_light
           - light.dungeon
 
   - icon: mdi:floor-plan
