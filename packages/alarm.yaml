@@ -28,6 +28,14 @@ homeassistant:
       <<: *customize
       friendly_name: "Alarm System"
 
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.trigger_alarm_on_motion:
+      <<: *customize
+      friendly_name: "Trigger Alarm on Motion"
+
 ################################################
 ## Alarm Control Panel
 ################################################
@@ -47,3 +55,26 @@ alarm_control_panel:
     armed_night:
       pending_time: 0
       delay_time: 0
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: trigger_alarm_on_motion
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.master_bedroom_motion_sensor
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.living_room_motion_sensor
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.alarm_system
+        state: 'armed_away'
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.alarm_system

@@ -55,17 +55,8 @@ automation:
   - alias: Notify iOS app
     trigger:
       - platform: state
-        entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: sensor.house_mode
-        state: 'away'
+        entity_id: alarm_control_panel.alarm_system
+        to: 'triggered'
     action:
       service: notify.ios_michaels_iphone
       data:

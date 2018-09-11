@@ -124,9 +124,10 @@ automation:
           scene_id: 5
           scene_data: 7800
     action:
-      - service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.night_mode
+      - service: alarm_control_panel.alarm_arm_night
+        entity_id: alarm_control_panel.alarm_system
+#        data:
+#          code: !secret alarm_code
 
   ################################################
   ## Plus Button

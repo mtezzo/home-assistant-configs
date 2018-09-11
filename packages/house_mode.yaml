@@ -135,12 +135,20 @@ automation:
   - alias: auto_away
     trigger:
       - platform: state
-        entity_id: sensor.house_mode
+        entity_id: sensor.household
         to: 'Away'
       - platform: state
-        entity_id: sensor.house_mode
+        entity_id: sensor.household
         to: 'Vacation'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.alarm_system
+        state: 'armed_home'
     action:
+      - service: alarm_control_panel.alarm_arm_away
+        entity_id: alarm_control_panel.alarm_system
+#        data:
+#          code: !secret alarm_code
       - service: script.light_control
         data:
           entity_id: group.all_lights
@@ -156,12 +164,16 @@ automation:
   - alias: auto_home
     trigger:
       - platform: state
-        entity_id: sensor.house_mode
-        to: 'Home'
+        entity_id: sensor.household
+        to: 'Arriving'
     condition:
       condition: template
       value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
     action:
+      - service: alarm_control_panel.alarm_arm_home
+        entity_id: alarm_control_panel.alarm_system
+#        data:
+#          code: !secret alarm_code
       - service: nest.set_mode
         data:
           home_mode: home
