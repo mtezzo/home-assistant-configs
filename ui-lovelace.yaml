@@ -65,7 +65,7 @@ views:
           - light.nightstand_lamp
           - type: divider
           - light.table_light
-          - switch.living_room_bookshelf_lamp
+          - light.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
           - type: divider
           - light.dining_room_spot
@@ -91,7 +91,7 @@ views:
           - light.julias_closet
           - type: divider
           - light.table_light
-          - switch.living_room_bookshelf_lamp
+          - light.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
           - type: divider
           - light.dining_room_spot

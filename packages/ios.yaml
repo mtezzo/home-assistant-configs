@@ -52,7 +52,7 @@ ios:
 ################################################
 
 automation:
-  - alias: Notify iOS app
+  - alias: Notify iOS App
     trigger:
       - platform: state
         entity_id: alarm_control_panel.alarm_system
@@ -64,3 +64,17 @@ automation:
         data:
           push:
             category: "alarm" # Needs to match the top level identifier you used in the ios configuration
+
+  - alias: Sound Alarm
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: SOUND_ALARM
+    action:
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.7
+          message: 'Intruder Alert!'
+          delay: '00:00:05'

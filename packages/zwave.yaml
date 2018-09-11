@@ -63,6 +63,11 @@ homeassistant:
     ## Lights
     ################################################
 
+    light.living_room_bookshelf_lamp:
+      <<: *customize
+      friendly_name: Bookshelf Lamp
+      icon: mdi:desk-lamp
+
     light.living_room_floor_lamp:
       <<: *customize
       friendly_name: Floor Lamp
@@ -176,9 +181,9 @@ homeassistant:
     ## Switches
     ################################################
 
-    switch.living_room_bookshelf_lamp:
+    switch.basement_task_light:
       <<: *customize
-      friendly_name: Bookshelf Lamp
+      friendly_name: Basement Task Light
       icon: mdi:desk-lamp
 
     ################################################
@@ -187,6 +192,9 @@ homeassistant:
 
     zwave.aeotec_zw090_zstick_gen5_us:
       friendly_name: "Z-Wave USB Hub"
+
+    zwave.basement_task_light:
+      friendly_name: "Basement Task Light"
 
     zwave.dungeon_light_bulb:
       friendly_name: "Dungeon Light Bulb"

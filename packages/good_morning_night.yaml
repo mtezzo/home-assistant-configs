@@ -156,4 +156,4 @@ script:
 
       - service: switch.turn_off
         data:
-          entity_id: switch.living_room_bookshelf_lamp
+          entity_id: switch.basement_task_light
