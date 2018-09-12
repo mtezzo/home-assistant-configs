@@ -16,7 +16,7 @@ excluded_entities:
   - weblink.wifi_admin
 
 resources:
-  - url: /local/alarm_control_panel-card.js?v=1
+  - url: /local/alarm_control_panel-card.js?v=2
     type: js
   - url: /local/thermostat-card.js?v=1
     type: module
