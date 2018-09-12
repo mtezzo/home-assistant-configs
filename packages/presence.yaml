@@ -68,12 +68,12 @@ homeassistant:
     input_select.julias_status:
       <<: *customize
       friendly_name: "Julia"
-      entity_picture: /local/julia.jpg
+      entity_picture: /local/img/julia.jpg
 
     input_select.michaels_status:
       <<: *customize
       friendly_name: "Michael"
-      entity_picture: /local/michael.jpg
+      entity_picture: /local/img/michael.jpg
 
     ################################################
     ## Sensor

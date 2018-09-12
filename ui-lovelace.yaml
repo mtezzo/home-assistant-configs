@@ -16,9 +16,9 @@ excluded_entities:
   - weblink.wifi_admin
 
 resources:
-  - url: /local/alarm_control_panel-card.js?v=2
+  - url: /local/js/alarm_control_panel-card.js?v=3
     type: js
-  - url: /local/thermostat-card.js?v=1
+  - url: /local/js/thermostat-card.js?v=1
     type: module
 
 views:
@@ -123,21 +123,21 @@ views:
           - light.table_light
           - switch.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
-        image: /local/living_room.jpg?v=1
+        image: /local/img/living_room.jpg?v=1
 
       - type: picture-glance
         title: Master Bedroom
         entities:
           - light.dresser_lamp
           - light.nightstand_lamp
-        image: /local/master_bedroom.jpg?v=1
+        image: /local/img/master_bedroom.jpg?v=1
 
       - type: picture-glance
         title: Guest Bedroom
         entities:
           - light.guest_bedroom_storage
           - light.guest_bedroom_closet
-        image: /local/guest_bedroom.jpg?v=1
+        image: /local/img/guest_bedroom.jpg?v=1
 
       - type: picture-glance
         title: Dining Room
