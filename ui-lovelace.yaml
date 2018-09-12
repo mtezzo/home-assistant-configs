@@ -45,7 +45,7 @@ views:
             entity: alarm_control_panel.alarm_system
             title: Alarm System
             display_letters: true
-            scale: 10px
+            scale: 15px
             states:
               - arm_away
               - arm_home
