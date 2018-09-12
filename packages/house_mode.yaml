@@ -167,11 +167,11 @@ automation:
         to: 'Arriving'
     condition:
       condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
-          - condition: template
-            value_template: "{{ not is_state('alarm_control_panel.alarm_system', 'armed_home') and not is_state('alarm_control_panel.alarm_system', 'disarmed') }}"
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
+        - condition: template
+          value_template: "{{ not is_state('alarm_control_panel.alarm_system', 'armed_home') and not is_state('alarm_control_panel.alarm_system', 'disarmed') }}"
     action:
       - service: alarm_control_panel.alarm_arm_home
         entity_id: alarm_control_panel.alarm_system
