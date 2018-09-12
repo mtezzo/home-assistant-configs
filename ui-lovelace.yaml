@@ -44,9 +44,13 @@ views:
           - type: custom:alarm_control_panel-card
             entity: alarm_control_panel.alarm_system
             title: Alarm System
+            display_letters: true
+            scale: 10px
             states:
               - arm_away
+              - arm_home
               - arm_night
+              - arm_custom_bypass
           - type: entities
             show_header_toggle: false
             entities:

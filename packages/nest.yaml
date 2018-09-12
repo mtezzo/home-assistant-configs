@@ -27,12 +27,33 @@ homeassistant:
       icon: mdi:fan
 
     ################################################
+    ## Climate
+    ################################################
+
+    climate.living_room:
+      <<: *customize
+      friendly_name: 'Nest'
+      icon: mdi:thermostat
+
+    ################################################
     ## Group
     ################################################
 
     group.climate:
       <<: *customize
       friendly_name: 'Climate'
+
+    ################################################
+    ## Script
+    ################################################
+
+    script.set_nest_away:
+      <<: *customize
+      friendly_name: Set Nest Thermostat Away
+
+    script.set_nest_home:
+      <<: *customize
+      friendly_name: Set Nest Thermostat Home
 
     ################################################
     ## Sensor
@@ -78,15 +99,6 @@ homeassistant:
       friendly_name: Nest Temperature
       icon: mdi:thermometer-lines
 
-    ################################################
-    ## Climate
-    ################################################
-
-    climate.living_room:
-      <<: *customize
-      friendly_name: 'Nest'
-      icon: mdi:thermostat
-
 ################################################
 ## Group
 ################################################
@@ -105,6 +117,23 @@ group:
       - sensor.living_room_thermostat_temperature
       - sensor.living_room_away_mode
       - sensor.otter_den_eta
+
+################################################
+## Script
+################################################
+
+script:
+  set_nest_away:
+    sequence:
+      - service: nest.set_mode
+        data:
+          home_mode: away
+
+  set_nest_home:
+    sequence:
+      - service: nest.set_mode
+        data:
+          home_mode: home
 
 ################################################
 ## Sensor

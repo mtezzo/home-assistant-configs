@@ -126,8 +126,8 @@ automation:
     action:
       - service: alarm_control_panel.alarm_arm_night
         entity_id: alarm_control_panel.alarm_system
-#        data:
-#          code: !secret alarm_code
+        data:
+          code: !secret alarm_code
 
   ################################################
   ## Plus Button

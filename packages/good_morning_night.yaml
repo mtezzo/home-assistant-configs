@@ -67,8 +67,8 @@ automation:
     action:
       - service: alarm_control_panel.alarm_arm_home
         entity_id: alarm_control_panel.alarm_system
-#        data:
-#          code: !secret alarm_code
+        data:
+          code: !secret alarm_code
 
   - alias: auto_evening
     trigger:
@@ -115,8 +115,8 @@ automation:
     action:
       - service: alarm_control_panel.alarm_arm_night
         entity_id: alarm_control_panel.alarm_system
-#        data:
-#          code: !secret alarm_code
+        data:
+          code: !secret alarm_code
 
   - alias: manual_night
     trigger:
@@ -152,12 +152,4 @@ script:
             - automation.living_room_motion
             - automation.master_bedroom_motion
 
-      - service: script.light_control
-        data:
-          entity_id: group.all_lights
-          state: 'off'
-          transition: 5
-
-      - service: switch.turn_off
-        data:
-          entity_id: switch.basement_task_light
+      - service: script.all_lights_off

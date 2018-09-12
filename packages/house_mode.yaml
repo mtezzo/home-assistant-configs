@@ -58,6 +58,14 @@ homeassistant:
       icon: mdi:weather-night
 
     ################################################
+    ## Script
+    ################################################
+
+    script.all_lights_off:
+      <<: *customize
+      friendly_name: Turn All Lights Off
+
+    ################################################
     ## Sensor
     ################################################
 
@@ -147,8 +155,37 @@ automation:
     action:
       - service: alarm_control_panel.alarm_arm_away
         entity_id: alarm_control_panel.alarm_system
-#        data:
-#          code: !secret alarm_code
+        data:
+          code: !secret alarm_code
+      - service: script.all_lights_off
+      - service: script.set_nest_away
+
+  - alias: auto_home
+    trigger:
+      - platform: state
+        entity_id: sensor.household
+        to: 'Arriving'
+    condition:
+      condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
+          - condition: template
+            value_template: "{{ not is_state('alarm_control_panel.alarm_system', 'armed_home') and not is_state('alarm_control_panel.alarm_system', 'disarmed') }}"
+    action:
+      - service: alarm_control_panel.alarm_arm_home
+        entity_id: alarm_control_panel.alarm_system
+        data:
+          code: !secret alarm_code
+      - service: script.set_nest_home
+
+################################################
+## Script
+################################################
+
+script:
+  all_lights_off:
+    sequence:
       - service: script.light_control
         data:
           entity_id: group.all_lights
@@ -157,23 +194,3 @@ automation:
       - service: switch.turn_off
         data:
           entity_id: switch.basement_task_light
-      - service: nest.set_mode
-        data:
-          home_mode: away
-
-  - alias: auto_home
-    trigger:
-      - platform: state
-        entity_id: sensor.household
-        to: 'Arriving'
-    condition:
-      condition: template
-      value_template: "{{ trigger.from_state.state == 'Away' or trigger.from_state.state == 'Vacation' }}"
-    action:
-      - service: alarm_control_panel.alarm_arm_home
-        entity_id: alarm_control_panel.alarm_system
-#        data:
-#          code: !secret alarm_code
-      - service: nest.set_mode
-        data:
-          home_mode: home
