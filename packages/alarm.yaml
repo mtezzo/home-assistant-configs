@@ -97,8 +97,6 @@ automation:
       - service_template: >-
           {% if is_state('sensor.household', 'Vacation') or is_state('sensor.household', 'Away') %}
             alarm_control_panel.alarm_arm_away
-#          {% elif %}
-#            alarm_control_panel.alarm_arm_night
           {% else %}
             alarm_control_panel.alarm_arm_home
           {% endif %}
