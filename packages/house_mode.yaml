@@ -35,6 +35,18 @@ homeassistant:
       icon: mdi:robot
 
     ################################################
+    ## Binary Sensor
+    ################################################
+
+    binary_sensor.living_room_motion_last_30:
+      <<: *customize
+      friendly_name: "Motion in Living Room in Last 30 Minutes"
+
+    binary_sensor.master_bedroom_motion_last_30:
+      <<: *customize
+      friendly_name: "Motion in Master Bedroom in Last 30 Minutes"
+
+    ################################################
     ## Group
     ################################################
 
@@ -73,14 +85,6 @@ homeassistant:
       <<: *customize
       friendly_name: "House Mode"
 
-    sensor.living_room_motion_last_30:
-      <<: *customize
-      friendly_name: "Motion in Living Room in Last 30 Minutes"
-
-    sensor.master_bedroom_motion_last_30:
-      <<: *customize
-      friendly_name: "Motion in Master Bedroom in Last 30 Minutes"
-
 ################################################
 ## Group
 ################################################
@@ -108,14 +112,6 @@ input_boolean:
 ################################################
 
 sensor:
-  - platform: template
-    sensors:
-      living_room_motion_last_30:
-        value_template: '{{ (as_timestamp(now())-as_timestamp(states.binary_sensor.living_room_motion_sensor.last_changed)) < 1800 }}'
-        device_class: motion
-      master_bedroom_motion_last_30:
-        value_template: '{{ (as_timestamp(now())-as_timestamp(states.binary_sensor.master_bedroom_motion_sensor.last_changed)) < 1800 }}'
-        device_class: motion
   - platform: template
     sensors:
       house_mode:
@@ -200,39 +196,47 @@ automation:
 ################################################
 
 binary_sensor:
-  name: 'sleeping'
-  platform: 'bayesian'
-  prior: 0.33
-  probability_threshold: 0.95
-  observations:
-    - entity_id: 'group.all_lights'
-      prob_given_true: 1 # 100% chance that if sleeping all lights off
-      prob_given_false: 0.80 # 80% chance that if not sleeping all lights off
-      platform: 'state'
-      to_state: 'off'
-    - entity_id: 'sensor.household'
-      prob_given_true: 1 # 100% chance that if sleeping home
-      prob_given_false: 0.55 # 55% chance that if not sleeping home
-      platform: 'state'
-      to_state: 'Home'
-    - entity_id: 'media_player.living_room_tv'
-      prob_given_true: 1 # 100% chance if sleeping that tv off
-      prob_given_false: 0.88 # 88% chance if not sleeping tv off
-      platform: 'state'
-      to_state: 'off'
-    - entity_id: 'sensor.living_room_motion_last_30'
-      prob_given_true: 0.99 # if sleeping 99% chance no living room motion
-      prob_given_false: 0.8 # if not sleeping 80% chance no living room motion
-      platform: 'state'
-      to_state: 'off'
-    - entity_id: 'master_bedroom_motion_last_30'
-      prob_given_true: 0.5
-      platform: 'state'
-      to_state: 'on'
-    - entity_id: 'sun.sun'
-      prob_given_true: 0.7
-      platform: 'state'
-      to_state: 'below_horizon'
+  - platform: template
+    sensors:
+      living_room_motion_last_30:
+        value_template: '{{ (as_timestamp(now())-as_timestamp(states.binary_sensor.living_room_motion_sensor.last_changed)) < 1800 }}'
+        device_class: motion
+      master_bedroom_motion_last_30:
+        value_template: '{{ (as_timestamp(now())-as_timestamp(states.binary_sensor.master_bedroom_motion_sensor.last_changed)) < 1800 }}'
+        device_class: motion
+  - platform: 'bayesian'
+    name: 'sleeping'
+    prior: 0.33
+    probability_threshold: 0.95
+    observations:
+      - entity_id: 'group.all_lights'
+        prob_given_true: 1 # 100% chance that if sleeping all lights off
+        prob_given_false: 0.80 # 80% chance that if not sleeping all lights off
+        platform: 'state'
+        to_state: 'off'
+      - entity_id: 'sensor.household'
+        prob_given_true: 1 # 100% chance that if sleeping home
+        prob_given_false: 0.55 # 55% chance that if not sleeping home
+        platform: 'state'
+        to_state: 'Home'
+      - entity_id: 'media_player.living_room_tv'
+        prob_given_true: 1 # 100% chance if sleeping that tv off
+        prob_given_false: 0.88 # 88% chance if not sleeping tv off
+        platform: 'state'
+        to_state: 'off'
+      - entity_id: 'sensor.living_room_motion_last_30'
+        prob_given_true: 0.99 # if sleeping 99% chance no living room motion
+        prob_given_false: 0.8 # if not sleeping 80% chance no living room motion
+        platform: 'state'
+        to_state: 'Clear'
+      - entity_id: 'master_bedroom_motion_last_30'
+        prob_given_true: 0.5
+        platform: 'state'
+        to_state: 'Motion'
+      - entity_id: 'sun.sun'
+        prob_given_true: 0.7
+        platform: 'state'
+        to_state: 'below_horizon'
 
 ################################################
 ## Script
