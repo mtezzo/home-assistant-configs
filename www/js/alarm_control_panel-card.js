@@ -294,7 +294,7 @@ class AlarmControlPanelCard extends HTMLElement {
         flex-direction: column;
       }
       .pad paper-button {
-        margin-bottom: 5%;
+        margin-bottom: 10%;
         position: relative;
         padding: calc(var(--base-unit));
         font-size: calc(var(--base-unit) * 1.1);
@@ -307,7 +307,7 @@ class AlarmControlPanelCard extends HTMLElement {
         font-size: calc(var(--base-unit) * 1);
       }
       .actions paper-button {
-        margin-bottom: 10%;
+        margin-bottom: 2%;
         min-width: calc(var(--base-unit) * 9);
         color: var(--primary-color);
       }
