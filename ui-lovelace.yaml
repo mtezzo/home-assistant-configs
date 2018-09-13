@@ -51,9 +51,8 @@ views:
               - arm_home
               - arm_night
               - arm_custom_bypass
-            show_label_ids: true
             labels:
-              state.alarm_control_panel.arm_custom_bypass: Arm Custom
+              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
           - type: entities
             show_header_toggle: false
             entities:
