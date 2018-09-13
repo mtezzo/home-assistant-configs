@@ -228,11 +228,11 @@ binary_sensor:
         prob_given_true: 0.99 # if sleeping 99% chance no living room motion
         prob_given_false: 0.8 # if not sleeping 80% chance no living room motion
         platform: 'state'
-        to_state: 'Clear'
+        to_state: 'off'
       - entity_id: 'binary_sensor.master_bedroom_motion_last_30'
         prob_given_true: 0.5
         platform: 'state'
-        to_state: 'Motion'
+        to_state: 'off'
       - entity_id: 'sun.sun'
         prob_given_true: 0.7
         platform: 'state'

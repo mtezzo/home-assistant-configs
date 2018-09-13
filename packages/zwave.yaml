@@ -27,21 +27,25 @@ homeassistant:
     binary_sensor.entrance_front_door_contact:
       <<: *customize
       friendly_name: Entrance Front Door
+      device_class: door
       icon: mdi:door
 
     binary_sensor.guest_bedroom_closet_door_contact:
       <<: *customize
       friendly_name: Guest Bedroom Closet Door
+      device_class: door
       icon: mdi:door
 
     binary_sensor.guest_bedroom_storage_door_contact:
       <<: *customize
       friendly_name: Guest Bedroom Storage Door
+      device_class: door
       icon: mdi:door
 
     binary_sensor.julias_closet_door_contact:
       <<: *customize
       friendly_name: "Julia's Closet Door"
+      device_class: door
       icon: mdi:door
 
     binary_sensor.living_room_motion_sensor:
@@ -57,6 +61,7 @@ homeassistant:
     binary_sensor.michaels_closet_door_contact:
       <<: *customize
       friendly_name: "Michael's Closet Door"
+      device_class: door
       icon: mdi:door
 
     ################################################
