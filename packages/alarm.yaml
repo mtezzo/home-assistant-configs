@@ -101,3 +101,5 @@ automation:
             alarm_control_panel.alarm_arm_home
           {% endif %}
         entity_id: alarm_control_panel.alarm_system
+        data:
+          code: !secret alarm_code
