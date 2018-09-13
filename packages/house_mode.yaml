@@ -180,6 +180,35 @@ automation:
       - service: script.set_nest_home
 
 ################################################
+## Binary Sensor
+################################################
+
+binary_sensor:
+  name: 'in_bed'
+  platform: 'bayesian'
+  prior: 0.33
+  probability_threshold: 0.95
+  observations:
+    - entity_id: 'sensor.household'
+      prob_given_true: 0.95
+      prob_given_false: 0.05
+      platform: 'state'
+      to_state: 'Home'
+    - entity_id: 'binary_sensor.living_room_motion_sensor'
+      prob_given_true: 0.4
+      prob_given_false: 0.2
+      platform: 'state'
+      to_state: 'off'
+    - entity_id: 'binary_sensor.master_bedroom_motion_sensor'
+      prob_given_true: 0.5
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'sun.sun'
+      prob_given_true: 0.7
+      platform: 'state'
+      to_state: 'below_horizon'
+
+################################################
 ## Script
 ################################################
 

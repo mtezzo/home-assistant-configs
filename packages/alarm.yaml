@@ -32,6 +32,10 @@ homeassistant:
     ## Automation
     ################################################
 
+    automation.alarm_startup_state:
+      <<: *customize
+      friendly_name: "Arm Alarm on System Startup"
+
     automation.trigger_alarm_on_motion:
       <<: *customize
       friendly_name: "Trigger Alarm on Motion"
@@ -78,3 +82,24 @@ automation:
     action:
       service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.alarm_system
+
+  - alias: alarm_startup_state
+    initial_state: 'on'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: time
+        seconds: '/5'
+    action:
+      - service: automation.turn_off
+        data:
+          entity_id: automation.alarm_startup_state
+      - service_template: >-
+          {% if is_state('sensor.household', 'Vacation') or is_state('sensor.household', 'Away') %}
+            alarm_control_panel.alarm_arm_away
+#          {% elif %}
+#            alarm_control_panel.alarm_arm_night
+          {% else %}
+            alarm_control_panel.alarm_arm_home
+          {% endif %}
+        entity_id: alarm_control_panel.alarm_system
