@@ -71,6 +71,10 @@ logbook:
 # https://www.home-assistant.io/components/map/
 map:
 
+# Enable Sun Component
+# https://home-assistant.io/components/sun/
+sun:
+
 # Text to speech
 tts:
   - platform: google
