@@ -31,7 +31,7 @@ homeassistant:
 
     binary_sensor.garage_door_opener:
       <<: *customize
-      friendly_name: Garage Door Opener
+      friendly_name: Garage Door
       device_class: garage_door
 
     binary_sensor.guest_bedroom_closet_door_contact:
