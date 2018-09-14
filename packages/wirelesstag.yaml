@@ -55,6 +55,7 @@ homeassistant:
     sensor.wirelesstag_laundry_room_battery:
       <<: *customize
       friendly_name: 'Desktop Humidor Battery Level'
+      device_class: battery
 
     sensor.wirelesstag_laundry_room_humidity:
       <<: *customize
