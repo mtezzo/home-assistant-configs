@@ -157,6 +157,24 @@ views:
         title: Dining Room
         entity: camera.dining_room
 
+  - icon: mdi:television-classic
+    title: Media
+    id: media
+    background: radial-gradient(blueviolet, skyblue)
+    theme: dark-mode
+    cards:
+      - type: glance
+        title: Remotes
+        entities:
+          - remote.living_room
+          - remote.basement
+      - type: media-control
+        entity: media_player.living_room_tv
+      - type: media-control
+        entity: media_player.living_room
+      - type: media-control
+        entity: media_player.dining_room
+
   - icon: mdi:access-point
     title: Sensors
     id: sensors

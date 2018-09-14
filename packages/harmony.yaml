@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Groups / Media Components
+## Packages / Harmony
 ################################################################
 
 ################################################
@@ -14,42 +14,32 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'groups/media_components'
-
-      expose: &expose
-        <<: *customize
-        homebridge_hidden: false
+        package: 'harmony'
 
     ################################################
-    ## Group
+    ## Remote
     ################################################
 
-    group.media_components:
+    remote.living_room:
       <<: *customize
-      friendly_name: "Media Components"
-      icon: mdi:audio-video
+      icon: mdi:remote
 
-    group.media_players:
+    remote.basement:
       <<: *customize
-      friendly_name: "Media Players"
-      icon: mdi:television
+      icon: mdi:remote
 
 ################################################
-## Group
+## Harmony
 ################################################
 
-group:
-  media_components:
-    control: hidden
-    entities:
-      - switch.apple_tv
-      - switch.xbox
+# https://www.home-assistant.io/components/remote.harmony/
+remote:
+  - platform: harmony
+    name: Living Room
+    host: 192.168.0.10
+    activity: Watch TV
 
-  media_players:
-    control: hidden
-    entities:
-      - remote.living_room
-      - remote.basement
-      - media_player.dining_room
-      - media_player.living_room
-      - media_player.living_room_tv
+  - platform: harmony
+    name: Basement
+    host: 192.168.0.18
+    activity: Watch TV
