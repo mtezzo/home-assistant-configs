@@ -102,6 +102,7 @@ sensor:
         entity_id: zwave.guest_bedroom_closet_door_contact
         value_template: "{{ (states.zwave.guest_bedroom_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
+        device_class: battery
         icon_template: >-
           {% set battery_level = states('sensor.guest_bedroom_closet_door_contact_battery')|int('unknown') %}
           {% if battery_level == 'unknown' %}
@@ -121,20 +122,21 @@ sensor:
         entity_id: zwave.guest_bedroom_storage_door_contact
         value_template: "{{ (states.zwave.guest_bedroom_storage_door_contact.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
-        icon_template: >-
-          {% set battery_level = states('sensor.guest_bedroom_storage_door_contact_battery')|int('unknown') %}
-          {% if battery_level == 'unknown' %}
-            mdi:battery-unknown
-          {% else %}
-            {% set battery_round = (battery_level|int / 10)|int * 10 %}
-            {% if battery_round >= 100 %}
-              mdi:battery
-            {% elif battery_round > 0 %}
-              mdi:battery-{{ battery_round }}
-            {% else %}
-              mdi:battery-alert
-            {% endif %}
-          {% endif %}
+        device_class: battery
+#        icon_template: >-
+#          {% set battery_level = states('sensor.guest_bedroom_storage_door_contact_battery')|int('unknown') %}
+#          {% if battery_level == 'unknown' %}
+#            mdi:battery-unknown
+#          {% else %}
+#            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+#            {% if battery_round >= 100 %}
+#              mdi:battery
+#            {% elif battery_round > 0 %}
+#              mdi:battery-{{ battery_round }}
+#            {% else %}
+#              mdi:battery-alert
+#            {% endif %}
+#          {% endif %}
 
       guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
         entity_id: zwave.guest_bedroom_smoke_and_carbon_monoxide_detector

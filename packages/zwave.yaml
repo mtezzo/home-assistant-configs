@@ -51,11 +51,13 @@ homeassistant:
     binary_sensor.living_room_motion_sensor:
       <<: *customize
       friendly_name: "Living Room Motion Sensor"
+      device_class: motion
       icon: mdi:run
 
     binary_sensor.master_bedroom_motion_sensor:
       <<: *customize
       friendly_name: "Master Bedroom Motion Sensor"
+      device_class: motion
       icon: mdi:run
 
     binary_sensor.michaels_closet_door_contact:
@@ -125,6 +127,7 @@ homeassistant:
     sensor.laundry_room_flood_sensor_temperature:
       <<: *customize
       friendly_name: "Laundry Room Flood Sensor Temperature"
+      device_class: temperature
       icon: mdi:thermometer
 
     sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level:
@@ -140,6 +143,7 @@ homeassistant:
     sensor.living_room_motion_sensor_luminance:
       <<: *customize
       friendly_name: Living Room Motion Sensor Luminance
+      device_class: illuminance
       icon: mdi:weather_sunny
 
     sensor.living_room_motion_sensor_seismic_intensity:
@@ -150,6 +154,7 @@ homeassistant:
     sensor.living_room_motion_sensor_temperature:
       <<: *customize
       friendly_name: Living Room Motion Sensor Temperature
+      device_class: temperature
       icon: mdi:thermometer
 
     sensor.master_bedroom_motion_sensor_burglar:
@@ -160,16 +165,19 @@ homeassistant:
     sensor.master_bedroom_motion_sensor_luminance:
       <<: *customize
       friendly_name: Master Bedroom Motion Sensor Luminance
+      device_class: illuminance
       icon: mdi:weather-sunny
 
     sensor.master_bedroom_motion_sensor_relative_humidity:
       <<: *customize
       friendly_name: Master Bedroom Motion Sensor Humidity
+      device_class: humidity
       icon: mdi:water-percent
 
     sensor.master_bedroom_motion_sensor_temperature:
       <<: *customize
       friendly_name: Master Bedroom Motion Sensor Temperature
+      device_class: temperature
       icon: mdi:thermometer
 
     sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
