@@ -40,7 +40,7 @@ homeassistant:
     sensor.dark_sky_humidity:
       <<: *customize
       friendly_name: "Humidity"
-      icon: mdi:water-percent
+      device_class: humidity
 
     sensor.dark_sky_precip_probability:
       <<: *customize
