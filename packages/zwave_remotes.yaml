@@ -24,17 +24,54 @@ homeassistant:
     ## Automation
     ################################################
 
-    automation.keyfob_button_pressed:
+    automation.keyfob_circle_button_tapped:
       <<: *customize
-      friendly_name: "Keyfob Button Pressed"
-      hidden: true
+      friendly_name: "Circle Button Tap Nightstand Light On"
+      icon: mdi:circle-outline
+
+    automation.keyfob_square_button_tapped:
+      <<: *customize
+      friendly_name: "Square Button Tap Nightstand Light Off"
+      icon: mdi:square-outline
+
+    automation.keyfob_triangle_button_tapped:
+      <<: *customize
+      friendly_name: "Tringle Button Tap Dresser Light On"
+      icon: mdi:triangle-outline
+
+    automation.keyfob_x_button_tapped:
+      <<: *customize
+      friendly_name: "X Button Tap Dresser Light Off"
+      icon: mdi:window-close
+
+    automation.keyfob_minus_button_tapped:
+      <<: *customize
+      friendly_name: "Minus Button Tap Bedroom Motion Off"
+      icon: mdi:minus
+
+    automation.keyfob_minus_button_held:
+      <<: *customize
+      friendly_name: "Minus Button Hold Night Mode On"
+      icon: mdi:minus
+
+    automation.keyfob_plus_button_tapped:
+      <<: *customize
+      friendly_name: "Plus Button Tap Bedroom Motion On"
+      icon: mdi:plus
 
 ################################################
 ## Automation
 ################################################
 
 automation:
-  - alias: "Circle Button Tap Nightstand Light On"
+
+  ################################################
+  ## Circle/Square Button
+  ################################################
+
+  - alias: keyfob_circle_button_tapped
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -49,7 +86,10 @@ automation:
           state: 'on'
           brightness: 178
           transition: 2
-  - alias: "Square Button Tap Nightstand Light Off"
+
+  - alias: keyfob_square_button_tapped
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -65,8 +105,13 @@ automation:
           brightness: 178
           transition: 2
 
+  ################################################
+  ## Triangle/X Button
+  ################################################
 
-  - alias: "Tringle Button Tap Dresser Light On"
+  - alias: keyfob_triangle_button_tapped
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -81,7 +126,10 @@ automation:
           state: 'on'
           brightness: 178
           transition: 2
-  - alias: "X Button Tap Dresser Light Off"
+
+  - alias: keyfob_x_button_tapped
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -101,7 +149,9 @@ automation:
   ## Minus Button
   ################################################
 
-  - alias: "Minus Button Tap Bedroom Motion Off"
+  - alias: keyfob_minus_button_tapped
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -115,7 +165,9 @@ automation:
           entity_id:
             - automation.master_bedroom_motion
 
-  - alias: "Minus Button Hold Night Mode On"
+  - alias: keyfob_minus_button_held
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -133,8 +185,9 @@ automation:
   ## Plus Button
   ################################################
 
-
-  - alias: "Plus Button Tap Bedroom Motion On"
+  - alias: keyfob_plus_button_tapped
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: zwave.scene_activated

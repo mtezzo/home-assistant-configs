@@ -31,6 +31,18 @@ recorder:
         - sun
         - weblink
       entities:
+        - automation.keyfob_circle_button_tapped
+        - automation.keyfob_square_button_tapped
+        - automation.keyfob_triangle_button_tapped
+        - automation.keyfob_x_button_tapped
+        - automation.keyfob_minus_button_tapped
+        - automation.keyfob_minus_button_held
+        - automation.keyfob_plus_button_tapped
+        - automation.person_arriving
+        - automation.person_home
+        - automation.person_departing
+        - automation.person_away
+        - automation.person_vacation
         - sensor.since_last_boot
         - sensor.since_last_boot_templated
         - sensor.date
