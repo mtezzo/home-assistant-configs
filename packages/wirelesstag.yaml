@@ -35,21 +35,22 @@ homeassistant:
     sensor.wirelesstag_diamond_crown_humidor_battery:
       <<: *customize
       friendly_name: 'Diamond Crown Humidor Battery Level'
+      device_class: battery
 
     sensor.wirelesstag_diamond_crown_humidor_humidity:
       <<: *customize
       friendly_name: 'Diamond Crown Humidor Humidity'
-      icon: mdi:water-percent
+      device_class: humidity
 
     sensor.wirelesstag_diamond_crown_humidor_light:
       <<: *customize
       friendly_name: 'Diamond Crown Humidor Luminance'
-      icon: mdi:weather-sunny
+      device_class: illuminance
 
     sensor.wirelesstag_diamond_crown_humidor_temperature:
       <<: *customize
       friendly_name: 'Diamond Crown Humidor Temperature'
-      icon: mdi:thermometer
+      device_class: temperature
 
     sensor.wirelesstag_laundry_room_battery:
       <<: *customize
@@ -58,17 +59,17 @@ homeassistant:
     sensor.wirelesstag_laundry_room_humidity:
       <<: *customize
       friendly_name: 'Desktop Humidor Humidity'
-      icon: mdi:water-percent
+      device_class: humidity
 
     sensor.wirelesstag_laundry_room_light:
       <<: *customize
       friendly_name: 'Desktop Humidor Luminance'
-      icon: mdi:weather-sunny
+      device_class: illuminance
 
     sensor.wirelesstag_laundry_room_temperature:
       <<: *customize
       friendly_name: 'Desktop Humidor Temperature'
-      icon: mdi:thermometer
+      device_class: temperature
 
 ################################################
 ## Sensors
@@ -104,6 +105,7 @@ sensor:
       wirelesstag_laundry_room_battery:
         value_template: '{{ (states.sensor.wirelesstag_laundry_room_humidity.attributes.battery_level|float * 100)|round }}'
         unit_of_measurement: '%'
+        device_class: battery
         icon_template: >-
           {% set battery_level = states('sensor.wirelesstag_laundry_room_battery')|float %}
           {% if battery_level == 'unknown' %}
