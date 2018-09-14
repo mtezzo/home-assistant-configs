@@ -123,7 +123,7 @@ views:
         entities:
           - climate.living_room
           - light.table_light
-          - switch.living_room_bookshelf_lamp
+          - light.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
         image: /local/img/living_room.jpg?v=1
 
