@@ -249,8 +249,8 @@ automation:
 
 # Device Tracking
 # https://www.home-assistant.io/components/device_tracker.bluetooth_tracker/
-device_tracker:
-  - platform: bluetooth_tracker
-    new_device_defaults:
-      track_new_devices: false
-      hide_if_away: false
+#device_tracker:
+#  - platform: bluetooth_tracker
+#    new_device_defaults:
+#      track_new_devices: false
+#      hide_if_away: false
