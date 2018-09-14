@@ -27,10 +27,12 @@ homeassistant:
     group.media_components:
       <<: *customize
       friendly_name: "Media Components"
+      icon: mdi:audio-video
 
     group.media_players:
       <<: *customize
       friendly_name: "Media Players"
+      icon: mdi:television
 
 ################################################
 ## Group

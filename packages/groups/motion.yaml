@@ -27,6 +27,7 @@ homeassistant:
     group.motion:
       <<: *customize
       friendly_name: "Motion"
+      icon: mdi:run
 
 ################################################
 ## Group

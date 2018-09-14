@@ -27,42 +27,52 @@ homeassistant:
     group.basement:
       <<: *customize
       friendly_name: "Basement"
+      icon: mdi:sofa
 
     group.dining_room:
       <<: *customize
       friendly_name: "Dining Room"
+      icon: mdi:silverware-fork-knife
 
     group.entrance:
       <<: *customize
       friendly_name: "Entrance"
+      icon: mdi-door
 
     group.garage:
       <<: *customize
       friendly_name: "Garage"
+      icon: mdi:garage
 
     group.guest_bedroom:
       <<: *customize
       friendly_name: "Guest Bedroom"
+      icon: mdi:bed-empty
 
     group.kitchen:
       <<: *customize
       friendly_name: "Kitchen"
+      icon: mdi:food-variant
 
     group.laundry_room:
       <<: *customize
       friendly_name: "Laundry Room"
+      icon: mdi:washing-machine
 
     group.living_room:
       <<: *customize
       friendly_name: "Living Room"
+      icon: mdi:sofa
 
     group.master_bedroom:
       <<: *customize
       friendly_name: "Master Bedroom"
+      icon: mdi:bed-empty
 
     group.master_closets:
       <<: *customize
       friendly_name: "Master Closets"
+      icon: mdi:hanger
 
 ################################################
 ## Group
@@ -73,6 +83,7 @@ group:
     control: hidden
     entities:
       - light.dungeon
+      - switch.baement_task_light
 
   dining_room:
     control: hidden
@@ -84,13 +95,14 @@ group:
   entrance:
     control: hidden
     entities:
+      - alarm_control_panel.alarm_system
       - binary_sensor.entrance_front_door_contact
 
   garage:
     control: hidden
     entities:
       - light.garage_storage
-      - binary_sensor.garage_entry_contact
+      - binary_sensor.garage_door_opener
 
   guest_bedroom:
     control: hidden
@@ -129,7 +141,7 @@ group:
       - sensor.living_room_nest_protect_co_status
       - sensor.living_room_nest_protect_smoke_status
       - light.table_light
-      - switch.living_room_bookshelf_lamp
+      - light.living_room_bookshelf_lamp
       - light.living_room_floor_lamp
       - binary_sensor.living_room_motion_sensor
       - sensor.living_room_motion_sensor_temperature
