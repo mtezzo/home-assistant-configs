@@ -161,7 +161,7 @@ views:
     theme: dark-mode
     cards:
       - type: glance
-        title: Activities
+        title: Living Room Activities
         entities:
           - entity: switch.apple_tv
             tap_action: toggle
@@ -173,7 +173,7 @@ views:
       - type: conditional
         conditions:
           - entity: media_player.living_room_tv
-            state: "playing"
+            state: 'playing'
         card:
           type: media-control
           entity: media_player.living_room_tv

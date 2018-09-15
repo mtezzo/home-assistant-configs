@@ -30,7 +30,7 @@ homeassistant:
       beacon:
         uuid: !secret beacon_uuid
         major: !secret beacon_major
-        minor: !secret beacon_minor
+#        minor: !secret beacon_minor
 
     zone.computer_center:
       <<: *expose
