@@ -58,9 +58,9 @@ remote:
     host: !secret harmony_living_room_host
     activity: !secret harmony_living_room_activity_watch_tv
 
-  - platform: harmony
-    name: Basement
-    host: 192.168.0.18
+#  - platform: harmony
+#    name: Basement
+#    host: 192.168.0.18
 #    activity: Watch TV
 
 ################################################
