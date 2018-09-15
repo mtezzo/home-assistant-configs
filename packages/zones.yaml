@@ -58,4 +58,4 @@ zone:
   - name: Home
     latitude: !secret ha_latitude
     longitude: !secret ha_longitude
-    radius: 75
+    radius: 65
