@@ -110,6 +110,7 @@ automation:
   ################################################
 
   - alias: guest_bedroom_closet_lighting
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.guest_bedroom_closet_door_contact
@@ -122,6 +123,7 @@ automation:
           transition: 1
 
   - alias: guest_bedroom_storage_lighting
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.guest_bedroom_storage_door_contact
@@ -134,6 +136,7 @@ automation:
           transition: 1
 
   - alias: michaels_closet_lighting
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.michaels_closet_door_contact
@@ -146,6 +149,7 @@ automation:
           transition: 1
 
   - alias: julias_closet_lighting
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.julias_closet_door_contact
