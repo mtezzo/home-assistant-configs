@@ -83,7 +83,7 @@ views:
 
       - type: map
         aspect_ratio: 100%
-#        default_zoom: 8
+        default_zoom: 18
         entities:
           - device_tracker.julias_iphone
           - device_tracker.michaels_iphone
