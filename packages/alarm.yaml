@@ -111,7 +111,7 @@ automation:
       entity_id: alarm_control_panel.alarm_system
       data_template:
         code: !secret alarm_code
-        changed_by: {{ trigger.entity_id }}
+        changed_by: "{{ trigger.entity_id }}"
 
   - alias: alarm_triggered_notification
     trigger:
