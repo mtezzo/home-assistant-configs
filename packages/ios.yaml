@@ -18,9 +18,18 @@ homeassistant:
         package: 'ios'
 
     ################################################
-    ## 
+    ## Automation
     ################################################
 
+    automation.notify_ios_app:
+      <<: *customize
+      friendly_name: "Notify iOS App"
+      icon: mdi:message-text
+
+    automation.sound_alarm:
+      <<: *customize
+      friendly_name: "Sound Alarm"
+      icon: mdi:message-text
 
 ################################################
 ## iOS
@@ -52,7 +61,7 @@ ios:
 ################################################
 
 automation:
-  - alias: Notify iOS App
+  - alias: notify_ios_app
     trigger:
       - platform: state
         entity_id: alarm_control_panel.alarm_system
@@ -65,7 +74,7 @@ automation:
           push:
             category: "alarm" # Needs to match the top level identifier you used in the ios configuration
 
-  - alias: Sound Alarm
+  - alias: sound_alarm
     trigger:
       platform: event
       event_type: ios.notification_action_fired
@@ -75,6 +84,6 @@ automation:
       - service: script.sonos_say
         data:
           sonos_entity: media_player.living_room
-          volume: 0.7
+          volume: 0.6
           message: 'Intruder Alert!'
           delay: '00:00:05'

@@ -125,9 +125,6 @@ automation:
           message: "Home Assistant is now up and running."
           target:
             - !secret mobile_michael
-#      - service: automation.trigger
-#        data:
-#          entity_id: automation.update_global_brightness
 
   - alias: update_notification
     initial_state: true
