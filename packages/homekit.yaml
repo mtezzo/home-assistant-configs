@@ -66,3 +66,6 @@ homekit:
     include_entities:
       - automation.master_bedroom_motion
       - automation.living_room_motion
+    entity_config:
+      alarm_control_panel.alarm_system:
+        code: !secret alarm_code
