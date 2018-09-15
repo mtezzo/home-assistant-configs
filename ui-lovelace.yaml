@@ -161,15 +161,26 @@ views:
     theme: dark-mode
     cards:
       - type: glance
-        title: Remotes
+        title: Activities
         entities:
-          - switch.apple_tv
-          - switch.lg_tv
-          - switch.xbox_one
-      - type: media-control
-        entity: media_player.living_room_tv
+          - entity: switch.apple_tv
+            tap_action: toggle
+          - entity: switch.lg_tv
+            tap_action: toggle
+          - entity: switch.xbox_one
+            tap_action: toggle
+
+      - type: conditional
+        conditions:
+          - entity: media_player.living_room_tv
+            state: "playing"
+        card:
+          type: media-control
+          entity: media_player.living_room_tv
+  
       - type: media-control
         entity: media_player.living_room
+
       - type: media-control
         entity: media_player.dining_room
 
