@@ -109,9 +109,8 @@ automation:
     action:
       service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.alarm_system
-      data_template:
+      data:
         code: !secret alarm_code
-        changed_by: "{{ trigger.entity_id }}"
 
   - alias: alarm_triggered_notification
     trigger:
@@ -121,6 +120,6 @@ automation:
     action:
       - service: notify.sms
         data_template:
-          message: 'ALARM TRIGGERED!!! {{ states[states.alarm_control_panel.alarm_system.attributes.changed_by.split(".")[0]][ states.alarm_control_panel.alarm_system.attributes.changed_by.split(".")[1]].name }}'
+          message: 'ALARM TRIGGERED!!! {{ states.alarm_control_panel.alarm_system.attributes.changed_by }}'
           target:
             - !secret mobile_michael
