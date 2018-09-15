@@ -86,7 +86,6 @@ group:
   network:
     view: yes
     entities:
-      - group.network_devices
       - group.internet
       - group.system
 

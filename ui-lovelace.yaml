@@ -11,9 +11,6 @@ title: Otteropolis
 
 # Exclude entities from "Unused entities" view
 excluded_entities:
-  - weblink.router_admin
-  - weblink.swtich_admin
-  - weblink.wifi_admin
 
 resources:
   - url: /local/js/alarm_control_panel-card.js?v=5
