@@ -82,7 +82,7 @@ views:
         step: 1
 
       - type: map
-        aspect_ratio: 100%
+        aspect_ratio: 56.25%
         default_zoom: 17
         entities:
           - device_tracker.julias_iphone
