@@ -37,9 +37,9 @@ remote:
   - platform: harmony
     name: Living Room
     host: 192.168.0.10
-    activity: Watch TV
+#    activity: Watch TV
 
   - platform: harmony
     name: Basement
     host: 192.168.0.18
-    activity: Watch TV
+#    activity: Watch TV
