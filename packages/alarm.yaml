@@ -84,7 +84,7 @@ automation:
       entity_id: alarm_control_panel.alarm_system
 
   - alias: alarm_startup_state
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: homeassistant
         event: start

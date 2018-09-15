@@ -110,7 +110,7 @@ group:
 
 automation:
   - alias: startup_notification
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: homeassistant
         event: start
@@ -130,7 +130,7 @@ automation:
 #          entity_id: automation.update_global_brightness
 
   - alias: update_notification
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: updater.updater

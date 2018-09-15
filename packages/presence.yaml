@@ -144,7 +144,7 @@ sensor:
 automation:
   - alias: person_arriving
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: device_tracker.julias_iphone
@@ -167,7 +167,7 @@ automation:
  
   - alias: person_home
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.julias_status
@@ -187,7 +187,7 @@ automation:
  
   - alias: person_departing
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: device_tracker.julias_iphone
@@ -205,7 +205,7 @@ automation:
  
   - alias: person_away
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.julias_status
@@ -225,7 +225,7 @@ automation:
  
   - alias: person_vacation
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.julias_status

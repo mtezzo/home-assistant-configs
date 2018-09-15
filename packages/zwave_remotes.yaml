@@ -71,7 +71,7 @@ automation:
 
   - alias: keyfob_circle_button_tapped
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -89,7 +89,7 @@ automation:
 
   - alias: keyfob_square_button_tapped
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -111,7 +111,7 @@ automation:
 
   - alias: keyfob_triangle_button_tapped
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -129,7 +129,7 @@ automation:
 
   - alias: keyfob_x_button_tapped
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -151,7 +151,7 @@ automation:
 
   - alias: keyfob_minus_button_tapped
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -167,7 +167,7 @@ automation:
 
   - alias: keyfob_minus_button_held
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -187,7 +187,7 @@ automation:
 
   - alias: keyfob_plus_button_tapped
     hide_entity: true
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: event
         event_type: zwave.scene_activated

@@ -60,7 +60,7 @@ automation:
   ################################################
 
   - alias: living_room_motion
-    initial_state: 'off'
+    initial_state: false
     trigger:
       - platform: state
         entity_id: binary_sensor.living_room_motion_sensor
@@ -86,7 +86,7 @@ automation:
           effect: colorloop
 
   - alias: master_bedroom_motion
-    initial_state: 'off'
+    initial_state: false
     trigger:
       - platform: state
         entity_id: binary_sensor.master_bedroom_motion_sensor
@@ -110,7 +110,7 @@ automation:
   ################################################
 
   - alias: guest_bedroom_closet_lighting
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.guest_bedroom_closet_door_contact
@@ -123,7 +123,7 @@ automation:
           transition: 1
 
   - alias: guest_bedroom_storage_lighting
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.guest_bedroom_storage_door_contact
@@ -136,7 +136,7 @@ automation:
           transition: 1
 
   - alias: michaels_closet_lighting
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.michaels_closet_door_contact
@@ -149,7 +149,7 @@ automation:
           transition: 1
 
   - alias: julias_closet_lighting
-    initial_state: 'on'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.julias_closet_door_contact
