@@ -28,6 +28,25 @@ homeassistant:
       <<: *customize
       icon: mdi:remote
 
+    ################################################
+    ## Switch
+    ################################################
+
+    switch.apple_tv:
+      <<: *customize
+      friendly_name: "Apple TV"
+      icon: mdi:apple
+
+    switch.lg_tv:
+      <<: *customize
+      friendly_name: "TV"
+      icon: mdi:television-classic
+
+    switch.xbox_one:
+      <<: *customize
+      friendly_name: "Xbox One"
+      icon: mdi:xbox
+
 ################################################
 ## Harmony
 ################################################
@@ -36,10 +55,56 @@ homeassistant:
 remote:
   - platform: harmony
     name: Living Room
-    host: 192.168.0.10
-#    activity: Watch TV
+    host: !secret harmony_living_room_host
+    activity: !secret harmony_living_room_activity_watch_tv
 
   - platform: harmony
     name: Basement
     host: 192.168.0.18
 #    activity: Watch TV
+
+################################################
+## Switch
+################################################
+
+switch:
+  - platform: template
+    switches:
+      apple_tv:
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or false }}
+        turn_on:
+          - service: remote.turn_on
+            data:
+              entity_id: remote.living_room
+              activity: !secret harmony_living_room_activity_watch_apple_tv
+        turn_off:
+          - service: remote.turn_off
+            data:
+              entity_id: remote.living_room
+
+      lg_tv:
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch TV') or false }}
+        turn_on:
+          - service: remote.turn_on
+            data:
+              entity_id: remote.living_room
+              activity: !secret harmony_living_room_activity_watch_tv
+        turn_off:
+          - service: remote.turn_off
+            data:
+              entity_id: remote.living_room
+
+      xbox_one:
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Play XBox One') or false }}
+        turn_on:
+          - service: remote.turn_on
+            data:
+              entity_id: remote.living_room
+              activity: !secret harmony_living_room_activity_play_xbox_one
+        turn_off:
+          - service: remote.turn_off
+            data:
+              entity_id: remote.living_room
