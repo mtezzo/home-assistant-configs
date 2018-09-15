@@ -81,6 +81,14 @@ views:
         chevron_size: 50
         step: 1
 
+      - type: map
+        aspect_ratio: 100%
+        default_zoom: 8
+        entities:
+          - device_tracker.julias_iphone
+          - device_tracker.michaels_iphone
+          - zone.home
+
   - icon: mdi:lightbulb-outline
     title: Devices
     id: devices
