@@ -51,8 +51,10 @@ homeassistant:
 ################################################
 
 alarm_control_panel:
-  - platform: manual
+  - platform: manual_mqtt
     name: alarm_system
+    state_topic: home/alarm
+    command_topic: home/alarm/set
     code: !secret alarm_code
     pending_time: 45
     delay_time: 45
