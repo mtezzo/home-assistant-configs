@@ -23,11 +23,13 @@ homeassistant:
     automation.living_room_motion:
       <<: *customize
       friendly_name: "Living Room Motion"
+      persistent: true
       icon: mdi:robot
 
     automation.master_bedroom_motion:
       <<: *customize
       friendly_name: "Bedroom Motion"
+      persistent: true
       icon: mdi:robot
 
     automation.guest_bedroom_closet_lighting:
@@ -60,7 +62,6 @@ automation:
   ################################################
 
   - alias: living_room_motion
-    persistent: true
     trigger:
       - platform: state
         entity_id: binary_sensor.living_room_motion_sensor
@@ -86,7 +87,6 @@ automation:
           effect: colorloop
 
   - alias: master_bedroom_motion
-    persistent: true
     trigger:
       - platform: state
         entity_id: binary_sensor.master_bedroom_motion_sensor
