@@ -17,7 +17,6 @@ known_devices.yaml
 *.log
 *.txt
 *.sh
-*.py
 *.xml
 *.db
 *.sqlite
@@ -25,3 +24,5 @@ ozw_config/
 tts/
 deps/
 www/img/
+custom_components/*/__pycache__/*
+custom_components/__pycache__/*

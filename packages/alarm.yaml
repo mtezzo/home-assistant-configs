@@ -74,7 +74,7 @@ alarm_control_panel:
 
 automation:
   - alias: alarm_startup_state
-    initial_state: false
+    initial_state: true
     trigger:
       - platform: homeassistant
         event: start

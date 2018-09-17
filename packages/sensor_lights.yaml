@@ -60,7 +60,7 @@ automation:
   ################################################
 
   - alias: living_room_motion
-    initial_state: false
+    persistent: true
     trigger:
       - platform: state
         entity_id: binary_sensor.living_room_motion_sensor
@@ -86,7 +86,7 @@ automation:
           effect: colorloop
 
   - alias: master_bedroom_motion
-    initial_state: false
+    persistent: true
     trigger:
       - platform: state
         entity_id: binary_sensor.master_bedroom_motion_sensor

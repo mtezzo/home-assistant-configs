@@ -254,3 +254,7 @@ automation:
 #    new_device_defaults:
 #      track_new_devices: false
 #      hide_if_away: false
+
+# https://www.home-assistant.io/components/device_tracker.owntracks/
+device_tracker:
+  - platform: owntracks
