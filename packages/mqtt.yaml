@@ -31,8 +31,8 @@ mqtt:
   password: !secret mqtt_password
   protocol: '3.1.1'
   birth_message:
-    topic: 'hass/status'
+    topic: 'home-assistant/status'
     payload: 'online'
   will_message:
-    topic: 'hass/status'
+    topic: 'home-assistant/status'
     payload: 'offline'
