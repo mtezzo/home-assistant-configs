@@ -1,12 +1,12 @@
 """
 @ Author      : Suresh Kalavala
 @ Date        : 05/24/2017
-@ Description : Life360 Sensor - It queries Life360 API and retrieves 
+@ Description : Life360 Sensor - It queries Life360 API and retrieves
                 data at a specified interval and dumpt into MQTT
 
-@ Notes:        Copy this file and place it in your 
+@ Notes:        Copy this file and place it in your
                 "Home Assistant Config folder\custom_components\sensor\" folder
-                Copy corresponding Life360 Package frommy repo, 
+                Copy corresponding Life360 Package frommy repo,
                 and make sure you have MQTT installed and Configured
                 Make sure the life360 password don't contain '#' or '$' symbols
 """
@@ -25,7 +25,7 @@ from homeassistant.helpers import template
 from homeassistant.exceptions import TemplateError
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
-    CONF_NAME, CONF_VALUE_TEMPLATE, CONF_UNIT_OF_MEASUREMENT, 
+    CONF_NAME, CONF_VALUE_TEMPLATE, CONF_UNIT_OF_MEASUREMENT,
     STATE_UNKNOWN)
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
@@ -139,22 +139,22 @@ class Life360SensorData(object):
             self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("USERNAME360", self.username)
             self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("PASSWORD360", self.password)
             access_token = self.exec_shell_command( self.COMMAND_ACCESS_TOKEN )
-        
+
             if access_token == None:
                 self.value = CONST_STATE_ERROR
                 return None
-        
+
             self.COMMAND_ID = self.COMMAND_ID.replace("ACCESS_TOKEN", access_token)
             id = self.exec_shell_command( self.COMMAND_ID )
-        
+
             if id == None:
                 self.value = CONST_STATE_ERROR
                 return None
-        
+
             self.COMMAND_MEMBERS = self.COMMAND_MEMBERS.replace("ACCESS_TOKEN", access_token)
             self.COMMAND_MEMBERS = self.COMMAND_MEMBERS.replace("ID", id)
             payload = self.exec_shell_command( self.COMMAND_MEMBERS )
-        
+
             if payload != None:
                 self.save_payload_to_mqtt ( self.mqtt_topic, payload )
                 data = json.loads ( payload )
@@ -224,7 +224,7 @@ class Life360SensorData(object):
 
         output = None
         try:
-            output = subprocess.check_output( command, shell=True, timeout=50 )
+            output = subprocess.check_output( command, shell=True, timeout=60 )
             output = output.strip().decode('utf-8')
 
         except subprocess.CalledProcessError:
