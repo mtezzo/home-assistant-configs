@@ -13,7 +13,6 @@
 
 from datetime import timedelta
 import logging
-import urllib
 import requests
 import json
 
@@ -206,7 +205,7 @@ class Life360SensorData(object):
                     topic.Append("owntracks/")
                     topic.Append(member["firstName"].lower())
                     topic.Append("/")
-                    topic.Append(member["firstName"].lower())
+                    topic.Append("phone")
                     topic = topic
 
                     msgPayload = StringBuilder()
