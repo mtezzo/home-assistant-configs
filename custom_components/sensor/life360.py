@@ -186,7 +186,7 @@ class Life360SensorData(object):
             """ Prepare and Execute Commands """
             api = Life360(self.AUTHORIZATION_TOKEN, self.username, self.password)
 
-            if !api.authenticate():
+            if not api.authenticate():
                 self.value = CONST_STATE_ERROR
                 return None
 
