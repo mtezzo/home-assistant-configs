@@ -139,7 +139,7 @@ class Life360SensorData(object):
             self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("USERNAME360", self.username)
             self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("PASSWORD360", self.password)
             access_token = self.exec_shell_command( self.COMMAND_ACCESS_TOKEN )
-            _LOGGER.error( self.COMMAND_ACCESS_TOKEN )
+
             if access_token == None:
                 self.value = CONST_STATE_ERROR
                 return None
@@ -225,14 +225,15 @@ class Life360SensorData(object):
         output = None
         try:
             output = subprocess.check_output( command, shell=True, timeout=50 )
+            _LOGGER.error("Output: %s", output)
             output = output.strip().decode('utf-8')
 
         except subprocess.CalledProcessError:
-            """ _LOGGER.error("Command failed: %s", command)"""
+            _LOGGER.error("Command failed: %s", command)
             self.value = CONST_STATE_ERROR
             output = None
         except subprocess.TimeoutExpired:
-            """ _LOGGER.error("Timeout for command: %s", command)"""
+            _LOGGER.error("Timeout for command: %s", command)
             self.value = CONST_STATE_ERROR
             output = None
 
