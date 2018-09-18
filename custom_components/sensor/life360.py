@@ -224,7 +224,7 @@ class Life360SensorData(object):
 
         output = None
         try:
-            output = subprocess.check_output( command, shell=True, timeout=50 )
+            output = subprocess.check_output( command, shell=False, timeout=50 )
             _LOGGER.error("Output: %s", output)
             output = output.strip().decode('utf-8')
 
