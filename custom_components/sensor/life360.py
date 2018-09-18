@@ -13,7 +13,8 @@
 
 from datetime import timedelta
 import logging
-import subprocess
+import urllib
+import requests
 import json
 
 import voluptuous as vol
@@ -41,9 +42,7 @@ CONST_STATE_RUNNING = "running"
 CONST_USERNAME = "username"
 CONST_PASSWORD = "password"
 
-COMMAND1 = "curl -s -X POST -H \"Authorization: Basic cFJFcXVnYWJSZXRyZTRFc3RldGhlcnVmcmVQdW1hbUV4dWNyRUh1YzptM2ZydXBSZXRSZXN3ZXJFQ2hBUHJFOTZxYWtFZHI0Vg==\" -F \"grant_type=password\" -F \"username=USERNAME360\" -F \"password=PASSWORD360\" https://api.life360.com/v3/oauth2/token.json | grep -Po '(?<=\"access_token\":\")\\w*'"
-COMMAND2 = "curl -s -X GET -H \"Authorization: Bearer ACCESS_TOKEN\" https://api.life360.com/v3/circles.json | grep -Po '(?<=\"id\":\")[\\w-]*'"
-COMMAND3 = "curl -s -X GET -H \"Authorization: Bearer ACCESS_TOKEN\" https://api.life360.com/v3/circles/ID"
+AUTHORIZATION_TOKEN = "cFJFcXVnYWJSZXRyZTRFc3RldGhlcnVmcmVQdW1hbUV4dWNyRUh1YzptM2ZydXBSZXRSZXN3ZXJFQ2hBUHJFOTZxYWtFZHI0Vg=="
 
 SCAN_INTERVAL = timedelta(seconds=60)
 
@@ -69,10 +68,61 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     if value_template is not None:
         value_template.hass = hass
 
-    data = Life360SensorData(username, password, COMMAND1, COMMAND2, COMMAND3, mqtt_topic, hass)
+    data = Life360SensorData(username, password, AUTHORIZATION_TOKEN, mqtt_topic, hass)
 
     add_devices([Life360Sensor(hass, data, name, unit, value_template)])
 
+class Life360:
+
+    base_url = "https://api.life360.com/v3/"
+    token_url = "oauth2/token.json"
+    circles_url = "circles.json"
+    circle_url = "circles/"
+
+    def __init__(self, authorization_token=None, username=None, password=None):
+        self.authorization_token = authorization_token
+        self.username = username
+        self.password = password
+
+    def make_request(self, url, params=None, method='GET', authheader=None):
+        headers = {'Accept': 'application/json'}
+        if authheader:
+            headers.update({'Authorization': authheader, 'cache-control': "no-cache",})
+        
+        if method == 'GET':
+            r = requests.get(url, headers=headers)
+        elif method == 'POST':
+            r = requests.post(url, data=params, headers=headers)
+
+        return r.json()
+
+    def authenticate(self):
+
+        url = self.base_url + self.token_url
+        params = {
+            "grant_type":"password",
+            "username":self.username,
+            "password":self.password,
+        }
+
+        r = self.make_request(url=url, params=params, method='POST', authheader="Basic " + self.authorization_token)
+        try:
+            self.access_token = r['access_token']
+            return True
+        except:
+            return False
+
+    def get_circles(self):
+        url = self.base_url + self.circles_url
+        authheader="bearer " + self.access_token
+        r = self.make_request(url=url, method='GET', authheader=authheader)
+        return r['circles']
+
+    def get_circle(self, circle_id):
+        url = self.base_url + self.circle_url + circle_id
+        authheader="bearer " + self.access_token
+        r = self.make_request(url=url, method='GET', authheader=authheader)
+        return r
 
 class Life360Sensor(Entity):
     """Representation of a sensor."""
@@ -119,13 +169,11 @@ class Life360Sensor(Entity):
 class Life360SensorData(object):
     """The class for handling the data retrieval."""
 
-    def __init__(self, username, password, command1, command2, command3, mqtt_topic, hass):
+    def __init__(self, username, password, authorization_token, mqtt_topic, hass):
         """Initialize the data object."""
         self.username = username
         self.password = password
-        self.COMMAND_ACCESS_TOKEN = command1
-        self.COMMAND_ID = command2
-        self.COMMAND_MEMBERS = command3
+        self.AUTHORIZATION_TOKEN = authorization_token
         self.hass = hass
         self.value = None
         self.mqtt_topic = mqtt_topic
@@ -136,28 +184,23 @@ class Life360SensorData(object):
 
         try:
             """ Prepare and Execute Commands """
-            self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("USERNAME360", self.username)
-            self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("PASSWORD360", self.password)
-            access_token = self.exec_shell_command( self.COMMAND_ACCESS_TOKEN )
+            api = Life360(self.AUTHORIZATION_TOKEN, self.username, self.password)
 
-            if access_token == None:
+            if !api.authenticate():
                 self.value = CONST_STATE_ERROR
                 return None
 
-            self.COMMAND_ID = self.COMMAND_ID.replace("ACCESS_TOKEN", access_token)
-            id = self.exec_shell_command( self.COMMAND_ID )
+            circles =  api.get_circles()
+            id = circles[0]['id']
 
             if id == None:
                 self.value = CONST_STATE_ERROR
                 return None
 
-            self.COMMAND_MEMBERS = self.COMMAND_MEMBERS.replace("ACCESS_TOKEN", access_token)
-            self.COMMAND_MEMBERS = self.COMMAND_MEMBERS.replace("ID", id)
-            payload = self.exec_shell_command( self.COMMAND_MEMBERS )
+            data = api.get_circle(id)
 
-            if payload != None:
-                self.save_payload_to_mqtt ( self.mqtt_topic, payload )
-                data = json.loads ( payload )
+            if data != None:
+                self.save_payload_to_mqtt ( self.mqtt_topic, json.dumps(data) )
                 for member in data["members"]:
                     topic = StringBuilder()
                     topic.Append("owntracks/")
@@ -219,29 +262,6 @@ class Life360SensorData(object):
 
         except Exception as e:
             self.value = CONST_STATE_ERROR
-
-    def exec_shell_command( self, command ):
-
-        output = None
-        try:
-            output = subprocess.check_output( command, shell=True, timeout=50 )
-            output = output.strip().decode('utf-8')
-
-        except subprocess.CalledProcessError:
-            _LOGGER.error("Command failed: %s", output)
-            self.value = CONST_STATE_ERROR
-            output = None
-        except subprocess.TimeoutExpired:
-            _LOGGER.error("Timeout for command: %s", command)
-            self.value = CONST_STATE_ERROR
-            output = None
-
-        if output == None:
-            _LOGGER.error( "Life360 has not responsed well. Nothing to worry, will try again!" )
-            self.value = CONST_STATE_ERROR
-            return None
-        else:
-            return output
 
     def save_payload_to_mqtt( self, topic, payload ):
 
