@@ -139,14 +139,14 @@ class Life360SensorData(object):
             self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("USERNAME360", self.username)
             self.COMMAND_ACCESS_TOKEN = self.COMMAND_ACCESS_TOKEN.replace("PASSWORD360", self.password)
             access_token = self.exec_shell_command( self.COMMAND_ACCESS_TOKEN )
-            _LOGGER.error( access_token)
+            _LOGGER.error( self.COMMAND_ACCESS_TOKEN )
             if access_token == None:
                 self.value = CONST_STATE_ERROR
                 return None
 
             self.COMMAND_ID = self.COMMAND_ID.replace("ACCESS_TOKEN", access_token)
             id = self.exec_shell_command( self.COMMAND_ID )
-            _LOGGER.error( id )
+
             if id == None:
                 self.value = CONST_STATE_ERROR
                 return None
@@ -154,7 +154,7 @@ class Life360SensorData(object):
             self.COMMAND_MEMBERS = self.COMMAND_MEMBERS.replace("ACCESS_TOKEN", access_token)
             self.COMMAND_MEMBERS = self.COMMAND_MEMBERS.replace("ID", id)
             payload = self.exec_shell_command( self.COMMAND_MEMBERS )
-            _LOGGER.error( payload )
+
             if payload != None:
                 self.save_payload_to_mqtt ( self.mqtt_topic, payload )
                 data = json.loads ( payload )
