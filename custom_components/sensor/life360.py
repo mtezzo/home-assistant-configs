@@ -225,11 +225,10 @@ class Life360SensorData(object):
         output = None
         try:
             output = subprocess.check_output( command, shell=True, timeout=50 )
-            _LOGGER.error("Output: %s", output)
             output = output.strip().decode('utf-8')
 
-        except subprocess.CalledProcessError as exc:
-            _LOGGER.error("Status : FAIL", exc.returncode, exc.output)
+        except subprocess.CalledProcessError:
+            _LOGGER.error("Command failed: %s", output)
             self.value = CONST_STATE_ERROR
             output = None
         except subprocess.TimeoutExpired:
