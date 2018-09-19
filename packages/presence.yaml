@@ -291,3 +291,10 @@ automation:
 # https://www.home-assistant.io/components/device_tracker.owntracks/
 device_tracker:
   - platform: owntracks
+  - platform: life360
+    username: !secret life360_username
+    password: !secret life360_password
+    interval_seconds: 60
+    filename: life360.conf
+    max_update_wait:
+      minutes: 30
