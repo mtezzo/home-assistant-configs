@@ -53,11 +53,11 @@ homeassistant:
     ## Device Tracker
     ################################################
 
-    device_tracker.julias_iphone:
+    device_tracker.julia_ios:
       <<: *customize
       status_select: input_select.julias_status
 
-    device_tracker.michaels_iphone:
+    device_tracker.michael_ios:
       <<: *customize
       status_select: input_select.michaels_status
 
@@ -147,11 +147,11 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.julias_iphone
+        entity_id: device_tracker.julia_ios
         from: 'not_home'
         to: 'home'
       - platform: state
-        entity_id: device_tracker.michaels_iphone
+        entity_id: device_tracker.michael_ios
         from: 'not_home'
         to: 'home'
     action:
@@ -190,11 +190,11 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.julias_iphone
+        entity_id: device_tracker.julia_ios
         from: 'home'
         to: 'not_home'
       - platform: state
-        entity_id: device_tracker.michaels_iphone
+        entity_id: device_tracker.michael_ios
         from: 'home'
         to: 'not_home'
     action:
