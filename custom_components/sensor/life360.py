@@ -205,7 +205,7 @@ class Life360SensorData(object):
                     topic.Append("owntracks/")
                     topic.Append(member["firstName"].lower())
                     topic.Append("/")
-                    topic.Append("phone")
+                    topic.Append("life360")
                     topic = topic
 
                     msgPayload = StringBuilder()
