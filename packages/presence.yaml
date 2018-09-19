@@ -97,7 +97,7 @@ binary_sensor:
         prob_given_true: 0.90
         platform: 'state'
         to_state: 'home'
-      - entity_id: 'device_tracker.julia_life360'
+      - entity_id: 'device_tracker.julia'
         prob_given_true: 0.99
         platform: 'state'
         to_state: 'home'
@@ -111,7 +111,7 @@ binary_sensor:
         prob_given_true: 0.90
         platform: 'state'
         to_state: 'home'
-      - entity_id: 'device_tracker.michael_life360'
+      - entity_id: 'device_tracker.michael'
         prob_given_true: 0.99
         platform: 'state'
         to_state: 'home'
