@@ -84,7 +84,7 @@ homeassistant:
       friendly_name: "Household"
 
 ################################################
-## Group
+## Binary Sensor
 ################################################
 
 binary_sensor:
