@@ -181,12 +181,12 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.julia_home
-        from: false
-        to: true
+        from: 'off'
+        to: 'on'
       - platform: state
         entity_id: binary_sensor.michael_home
-        from: false
-        to: true
+        from: 'off'
+        to: 'on'
     action:
       - service: input_select.select_option
         data_template:
@@ -224,12 +224,12 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.julia_home
-        from: true
-        to: false
+        from: 'on'
+        to: 'off'
       - platform: state
         entity_id: binary_sensor.michael_home
-        from: true
-        to: false
+        from: 'on'
+        to: 'off'
     action:
       - service: input_select.select_option
         data_template:
