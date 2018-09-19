@@ -335,7 +335,7 @@ class Life360Scanner:
                 try:
                     m_id = m['id']
                     sharing = bool(int(m['features']['shareLocation']))
-                    name = m_name(m.get('firstName'), m.get('lastName'))
+                    name = m_name(m.get('firstName'))#, m.get('lastName'))
                 except (KeyError, TypeError, ValueError):
                     self._err(err_key, m)
                     continue

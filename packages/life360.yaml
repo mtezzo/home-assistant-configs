@@ -25,35 +25,35 @@ homeassistant:
     ## Sensor
     ################################################
 
-    sensor.life360_sensor:
-      <<: *expose
-      friendly_name: Life360
+#    sensor.life360_sensor:
+#      <<: *expose
+#      friendly_name: Life360
 
 ################################################
 ## Sensor
 ################################################
 
-sensor:
-  - platform: life360
-    username: !secret life360_username
-    password: !secret life360_password
-    mqtt_topic: "life360/data"
-    scan_interval: 60
+#sensor:
+#  - platform: life360
+#    username: !secret life360_username
+#    password: !secret life360_password
+#    mqtt_topic: "life360/data"
+#    scan_interval: 60
 
 ################################################
 ## Automation
 ################################################
 
-automation:
-  - alias: Alert Life360 Error
-    initial_state: true
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: sensor.life360_sensor
-      to: 'error'
-      for: '00:05:00'
-    action:
-      - service: script.notify_me
-        data_template:
-          message: "Life360 Sensor state changed to: {{ trigger.to_state.state| upper }}."
+#automation:
+#  - alias: Alert Life360 Error
+#    initial_state: true
+#    hide_entity: true
+#    trigger:
+#      platform: state
+#      entity_id: sensor.life360_sensor
+#      to: 'error'
+#      for: '00:05:00'
+#    action:
+#      - service: script.notify_me
+#        data_template:
+#          message: "Life360 Sensor state changed to: {{ trigger.to_state.state| upper }}."
