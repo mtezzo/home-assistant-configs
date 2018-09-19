@@ -50,14 +50,14 @@ homeassistant:
       icon: mdi:map-marker
 
     ################################################
-    ## Device Tracker
+    ## Binary Sensor
     ################################################
 
-    device_tracker.julia_ios:
+    binary_sensor.julia_home:
       <<: *customize
       status_select: input_select.julias_status
 
-    device_tracker.michael_ios:
+    binary_sensor.michael_home:
       <<: *customize
       status_select: input_select.michaels_status
 
@@ -82,6 +82,39 @@ homeassistant:
     sensor.household:
       <<: *customize
       friendly_name: "Household"
+
+################################################
+## Group
+################################################
+
+binary_sensor:
+  - platform: 'bayesian'
+    name: 'julia_home'
+    prior: 0.76
+    probability_threshold: 0.98
+    observations:
+      - entity_id: 'device_tracker.julia_ios'
+        prob_given_true: 0.90
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'device_tracker.julia_life360'
+        prob_given_true: 0.99
+        platform: 'state'
+        to_state: 'home'
+
+  - platform: 'bayesian'
+    name: 'michael_home'
+    prior: 0.73
+    probability_threshold: 0.98
+    observations:
+      - entity_id: 'device_tracker.michael_ios'
+        prob_given_true: 0.90
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'device_tracker.michael_life360'
+        prob_given_true: 0.99
+        platform: 'state'
+        to_state: 'home'
 
 ################################################
 ## Input Select
@@ -147,13 +180,13 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.julia_ios
-        from: 'not_home'
-        to: 'home'
+        entity_id: binary_sensor.julia_home
+        from: false
+        to: true
       - platform: state
-        entity_id: device_tracker.michael_ios
-        from: 'not_home'
-        to: 'home'
+        entity_id: binary_sensor.michael_home
+        from: false
+        to: true
     action:
       - service: input_select.select_option
         data_template:
@@ -190,13 +223,13 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.julia_ios
-        from: 'home'
-        to: 'not_home'
+        entity_id: binary_sensor.julia_home
+        from: true
+        to: false
       - platform: state
-        entity_id: device_tracker.michael_ios
-        from: 'home'
-        to: 'not_home'
+        entity_id: binary_sensor.michael_home
+        from: true
+        to: false
     action:
       - service: input_select.select_option
         data_template:
