@@ -97,7 +97,7 @@ binary_sensor:
         prob_given_true: 0.90
         platform: 'state'
         to_state: 'home'
-      - entity_id: 'device_tracker.julia'
+      - entity_id: 'device_tracker.life360_julia'
         prob_given_true: 0.99
         platform: 'state'
         to_state: 'home'
@@ -111,10 +111,24 @@ binary_sensor:
         prob_given_true: 0.90
         platform: 'state'
         to_state: 'home'
-      - entity_id: 'device_tracker.michael'
+      - entity_id: 'device_tracker.life360_michael'
         prob_given_true: 0.99
         platform: 'state'
         to_state: 'home'
+
+################################################
+## Device Tracker
+################################################
+
+device_tracker:
+  - platform: life360
+    username: !secret life360_username
+    password: !secret life360_password
+    interval_seconds: 60
+    filename: life360.conf
+    max_update_wait:
+      minutes: 30
+    prefix: life360
 
 ################################################
 ## Input Select
@@ -175,6 +189,32 @@ sensor:
 ################################################
 
 automation:
+  - alias: Life360 Overdue Update
+    trigger:
+      platform: event
+      event_type: device_tracker.life360_update_overdue
+    action:
+      service: persistent_notification.create
+      data_template:
+        title: Life360 update overdue
+        message: >
+          Update for {{
+            state_attr(trigger.event.data.entity_id, 'friendly_name')
+          }} is overdue.
+
+  - alias: Life360 Update Restored
+    trigger:
+      platform: event
+      event_type: device_tracker.life360_update_restored
+    action:
+      service: persistent_notification.create
+      data_template:
+        title: Life360 update restored
+        message: >
+          Update for {{
+            state_attr(trigger.event.data.entity_id, 'friendly_name')
+          }} restored after {{ trigger.event.data.wait }}.
+
   - alias: person_arriving
     hide_entity: true
     initial_state: true
@@ -275,25 +315,3 @@ automation:
         data_template:
           entity_id: '{{ trigger.entity_id }}'
           option: 'Vacation'
-
-################################################
-## Device Tracker
-################################################
-
-# Device Tracking
-# https://www.home-assistant.io/components/device_tracker.bluetooth_tracker/
-#device_tracker:
-#  - platform: bluetooth_tracker
-#    new_device_defaults:
-#      track_new_devices: false
-#      hide_if_away: false
-
-# https://www.home-assistant.io/components/device_tracker.owntracks/
-device_tracker:
-  - platform: life360
-    username: !secret life360_username
-    password: !secret life360_password
-    interval_seconds: 60
-    filename: life360.conf
-    max_update_wait:
-      minutes: 30
