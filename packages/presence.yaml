@@ -24,6 +24,16 @@ homeassistant:
     ## Automation
     ################################################
 
+    automation.life360_overdue_update:
+      <<: *expose
+      friendly_name: "Life360 Overdue Update"
+      icon: mdi:bell-outline
+
+    automation.life360_update_restored:
+      <<: *expose
+      friendly_name: "Life360 Update Restored"
+      icon: mdi:bell-outline
+
     automation.person_arriving:
       <<: *expose
       friendly_name: "Mark person as just arrived"
@@ -189,7 +199,9 @@ sensor:
 ################################################
 
 automation:
-  - alias: Life360 Overdue Update
+  - alias: life360_overdue_update
+    hide_entity: true
+    initial_state: true
     trigger:
       platform: event
       event_type: device_tracker.life360_update_overdue
@@ -202,7 +214,9 @@ automation:
             state_attr(trigger.event.data.entity_id, 'friendly_name')
           }} is overdue.
 
-  - alias: Life360 Update Restored
+  - alias: life360_update_restored
+    hide_entity: true
+    initial_state: true
     trigger:
       platform: event
       event_type: device_tracker.life360_update_restored
