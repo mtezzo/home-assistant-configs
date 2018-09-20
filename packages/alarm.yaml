@@ -27,6 +27,7 @@ homeassistant:
     alarm_control_panel.alarm_system:
       <<: *customize
       friendly_name: "Alarm System"
+      persistent: true
 
     ################################################
     ## Automation
@@ -53,8 +54,8 @@ homeassistant:
 alarm_control_panel:
   - platform: manual_mqtt
     name: alarm_system
-    state_topic: home/alarm
-    command_topic: home/alarm/set
+    state_topic: home-assistant/alarm_control_panel/alarm_system
+    command_topic: home-assistant/alarm_control_panel/alarm_system/set
     code: !secret alarm_code
     pending_time: 45
     delay_time: 45
@@ -74,7 +75,7 @@ alarm_control_panel:
 
 automation:
   - alias: alarm_startup_state
-    initial_state: true
+    initial_state: false
     trigger:
       - platform: homeassistant
         event: start
