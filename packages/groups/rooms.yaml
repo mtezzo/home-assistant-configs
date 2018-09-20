@@ -37,7 +37,7 @@ homeassistant:
     group.entrance:
       <<: *customize
       friendly_name: "Entrance"
-      icon: mdi-door
+      icon: mdi:door
 
     group.garage:
       <<: *customize
