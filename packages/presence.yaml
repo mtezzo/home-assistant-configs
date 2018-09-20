@@ -66,10 +66,12 @@ homeassistant:
     binary_sensor.julia_home:
       <<: *customize
       status_select: input_select.julias_status
+      icon: mdi:home-map-marker
 
     binary_sensor.michael_home:
       <<: *customize
       status_select: input_select.michaels_status
+      icon: mdi:home-map-marker
 
     ################################################
     ## Input Select
