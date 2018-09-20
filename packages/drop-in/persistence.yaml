@@ -180,9 +180,10 @@ automation:
           {% else %}
             alarm_control_panel.alarm_disarm
           {% endif %}
-        entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-        data:
-          code: !secret alarm_code
+        data_template:
+          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+          data:
+            code: !secret alarm_code
 
   - alias: persistence_subscribe_select_option
     initial_state: 'on'
