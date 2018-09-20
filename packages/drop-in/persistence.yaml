@@ -7,15 +7,12 @@
 ##   persistence on an entity.
 ##
 ## This currently supports: automation, input_boolean,
-##   alarm_control_panel, input_select, input_number, input_text, light, and switch.
+##   input_select, input_number, input_text, light, and switch.
 ##
 ## Example Configuration:
 ##
 ## homeassistant:
 ##   customize:
-##     alarm_control_panel.alarm_system:
-##       persistent: true
-##
 ##     automation.good_morning_lights:
 ##       persistent: true
 ##
@@ -68,10 +65,6 @@ homeassistant:
     automation.persistence_publish:
       <<: *customize
       friendly_name: "Persistence Publish"
-
-    automation.persistence_subscribe_alarm_control_panel:
-      <<: *customize
-      friendly_name: "Persistence Subscribe (Alarm Control Panel)"
 
     automation.persistence_subscribe_binary:
       <<: *customize
@@ -161,29 +154,6 @@ automation:
       - service_template: "{{ trigger.topic.split('/')[1] }}.turn_{{ trigger.payload|lower }}"
         data_template:
           entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-
-  - alias: persistence_subscribe_alarm_control_panel
-    initial_state: 'on'
-    hide_entity: true
-    trigger:
-      - platform: mqtt
-        topic: home-assistant/alarm_control_panel/+
-    condition: *subscribe_condition
-    action:
-      - service_template: >-
-          {% if trigger.payload == 'armed_home' %}
-            alarm_control_panel.alarm_arm_home
-          {% elif trigger.payload == 'armed_away' %}
-            alarm_control_panel.alarm_arm_away
-          {% elif trigger.payload == 'armed_night' %}
-            alarm_control_panel.alarm_arm_night
-          {% else %}
-            alarm_control_panel.alarm_disarm
-          {% endif %}
-        data_template:
-          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-          data:
-            code: !secret alarm_code
 
   - alias: persistence_subscribe_select_option
     initial_state: 'on'

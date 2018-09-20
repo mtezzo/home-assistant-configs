@@ -27,11 +27,15 @@ homeassistant:
     alarm_control_panel.alarm_system:
       <<: *customize
       friendly_name: "Alarm System"
-      persistent: true
 
     ################################################
     ## Automation
     ################################################
+
+    automation.persistence_subscribe_alarm_control_panel:
+      <<: *customize
+      friendly_name: "Persistence Subscribe (Alarm Control Panel)"
+      icon: mdi:alarm
 
     automation.alarm_startup_state:
       <<: *customize
@@ -54,8 +58,8 @@ homeassistant:
 alarm_control_panel:
   - platform: manual_mqtt
     name: alarm_system
-    state_topic: home-assistant/alarm_control_panel/alarm_system
-    command_topic: home-assistant/alarm_control_panel/alarm_system/set
+    state_topic: home-assistant/alarm
+    command_topic: home-assistant/alarm/set
     code: !secret alarm_code
     pending_time: 45
     delay_time: 45
@@ -74,22 +78,25 @@ alarm_control_panel:
 ################################################
 
 automation:
-  - alias: alarm_startup_state
-    initial_state: false
+  - alias: persistence_subscribe_alarm_control_panel
+    initial_state: 'on'
+    hide_entity: true
     trigger:
-      - platform: homeassistant
-        event: start
-      - platform: time
-        seconds: '/5'
+      - platform: mqtt
+        topic: home-assistant/alarm
+    condition:
+      - condition: template
+        value_template: "{{ not is_state(alarm_control_panel.alarm_system, trigger.payload) }}"
     action:
-      - service: automation.turn_off
-        data:
-          entity_id: automation.alarm_startup_state
       - service_template: >-
-          {% if is_state('sensor.household', 'Vacation') or is_state('sensor.household', 'Away') %}
-            alarm_control_panel.alarm_arm_away
-          {% else %}
+          {% if trigger.payload == 'armed_home' %}
             alarm_control_panel.alarm_arm_home
+          {% elif trigger.payload == 'armed_night' %}
+            alarm_control_panel.alarm_arm_night
+          {% elif trigger.payload == 'disarmed' %}
+            alarm_control_panel.alarm_disarm
+          {% else %}
+            alarm_control_panel.alarm_arm_away
           {% endif %}
         entity_id: alarm_control_panel.alarm_system
         data:
