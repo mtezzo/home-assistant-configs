@@ -32,6 +32,11 @@ homeassistant:
     ## Automation
     ################################################
 
+    automation.persistence_publish_alarm_control_panel:
+      <<: *customize
+      friendly_name: "Persistence Publish (Alarm Control Panel)"
+      icon: mdi:alarm
+
     automation.persistence_subscribe_alarm_control_panel:
       <<: *customize
       friendly_name: "Persistence Subscribe (Alarm Control Panel)"
@@ -56,10 +61,8 @@ homeassistant:
 ################################################
 
 alarm_control_panel:
-  - platform: manual_mqtt
+  - platform: manual
     name: alarm_system
-    state_topic: home-assistant/alarm
-    command_topic: home-assistant/alarm/set
     code: !secret alarm_code
     pending_time: 45
     delay_time: 45
@@ -78,6 +81,32 @@ alarm_control_panel:
 ################################################
 
 automation:
+  - alias: persistence_publish_alarm_control_panel
+    initial_state: 'on'
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.alarm_system
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state is not none }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes is not none }}"
+      - condition: template
+        value_template: "{{ trigger.from_state is not none }}"
+      - condition: template
+        value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.state != 'pending' }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.state != 'triggered' }}"
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "home-assistant/alarm"
+          payload: "{{ trigger.to_state.state }}"
+          retain: true
+
   - alias: persistence_subscribe_alarm_control_panel
     initial_state: 'on'
     hide_entity: true
