@@ -34,12 +34,12 @@ homeassistant:
 
     automation.persistence_publish_alarm_control_panel:
       <<: *customize
-      friendly_name: "Persistence Publish (Alarm Control Panel)"
+      friendly_name: "Persistence Publish (Alarm System)"
       icon: mdi:alarm
 
     automation.persistence_subscribe_alarm_control_panel:
       <<: *customize
-      friendly_name: "Persistence Subscribe (Alarm Control Panel)"
+      friendly_name: "Persistence Subscribe (Alarm System)"
       icon: mdi:alarm
 
     automation.alarm_startup_state:
@@ -55,15 +55,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Send Notification on Alarm Trigger"
       icon: mdi:message-text
-
-    ################################################
-    ## Sensor
-    ################################################
-
-    sensor.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-      icon: mdi:alarm-bell
 
 ################################################
 ## Alarm Control Panel
@@ -171,12 +162,3 @@ automation:
           message: 'ALARM TRIGGERED!!! {{ states.alarm_control_panel.alarm_system.attributes.changed_by }}'
           target:
             - !secret mobile_michael
-
-################################################
-## Sensor
-################################################
-
-sensor:
-  - platform: mqtt
-    state_topic: "home-assistant/alarm"
-    name: alarm_system
