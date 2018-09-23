@@ -113,6 +113,8 @@ automation:
     trigger:
       - platform: mqtt
         topic: home-assistant/alarm
+      - platform: homeassistant
+        event: start
     condition:
       - condition: template
         value_template: "{{ not is_state(alarm_control_panel.alarm_system, trigger.payload) }}"
