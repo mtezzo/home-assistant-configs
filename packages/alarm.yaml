@@ -56,6 +56,15 @@ homeassistant:
       friendly_name: "Send Notification on Alarm Trigger"
       icon: mdi:message-text
 
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.alarm_system:
+      <<: *customize
+      friendly_name: "Alarm System"
+      icon: mdi:alarm-bell
+
 ################################################
 ## Alarm Control Panel
 ################################################
@@ -103,7 +112,7 @@ automation:
     action:
       - service: mqtt.publish
         data_template:
-          topic: "home-assistant/alarm"
+          topic: "home-assistant/alarm_control_panel/alarm_system"
           payload: "{{ trigger.to_state.state }}"
           retain: true
 
@@ -112,7 +121,7 @@ automation:
     hide_entity: true
     trigger:
       - platform: mqtt
-        topic: home-assistant/alarm
+        topic: home-assistant/alarm_control_panel/+
     condition:
       - condition: template
         value_template: "{{ not is_state(alarm_control_panel.alarm_system, trigger.payload) }}"
@@ -162,3 +171,12 @@ automation:
           message: 'ALARM TRIGGERED!!! {{ states.alarm_control_panel.alarm_system.attributes.changed_by }}'
           target:
             - !secret mobile_michael
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: mqtt
+    state_topic: "home-assistant/alarm"
+    name: alarm_system
