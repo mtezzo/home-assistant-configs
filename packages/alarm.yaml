@@ -121,10 +121,10 @@ automation:
     hide_entity: true
     trigger:
       - platform: mqtt
-        topic: home-assistant/alarm_control_panel/+
+        topic: home-assistant/alarm_control_panel/alarm_system
     condition:
       - condition: template
-        value_template: "{{ not is_state(alarm_control_panel.alarm_system, trigger.payload) }}"
+        value_template: "{{ not is_state('alarm_control_panel.alarm_system', trigger.payload) }}"
     action:
       - service_template: >-
           {% if trigger.payload == 'armed_home' %}
