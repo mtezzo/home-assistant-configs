@@ -139,7 +139,7 @@ device_tracker:
     interval_seconds: 60
     filename: life360.conf
     max_update_wait:
-      minutes: 30
+      minutes: 35
     prefix: life360
 
 ################################################
