@@ -142,6 +142,18 @@ device_tracker:
       minutes: 35
     prefix: life360
 
+  - platform: composite
+    name: julia
+    entity_id:
+      - device_tracker.julia_ios
+      - device_tracker.life360_julia
+
+  - platform: composite
+    name: michael
+    entity_id:
+      - device_tracker.michael_ios
+      - device_tracker.life360_michael
+
 ################################################
 ## Input Select
 ################################################
