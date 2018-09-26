@@ -85,8 +85,8 @@ views:
         aspect_ratio: 56.25%
         default_zoom: 16
         entities:
-          - device_tracker.life360_julia
-          - device_tracker.life360_michael
+          - device_tracker.julia
+          - device_tracker.michael
           - zone.home
 
   - icon: mdi:lightbulb-outline

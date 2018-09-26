@@ -60,18 +60,16 @@ homeassistant:
       icon: mdi:map-marker
 
     ################################################
-    ## Binary Sensor
+    ## Device Tracker
     ################################################
 
-    binary_sensor.julia_home:
+    device_tracker.julia:
       <<: *customize
       status_select: input_select.julias_status
-      icon: mdi:home-map-marker
 
-    binary_sensor.michael_home:
+    device_tracker.michael:
       <<: *customize
       status_select: input_select.michaels_status
-      icon: mdi:home-map-marker
 
     ################################################
     ## Input Select
@@ -94,39 +92,6 @@ homeassistant:
     sensor.household:
       <<: *customize
       friendly_name: "Household"
-
-################################################
-## Binary Sensor
-################################################
-
-binary_sensor:
-  - platform: 'bayesian'
-    name: 'julia_home'
-    prior: 0.76
-    probability_threshold: 0.98
-    observations:
-      - entity_id: 'device_tracker.julia_ios'
-        prob_given_true: 0.90
-        platform: 'state'
-        to_state: 'home'
-      - entity_id: 'device_tracker.life360_julia'
-        prob_given_true: 0.99
-        platform: 'state'
-        to_state: 'home'
-
-  - platform: 'bayesian'
-    name: 'michael_home'
-    prior: 0.73
-    probability_threshold: 0.98
-    observations:
-      - entity_id: 'device_tracker.michael_ios'
-        prob_given_true: 0.90
-        platform: 'state'
-        to_state: 'home'
-      - entity_id: 'device_tracker.life360_michael'
-        prob_given_true: 0.99
-        platform: 'state'
-        to_state: 'home'
 
 ################################################
 ## Device Tracker
@@ -248,13 +213,13 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.julia_home
-        from: 'off'
-        to: 'on'
+        entity_id: device_tracker.julia
+        from: 'not_home'
+        to: 'home'
       - platform: state
-        entity_id: binary_sensor.michael_home
-        from: 'off'
-        to: 'on'
+        entity_id: device_tracker.michael
+        from: 'not_home'
+        to: 'home'
     action:
       - service: input_select.select_option
         data_template:
@@ -291,13 +256,13 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.julia_home
-        from: 'on'
-        to: 'off'
+        entity_id: device_tracker.julia
+        from: 'home'
+        to: 'not_home'
       - platform: state
-        entity_id: binary_sensor.michael_home
-        from: 'on'
-        to: 'off'
+        entity_id: device_tracker.michael
+        from: 'home'
+        to: 'not_home'
     action:
       - service: input_select.select_option
         data_template:
