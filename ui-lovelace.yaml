@@ -38,18 +38,18 @@ views:
             card:
               type: glance
               title: People that are home
-          - type: custom:alarm_control_panel-card
+          - type: alarm-panel
             entity: alarm_control_panel.alarm_system
             title: Alarm System
-            display_letters: true
-            scale: 15px
+#            display_letters: true
+#            scale: 15px
             states:
               - arm_away
               - arm_home
               - arm_night
               - arm_custom_bypass
-            labels:
-              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
+#            labels:
+#              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
           - type: entities
             show_header_toggle: false
             entities:
@@ -75,11 +75,11 @@ views:
           - type: divider
           - switch.basement_task_light
 
-      - type: custom:thermostat-card
-        title: Nest
+      - type: thermostat
+#        title: Nest
         entity: climate.living_room
-        chevron_size: 50
-        step: 1
+#        chevron_size: 50
+#        step: 1
 
       - type: map
         aspect_ratio: 56.25%
