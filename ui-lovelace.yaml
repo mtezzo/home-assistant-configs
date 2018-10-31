@@ -15,8 +15,6 @@ excluded_entities:
 resources:
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
-  - url: /local/js/thermostat-card.js?v=1
-    type: module
 
 views:
   - icon: mdi:home-assistant
@@ -76,10 +74,7 @@ views:
           - switch.basement_task_light
 
       - type: thermostat
-#        title: Nest
         entity: climate.living_room
-#        chevron_size: 50
-#        step: 1
 
       - type: map
         aspect_ratio: 56.25%
