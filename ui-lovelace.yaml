@@ -273,11 +273,20 @@ views:
           - type: gauge
             entity: sensor.speedtest_download
             title: Download Speed
+            severity:
+              green: 90
+              yellow: 45
+              red: 0
           - type: gauge
             entity: sensor.speedtest_upload
             title: Upload Speed
+            severity:
+              green: 90
+              yellow: 45
+              red: 0
           - type: gauge
             entity: sensor.speedtest_ping
+            title: Ping
 
   - icon: mdi:robot
     title: Automations
