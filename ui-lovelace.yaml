@@ -268,14 +268,16 @@ views:
           - sensor.load_15m
           - sensor.current_version
 
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
           - type: gauge
             entity: sensor.speedtest_download
+            title: Download Speed
           - type: gauge
             entity: sensor.speedtest_upload
-#          - type: gauge
-#            entity: sensor.speedtest_ping
+            title: Upload Speed
+          - type: gauge
+            entity: sensor.speedtest_ping
 
   - icon: mdi:robot
     title: Automations
