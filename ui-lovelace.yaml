@@ -268,12 +268,14 @@ views:
           - sensor.load_15m
           - sensor.current_version
 
-      - type: entities
-        title: Internet
-        entities:
-          - sensor.speedtest_ping
-          - sensor.speedtest_download
-          - sensor.speedtest_upload
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.speedtest_download
+          - type: gauge
+            entity: sensor.speedtest_upload
+#          - type: gauge
+#            entity: sensor.speedtest_ping
 
   - icon: mdi:robot
     title: Automations
