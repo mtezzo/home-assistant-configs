@@ -48,13 +48,13 @@ views:
               - arm_custom_bypass
 #            labels:
 #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - sensor.house_mode
-              - input_boolean.night_mode
-              - input_boolean.guest_mode
-              - sensor.household
+#          - type: entities
+#            show_header_toggle: false
+#            entities:
+#              - sensor.house_mode
+#              - input_boolean.night_mode
+#              - input_boolean.guest_mode
+#              - sensor.household
 
       - type: thermostat
         entity: climate.living_room
@@ -93,26 +93,36 @@ views:
     theme: dark-mode
     cards:
       - type: entities
-        title: Lights
+        title: Basement
+        entities:
+          - switch.basement_task_light
+          - light.dungeon
+
+      - type: entities
+        title: Bedroom
         entities:
           - light.dresser_lamp
           - light.nightstand_lamp
           - light.michaels_closet
           - light.julias_closet
-          - type: divider
+
+      - type: entities
+        title: Dining Room
+        entities:
+          - light.garage_storage
+
+      - type: entities
+        title: Guest Bedroom
+        entities:
+          - light.guest_bedroom_storage
+          - light.guest_bedroom_closet
+
+      - type: entities
+        title: Living Room
+        entities:
           - light.table_light
           - light.living_room_bookshelf_lamp
           - light.living_room_floor_lamp
-          - type: divider
-          - light.dining_room_spot
-          - type: divider
-          - light.guest_bedroom_storage
-          - light.guest_bedroom_closet
-          - type: divider
-          - light.garage_storage
-          - type: divider
-          - switch.basement_task_light
-          - light.dungeon
 
   - icon: mdi:floor-plan
     title: Rooms
