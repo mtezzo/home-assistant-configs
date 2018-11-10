@@ -1,1 +1,4 @@
 ### customize.yaml
+
+cover.garage_door_opener:
+  friendly_name: "Garage Door"
