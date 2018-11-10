@@ -56,8 +56,8 @@ views:
               - input_boolean.guest_mode
               - sensor.household
 
-      - type: weather-forecast
-        entity: weather.dark_sky
+      - type: thermostat
+        entity: climate.living_room
 
       - type: entities
         title: Favorites
@@ -75,8 +75,8 @@ views:
           - type: divider
           - switch.basement_task_light
 
-      - type: thermostat
-        entity: climate.living_room
+      - type: weather-forecast
+        entity: weather.dark_sky
 
       - type: map
         aspect_ratio: 56.25%
