@@ -71,6 +71,8 @@ views:
           - type: divider
           - light.dining_room_spot
           - type: divider
+          - cover.garage_door_opener
+          - type: divider
           - switch.basement_task_light
 
       - type: thermostat
@@ -213,6 +215,7 @@ views:
         title: Door Sensors
         entities:
           - binary_sensor.entrance_front_door_contact
+          - binary_sensor.garage_door_opener
           - binary_sensor.guest_bedroom_closet_door_contact
           - binary_sensor.guest_bedroom_storage_door_contact
           - binary_sensor.julias_closet_door_contact
