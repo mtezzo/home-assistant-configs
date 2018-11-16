@@ -41,5 +41,5 @@ group:
       - sensor.living_room_motion_sensor_temperature
       - sensor.living_room_thermostat_temperature
       - sensor.master_bedroom_motion_sensor_temperature
-      - sensor.wirelesstag_laundry_room_temperature
+      - sensor.wirelesstag_desktop_humidor_temperature
       - sensor.wirelesstag_diamond_crown_humidor_temperature

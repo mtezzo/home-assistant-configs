@@ -21,11 +21,11 @@ homeassistant:
     ## Plant
     ################################################
 
-    plant.diamond_crown:
+    plant.diamond_crown_humidor:
       <<: *customize
       friendly_name: 'Diamond Crown Humidor'
 
-    plant.laundry_room:
+    plant.desktop_humidor:
       <<: *customize
       friendly_name: 'Desktop Humidor'
 
@@ -52,22 +52,22 @@ homeassistant:
       friendly_name: 'Diamond Crown Humidor Temperature'
       device_class: temperature
 
-    sensor.wirelesstag_laundry_room_battery:
+    sensor.wirelesstag_desktop_humidor_battery:
       <<: *customize
       friendly_name: 'Desktop Humidor Battery Level'
       device_class: battery
 
-    sensor.wirelesstag_laundry_room_humidity:
+    sensor.wirelesstag_desktop_humidor_humidity:
       <<: *customize
       friendly_name: 'Desktop Humidor Humidity'
       device_class: humidity
 
-    sensor.wirelesstag_laundry_room_light:
+    sensor.wirelesstag_desktop_humidor_light:
       <<: *customize
       friendly_name: 'Desktop Humidor Luminance'
       device_class: illuminance
 
-    sensor.wirelesstag_laundry_room_temperature:
+    sensor.wirelesstag_desktop_humidor_temperature:
       <<: *customize
       friendly_name: 'Desktop Humidor Temperature'
       device_class: temperature
@@ -90,8 +90,8 @@ sensor:
         value_template: '{{ (states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level|float * 100)|round }}'
         unit_of_measurement: '%'
 
-      wirelesstag_laundry_room_battery:
-        value_template: '{{ (states.sensor.wirelesstag_laundry_room_humidity.attributes.battery_level|float * 100)|round }}'
+      wirelesstag_desktop_humidor_battery:
+        value_template: '{{ (states.sensor.wirelesstag_desktop_humidor_humidity.attributes.battery_level|float * 100)|round }}'
         unit_of_measurement: '%'
 
 ################################################
@@ -100,7 +100,7 @@ sensor:
 ################################################
 
 plant:
-  diamond_crown:
+  diamond_crown_humidor:
     sensors:
       moisture: sensor.wirelesstag_diamond_crown_humidor_humidity
       battery: sensor.wirelesstag_diamond_crown_humidor_battery
@@ -112,12 +112,12 @@ plant:
     min_temperature: 50
     max_temperature: 85
 
-  laundry_room:
+  desktop_humidor:
     sensors:
-      moisture: sensor.wirelesstag_laundry_room_humidity
-      battery: sensor.wirelesstag_laundry_room_battery
-      temperature: sensor.wirelesstag_laundry_room_temperature
-      brightness: sensor.wirelesstag_laundry_room_light
+      moisture: sensor.wirelesstag_desktop_humidor_humidity
+      battery: sensor.wirelesstag_desktop_humidor_battery
+      temperature: sensor.wirelesstag_desktop_humidor_temperature
+      brightness: sensor.wirelesstag_desktop_humidor_light
     min_moisture: 55
     max_moisture: 75
     min_battery: 10

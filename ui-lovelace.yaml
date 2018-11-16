@@ -212,7 +212,7 @@ views:
           - sensor.living_room_motion_sensor_temperature
           - sensor.living_room_thermostat_temperature
           - sensor.master_bedroom_motion_sensor_temperature
-          - sensor.wirelesstag_laundry_room_temperature
+          - sensor.wirelesstag_desktop_humidor_temperature
           - sensor.wirelesstag_diamond_crown_humidor_temperature
 
       - type: entities
@@ -234,7 +234,7 @@ views:
       - type: entities
         title: Batteries
         entities:
-          - sensor.wirelesstag_laundry_room_battery
+          - sensor.wirelesstag_desktop_humidor_battery
           - sensor.wirelesstag_diamond_crown_humidor_battery
           - sensor.guest_bedroom_closet_door_contact_battery
           - sensor.guest_bedroom_storage_door_contact_battery
@@ -260,10 +260,10 @@ views:
       - type: vertical-stack
         cards:
           - type: plant-status
-            entity: plant.diamond_crown
+            entity: plant.diamond_crown_humidor
 
           - type: plant-status
-            entity: plant.laundry_room
+            entity: plant.desktop_humidor
 
       - type: entities
         title: System

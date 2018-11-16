@@ -84,7 +84,7 @@ automation:
           entity_id: light.table_light
           state: "{{ trigger.to_state.state }}"
           brightness: 178
-          effect: colorloop
+          effect: "colorloop"
 
   - alias: master_bedroom_motion
     trigger:
