@@ -106,11 +106,11 @@ plant:
       battery: sensor.wirelesstag_diamond_crown_humidor_battery
       temperature: sensor.wirelesstag_diamond_crown_humidor_temperature
       brightness: sensor.wirelesstag_diamond_crown_humidor_light
-    min_moisture: 55
+    min_moisture: 60
     max_moisture: 75
     min_battery: 10
-    min_temperature: 50
-    max_temperature: 85
+    min_temperature: 60
+    max_temperature: 80
 
   desktop_humidor:
     sensors:
@@ -118,11 +118,11 @@ plant:
       battery: sensor.wirelesstag_desktop_humidor_battery
       temperature: sensor.wirelesstag_desktop_humidor_temperature
       brightness: sensor.wirelesstag_desktop_humidor_light
-    min_moisture: 55
+    min_moisture: 60
     max_moisture: 75
     min_battery: 10
-    min_temperature: 50
-    max_temperature: 85
+    min_temperature: 60
+    max_temperature: 80
 
 ################################################
 ## WirelessTag
