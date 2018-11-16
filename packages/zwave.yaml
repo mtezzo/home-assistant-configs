@@ -51,18 +51,26 @@ homeassistant:
 
     binary_sensor.living_room_motion_sensor:
       <<: *customize
-      friendly_name: "Living Room Motion Sensor"
+      friendly_name: Living Room Motion Sensor
       device_class: motion
 
     binary_sensor.master_bedroom_motion_sensor:
       <<: *customize
-      friendly_name: "Master Bedroom Motion Sensor"
+      friendly_name: Master Bedroom Motion Sensor
       device_class: motion
 
     binary_sensor.michaels_closet_door_contact:
       <<: *customize
       friendly_name: "Michael's Closet Door"
       device_class: door
+
+    ################################################
+    ## Cover
+    ################################################
+
+    cover.garage_door_opener:
+      <<: *customize
+      friendly_name: Garage Door
 
     ################################################
     ## Lights
@@ -99,7 +107,7 @@ homeassistant:
 
     sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
       <<: *customize
-      friendly_name: "Guest Bedroom Smoke Detector Battery Level"
+      friendly_name: Guest Bedroom Smoke Detector Battery Level
       device_class: battery
 
     sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
@@ -109,17 +117,17 @@ homeassistant:
 
     sensor.guest_bedroom_closet_door_contact_battery:
       <<: *customize
-      friendly_name: "Guest Bedroom Closet Door Battery Level"
+      friendly_name: Guest Bedroom Closet Door Battery Level
       device_class: battery
 
     sensor.guest_bedroom_storage_door_contact_battery:
       <<: *customize
-      friendly_name: "Guest Bedroom Storage Door Battery Level"
+      friendly_name: Guest Bedroom Storage Door Battery Level
       device_class: battery
 
     sensor.guest_bedroom_storage_door_contact_burglar:
       <<: *customize
-      friendly_name: "Guest Bedroom Closet Door Contact Burglar"
+      friendly_name: Guest Bedroom Closet Door Contact Burglar
       icon: mdi:alarm-bell
 
     sensor.julias_closet_door_contact_battery:
@@ -134,22 +142,22 @@ homeassistant:
 
     sensor.laundry_room_flood_sensor:
       <<: *customize
-      friendly_name: "Laundry Room Flood Sensor"
+      friendly_name: Laundry Room Flood Sensor
       icon: mdi:water
 
     sensor.laundry_room_flood_sensor_battery:
       <<: *customize
-      friendly_name: "Laundry Room Flood Sensor Battery Level"
+      friendly_name: Laundry Room Flood Sensor Battery Level
       device_class: battery
 
     sensor.laundry_room_flood_sensor_burglar:
       <<: *customize
-      friendly_name: "Laundry Room Flood Sensor Burglar"
+      friendly_name: Laundry Room Flood Sensor Burglar
       icon: mdi:alarm-bell
 
     sensor.laundry_room_flood_sensor_temperature:
       <<: *customize
-      friendly_name: "Laundry Room Flood Sensor Temperature"
+      friendly_name: Laundry Room Flood Sensor Temperature
       device_class: temperature
 
     sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level:
@@ -159,12 +167,12 @@ homeassistant:
 
     sensor.laundry_room_smoke_and_carbon_monoxide_detector_battery:
       <<: *customize
-      friendly_name: "Laundry Room Smoke Detector Battery Level"
+      friendly_name: Laundry Room Smoke Detector Battery Level
       device_class: battery
 
     sensor.living_room_motion_sensor_battery:
       <<: *customize
-      friendly_name: "Living Room Motion Sensor Battery Level"
+      friendly_name: Living Room Motion Sensor Battery Level
       device_class: battery
 
     sensor.living_room_motion_sensor_burglar:
@@ -214,7 +222,7 @@ homeassistant:
 
     sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery:
       <<: *customize
-      friendly_name: "Master Bedroom Smoke Detector Battery Level"
+      friendly_name: Master Bedroom Smoke Detector Battery Level
       device_class: battery
 
     sensor.michaels_closet_door_contact_battery:
