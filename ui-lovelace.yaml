@@ -321,6 +321,12 @@ views:
         entities:
           - automation.auto_away
           - automation.auto_home
+      - type: entities
+        title: Timed Automations
+        entities:
+          - automation.auto_morning
+          - automation.auto_evening
+          - automation.auto_night
 
 ####################################################
 #                                                  #
