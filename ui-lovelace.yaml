@@ -109,6 +109,11 @@ views:
       - type: entities
         title: Dining Room
         entities:
+          - light.dining_room_spot
+
+      - type: entities
+        title: Garage
+        entities:
           - light.garage_storage
 
       - type: entities
