@@ -30,7 +30,7 @@ homeassistant:
 
 media_player:
   - platform: webostv
-    host: 192.168.0.9
+    host: 192.168.1.9
     name: living_room_tv
     filename: webostv.conf
     turn_on_action:
@@ -44,6 +44,6 @@ media_player:
 
 notify:
   - platform: webostv
-    host: 192.168.0.9
+    host: 192.168.1.9
     name: living_room_tv
     filename: webostv.conf
