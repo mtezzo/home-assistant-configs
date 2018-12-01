@@ -51,7 +51,6 @@ conversation:
 discovery:
   ignore:
     - apple_tv
-    - netgear_router
     - philips_hue
 
 # Enables the frontend
