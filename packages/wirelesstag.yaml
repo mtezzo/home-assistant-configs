@@ -87,11 +87,11 @@ sensor:
   - platform: template
     sensors:
       wirelesstag_diamond_crown_humidor_battery:
-        value_template: '{{ (states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level|float * 100)|round }}'
+        value_template: '{{ (states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
       wirelesstag_desktop_humidor_battery:
-        value_template: '{{ (states.sensor.wirelesstag_desktop_humidor_humidity.attributes.battery_level|float * 100)|round }}'
+        value_template: '{{ (states.sensor.wirelesstag_desktop_humidor_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
 ################################################
