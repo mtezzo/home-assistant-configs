@@ -66,6 +66,10 @@ history:
 # https://www.home-assistant.io/components/logbook/
 logbook:
 
+# https://www.home-assistant.io/lovelace/yaml-mode/
+lovelace:
+  mode: yaml
+
 # Enables a map showing the location of tracked devices
 # https://www.home-assistant.io/components/map/
 map:
