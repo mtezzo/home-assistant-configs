@@ -106,6 +106,21 @@ views:
           - light.michaels_closet
           - light.julias_closet
 
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.dresser_lamp
+              - type: light
+                entity: light.nightstand_lamp
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.michaels_closet
+              - type: light
+                entity: light.julias_closet
+
       - type: entities
         title: Dining Room
         entities:
