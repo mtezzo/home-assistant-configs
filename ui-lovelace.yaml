@@ -79,7 +79,7 @@ views:
         entity: weather.dark_sky
 
       - type: map
-        aspect_ratio: 56.25%
+        aspect_ratio: 16:9
         default_zoom: 16
         entities:
           - device_tracker.julia
