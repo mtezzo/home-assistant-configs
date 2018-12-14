@@ -92,29 +92,19 @@ views:
     background: radial-gradient(crimson, skyblue)
     theme: dark-mode
     cards:
-#      - type: entities
-#        title: Basement
-#        entities:
-#          - switch.basement_task_light
-#          - light.dungeon
-
-#      - type: entities
-#        title: Bedroom
-#        entities:
-#          - light.dresser_lamp
-#          - light.nightstand_lamp
-#          - light.michaels_closet
-#          - light.julias_closet
-
       - type: vertical-stack
         cards:
           - type: markdown
             content: >
-              ## Basement
-          - type: entity-button
-            entity: switch.basement_task_light
+              ## Living Room
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.table_light
+              - type: light
+                entity: light.living_room_bookshelf_lamp
           - type: light
-            entity: light.dungeon
+            entity: light.living_room_floor_lamp
 
       - type: vertical-stack
         cards:
@@ -133,16 +123,6 @@ views:
                 entity: light.michaels_closet
               - type: light
                 entity: light.julias_closet
-
-#      - type: entities
-#        title: Dining Room
-#        entities:
-#          - light.dining_room_spot
-
-#      - type: entities
-#        title: Garage
-#        entities:
-#          - light.garage_storage
 
       - type: vertical-stack
         cards:
@@ -173,32 +153,15 @@ views:
               - type: light
                 entity: light.guest_bedroom_closet
 
-#      - type: entities
-#        title: Guest Bedroom
-#        entities:
-#          - light.guest_bedroom_storage
-#          - light.guest_bedroom_closet
-
       - type: vertical-stack
         cards:
           - type: markdown
             content: >
-              ## Living Room
-          - type: horizontal-stack
-            cards:
-              - type: light
-                entity: light.table_light
-              - type: light
-                entity: light.living_room_bookshelf_lamp
+              ## Basement
+          - type: entity-button
+            entity: switch.basement_task_light
           - type: light
-            entity: light.living_room_floor_lamp
-
-#      - type: entities
-#        title: Living Room
-#        entities:
-#          - light.table_light
-#          - light.living_room_bookshelf_lamp
-#          - light.living_room_floor_lamp
+            entity: light.dungeon
 
   - icon: mdi:floor-plan
     title: Rooms
