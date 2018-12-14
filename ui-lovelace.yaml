@@ -111,12 +111,10 @@ views:
           - type: markdown
             content: >
               ## Basement
-          - type: horizontal-stack
-            cards:
-              - type: entity-button
-                entity: switch.basement_task_light
-              - type: light
-                entity: light.dungeon
+          - type: entity-button
+            entity: switch.basement_task_light
+          - type: light
+            entity: light.dungeon
 
       - type: vertical-stack
         cards:
@@ -146,10 +144,19 @@ views:
 #        entities:
 #          - light.garage_storage
 
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
+          - type: markdown
+            content: >
+              ## Dining Room
           - type: light
             entity: light.dining_room_spot
+
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ## Garage
           - type: light
             entity: light.garage_storage
 
@@ -162,6 +169,7 @@ views:
             cards:
               - type: light
                 entity: light.guest_bedroom_storage
+                name: Guest Storage
               - type: light
                 entity: light.guest_bedroom_closet
 
