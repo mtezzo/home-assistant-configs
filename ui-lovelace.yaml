@@ -136,15 +136,22 @@ views:
               - type: light
                 entity: light.julias_closet
 
-      - type: entities
-        title: Dining Room
-        entities:
-          - light.dining_room_spot
+#      - type: entities
+#        title: Dining Room
+#        entities:
+#          - light.dining_room_spot
 
-      - type: entities
-        title: Garage
-        entities:
-          - light.garage_storage
+#      - type: entities
+#        title: Garage
+#        entities:
+#          - light.garage_storage
+
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.dining_room_spot
+          - type: light
+            entity: light.garage_storage
 
       - type: vertical-stack
         cards:
@@ -174,9 +181,9 @@ views:
               - type: light
                 entity: light.table_light
               - type: light
-                entity: light.living_room_floor_lamp
+                entity: light.living_room_bookshelf_lamp
           - type: light
-            entity: light.living_room_bookshelf_lamp
+            entity: light.living_room_floor_lamp
 
 #      - type: entities
 #        title: Living Room
