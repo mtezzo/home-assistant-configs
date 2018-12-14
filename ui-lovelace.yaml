@@ -45,7 +45,7 @@ views:
               - arm_away
               - arm_home
               - arm_night
-              - arm_custom_bypass
+              - armed_custom_bypass
 #            labels:
 #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
 #          - type: entities
@@ -79,7 +79,7 @@ views:
         entity: weather.dark_sky
 
       - type: map
-        aspect_ratio: 16:9
+        aspect_ratio: '16:9'
         default_zoom: 16
         entities:
           - device_tracker.julia
