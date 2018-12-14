@@ -174,9 +174,9 @@ views:
               - type: light
                 entity: light.table_light
               - type: light
-                entity: light.living_room_bookshelf_lamp
-              - type: light
                 entity: light.living_room_floor_lamp
+          - type: light
+            entity: light.living_room_bookshelf_lamp
 
 #      - type: entities
 #        title: Living Room
