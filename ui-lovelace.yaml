@@ -45,7 +45,7 @@ views:
               - arm_away
               - arm_home
               - arm_night
-              - armed_custom_bypass
+              - arm_custom_bypass
 #            labels:
 #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
 #          - type: entities
