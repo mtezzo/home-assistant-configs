@@ -19,7 +19,7 @@ resources:
 views:
   - icon: mdi:home-assistant
     title: Home
-    id: home
+    path: home
     background: radial-gradient(crimson, skyblue)
     theme: dark-mode
     cards:
@@ -88,7 +88,7 @@ views:
 
   - icon: mdi:lightbulb-outline
     title: Devices
-    id: devices
+    path: devices
     background: radial-gradient(crimson, skyblue)
     theme: dark-mode
     cards:
@@ -165,7 +165,7 @@ views:
 
   - icon: mdi:floor-plan
     title: Rooms
-    id: rooms
+    path: rooms
     background: radial-gradient(blueviolet, skyblue)
     theme: dark-mode
     cards:
@@ -200,7 +200,7 @@ views:
 
   - icon: mdi:camcorder
     title: Cameras
-    id: cameras
+    path: cameras
     background: radial-gradient(blueviolet, skyblue)
     theme: dark-mode
     cards:
@@ -210,7 +210,7 @@ views:
 
   - icon: mdi:television-classic
     title: Media
-    id: media
+    path: media
     background: radial-gradient(blueviolet, skyblue)
     theme: dark-mode
     cards:
@@ -240,7 +240,7 @@ views:
 
   - icon: mdi:access-point
     title: Sensors
-    id: sensors
+    path: sensors
     background: radial-gradient(blueviolet, skyblue)
     theme: dark-mode
     cards:
@@ -342,7 +342,7 @@ views:
 
   - icon: mdi:robot
     title: Automations
-    id: automations
+    path: automations
     background: radial-gradient(orange, skyblue)
     theme: dark-mode
     cards:
