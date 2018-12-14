@@ -128,6 +128,16 @@ views:
         cards:
           - type: markdown
             content: >
+              ## Basement
+          - type: entity-button
+            entity: switch.basement_task_light
+          - type: light
+            entity: light.dungeon
+
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
               ## Dining Room
           - type: light
             entity: light.dining_room_spot
@@ -152,16 +162,6 @@ views:
                 name: Guest Storage
               - type: light
                 entity: light.guest_bedroom_closet
-
-      - type: vertical-stack
-        cards:
-          - type: markdown
-            content: >
-              ## Basement
-          - type: entity-button
-            entity: switch.basement_task_light
-          - type: light
-            entity: light.dungeon
 
   - icon: mdi:floor-plan
     title: Rooms
