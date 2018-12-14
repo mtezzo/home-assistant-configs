@@ -107,8 +107,10 @@ views:
           - light.julias_closet
 
       - type: vertical-stack
-        title: Bedroom
         cards:
+          - type: markdown
+            content: >
+              ## Bedroom
           - type: horizontal-stack
             cards:
               - type: light
