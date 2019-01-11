@@ -148,15 +148,15 @@ group:
 script:
   set_nest_away:
     sequence:
-      - service: nest.set_mode
+      - service: nest.set_away_mode
         data:
-          home_mode: away
+          away_mode: away
 
   set_nest_home:
     sequence:
-      - service: nest.set_mode
+      - service: nest.set_away_mode
         data:
-          home_mode: home
+          away_mode: home
 
 ################################################
 ## Sensor
