@@ -129,8 +129,8 @@ views:
           - type: markdown
             content: >
               ## Basement
-          - type: entity-button
-            entity: switch.basement_task_light
+          - type: light
+            entity: light.basement_task_light
           - type: light
             entity: light.dungeon
 

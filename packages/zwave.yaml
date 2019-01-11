@@ -76,6 +76,11 @@ homeassistant:
     ## Lights
     ################################################
 
+    light.basement_task_light:
+      <<: *customize
+      friendly_name: Basement Task Light
+      icon: mdi:desk-lamp
+
     light.living_room_bookshelf_lamp:
       <<: *customize
       friendly_name: Bookshelf Lamp
@@ -327,6 +332,15 @@ homeassistant:
     zwave:
       <<: *customize
       # hidden: true
+
+################################################
+## Light
+################################################
+
+light:
+  - platform: switch
+    name: Basement Task Light
+    entity_id: switch.basement_task_light
 
 ################################################
 ## Sensors
