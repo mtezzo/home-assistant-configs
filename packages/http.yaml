@@ -22,7 +22,7 @@ homeassistant:
 ################################################
 
 http:
-#  api_password: !secret ha_password
+  api_password: !secret ha_password
   base_url: !secret ha_url
   cors_allowed_origins:
       - https://google.com
