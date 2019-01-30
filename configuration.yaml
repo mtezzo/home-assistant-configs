@@ -29,7 +29,6 @@ homeassistant:
   # Auth Providers
   auth_providers:
    - type: homeassistant
-   - type: legacy_api_password
 
 ####################################################
 ### GENERAL                                     ####
