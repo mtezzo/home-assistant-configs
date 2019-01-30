@@ -114,7 +114,7 @@ automation:
     trigger:
       - platform: homeassistant
         event: start
-      - platform: time
+      - platform: time_pattern
         seconds: '/5'
     action:
       - service: automation.turn_off
