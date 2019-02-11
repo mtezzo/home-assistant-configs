@@ -106,15 +106,18 @@ device_tracker:
     max_update_wait:
       minutes: 35
     prefix: life360
+    time_as: device_or_local
 
   - platform: composite
     name: julia
+    time_as: device_or_local
     entity_id:
       - device_tracker.julia_ios
       - device_tracker.life360_julia
 
   - platform: composite
     name: michael
+    time_as: device_or_local
     entity_id:
       - device_tracker.michael_ios
       - device_tracker.life360_michael
