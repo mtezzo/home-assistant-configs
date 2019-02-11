@@ -238,6 +238,9 @@ views:
       - type: media-control
         entity: media_player.dining_room
 
+      - type: media-control
+        entity: media_player.office
+
   - icon: mdi:access-point
     title: Sensors
     path: sensors
