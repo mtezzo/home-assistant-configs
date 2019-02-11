@@ -78,6 +78,10 @@ map:
 # https://home-assistant.io/components/sun/
 sun:
 
+# Enable System Health Component
+# https://www.home-assistant.io/components/system_health/
+system_health:
+
 # Text to speech
 tts:
   - platform: google
