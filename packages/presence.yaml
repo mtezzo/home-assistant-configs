@@ -144,25 +144,6 @@ input_select:
       - Vacation
 
 ################################################
-## Person
-################################################
-
-person:
-  - id: julia
-    name: Julia
-    user_id: !secret userid_julia
-    device_trackers:
-      - device_tracker.julia_ios
-      - device_tracker.life360_julia
-
-  - id: michael
-    name: Michael
-    user_id: !secret userid_michael
-    device_trackers:
-      - device_tracker.michael_ios
-      - device_tracker.life360_michael
-
-################################################
 ## Sensor
 ################################################
 
