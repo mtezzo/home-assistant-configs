@@ -168,19 +168,6 @@ sensor:
   # https://www.home-assistant.io/components/sensor.version/
   - platform: version
 
-  # https://www.home-assistant.io/components/sensor.speedtest/
-  - platform: speedtest
-    minute: 30
-    hour:
-      - 0
-      - 6
-      - 12
-      - 18
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-
   # https://home-assistant.io/components/sensor.template/
   - platform: template
     sensors:
@@ -202,3 +189,16 @@ sensor:
               {{ hours }} hours
             {%- endif -%}
           {%- endif -%}
+
+################################################
+## Speedtest.net
+################################################
+
+# https://www.home-assistant.io/components/speedtestdotnet/
+speedtestdotnet:
+  scan_interval:
+    hours: 4
+  monitored_conditions:
+    - ping
+    - download
+    - upload
