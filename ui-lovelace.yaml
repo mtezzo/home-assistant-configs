@@ -82,8 +82,8 @@ views:
         aspect_ratio: '16:9'
         default_zoom: 16
         entities:
-          - device_tracker.julia
-          - device_tracker.michael
+          - person.julia
+          - person.michael
           - zone.home
 
   - icon: mdi:lightbulb-outline
