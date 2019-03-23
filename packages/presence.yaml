@@ -60,14 +60,14 @@ homeassistant:
       icon: mdi:map-marker
 
     ################################################
-    ## Device Tracker
+    ## Person
     ################################################
 
-    device_tracker.julia:
+    person.julia:
       <<: *customize
       status_select: input_select.julias_status
 
-    device_tracker.michael:
+    person.michael:
       <<: *customize
       status_select: input_select.michaels_status
 
@@ -107,20 +107,6 @@ device_tracker:
       minutes: 35
     prefix: life360
     time_as: device_or_local
-
-  - platform: composite
-    name: julia
-    time_as: device_or_local
-    entity_id:
-      - device_tracker.julia_ios
-      - device_tracker.life360_julia
-
-  - platform: composite
-    name: michael
-    time_as: device_or_local
-    entity_id:
-      - device_tracker.michael_ios
-      - device_tracker.life360_michael
 
 ################################################
 ## Input Select
@@ -216,12 +202,12 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.julia
-        from: 'not_home'
+        entity_id: person.julia
+#        from: 'not_home'
         to: 'home'
       - platform: state
-        entity_id: device_tracker.michael
-        from: 'not_home'
+        entity_id: person.michael
+#        from: 'not_home'
         to: 'home'
     action:
       - service: input_select.select_option
@@ -259,13 +245,13 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.julia
+        entity_id: person.julia
         from: 'home'
-        to: 'not_home'
+#        to: 'not_home'
       - platform: state
-        entity_id: device_tracker.michael
+        entity_id: person.michael
         from: 'home'
-        to: 'not_home'
+#        to: 'not_home'
     action:
       - service: input_select.select_option
         data_template:
