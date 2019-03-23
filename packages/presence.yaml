@@ -65,12 +65,12 @@ homeassistant:
 
     person.julia:
       <<: *customize
-      picture: /local/img/julia.jpg
+      entity_picture: /local/img/julia.jpg
       status_select: input_select.julias_status
 
     person.michael:
       <<: *customize
-      picture: /local/img/michael.jpg
+      entity_picture: /local/img/michael.jpg
       status_select: input_select.michaels_status
 
     ################################################
