@@ -22,7 +22,7 @@ views:
     path: home
 #    background: radial-gradient(crimson, skyblue)
     background: var(--background-image)
-    theme: clear-dark
+#    theme: clear-dark
     cards:
       - type: vertical-stack
         cards:

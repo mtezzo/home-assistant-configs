@@ -61,6 +61,7 @@ clear-dark:
   shadow-elevation-16dp_-_box-shadow: '0px 0px 0px 3px var(--text-dark-color)'
 
 midnight:
+  background-image: 'center / cover no-repeat url("/local/img/night.jpg") fixed'
   # Main colors
   primary-color: '#5294E2'                                                        # Header
   accent-color: '#E45E65'                                                         # Accent color
