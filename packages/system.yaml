@@ -34,6 +34,11 @@ homeassistant:
       friendly_name: "Update Notification"
       icon: mdi:message-text
 
+    automation.startup_theme:
+      <<: *customize
+      friendly_name: "Set Theme at Startup"
+      icon: mdi:message-text
+
     ################################################
     ## Group
     ################################################
@@ -137,6 +142,15 @@ automation:
           message: 'There is a new Home Assistant release available.'
           target:
             - !secret mobile_michael
+
+  - alias: startup_theme
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      service: frontend.set_theme
+      data:
+        name: midnight
 
 ################################################
 ## Sensor
