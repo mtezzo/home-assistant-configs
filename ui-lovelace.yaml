@@ -22,7 +22,7 @@ views:
     path: home
 #    background: radial-gradient(crimson, skyblue)
     background: var(--background-image)
-    theme: dark-mode
+    theme: clear-dark
     cards:
       - type: vertical-stack
         cards:
@@ -92,7 +92,7 @@ views:
     path: devices
     background: var(--background-image)
 #    background: radial-gradient(crimson, skyblue)
-    theme: dark-mode
+    theme: clear-dark
     cards:
       - type: vertical-stack
         cards:
@@ -170,7 +170,7 @@ views:
     path: rooms
 #    background: radial-gradient(blueviolet, skyblue)
     background: var(--background-image)
-    theme: dark-mode
+    theme: clear-dark
     cards:
       - type: picture-glance
         title: Living room
@@ -204,8 +204,9 @@ views:
   - icon: mdi:camcorder
     title: Cameras
     path: cameras
-    background: radial-gradient(blueviolet, skyblue)
-    theme: dark-mode
+#    background: radial-gradient(blueviolet, skyblue)
+    background: var(--background-image)
+    theme: clear-dark
     cards:
       - type: picture-entity
         title: Dining Room
@@ -216,7 +217,7 @@ views:
     path: media
 #    background: radial-gradient(blueviolet, skyblue)
     background: var(--background-image)
-    theme: dark-mode
+    theme: clear-dark
     cards:
       - type: glance
         title: Living Room Activities
@@ -250,7 +251,7 @@ views:
     path: sensors
     background: var(--background-image)
 #    background: radial-gradient(blueviolet, skyblue)
-    theme: dark-mode
+    theme: clear-dark
     cards:
       - type: entities
         title: Temperature Sensors
@@ -353,7 +354,7 @@ views:
     path: automations
 #    background: radial-gradient(orange, skyblue)
     background: var(--background-image)
-    theme: dark-mode
+    theme: clear-dark
     cards:
       - type: entities
         title: Lighting Automations
