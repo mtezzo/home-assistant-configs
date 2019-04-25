@@ -57,6 +57,7 @@ discovery:
 # https://www.home-assistant.io/components/frontend/
 frontend:
   javascript_version: latest
+  themes: !include themes.yaml
 
 # Enables support for tracking state changes over time.
 # https://home-assistant.io/components/history/
