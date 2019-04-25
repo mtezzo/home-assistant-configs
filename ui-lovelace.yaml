@@ -20,7 +20,8 @@ views:
   - icon: mdi:home-assistant
     title: Home
     path: home
-    background: radial-gradient(crimson, skyblue)
+#    background: radial-gradient(crimson, skyblue)
+    background: var(--background-image)
     theme: dark-mode
     cards:
       - type: vertical-stack
@@ -89,7 +90,8 @@ views:
   - icon: mdi:lightbulb-outline
     title: Devices
     path: devices
-    background: radial-gradient(crimson, skyblue)
+    background: var(--background-image)
+#    background: radial-gradient(crimson, skyblue)
     theme: dark-mode
     cards:
       - type: vertical-stack
@@ -166,7 +168,8 @@ views:
   - icon: mdi:floor-plan
     title: Rooms
     path: rooms
-    background: radial-gradient(blueviolet, skyblue)
+#    background: radial-gradient(blueviolet, skyblue)
+    background: var(--background-image)
     theme: dark-mode
     cards:
       - type: picture-glance
@@ -211,7 +214,8 @@ views:
   - icon: mdi:television-classic
     title: Media
     path: media
-    background: radial-gradient(blueviolet, skyblue)
+#    background: radial-gradient(blueviolet, skyblue)
+    background: var(--background-image)
     theme: dark-mode
     cards:
       - type: glance
@@ -244,7 +248,8 @@ views:
   - icon: mdi:access-point
     title: Sensors
     path: sensors
-    background: radial-gradient(blueviolet, skyblue)
+    background: var(--background-image)
+#    background: radial-gradient(blueviolet, skyblue)
     theme: dark-mode
     cards:
       - type: entities
@@ -346,7 +351,8 @@ views:
   - icon: mdi:robot
     title: Automations
     path: automations
-    background: radial-gradient(orange, skyblue)
+#    background: radial-gradient(orange, skyblue)
+    background: var(--background-image)
     theme: dark-mode
     cards:
       - type: entities
