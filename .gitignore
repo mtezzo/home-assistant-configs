@@ -12,7 +12,7 @@
 secrets.yaml
 ip_bans.yaml
 known_devices.yaml
-*.json
+/*.json
 *.conf
 *.log
 *.txt
