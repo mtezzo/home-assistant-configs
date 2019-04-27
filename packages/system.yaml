@@ -34,9 +34,9 @@ homeassistant:
       friendly_name: "Update Notification"
       icon: mdi:message-text
 
-    automation.startup_theme:
+    automation.set_theme_based_on_sun:
       <<: *customize
-      friendly_name: "Set Theme at Startup"
+      friendly_name: "Set Theme by Sun Position"
       icon: mdi:message-text
 
     ################################################
@@ -143,14 +143,25 @@ automation:
           target:
             - !secret mobile_michael
 
-  - alias: startup_theme
+  - alias: set_theme_based_on_sun
     trigger:
-      platform: homeassistant
-      event: start
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sun.sun
+        to: above_horizon
+      - platform: state
+        entity_id: sun.sun
+        to: below_horizon
     action:
-      service: frontend.set_theme
-      data:
-        name: midnight
+      - service_template: frontend.set_theme
+        data_template:
+        name: >
+          {% if states.sun.sun.state == "above_horizon" %}
+            default
+          {% else %}
+            midnight
+          {% endif %}
 
 ################################################
 ## Sensor
