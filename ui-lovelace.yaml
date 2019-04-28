@@ -17,6 +17,8 @@ resources:
     type: js
   - url: /customcards/github/custom-cards/tracker-card.js?track=true
     type: module
+  - url: /local/js/mini-graph-card-bundle.js?track=true
+    type: module
 
 views:
   - icon: mdi:home-assistant
@@ -88,6 +90,13 @@ views:
           - person.julia
           - person.michael
           - zone.home
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.living_room_motion_sensor_temperature
+        name: LIVING ROOM
+        hours_to_show: 168
+        points_per_hour: 0.25
 
   - icon: mdi:lightbulb-outline
     title: Devices
