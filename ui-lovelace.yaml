@@ -15,6 +15,8 @@ excluded_entities:
 resources:
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
+  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+    type: module
 
 views:
   - icon: mdi:home-assistant
