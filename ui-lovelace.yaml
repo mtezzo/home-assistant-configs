@@ -382,6 +382,7 @@ views:
   - icon: mdi:settings
     title: Settings
     path: system
+    background: var(--background-image)
     cards:
       - type: custom:tracker-card
 
