@@ -89,6 +89,8 @@ views:
           - person.michael
           - zone.home
 
+      - type: custom:tracker-card
+
   - icon: mdi:lightbulb-outline
     title: Devices
     path: devices
