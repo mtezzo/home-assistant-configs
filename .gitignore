@@ -1,4 +1,9 @@
 .project
+.HA_VERSION
+.cloud/
+.storage/
+.homekit.state
+.uuid
 *.swp
 *~
 .DS_Store
