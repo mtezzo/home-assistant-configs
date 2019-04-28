@@ -53,6 +53,8 @@ custom_updater:
     - cards
     - components
     - python_scripts
+  card_urls:
+    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
   component_urls:
     - https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
   python_script_urls:
