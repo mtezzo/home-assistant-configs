@@ -89,8 +89,6 @@ views:
           - person.michael
           - zone.home
 
-      - type: custom:tracker-card
-
   - icon: mdi:lightbulb-outline
     title: Devices
     path: devices
@@ -380,6 +378,12 @@ views:
           - automation.auto_morning
           - automation.auto_evening
           - automation.auto_night
+
+  - icon: mdi:settings
+    title: Settings
+    path: system
+    cards:
+      - type: custom:tracker-card
 
 ####################################################
 #                                                  #
