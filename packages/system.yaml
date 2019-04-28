@@ -158,9 +158,9 @@ automation:
         data_template:
           name: >-
             {%- if states.sun.sun.state == "above_horizon" -%}
-              default
+              clear
             {%- else -%}
-              midnight
+              clear-dark
             {%- endif -%}
 
 ################################################
