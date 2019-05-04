@@ -89,6 +89,10 @@ lovelace:
 # https://www.home-assistant.io/components/map/
 map:
 
+# Enables the mobile app component
+# https://www.home-assistant.io/components/mobile_app/
+mobile_app:
+
 # Connects device trackers to persons 
 # https://www.home-assistant.io/components/person/
 person:
