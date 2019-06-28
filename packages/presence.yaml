@@ -99,16 +99,13 @@ homeassistant:
 ## Device Tracker
 ################################################
 
-device_tracker:
-  - platform: life360
-    username: !secret life360_username
-    password: !secret life360_password
-    interval_seconds: 60
-    filename: life360.conf
-    max_update_wait:
-      minutes: 35
-    prefix: life360
-    time_as: device_or_local
+life360:
+  accounts:
+    - username: !secret life360_username
+      password: !secret life360_password
+  interval_seconds: 60
+  max_update_wait:
+    minutes: 45
 
 ################################################
 ## Input Select
@@ -174,14 +171,15 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: device_tracker.life360_update_overdue
+      event_type: life360_update_overdue
     action:
       service: persistent_notification.create
       data_template:
         title: Life360 update overdue
         message: >
           Update for {{
-            state_attr(trigger.event.data.entity_id, 'friendly_name')
+            state_attr(trigger.event.data.entity_id, 'friendly_name') or
+            trigger.event.data.entity_id
           }} is overdue.
 
   - alias: life360_update_restored
@@ -189,14 +187,15 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: device_tracker.life360_update_restored
+      event_type: life360_update_restored
     action:
       service: persistent_notification.create
       data_template:
         title: Life360 update restored
         message: >
           Update for {{
-            state_attr(trigger.event.data.entity_id, 'friendly_name')
+            state_attr(trigger.event.data.entity_id, 'friendly_name') or
+            trigger.event.data.entity_id
           }} restored after {{ trigger.event.data.wait }}.
 
   - alias: person_arriving
