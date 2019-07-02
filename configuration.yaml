@@ -132,6 +132,11 @@ updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
 
+# Enables UPnP integration
+# https://www.home-assistant.io/components/upnp/
+upnp:
+  sensors: true
+
 # Enable Wake-On-LAN
 wake_on_lan:
 
