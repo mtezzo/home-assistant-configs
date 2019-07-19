@@ -94,8 +94,9 @@ views:
       - type: sensor
         entity: sensor.living_room_motion_sensor_temperature
         name: LIVING ROOM
-        hours_to_show: 84
+        graph: line
         detail: 1
+        hours_to_show: 84
 
   - icon: mdi:lightbulb-outline
     title: Devices
