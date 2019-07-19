@@ -157,6 +157,15 @@ light.dungeon:
 ## Multisensor
 ################################################
 
+sensor.aeotec_limited_zwa005_trisensor_alarm_level:
+  ignored: true
+
+sensor.aeotec_limited_zwa005_trisensor_alarm_type:
+  ignored: true
+
+sensor.aeotec_limited_zwa005_trisensor_sourcenodeid:
+  ignored: true
+
 sensor.aeotec_zw100_multisensor_6_alarm_level:
   ignored: true
 
