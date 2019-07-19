@@ -91,12 +91,11 @@ views:
           - person.michael
           - zone.home
 
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.living_room_motion_sensor_temperature
+      - type: sensor
+        entity: sensor.living_room_motion_sensor_temperature
         name: LIVING ROOM
         hours_to_show: 84
-        points_per_hour: 0.25
+        detail: 1
 
   - icon: mdi:lightbulb-outline
     title: Devices
@@ -266,6 +265,7 @@ views:
     cards:
       - type: entities
         title: Temperature Sensors
+        show_header_toggle: false
         entities:
           - sensor.laundry_room_flood_sensor_temperature
           - sensor.living_room_motion_sensor_temperature
@@ -277,6 +277,7 @@ views:
 
       - type: entities
         title: Motion Sensors
+        show_header_toggle: false
         entities:
           - binary_sensor.master_bedroom_motion_sensor
           - binary_sensor.living_room_motion_sensor
@@ -284,6 +285,7 @@ views:
 
       - type: entities
         title: Door Sensors
+        show_header_toggle: false
         entities:
           - binary_sensor.entrance_front_door_contact
           - binary_sensor.garage_door_opener
@@ -294,6 +296,7 @@ views:
 
       - type: entities
         title: Batteries
+        show_header_toggle: false
         entities:
           - sensor.wirelesstag_desktop_humidor_battery
           - sensor.wirelesstag_diamond_crown_humidor_battery
@@ -329,6 +332,7 @@ views:
 
       - type: entities
         title: System
+        show_header_toggle: false
         entities:
           - sensor.date
           - sensor.time
