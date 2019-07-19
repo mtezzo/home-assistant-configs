@@ -57,10 +57,6 @@ homeassistant:
       friendly_name: "System Date"
       icon: mdi:calendar
 
-    sensor.since_last_boot_templated:
-      friendly_name: Last Boot
-      icon: mdi:clock
-
     sensor.speedtest_ping:
       <<: *customize
       friendly_name: Ping
@@ -94,7 +90,6 @@ group:
       - sensor.processor_use
       - sensor.disk_use_percent_home
       - sensor.memory_use_percent
-      - sensor.since_last_boot_templated
       - sensor.network_in_eth0
       - sensor.network_out_eth0
       - sensor.load_1m
@@ -192,28 +187,6 @@ sensor:
 
   # https://www.home-assistant.io/components/sensor.version/
   - platform: version
-
-  # https://home-assistant.io/components/sensor.template/
-  - platform: template
-    sensors:
-      since_last_boot_templated:
-        value_template: >-
-          {%- set slb = states.sensor.last_boot.state.split(' ') -%}
-          {%- set count = slb | length -%}
-          {%- set hms = slb[count - 1] -%}
-          {%- set hms_trimmed = hms.split('.')[0] -%}
-          {%- set hms_split = hms_trimmed.split(':') -%}
-          {%- set hours = hms_split[0] | int -%}
-          {%- if count == 3 -%}
-            {{ slb[0] ~ ' ' ~ slb[1] ~ ' ' }}
-          {%- endif -%}
-          {%- if hours > 0 -%}
-            {%- if hours == 1 -%}
-              1 hour
-            {%- else -%}
-              {{ hours }} hours
-            {%- endif -%}
-          {%- endif -%}
 
 ################################################
 ## Speedtest.net
