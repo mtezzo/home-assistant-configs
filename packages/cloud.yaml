@@ -32,6 +32,8 @@ cloud:
         - automation
         - alert
       exclude_entities:
+        - media_player.dining_room
+        - media_player.living_room
         - switch.raspberry_pi
         - switch.pc
         - switch.imac
