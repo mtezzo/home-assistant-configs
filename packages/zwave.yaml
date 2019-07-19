@@ -76,6 +76,7 @@ homeassistant:
     cover.garage_door_opener:
       <<: *customize
       friendly_name: Garage Door
+      device_class: garage
 
     ################################################
     ## Lights
