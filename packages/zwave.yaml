@@ -49,6 +49,11 @@ homeassistant:
       friendly_name: "Julia's Closet Door"
       device_class: door
 
+    binary_sensor.kitchen_motion_sensor:
+      <<: *customize
+      friendly_name: Kitchen Motion Sensor
+      device_class: motion
+
     binary_sensor.living_room_motion_sensor:
       <<: *customize
       friendly_name: Living Room Motion Sensor
@@ -144,6 +149,26 @@ homeassistant:
       <<: *customize
       friendly_name: "Julia's Closet Door Contact Burglar"
       icon: mdi:alarm-bell
+
+    sensor.kitchen_motion_sensor_battery:
+      <<: *customize
+      friendly_name: "Kitchen Motion Sensor Battery Level"
+      device_class: battery
+
+    sensor.kitchen_motion_sensor_burglar:
+      <<: *customize
+      friendly_name: "Kitchen Motion Sensor Burglar"
+      icon: mdi:alarm-bell
+
+    sensor.kitchen_motion_sensor_luminance:
+      <<: *customize
+      friendly_name: Kitchen Motion Sensor Luminance
+      device_class: illuminance
+
+    sensor.kitchen_motion_sensor_temperature:
+      <<: *customize
+      friendly_name: Kitchen Motion Sensor Temperature
+      device_class: temperature
 
     sensor.laundry_room_flood_sensor:
       <<: *customize
