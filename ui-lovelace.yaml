@@ -96,7 +96,7 @@ views:
         name: LIVING ROOM
         graph: line
         detail: 1
-        hours_to_show: 84
+        hours_to_show: 24
 
   - icon: mdi:lightbulb-outline
     title: Devices
