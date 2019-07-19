@@ -271,6 +271,7 @@ views:
           - sensor.living_room_motion_sensor_temperature
           - sensor.living_room_thermostat_temperature
           - sensor.master_bedroom_motion_sensor_temperature
+          - sensor.kitchen_temperature
           - sensor.wirelesstag_desktop_humidor_temperature
           - sensor.wirelesstag_diamond_crown_humidor_temperature
 
@@ -279,6 +280,7 @@ views:
         entities:
           - binary_sensor.master_bedroom_motion_sensor
           - binary_sensor.living_room_motion_sensor
+          - binary_sensor.kitchen_motion_sensor
 
       - type: entities
         title: Door Sensors
@@ -300,6 +302,7 @@ views:
           - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery
           - sensor.julias_closet_door_contact_battery
           - sensor.julias_iphone_battery_level
+          - sensor.kitchen_motion_sensor_battery
           - sensor.laundry_room_flood_sensor_battery
           - sensor.laundry_room_smoke_and_carbon_monoxide_detector_battery
           - sensor.living_room_motion_sensor_battery

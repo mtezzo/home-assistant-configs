@@ -44,6 +44,7 @@ group:
       - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery
       - sensor.julias_closet_door_contact_battery
       - sensor.julias_iphone_battery_level
+      - sensor.kitchen_motion_sensor_battery
       - sensor.laundry_room_flood_sensor_battery
       - sensor.laundry_room_smoke_and_carbon_monoxide_detector_battery
       - sensor.living_room_motion_sensor_battery

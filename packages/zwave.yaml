@@ -291,6 +291,9 @@ homeassistant:
     zwave.julias_closet_door_contact:
       friendly_name: "Julia's Closet Door Contact"
 
+    zwave.kitchen_motion_sensor:
+      friendly_name: "Kitchen Motion Sensor"
+
     zwave.kitchen_range_extender:
       friendly_name: "Kitchen Range Extender"
 
@@ -367,6 +370,11 @@ sensor:
       julias_closet_door_contact_battery:
         entity_id: zwave.julias_closet_door_contact
         value_template: "{{ (states.zwave.julias_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
+        unit_of_measurement: '%'
+
+      kitchen_motion_sensor_battery:
+        entity_id: zwave.kitchen_motion_sensor
+        value_template: "{{ (states.zwave.kitchen_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
 
       laundry_room_flood_sensor_battery:
