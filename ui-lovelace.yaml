@@ -105,8 +105,8 @@ views:
           - entity: sensor.laundry_room_flood_sensor_temperature
             name: Laundry Room
         name: INDOOR TEMPERATURE
-        hours_to_show: 24
-        points_per_hour: 0.5
+        hours_to_show: 12
+        points_per_hour: 2
 
   - icon: mdi:lightbulb-outline
     title: Devices
