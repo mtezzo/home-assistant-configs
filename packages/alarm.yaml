@@ -47,9 +47,9 @@ homeassistant:
       friendly_name: "Arm Alarm on System Startup"
       icon: mdi:alarm
 
-    automation.trigger_alarm_on_motion:
+    automation.trigger_alarm_on_binary_sensor:
       <<: *customize
-      friendly_name: "Trigger Alarm on Motion"
+      friendly_name: "Trigger Alarm on Binary Sensor"
 
     automation.alarm_triggered_notification:
       <<: *customize
@@ -136,7 +136,7 @@ automation:
         data:
           code: !secret alarm_code
 
-  - alias: trigger_alarm_on_motion
+  - alias: trigger_alarm_on_binary_sensor
     trigger:
       - platform: state
         entity_id: binary_sensor.entrance_front_door_contact
