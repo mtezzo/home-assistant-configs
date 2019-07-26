@@ -139,11 +139,39 @@ automation:
   - alias: trigger_alarm_on_motion
     trigger:
       - platform: state
-        entity_id: binary_sensor.master_bedroom_motion_sensor
+        entity_id: binary_sensor.entrance_front_door_contact
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.garage_door_opener
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.guest_bedroom_closet_door_contact
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.guest_bedroom_storage_door_contact
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.julias_closet_door_contact
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.kitchen_motion_sensor
         from: 'off'
         to: 'on'
       - platform: state
         entity_id: binary_sensor.living_room_motion_sensor
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.master_bedroom_motion_sensor
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.michaels_closet_door_contact
         from: 'off'
         to: 'on'
     condition:
@@ -164,6 +192,13 @@ automation:
     action:
       - service: notify.sms
         data_template:
-          message: 'ALARM TRIGGERED!!! {{ states.alarm_control_panel.alarm_system.attributes.changed_by }}'
+          message: >
+            Alarm was triggered on:
+            {% for state in states.binary_sensor -%}
+              {% if state.state == 'on' and state.entity_id in ['binary_sensor.entrance_front_door_contact', 'binary_sensor.garage_door_opener', 'binary_sensor.guest_bedroom_closet_door_contact', 'binary_sensor.guest_bedroom_storage_door_contact', 'binary_sensor.julias_closet_door_contact',
+              'binary_sensor.kitchen_motion_sensor', 'binary_sensor.living_room_motion_sensor', 'binary_sensor.master_bedroom_motion_sensor', 'binary_sensor.michaels_closet_door_contact'] %}
+                {{ state.name }}
+              {%- endif -%}
+            {%- endfor -%}
           target:
             - !secret mobile_michael
