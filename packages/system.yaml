@@ -27,7 +27,6 @@ homeassistant:
     automation.startup_notification:
       <<: *customize
       friendly_name: "Startup Notification"
-      persistent: true
       icon: mdi:message-text
 
     automation.update_notification:

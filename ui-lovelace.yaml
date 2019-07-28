@@ -334,7 +334,7 @@ views:
           - sensor.household
           - input_select.julias_status
           - input_select.michaels_status
-          - sensor.house_mode
+          - alarm_control_panel.alarm_system
 
       - type: vertical-stack
         cards:
@@ -403,7 +403,6 @@ views:
           - automation.alarm_triggered_notification
           - automation.sound_alarm
           - automation.update_notification
-          - automation.startup_notification
           - automation.notify_ios_app
 
   - icon: mdi:settings
