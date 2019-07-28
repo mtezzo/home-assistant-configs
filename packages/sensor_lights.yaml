@@ -35,21 +35,25 @@ homeassistant:
     automation.guest_bedroom_closet_lighting:
       <<: *customize
       friendly_name: "Guest Closet Lighting"
+      persistent: true
       icon: mdi:robot
 
     automation.guest_bedroom_storage_lighting:
       <<: *customize
       friendly_name: "Guest Storage Lighting"
+      persistent: true
       icon: mdi:robot
 
     automation.michaels_closet_lighting:
       <<: *customize
       friendly_name: "Michael's Closet Lighting"
+      persistent: true
       icon: mdi:robot
   
     automation.julias_closet_lighting:
       <<: *customize
       friendly_name: "Julia's Closet Lighting"
+      persistent: true
       icon: mdi:robot
 
 ################################################

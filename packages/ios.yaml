@@ -24,11 +24,13 @@ homeassistant:
     automation.notify_ios_app:
       <<: *customize
       friendly_name: "Notify iOS App"
+      persistent: true
       icon: mdi:message-text
 
     automation.sound_alarm:
       <<: *customize
       friendly_name: "Sound Alarm"
+      persistent: true
       icon: mdi:message-text
 
 ################################################

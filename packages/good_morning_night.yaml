@@ -23,21 +23,25 @@ homeassistant:
     automation.auto_morning:
       <<: *customize
       friendly_name: "Auto Morning"
+      persistent: true
       icon: mdi:robot
 
     automation.auto_evening:
       <<: *customize
       friendly_name: "Auto Evening"
+      persistent: true
       icon: mdi:robot
 
     automation.auto_night_weekday:
       <<: *customize
       friendly_name: "Auto Night (Work Nights)"
+      persistent: true
       icon: mdi:robot
 
     automation.auto_night_weekend:
       <<: *customize
       friendly_name: "Auto Night (Weekends & Guest Mode)"
+      persistent: true
       icon: mdi:robot
 
     ################################################

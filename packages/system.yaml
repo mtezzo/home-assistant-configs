@@ -27,16 +27,19 @@ homeassistant:
     automation.startup_notification:
       <<: *customize
       friendly_name: "Startup Notification"
+      persistent: true
       icon: mdi:message-text
 
     automation.update_notification:
       <<: *customize
       friendly_name: "Update Notification"
+      persistent: true
       icon: mdi:message-text
 
     automation.set_theme_based_on_sun:
       <<: *customize
       friendly_name: "Set Theme by Sun Position"
+      persistent: true
       icon: mdi:message-text
 
     ################################################

@@ -373,6 +373,7 @@ views:
     cards:
       - type: entities
         title: Lighting Automations
+        show_header_toggle: false
         entities:
           - automation.master_bedroom_motion
           - automation.living_room_motion
@@ -382,15 +383,28 @@ views:
           - automation.guest_bedroom_storage_lighting
       - type: entities
         title: Presence Automations
+        show_header_toggle: false
         entities:
           - automation.auto_away
           - automation.auto_home
       - type: entities
         title: Timed Automations
+        show_header_toggle: false
         entities:
           - automation.auto_morning
           - automation.auto_evening
-          - automation.auto_night
+          - automation.auto_night_weekday
+          - automation.auto_night_weekend
+          - automation.set_theme_based_on_sun
+      - type: entities
+        title: Notifications
+        show_header_toggle: false
+        entities:
+          - automation.alarm_triggered_notification
+          - automation.sound_alarm
+          - automation.update_notification
+          - automation.startup_notification
+          - automation.notify_ios_app
 
   - icon: mdi:settings
     title: Settings

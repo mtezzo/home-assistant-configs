@@ -54,6 +54,7 @@ homeassistant:
     automation.alarm_triggered_notification:
       <<: *customize
       friendly_name: "Send Notification on Alarm Trigger"
+      persistent: true
       icon: mdi:message-text
 
 ################################################
