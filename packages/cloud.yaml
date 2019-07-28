@@ -28,15 +28,22 @@ cloud:
         - automation.master_bedroom_motion
         - automation.living_room_motion
       exclude_domains:
-        - group
-        - automation
         - alert
+        - automation
+        - group
+        - script
       exclude_entities:
+        - binary_sensor.living_room_nest_protect_online
+        - binary_sensor.living_room_thermostat_fan
+        - binary_sensor.living_room_thermostat_has_leaf
+        - binary_sensor.living_room_thermostat_is_locked
+        - binary_sensor.living_room_thermostat_is_using_emergency_heat
+        - binary_sensor.living_room_thermostat_online
+        - binary_sensor.otter_den_away
+        - binary_sensor.remote_ui
         - media_player.dining_room
         - media_player.living_room
-        - switch.raspberry_pi
-        - switch.pc
-        - switch.imac
+        - media_player.office
         - switch.aeotec_zstick_disco_light
         - sensor.wirelesstag_desktop_humidor_temperature
         - sensor.wirelesstag_diamond_crown_humidor_temperature
