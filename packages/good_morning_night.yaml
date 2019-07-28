@@ -30,9 +30,14 @@ homeassistant:
       friendly_name: "Auto Evening"
       icon: mdi:robot
 
-    automation.auto_night:
+    automation.auto_night_weekday:
       <<: *customize
-      friendly_name: "Auto Night"
+      friendly_name: "Auto Night (Work Nights)"
+      icon: mdi:robot
+
+    automation.auto_night_weekend:
+      <<: *customize
+      friendly_name: "Auto Night (Weekends & Guest Mode)"
       icon: mdi:robot
 
     ################################################
@@ -95,7 +100,7 @@ automation:
     action:
       - service: script.good_evening
 
-  - alias: auto_night
+  - alias: auto_night_weekday
     trigger:
       - platform: time
         at: '23:30:00'
@@ -109,6 +114,25 @@ automation:
             - wed
             - thu
             - sun
+        - condition: state
+          entity_id: alarm_control_panel.alarm_system
+          state: 'armed_home'
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
+    action:
+      - service: alarm_control_panel.alarm_arm_night
+        entity_id: alarm_control_panel.alarm_system
+        data:
+          code: !secret alarm_code
+
+  - alias: auto_night_weekend
+    trigger:
+      - platform: time
+        at: '03:00:00'
+    condition:
+      condition: and
+      conditions: 
         - condition: state
           entity_id: alarm_control_panel.alarm_system
           state: 'armed_home'

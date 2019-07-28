@@ -43,11 +43,6 @@ homeassistant:
       friendly_name: "Guest Mode"
       icon: mdi:account
 
-    input_boolean.night_mode:
-      <<: *customize
-      friendly_name: "Night Mode"
-      icon: mdi:weather-night
-
     ################################################
     ## Script
     ################################################
@@ -56,62 +51,12 @@ homeassistant:
       <<: *customize
       friendly_name: Turn All Lights Off
 
-    ################################################
-    ## Sensor
-    ################################################
-
-    sensor.house_mode:
-      <<: *customize
-      friendly_name: "House Mode"
-
 ################################################
 ## Input Boolean
 ################################################
 
 input_boolean:
   guest_mode:
-
-  night_mode:
-
-################################################
-## Sensor
-################################################
-
-sensor:
-  - platform: template
-    sensors:
-      house_mode:
-        entity_id:
-          - input_boolean.guest_mode
-          - input_boolean.night_mode
-          - sensor.household
-        value_template: >-
-          {% if is_state('input_boolean.guest_mode', 'on') %}
-            Guest
-          {% elif is_state('sensor.household', 'Home') or is_state('sensor.household', 'Arriving') or is_state('sensor.household', 'Departing') %}
-            {% if is_state('input_boolean.night_mode', 'on') %}
-              Night
-            {% else %}
-              Home
-            {% endif %}
-          {% elif is_state('sensor.household', 'Vacation') %}
-            Vacation
-          {% else %}
-            Away
-          {% endif %}
-        icon_template: >-
-          {% set mode = states('sensor.house_mode') %}
-          {% if mode == 'Guest' %}
-            mdi:account
-          {% elif mode == 'Home' %}
-            mdi:home
-          {% elif mode == 'Night' %}
-            mdi:weather-night
-          {% elif mode == 'Vacation' %}
-            mdi:beach
-          {% else %}
-            mdi:home-outline
-          {% endif %}
 
 ################################################
 ## Automation
@@ -127,9 +72,14 @@ automation:
         entity_id: sensor.household
         to: 'Vacation'
     condition:
-      - condition: state
-        entity_id: alarm_control_panel.alarm_system
-        state: 'armed_home'
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.alarm_system
+          state: 'armed_home'
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
     action:
       - service: alarm_control_panel.alarm_arm_away
         entity_id: alarm_control_panel.alarm_system

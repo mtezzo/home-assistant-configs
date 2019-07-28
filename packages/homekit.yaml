@@ -54,6 +54,7 @@ homekit:
       - binary_sensor.living_room_thermostat_is_using_emergency_heat
       - binary_sensor.living_room_thermostat_online
       - binary_sensor.otter_den_away
+      - binary_sensor.remote_ui
       - light.dresser_lamp
       - light.nightstand_lamp
       - light.julias_closet
@@ -62,9 +63,6 @@ homekit:
       - light.dining_room_spot
       - light.guest_bedroom_storage
       - switch.aeotec_zstick_disco_light
-      - switch.raspberry_pi
-      - switch.pc
-      - switch.imac
     include_entities:
       - automation.master_bedroom_motion
       - automation.living_room_motion
