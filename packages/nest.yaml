@@ -59,14 +59,6 @@ homeassistant:
       icon: mdi:thermostat
 
     ################################################
-    ## Group
-    ################################################
-
-    group.climate:
-      <<: *customize
-      friendly_name: 'Climate'
-
-    ################################################
     ## Script
     ################################################
 
@@ -121,25 +113,6 @@ homeassistant:
       <<: *customize
       friendly_name: Nest Temperature
       device_class: temperature
-
-################################################
-## Group
-################################################
-
-group:
-  climate:
-    control: hidden
-    entities:
-      - climate.living_room
-      - binary_sensor.otter_den_away
-      - binary_sensor.living_room_thermostat_fan
-      - sensor.living_room_thermostat_humidity
-      - sensor.living_room_thermostat_hvac_state
-      - sensor.living_room_thermostat_operation_mode
-      - sensor.living_room_thermostat_target
-      - sensor.living_room_thermostat_temperature
-      - sensor.living_room_away_mode
-      - sensor.otter_den_eta
 
 ################################################
 ## Script

@@ -35,15 +35,6 @@ homeassistant:
       icon: mdi:robot
 
     ################################################
-    ## Group
-    ################################################
-
-    group.house_mode:
-      <<: *customize
-      friendly_name: "House Mode"
-      icon: mdi:home-variant
-
-    ################################################
     ## Input Boolean
     ################################################
 
@@ -72,19 +63,6 @@ homeassistant:
     sensor.house_mode:
       <<: *customize
       friendly_name: "House Mode"
-
-################################################
-## Group
-################################################
-
-group:
-  house_mode:
-    control: hidden
-    entities:
-      - sensor.house_mode
-      - input_boolean.night_mode
-      - input_boolean.guest_mode
-      - sensor.household
 
 ################################################
 ## Input Boolean

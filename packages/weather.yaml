@@ -17,18 +17,6 @@ homeassistant:
         package: 'weather'
 
     ################################################
-    ## Group
-    ################################################
-
-    group.weather_darksky:
-      <<: *customize
-      friendly_name: "Dark Sky"
-
-    group.weather_general:
-      <<: *customize
-      friendly_name: "General"
-
-    ################################################
     ## Sensor
     ################################################
 
@@ -66,27 +54,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Season"
       icon: mdi:weather-snowy-rainy
-
-################################################
-## Group
-################################################
-
-group:
-  weather_general:
-    control: hidden
-    entities:
-      - sun.sun
-      - sensor.season
-
-  weather_darksky:
-    control: hidden
-    entities:
-      - sensor.dark_sky_cloud_coverage
-      - sensor.dark_sky_humidity
-      - sensor.dark_sky_precip_probability
-      - sensor.dark_sky_precip
-      - sensor.dark_sky_temperature
-      - sensor.dark_sky_wind_speed
 
 ################################################
 ## Sensor

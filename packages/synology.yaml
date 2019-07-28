@@ -16,24 +16,6 @@ homeassistant:
       customize: &customize
         package: 'synology'
 
-    ################################################
-    ## Group
-    ################################################
-
-    group.indoor_cameras:
-      <<: *customize
-      friendly_name: "Indoor Cameras"
-
-################################################
-## Group
-################################################
-
-group:
-  indoor_cameras:
-    control: hidden
-    entities:
-      - camera.dining_room
-
 ################################################
 ## Camera
 ################################################
