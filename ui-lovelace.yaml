@@ -15,9 +15,9 @@ excluded_entities:
 resources:
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
-  - url: /local/js/mini-graph-card-bundle.js?track=true
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
     type: module
-  - url: /local/js/mini-media-player-bundle.js?track=true
+  - url: /community_plugin/mini-media-player/mini-media-player.js
     type: module
 
 views:
