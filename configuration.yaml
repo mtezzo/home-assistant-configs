@@ -36,7 +36,7 @@ homeassistant:
 ####################################################
 
 # General automations
-# automation: !include automations.yaml
+automation: !include automations.yaml
 
 # Enables configuration UI
 # https://home-assistant.io/components/config/

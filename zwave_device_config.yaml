@@ -6,139 +6,139 @@
 ## Door/Window Sensor
 ################################################
 
-sensor.aeotec_zw120_door_window_sensor_gen5_access_control:
+sensor.michaels_closet_door_contact_access_control:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level:
+sensor.michaels_closet_door_contact_alarm_level:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type:
+sensor.michaels_closet_door_contact_alarm_type:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid:
+sensor.michaels_closet_door_contact_sourcenodeid:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_access_control_2:
+sensor.julias_closet_door_contact_access_control:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level_2:
+sensor.julias_closet_door_contact_alarm_level:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type_2:
+sensor.julias_closet_door_contact_alarm_type:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid_2:
+sensor.julias_closet_door_contact_sourcenodeid:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_access_control_3:
+sensor.guest_bedroom_storage_door_contact_access_control:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level_3:
+sensor.guest_bedroom_storage_door_contact_alarm_level:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type_3:
+sensor.guest_bedroom_storage_door_contact_alarm_type:
   ignored: true
 
-sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid_3:
+sensor.guest_bedroom_storage_door_contact_sourcenodeid:
   ignored: true
 
-sensor.fibaro_system_fgk10x_door_opening_sensor_access_control:
+sensor.guest_bedroom_closet_door_contact_access_control:
   ignored: true
 
-sensor.fibaro_system_fgk10x_door_opening_sensor_alarm_level:
+sensor.guest_bedroom_closet_door_contact_alarm_level:
   ignored: true
 
-sensor.fibaro_system_fgk10x_door_opening_sensor_alarm_type:
+sensor.guest_bedroom_closet_door_contact_alarm_type:
   ignored: true
 
-sensor.fibaro_system_fgk10x_door_opening_sensor_burglar:
+sensor.guest_bedroom_closet_door_contact_burglar:
   ignored: true
 
-sensor.fibaro_system_fgk10x_door_opening_sensor_general:
+sensor.guest_bedroom_closet_door_contact_general:
   ignored: true
 
-sensor.fibaro_system_fgk10x_door_opening_sensor_sourcenodeid:
+sensor.guest_bedroom_closet_door_contact_sourcenodeid:
   ignored: true
 
 ################################################
 ## Flood Sensor
 ################################################
 
-binary_sensor.fibaro_system_fgfs101_zwave_flood_sensor_sensor:
+binary_sensor.laundry_room_flood_sensor:
   ignored: true
 
-sensor.fibaro_system_fgfs101_zwave_flood_sensor_alarm_level:
+sensor.laundry_room_flood_sensor_alarm_level:
   ignored: true
 
-sensor.fibaro_system_fgfs101_zwave_flood_sensor_alarm_type:
+sensor.laundry_room_flood_sensor_alarm_type:
   ignored: true
 
-sensor.fibaro_system_fgfs101_zwave_flood_sensor_flood_2:
+sensor.laundry_room_flood_sensor_2:
   ignored: true
 
-sensor.fibaro_system_fgfs101_zwave_flood_sensor_general:
+sensor.laundry_room_flood_sensor_general:
   ignored: true
 
-sensor.fibaro_system_fgfs101_zwave_flood_sensor_sourcenodeid:
+sensor.laundry_room_flood_sensor_sourcenodeid:
   ignored: true
 
 ################################################
 ## Garage Door
 ################################################
 
-sensor.linear_gd00z4_garage_door_opener_remote_controller_sourcenodeid:
+sensor.garage_door_opener_sourcenodeid:
   ignored: true
 
-sensor.linear_gd00z4_garage_door_opener_remote_controller_access_control:
+sensor.garage_door_opener_access_control:
   ignored: true
 
-sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_level:
+sensor.garage_door_opener_alarm_level:
   ignored: true
 
-sensor.linear_gd00z4_garage_door_opener_remote_controller_alarm_type:
+sensor.garage_door_opener_alarm_type:
   ignored: true
 
-sensor.linear_gd00z4_garage_door_opener_remote_controller_burglar:
+sensor.garage_door_opener_burglar:
   ignored: true
 
 ################################################
 ## Lights
 ################################################
 
-light.aeotec_zw099_smart_dimmer_6_level:
+light.living_room_floor_lamp_2:
   ignored: true
 
-sensor.aeotec_zw099_smart_dimmer_6_current:
+sensor.living_room_floor_lamp_current:
+  ignored: false
+
+sensor.living_room_floor_lamp_energy:
+  ignored: false
+
+sensor.living_room_floor_lamp_power:
+  ignored: false
+
+sensor.living_room_floor_lamp_voltage:
+  ignored: false
+
+sensor.living_room_floor_lamp_previous_reading:
   ignored: true
 
-sensor.aeotec_zw099_smart_dimmer_6_energy:
+light.living_room_bookshelf_lamp_level_2:
   ignored: true
 
-sensor.aeotec_zw099_smart_dimmer_6_power:
-  ignored: true
+sensor.living_room_bookshelf_lamp_current:
+  ignored: false
 
-sensor.aeotec_zw099_smart_dimmer_6_previous_reading:
-  ignored: true
+sensor.living_room_bookshelf_lamp_energy:
+  ignored: false
 
-sensor.aeotec_zw099_smart_dimmer_6_voltage:
-  ignored: true
+sensor.living_room_bookshelf_lamp_power:
+  ignored: false
 
-light.aeotec_zw099_smart_dimmer_6_level_2:
-  ignored: true
+sensor.living_room_bookshelf_lamp_voltage:
+  ignored: false
 
-sensor.aeotec_zw099_smart_dimmer_6_current_2:
-  ignored: true
-
-sensor.aeotec_zw099_smart_dimmer_6_energy_2:
-  ignored: true
-
-sensor.aeotec_zw099_smart_dimmer_6_power_2:
-  ignored: true
-
-sensor.aeotec_zw099_smart_dimmer_6_previous_reading_2:
-  ignored: true
-
-sensor.aeotec_zw099_smart_dimmer_6_voltage_2:
+sensor.living_room_bookshelf_lamp_previous_reading:
   ignored: true
 
 light.guest_bedroom_closet:
@@ -157,67 +157,76 @@ light.dungeon:
 ## Multisensor
 ################################################
 
-sensor.aeotec_limited_zwa005_trisensor_alarm_level:
+sensor.kitchen_motion_sensor_alarm_level:
   ignored: true
 
-sensor.aeotec_limited_zwa005_trisensor_alarm_type:
+sensor.kitchen_motion_sensor_alarm_type:
   ignored: true
 
-sensor.aeotec_limited_zwa005_trisensor_sourcenodeid:
+sensor.kitchen_motion_sensor_sourcenodeid:
   ignored: true
 
-sensor.aeotec_zw100_multisensor_6_alarm_level:
+sensor.master_bedroom_motion_sensor_alarm_level:
   ignored: true
 
-sensor.aeotec_zw100_multisensor_6_alarm_type:
+sensor.master_bedroom_motion_sensor_alarm_type:
   ignored: true
 
-sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+sensor.master_bedroom_motion_sensor_sourcenodeid:
   ignored: true
 
-sensor.aeotec_zw100_multisensor_6_ultraviolet:
+sensor.master_bedroom_motion_sensor_ultraviolet:
   ignored: true
 
-sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level:
+sensor.living_room_motion_sensor_alarm_level:
   ignored: true
 
-sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type:
+sensor.living_room_motion_sensor_alarm_type:
   ignored: true
 
-sensor.fibaro_system_fgms001zw5_motion_sensor_general:
+sensor.living_room_motion_sensor_general:
   ignored: true
 
-sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid:
+sensor.living_room_motion_sensor_sourcenodeid:
+  ignored: true
+
+sensor.living_room_motion_sensor_acceleration_x_axis:
+  ignored: true
+
+sensor.living_room_motion_sensor_acceleration_y_axis:
+  ignored: true
+
+sensor.living_room_motion_sensor_acceleration_z_axis:
   ignored: true
 
 ################################################
 ## Smoke Detectors
 ################################################
 
-sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type:
+sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type:
   ignored: true
 
-sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type_2:
+sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type:
   ignored: true
 
-sensor.first_alert_zcombo_smoke_and_carbon_monoxide_detector_alarm_type_3:
+sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type:
   ignored: true
 
 ################################################
 ## Switch
 ################################################
 
-sensor.aeotec_zw096_smart_switch_6_current:
+sensor.basement_task_light_current:
+  ignored: false
+
+sensor.basement_task_light_energy:
+  ignored: false
+
+sensor.basement_task_light_power:
+  ignored: false
+
+sensor.basement_task_light_previous_reading:
   ignored: true
 
-sensor.aeotec_zw096_smart_switch_6_energy:
-  ignored: true
-
-sensor.aeotec_zw096_smart_switch_6_power:
-  ignored: true
-
-sensor.aeotec_zw096_smart_switch_6_previous_reading:
-  ignored: true
-
-sensor.aeotec_zw096_smart_switch_6_voltage:
-  ignored: true
+sensor.basement_task_light_voltage:
+  ignored: false

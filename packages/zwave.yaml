@@ -270,11 +270,6 @@ homeassistant:
     ## Switches
     ################################################
 
-    switch.aeotec_zstick_disco_light:
-      <<: *customize
-      friendly_name: Z-Wave USB Hub Disco Light
-      icon: mdi:chart-donut
-
     switch.basement_task_light:
       <<: *customize
       friendly_name: Basement Task Light
@@ -284,7 +279,7 @@ homeassistant:
     ## Z-Wave
     ################################################
 
-    zwave.aeotec_zw090_zstick_gen5_us:
+    zwave.homeseer_smartstick_plus_g2:
       friendly_name: "Z-Wave USB Hub"
 
     zwave.basement_task_light:
@@ -427,18 +422,6 @@ sensor:
         entity_id: zwave.michaels_closet_door_contact
         value_template: "{{ (states.zwave.michaels_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
-
-################################################
-## Switch
-################################################
-
-switch:
-  - platform: command_line
-    switches:
-      aeotec_zstick_disco_light:
-        friendly_name: 'Z-Wave USB Hub Disco Light'
-        command_on: 'echo -e -n "\x01\x08\x00\xF2\x51\x01\x01\x05\x01\x50" > /dev/ttyACM0'
-        command_off: 'echo -e -n "\x01\x08\x00\xF2\x51\x01\x00\x05\x01\x51" > /dev/ttyACM0'
 
 ################################################
 ## Z-Wave
