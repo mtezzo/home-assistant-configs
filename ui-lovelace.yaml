@@ -15,8 +15,6 @@ excluded_entities:
 resources:
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
-  - url: /customcards/github/custom-cards/tracker-card.js?track=true
-    type: module
   - url: /local/js/mini-graph-card-bundle.js?track=true
     type: module
   - url: /local/js/mini-media-player-bundle.js?track=true
@@ -410,8 +408,6 @@ views:
     path: system
     background: var(--background-image)
     cards:
-      - type: custom:tracker-card
-
       - type: entities
         title: System
         show_header_toggle: false
