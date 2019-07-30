@@ -59,6 +59,11 @@ frontend:
   javascript_version: latest
   themes: !include themes.yaml
 
+# Enables HACS
+# https://custom-components.github.io/hacs/installation/configuration/
+hacs:
+  token: !secret github_token
+
 # Enables support for tracking state changes over time.
 # https://home-assistant.io/components/history/
 history:
