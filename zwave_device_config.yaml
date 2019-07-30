@@ -123,7 +123,7 @@ sensor.living_room_floor_lamp_voltage:
 sensor.living_room_floor_lamp_previous_reading:
   ignored: true
 
-light.living_room_bookshelf_lamp_level_2:
+light.living_room_bookshelf_lamp_2:
   ignored: true
 
 sensor.living_room_bookshelf_lamp_current:
