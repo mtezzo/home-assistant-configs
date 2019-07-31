@@ -355,11 +355,22 @@ views:
               - entity: sensor.wirelesstag_diamond_crown_humidor_humidity
                 name: Humidity
               - entity: sensor.wirelesstag_diamond_crown_humidor_temperature
+                line_color: '#e74c3c'
                 name: Temperature
                 y_axis: secondary
 
           - type: plant-status
             entity: plant.desktop_humidor
+
+          - type: custom:mini-graph-card
+            name: Desktop Humidor
+            entities:
+              - entity: sensor.wirelesstag_desktop_humidor_humidity
+                name: Humidity
+              - entity: sensor.wirelesstag_desktop_humidor_temperature
+                line_color: '#e74c3c'
+                name: Temperature
+                y_axis: secondary
 
       - type: vertical-stack
         cards:
