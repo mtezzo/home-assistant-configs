@@ -359,7 +359,8 @@ views:
                 color: red
                 name: Temperature
                 y_axis: secondary
-
+            show:
+              extrema: true
 
 
           - type: plant-status
@@ -375,6 +376,8 @@ views:
                 color: red
                 name: Temperature
                 y_axis: secondary
+            show:
+              labels: true
 
       - type: vertical-stack
         cards:
