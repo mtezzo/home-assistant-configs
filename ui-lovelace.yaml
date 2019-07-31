@@ -165,6 +165,7 @@ views:
                 template: nest_picture_button
                 variables:
                   - entity: person.michael
+                    entity_picture: /local/img/michael.jpg
               - type: custom:decluttering-card
                 template: nest_button
                 variables:
@@ -195,6 +196,7 @@ views:
                 template: nest_picture_button
                 variables:
                   - entity: person.julia
+                    entity_picture: /local/img/julia.jpg
 
       - type: thermostat
         entity: climate.living_room
