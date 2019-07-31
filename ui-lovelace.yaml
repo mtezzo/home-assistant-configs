@@ -354,10 +354,13 @@ views:
             entities:
               - entity: sensor.wirelesstag_diamond_crown_humidor_humidity
                 name: Humidity
+                color: blue
               - entity: sensor.wirelesstag_diamond_crown_humidor_temperature
-                line_color: '#e74c3c'
+                color: red
                 name: Temperature
                 y_axis: secondary
+
+
 
           - type: plant-status
             entity: plant.desktop_humidor
@@ -367,8 +370,9 @@ views:
             entities:
               - entity: sensor.wirelesstag_desktop_humidor_humidity
                 name: Humidity
+                color: blue
               - entity: sensor.wirelesstag_desktop_humidor_temperature
-                line_color: '#e74c3c'
+                color: red
                 name: Temperature
                 y_axis: secondary
 
