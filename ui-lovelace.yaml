@@ -485,9 +485,11 @@ views:
 
       - type: vertical-stack
         cards:
-          - type: plant-status
-            entity: plant.diamond_crown_humidor
-
+#          - type: plant-status
+#            entity: plant.diamond_crown_humidor
+          - type: markdown
+            content: >
+              ## Humidors
           - type: custom:mini-graph-card
             name: DIAMOND CROWN HUMIDOR
             entities:
@@ -516,8 +518,8 @@ views:
                 show:
                   legend: false
 
-          - type: plant-status
-            entity: plant.desktop_humidor
+#          - type: plant-status
+#            entity: plant.desktop_humidor
 
           - type: custom:mini-graph-card
             name: DESKTOP HUMIDOR
@@ -531,6 +533,22 @@ views:
                 y_axis: secondary
             show:
               labels: true
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                name: BATTERY
+                entities:
+                  - entity: sensor.wirelesstag_desktop_humidor_battery
+                show:
+                  graph: bar
+                  legend: false
+              - type: custom:mini-graph-card
+                name: ILLUMINATION
+                entities:
+                  - entity: sensor.wirelesstag_desktop_humidor_light
+                show:
+                  legend: false
+
 
       - type: vertical-stack
         cards:
