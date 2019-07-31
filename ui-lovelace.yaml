@@ -350,7 +350,7 @@ views:
             entity: plant.diamond_crown_humidor
 
           - type: custom:mini-graph-card
-            name: Diamond Crown Humidor
+            name: DIAMOND CROWN HUMIDOR
             entities:
               - entity: sensor.wirelesstag_diamond_crown_humidor_humidity
                 name: Humidity
@@ -360,14 +360,28 @@ views:
                 name: Temperature
                 y_axis: secondary
             show:
-              extrema: true
-
+              labels: true
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                name: BATTERY
+                entities:
+                  - entity: sensor.wirelesstag_diamond_crown_humidor_battery
+                show:
+                  graph: bar
+                  legend: false
+              - type: custom:mini-graph-card
+                name: ILLUMINATION
+                entities:
+                  - entity: sensor.wirelesstag_diamond_crown_humidor_light
+                show:
+                  legend: false
 
           - type: plant-status
             entity: plant.desktop_humidor
 
           - type: custom:mini-graph-card
-            name: Desktop Humidor
+            name: DESKTOP HUMIDOR
             entities:
               - entity: sensor.wirelesstag_desktop_humidor_humidity
                 name: Humidity
