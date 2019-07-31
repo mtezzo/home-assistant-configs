@@ -349,6 +349,15 @@ views:
           - type: plant-status
             entity: plant.diamond_crown_humidor
 
+          - type: custom:mini-graph-card
+            name: Diamond Crown Humidor
+            entities:
+              - entity: sensor.wirelesstag_diamond_crown_humidor_humidity
+                name: Humidity
+              - entity: sensor.wirelesstag_diamond_crown_humidor_temperature
+                name: Temperature
+                y_axis: secondary
+
           - type: plant-status
             entity: plant.desktop_humidor
 
