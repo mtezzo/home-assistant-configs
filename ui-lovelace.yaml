@@ -13,8 +13,12 @@ title: Otteropolis
 excluded_entities:
 
 resources:
+  - type: css
+    url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
+  - url: /community_plugin/decluttering-card/decluttering-card.js
+    type: module
   - url: /community_plugin/mini-graph-card/mini-graph-card.js
     type: module
   - url: /community_plugin/mini-media-player/mini-media-player.js
@@ -23,6 +27,101 @@ resources:
     type: module
   - url: /community_plugin/weather-card/weather-card.js
     type: module
+
+decluttering_templates:
+  camera_button:
+    card:
+      type: custom:button-card
+      entity: '[[entity]]'
+      icon: '[[icon]]'
+      show_state: false
+      show_icon: true
+      show_name: false
+      tap_action:
+        action: toggle
+      style: |
+        ha-card {
+          # font-family: 'Open Sans', sans-serif;
+          padding-top: 10px !important;
+          background-color: rgba(0, 0, 0, 0);
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+        }    
+  nest_button:
+    default:
+      - show_state: true
+      - show_name: false
+    card:
+      type: custom:button-card
+      entity: '[[entity]]'
+      show_last_changed: true
+      show_state: '[[show_state]]'
+      show_icon: true
+      show_name: '[[show_name]]'
+      name: '[[name]]'
+      state: '[[state]]'
+      tap_action:
+        action: more-info
+      style: |
+        ha-card {
+          font-family: 'Open Sans', sans-serif;
+          padding-top: 15px !important;
+          background-color: rgba(0, 0, 0, 0);
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+        }
+        ha-icon {
+          width: 60% !important;
+        }
+        img {
+          width: 100%;
+        }
+        #img-cell {
+          background-color: #F5F5F5;
+          border-radius: 50px;
+          height: 50px !important;
+          width: 50px !important;
+        }
+        #state {
+          padding-top: 5px;
+        }
+        #label {
+          font-size: 70%;
+        }
+  nest_picture_button:
+    card:
+      type: custom:button-card
+      entity: '[[entity]]'
+      show_state: true
+      show_icon: true
+      show_name: false
+      show_entity_picture: true
+      entity_picture: '[[entity_picture]]'
+      tap_action:
+        action: more-info
+      style: |
+        ha-card {
+          font-family: 'Open Sans', sans-serif;
+          padding-top: 15px !important;
+          background-color: rgba(0, 0, 0, 0);
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+        }
+        img {
+          width: 100% !important;
+        }
+        #img-cell {
+          background-color: #F5F5F5;
+          border-radius: 50px;
+          height: 50px !important;
+          width: 50px !important;
+        }
+        #state {
+          padding-top: 5px;
+        }
 
 views:
   - icon: mdi:home-assistant
@@ -57,6 +156,43 @@ views:
               - arm_custom_bypass
 #            labels:
 #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: nest_picture_button
+                variables:
+                  - entity: person.michael
+              - type: custom:decluttering-card
+                template: nest_button
+                variables:
+                  - entity: alarm_control_panel.alarm_system
+                  - state:
+                      - value: 'armed_away'
+                        icon: mdi:shield-lock
+                        color: rgb(152,251,152)
+                      - value: 'armed_home'
+                        icon: mdi:shield-home
+                        color: rgb(251, 210, 41)
+                      - value: 'triggered'
+                        icon: mdi:shield-alert
+                        color: rgb(255, 0, 0)
+                        styles:
+                          icon:
+                            - animation: blink 2s ease infinite
+                      - value: 'disarmed'
+                        icon: mdi:shield-off
+                        color: rgb(169,169,169)
+                      - value: 'pending'
+                        icon: mdi:shield-half-full
+                        color: rgb(169,169,169)
+                        styles:
+                          icon:
+                            - animation: blink 2s ease infinite
+              - type: custom:decluttering-card
+                template: nest_picture_button
+                variables:
+                  - entity: person.julia
 
       - type: thermostat
         entity: climate.living_room
