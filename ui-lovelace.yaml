@@ -335,6 +335,7 @@ views:
           - sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery
           - sensor.michaels_closet_door_contact_battery
           - sensor.michaels_iphone_battery_level
+          - sensor.office_smoke_and_carbon_monoxide_detector_battery
 
       - type: history-graph
         title: 'Presence History'

@@ -266,6 +266,16 @@ homeassistant:
       friendly_name: "Michael's Closet Door Contact Burglar"
       icon: mdi:alarm-bell
 
+    sensor.office_smoke_and_carbon_monoxide_detector_alarm_level:
+      <<: *customize
+      friendly_name: Office Smoke Detector
+      icon: mdi:smoke-detector
+
+    sensor.office_smoke_and_carbon_monoxide_detector_battery:
+      <<: *customize
+      friendly_name: Office Smoke Detector Battery Level
+      device_class: battery
+
     ################################################
     ## Switches
     ################################################
@@ -348,6 +358,9 @@ homeassistant:
     zwave.michaels_closet_door_contact:
       friendly_name: "Michael's Closet Door Contact"
 
+    zwave.office_smoke_and_carbon_monoxide_detector:
+      friendly_name: "Office Smoke and Carbon Monoxide Detector"
+
   ################################################
   ## Customize Domain
   ################################################
@@ -421,6 +434,11 @@ sensor:
       michaels_closet_door_contact_battery:
         entity_id: zwave.michaels_closet_door_contact
         value_template: "{{ (states.zwave.michaels_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
+        unit_of_measurement: '%'
+
+      office_smoke_and_carbon_monoxide_detector_battery:
+        entity_id: zwave.office_smoke_and_carbon_monoxide_detector
+        value_template: "{{ (states.zwave.office_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
 
 ################################################

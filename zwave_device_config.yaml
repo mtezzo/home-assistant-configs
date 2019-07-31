@@ -212,6 +212,9 @@ sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type:
 sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type:
   ignored: true
 
+sensor.office_smoke_and_carbon_monoxide_detector_alarm_type:
+  ignored: true
+
 ################################################
 ## Switch
 ################################################
