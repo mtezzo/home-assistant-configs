@@ -17,6 +17,8 @@ resources:
     url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
+  - url: /community_plugin/button-card/button-card.js
+    type: module
   - url: /community_plugin/decluttering-card/decluttering-card.js
     type: module
   - url: /community_plugin/mini-graph-card/mini-graph-card.js
