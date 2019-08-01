@@ -207,29 +207,29 @@ views:
                 variables:
                   - entity: input_select.julias_status
                   - entity_picture: /local/img/julia.jpg
-          - type: markdown
-            content: >
-                # [[ sensor.time.state ]]
+          # - type: markdown
+          #   content: >
+          #       # [[ sensor.time.state ]]
                 
-                ### [[ sensor.date.state ]]
-            style: |
-              ha-card {
-                margin-top: 40px;
-                margin-bottom: 20px;
-                # background-color: rgba(0, 0, 0, 0);
-                font-family: 'Open Sans', sans-serif;
-                font-size: 200%;
-                # -webkit-box-shadow: none;
-                # -moz-box-shadow: none;
-                # box-shadow: none;
-                text-align: center;
-              }
-              h1, h3 {
-                font-weight: 300 !important;
-              }
+          #       ### [[ sensor.date.state ]]
+          #   style: |
+          #     ha-card {
+          #       margin-top: 30px;
+          #       padding-bottom: 20px;
+          #       # background-color: rgba(0, 0, 0, 0);
+          #       font-family: 'Open Sans', sans-serif;
+          #       font-size: 200%;
+          #       # -webkit-box-shadow: none;
+          #       # -moz-box-shadow: none;
+          #       # box-shadow: none;
+          #       text-align: center;
+          #     }
+          #     h1, h3 {
+          #       font-weight: 300 !important;
+          #     }
 
-      - type: thermostat
-        entity: climate.living_room
+          - type: thermostat
+            entity: climate.living_room
 
       - type: entities
         title: Favorites
