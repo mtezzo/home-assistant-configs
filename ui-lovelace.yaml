@@ -214,8 +214,8 @@ views:
                 ### [[ sensor.date.state ]]
             style: |
               ha-card {
-                margin-top: 20px;
-                # margin-bottom: 50px;
+                margin-top: 40px;
+                margin-bottom: 20px;
                 # background-color: rgba(0, 0, 0, 0);
                 font-family: 'Open Sans', sans-serif;
                 font-size: 200%;
