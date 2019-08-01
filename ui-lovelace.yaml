@@ -13,8 +13,8 @@ title: Otteropolis
 excluded_entities:
 
 resources:
-  - type: css
-    url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
+  - url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
+    type: css
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
   - url: /community_plugin/button-card/button-card.js
@@ -137,92 +137,92 @@ views:
     background: var(--background-image)
 #    theme: clear-dark
     cards:
+#       - type: vertical-stack
+#         cards:
+#           - type: entity-filter
+#             entities:
+#               - entity: input_select.michaels_status
+#               - entity: input_select.julias_status
+#             state_filter:
+#               - 'Home'
+#               - 'Arriving'
+#               - 'Departing'
+#             card:
+#               type: glance
+#               title: People that are home
+#           - type: alarm-panel
+#             entity: alarm_control_panel.alarm_system
+#             title: Alarm System
+# #            display_letters: true
+# #            scale: 15px
+#             states:
+#               - arm_away
+#               - arm_home
+#               - arm_night
+#               - arm_custom_bypass
+# #            labels:
+# #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
+
       - type: vertical-stack
         cards:
-          - type: entity-filter
-            entities:
-              - entity: input_select.michaels_status
-              - entity: input_select.julias_status
-            state_filter:
-              - 'Home'
-              - 'Arriving'
-              - 'Departing'
-            card:
-              type: glance
-              title: People that are home
-          - type: alarm-panel
-            entity: alarm_control_panel.alarm_system
-            title: Alarm System
-#            display_letters: true
-#            scale: 15px
-            states:
-              - arm_away
-              - arm_home
-              - arm_night
-              - arm_custom_bypass
-#            labels:
-#              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
-
-          - type: vertical-stack
+          - type: horizontal-stack
             cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:decluttering-card
-                    template: nest_picture_button
-                    variables:
-                      - entity: person.michael
-                      - entity_picture: /local/img/michael.jpg
-                  - type: custom:decluttering-card
-                    template: nest_button
-                    variables:
-                      - entity: alarm_control_panel.alarm_system
-                      - state:
-                          - value: 'armed_away'
-                            icon: mdi:shield-lock
-                            color: rgb(152,251,152)
-                          - value: 'armed_home'
-                            icon: mdi:shield-home
-                            color: rgb(251, 210, 41)
-                          - value: 'triggered'
-                            icon: mdi:shield-alert
-                            color: rgb(255, 0, 0)
-                            styles:
-                              icon:
-                                - animation: blink 2s ease infinite
-                          - value: 'disarmed'
-                            icon: mdi:shield-off
-                            color: rgb(169,169,169)
-                          - value: 'pending'
-                            icon: mdi:shield-half-full
-                            color: rgb(169,169,169)
-                            styles:
-                              icon:
-                                - animation: blink 2s ease infinite
-                  - type: custom:decluttering-card
-                    template: nest_picture_button
-                    variables:
-                      - entity: person.julia
-                      - entity_picture: /local/img/julia.jpg
-              - type: markdown
-                content: >
-                    # [[ sensor.time.state ]]
-                    
-                    ### [[ sensor.date.state ]]
-                style: |
-                  ha-card {
-                    margin-top: 50px;
-                    margin-bottom: 330px;
-                    background-color: rgba(0, 0, 0, 0);
-                    font-family: 'Open Sans', sans-serif;
-                    font-size: 200%;
-                    -webkit-box-shadow: none;
-                    -moz-box-shadow: none;
-                    box-shadow: none;
-                    text-align: center;
-                  }
-                  h1, h3 {
-                    font-weight: 300 !important;
-                  }
+              - type: custom:decluttering-card
+                template: nest_picture_button
+                variables:
+                  - entity: person.michael
+                  - entity_picture: /local/img/michael.jpg
+              - type: custom:decluttering-card
+                template: nest_button
+                variables:
+                  - entity: alarm_control_panel.alarm_system
+                  - state:
+                      - value: 'armed_away'
+                        icon: mdi:shield-lock
+                        color: rgb(152,251,152)
+                      - value: 'armed_home'
+                        icon: mdi:shield-home
+                        color: rgb(251, 210, 41)
+                      - value: 'triggered'
+                        icon: mdi:shield-alert
+                        color: rgb(255, 0, 0)
+                        styles:
+                          icon:
+                            - animation: blink 2s ease infinite
+                      - value: 'disarmed'
+                        icon: mdi:shield-off
+                        color: rgb(169,169,169)
+                      - value: 'pending'
+                        icon: mdi:shield-half-full
+                        color: rgb(169,169,169)
+                        styles:
+                          icon:
+                            - animation: blink 2s ease infinite
+              - type: custom:decluttering-card
+                template: nest_picture_button
+                variables:
+                  - entity: person.julia
+                  - entity_picture: /local/img/julia.jpg
+          - type: markdown
+            content: >
+                # [[ sensor.time.state ]]
+                
+                ### [[ sensor.date.state ]]
+            style: |
+              ha-card {
+                margin-top: 50px;
+                margin-bottom: 330px;
+                background-color: rgba(0, 0, 0, 0);
+                font-family: 'Open Sans', sans-serif;
+                font-size: 200%;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                text-align: center;
+              }
+              h1, h3 {
+                font-weight: 300 !important;
+              }
 
       - type: thermostat
         entity: climate.living_room
