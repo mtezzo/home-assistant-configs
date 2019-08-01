@@ -31,6 +31,8 @@ resources:
     type: module
   - url: /community_plugin/roku-card/roku-card.js
     type: module
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+    type: js
   - url: /community_plugin/weather-card/weather-card.js
     type: module
 
@@ -163,7 +165,7 @@ views:
 # #            labels:
 # #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
 
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
         cards:
           - type: horizontal-stack
             cards:
@@ -210,8 +212,8 @@ views:
                 ### [[ sensor.date.state ]]
             style: |
               ha-card {
-                margin-top: 50px;
-                margin-bottom: 50px;
+                # margin-top: 50px;
+                # margin-bottom: 50px;
                 # background-color: rgba(0, 0, 0, 0);
                 font-family: 'Open Sans', sans-serif;
                 font-size: 200%;
