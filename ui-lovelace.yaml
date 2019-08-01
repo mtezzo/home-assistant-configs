@@ -295,7 +295,7 @@ views:
 #    background: radial-gradient(crimson, skyblue)
 #    theme: clear-dark
     cards:
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
         cards:
           - type: markdown
             content: >
@@ -309,7 +309,7 @@ views:
           - type: light
             entity: light.living_room_floor_lamp
 
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
         cards:
           - type: markdown
             content: >
@@ -327,7 +327,7 @@ views:
               - type: light
                 entity: light.julias_closet
 
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
         cards:
           - type: markdown
             content: >
@@ -337,7 +337,7 @@ views:
           - type: light
             entity: light.dungeon
 
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
         cards:
           - type: markdown
             content: >
@@ -345,7 +345,7 @@ views:
           - type: light
             entity: light.dining_room_spot
 
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
         cards:
           - type: markdown
             content: >
@@ -353,7 +353,7 @@ views:
           - type: light
             entity: light.garage_storage
 
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
         cards:
           - type: markdown
             content: >
