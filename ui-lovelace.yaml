@@ -21,6 +21,10 @@ resources:
     type: module
   - url: /community_plugin/decluttering-card/decluttering-card.js
     type: module
+  - url: /community_plugin/lovelace-card-mod/card-mod.js
+    type: module
+  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
+    type: module
   - url: /community_plugin/mini-graph-card/mini-graph-card.js
     type: module
   - url: /community_plugin/mini-media-player/mini-media-player.js
@@ -167,7 +171,7 @@ views:
                     template: nest_picture_button
                     variables:
                       - entity: person.michael
-                        entity_picture: /local/img/michael.jpg
+                      - entity_picture: /local/img/michael.jpg
                   - type: custom:decluttering-card
                     template: nest_button
                     variables:
@@ -198,7 +202,7 @@ views:
                     template: nest_picture_button
                     variables:
                       - entity: person.julia
-                        entity_picture: /local/img/julia.jpg
+                      - entity_picture: /local/img/julia.jpg
               - type: markdown
                 content: >
                     # [[ sensor.time.state ]]
