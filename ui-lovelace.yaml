@@ -73,10 +73,10 @@ decluttering_templates:
         ha-card {
           font-family: 'Open Sans', sans-serif;
           padding-top: 15px !important;
-          background-color: rgba(0, 0, 0, 0);
-          -webkit-box-shadow: none;
-          -moz-box-shadow: none;
-          box-shadow: none;
+          # background-color: rgba(0, 0, 0, 0);
+          # -webkit-box-shadow: none;
+          # -moz-box-shadow: none;
+          # box-shadow: none;
         }
         ha-icon {
           width: 60% !important;
@@ -170,7 +170,7 @@ views:
               - type: custom:decluttering-card
                 template: nest_picture_button
                 variables:
-                  - entity: person.michael
+                  - entity: input_select.michaels_status
                   - entity_picture: /local/img/michael.jpg
               - type: custom:decluttering-card
                 template: nest_button
@@ -201,7 +201,7 @@ views:
               - type: custom:decluttering-card
                 template: nest_picture_button
                 variables:
-                  - entity: person.julia
+                  - entity: input_select.julias_status
                   - entity_picture: /local/img/julia.jpg
           - type: markdown
             content: >
@@ -212,12 +212,12 @@ views:
               ha-card {
                 margin-top: 50px;
                 margin-bottom: 50px;
-                background-color: rgba(0, 0, 0, 0);
+                # background-color: rgba(0, 0, 0, 0);
                 font-family: 'Open Sans', sans-serif;
                 font-size: 200%;
-                -webkit-box-shadow: none;
-                -moz-box-shadow: none;
-                box-shadow: none;
+                # -webkit-box-shadow: none;
+                # -moz-box-shadow: none;
+                # box-shadow: none;
                 text-align: center;
               }
               h1, h3 {
