@@ -111,10 +111,10 @@ decluttering_templates:
         ha-card {
           font-family: 'Open Sans', sans-serif;
           padding-top: 15px !important;
-          background-color: rgba(0, 0, 0, 0);
-          -webkit-box-shadow: none;
-          -moz-box-shadow: none;
-          box-shadow: none;
+          # background-color: rgba(0, 0, 0, 0);
+          # -webkit-box-shadow: none;
+          # -moz-box-shadow: none;
+          # box-shadow: none;
         }
         img {
           width: 100% !important;
@@ -211,7 +211,7 @@ views:
             style: |
               ha-card {
                 margin-top: 50px;
-                margin-bottom: 330px;
+                margin-bottom: 50px;
                 background-color: rgba(0, 0, 0, 0);
                 font-family: 'Open Sans', sans-serif;
                 font-size: 200%;
