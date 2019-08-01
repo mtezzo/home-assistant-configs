@@ -17,6 +17,8 @@ resources:
     type: css
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
+  - url: /local/banner-card.js
+    type: module
   - url: /community_plugin/button-card/button-card.js
     type: module
   - url: /community_plugin/decluttering-card/decluttering-card.js
@@ -75,10 +77,10 @@ decluttering_templates:
         ha-card {
           font-family: 'Open Sans', sans-serif;
           padding-top: 15px !important;
-          # background-color: rgba(0, 0, 0, 0);
-          # -webkit-box-shadow: none;
-          # -moz-box-shadow: none;
-          # box-shadow: none;
+          background-color: rgba(0, 0, 0, 0);
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
         }
         ha-icon {
           width: 60% !important;
@@ -113,10 +115,10 @@ decluttering_templates:
         ha-card {
           font-family: 'Open Sans', sans-serif;
           padding-top: 15px !important;
-          # background-color: rgba(0, 0, 0, 0);
-          # -webkit-box-shadow: none;
-          # -moz-box-shadow: none;
-          # box-shadow: none;
+          background-color: rgba(0, 0, 0, 0);
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
         }
         img {
           width: 100% !important;
@@ -212,7 +214,7 @@ views:
                 ### [[ sensor.date.state ]]
             style: |
               ha-card {
-                # margin-top: 50px;
+                margin-top: 20px;
                 # margin-bottom: 50px;
                 # background-color: rgba(0, 0, 0, 0);
                 font-family: 'Open Sans', sans-serif;
@@ -255,6 +257,19 @@ views:
           - person.julia
           - person.michael
           - zone.home
+
+      - type: custom:banner-card
+        background: "#EDE7B0"
+        heading: "\U0001F6CB Living room"
+        link: /lovelace/living_room
+        entities:
+          - light.table_light
+          - light.living_room_bookshelf_lamp
+          - light.living_room_floor_lamp
+          - entity: sensor.living_room_motion_sensor_luminance
+            name: Lux
+          - entity: climate.living_room
+            name: Thermostat
 
       - type: custom:mini-graph-card
         icon: mdi:thermometer
