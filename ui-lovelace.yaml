@@ -341,46 +341,49 @@ views:
 
       - type: custom:vertical-stack-in-card
         cards:
+          - type: markdown
+            content: >
+              ### DIAMOND CROWN HUMIDOR
           - type: custom:mini-graph-card
-            name: DIAMOND CROWN HUMIDOR
+            name: HUMIDITY
             entities:
               - entity: sensor.wirelesstag_diamond_crown_humidor_humidity
-                name: Humidity
+                name: HUMIDITY
                 color: blue
             show:
               legend: false
               labels: true
           - type: horizontal-stack
             cards:
-              - type: sensor
-                name: BATTERY
-                entity: sensor.wirelesstag_diamond_crown_humidor_battery
-                graph: none
               - type: custom:mini-graph-card
                 name: TEMPERATURE
                 entities:
                   - entity: sensor.wirelesstag_diamond_crown_humidor_temperature
+                    name: TEMPERATURE
+                    color: red
                 show:
                   graph: bar
                   legend: false
+              - type: sensor
+                name: BATTERY
+                entity: sensor.wirelesstag_diamond_crown_humidor_battery
+                graph: none
 
       - type: custom:vertical-stack-in-card
         cards:
+          - type: markdown
+            content: >
+              ### DESKTOP HUMIDOR
           - type: custom:mini-graph-card
-            name: DESKTOP HUMIDOR
+            name: HUMIDITY
             entities:
               - entity: sensor.wirelesstag_desktop_humidor_humidity
-                name: Humidity
                 color: blue
             show:
               legend: false
               labels: true
           - type: horizontal-stack
             cards:
-              - type: sensor
-                name: BATTERY
-                entity: sensor.wirelesstag_desktop_humidor_battery
-                graph: none
               - type: custom:mini-graph-card
                 name: TEMPERATURE
                 entities:
@@ -389,6 +392,11 @@ views:
                 show:
                   graph: bar
                   legend: false
+              - type: sensor
+                name: BATTERY
+                entity: sensor.wirelesstag_desktop_humidor_battery
+                graph: none
+
 
       - type: custom:mini-graph-card
         name: Network
