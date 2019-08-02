@@ -1,0 +1,77 @@
+icon: mdi:lightbulb-outline
+title: Lights
+path: lights
+background: var(--background-image)
+#    background: radial-gradient(crimson, skyblue)
+#    theme: clear-dark
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: >
+          ## Living Room
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.table_light
+          - type: light
+            entity: light.living_room_bookshelf_lamp
+      - type: light
+        entity: light.living_room_floor_lamp
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: >
+          ## Bedroom
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.dresser_lamp
+          - type: light
+            entity: light.nightstand_lamp
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.michaels_closet
+          - type: light
+            entity: light.julias_closet
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: >
+          ## Basement
+      - type: light
+        entity: light.basement_task_light
+      - type: light
+        entity: light.dungeon
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: >
+          ## Dining Room
+      - type: light
+        entity: light.dining_room_spot
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: >
+          ## Garage
+      - type: light
+        entity: light.garage_storage
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: >
+          ## Guest Bedroom
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.guest_bedroom_storage
+            name: Guest Storage
+          - type: light
+            entity: light.guest_bedroom_closet
