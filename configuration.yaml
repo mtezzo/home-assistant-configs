@@ -57,7 +57,7 @@ discovery:
 # https://www.home-assistant.io/components/frontend/
 frontend:
   javascript_version: latest
-  themes: !include themes.yaml
+  themes: !include_dir_named themes
 
 # Enables HACS
 # https://custom-components.github.io/hacs/installation/configuration/
