@@ -76,13 +76,3 @@ cards:
       - light.dining_room_spot
     camera_image: camera.dining_room
 
-- icon: mdi:camcorder
-title: Cameras
-path: cameras
-#    background: radial-gradient(blueviolet, skyblue)
-background: var(--background-image)
-theme: clear-dark
-cards:
-  - type: picture-entity
-    title: Dining Room
-    entity: camera.dining_room

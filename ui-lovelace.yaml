@@ -143,6 +143,7 @@ views:
   - !include lovelace/home_view.yaml
   - !include lovelace/lights_view.yaml
   - !include lovelace/rooms_view.yaml
+  - !include lovelace/camera_view.yaml
   - !include lovelace/media_view.yaml
   - !include lovelace/sensor_view.yaml
   - !include lovelace/automations_view.yaml

@@ -1,0 +1,10 @@
+title: Cameras
+icon: mdi:camcorder
+path: cameras
+#    background: radial-gradient(blueviolet, skyblue)
+background: var(--background-image)
+theme: clear-dark
+cards:
+  - type: picture-entity
+    title: Dining Room
+    entity: camera.dining_room
