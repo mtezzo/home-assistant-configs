@@ -29,6 +29,10 @@ homeassistant:
       <<: *customize
       friendly_name: 'Desktop Humidor'
 
+    plant.dungeon:
+      <<: *customize
+      friendly_name: 'Dungeon'
+
     ################################################
     ## Sensor
     ################################################
@@ -72,6 +76,26 @@ homeassistant:
       friendly_name: 'Desktop Humidor Temperature'
       device_class: temperature
 
+    sensor.wirelesstag_dungeon_battery:
+      <<: *customize
+      friendly_name: 'Dungeon Battery Level'
+      device_class: battery
+
+    sensor.wirelesstag_dungeon_humidity:
+      <<: *customize
+      friendly_name: 'Dungeon Humidity'
+      device_class: humidity
+
+    sensor.wirelesstag_dungeon_light:
+      <<: *customize
+      friendly_name: 'Dungeon Luminance'
+      device_class: illuminance
+
+    sensor.wirelesstag_dungeon_temperature:
+      <<: *customize
+      friendly_name: 'Dungeon Temperature'
+      device_class: temperature
+
 ################################################
 ## Sensors
 ## https://www.home-assistant.io/components/sensor.wirelesstag/
@@ -92,6 +116,10 @@ sensor:
 
       wirelesstag_desktop_humidor_battery:
         value_template: '{{ (states.sensor.wirelesstag_desktop_humidor_humidity.attributes.battery_level|float)|round }}'
+        unit_of_measurement: '%'
+
+      wirelesstag_dungeon_battery:
+        value_template: '{{ (states.sensor.wirelesstag_dungeon_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
 ################################################
@@ -122,6 +150,18 @@ plant:
     max_moisture: 75
     min_battery: 10
     min_temperature: 60
+    max_temperature: 80
+
+  dungeon:
+    sensors:
+      moisture: sensor.wirelesstag_dungeon_humidity
+      battery: sensor.wirelesstag_dungeon_battery
+      temperature: sensor.wirelesstag_dungeon_temperature
+      brightness: sensor.wirelesstag_dungeon_light
+    min_moisture: 35
+    max_moisture: 75
+    min_battery: 10
+    min_temperature: 55
     max_temperature: 80
 
 ################################################
