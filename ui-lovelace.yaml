@@ -619,9 +619,9 @@ views:
         entities:
           - entity: sensor.speedtest_download
             name: DOWNLOAD
-          - sensor.speedtest_upload
+          - entity: sensor.speedtest_upload
             name: UPLOAD
-          - sensor.speedtest_ping
+          - entity: sensor.speedtest_ping
             name: PING
             y_axis: secondary
 
