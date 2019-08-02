@@ -122,19 +122,3 @@ cards:
       - person.michael
       - zone.home
 
-  - type: custom:mini-graph-card
-    icon: mdi:thermometer
-    entities:
-      - entity: sensor.living_room_motion_sensor_temperature
-        name: Living Room
-      - entity: sensor.living_room_thermostat_target
-        name: Target
-      - entity: sensor.master_bedroom_motion_sensor_temperature
-        name: Master Bedroom
-      - entity: sensor.kitchen_motion_sensor_temperature
-        name: Kitchen
-      - entity: sensor.laundry_room_flood_sensor_temperature
-        name: Laundry Room
-    name: INDOOR TEMPERATURE
-    hours_to_show: 12
-    points_per_hour: 2
