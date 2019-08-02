@@ -347,11 +347,8 @@ views:
               - entity: sensor.wirelesstag_diamond_crown_humidor_humidity
                 name: Humidity
                 color: blue
-              - entity: sensor.wirelesstag_diamond_crown_humidor_temperature
-                color: red
-                name: Temperature
-                y_axis: secondary
             show:
+              legend: false
               labels: true
           - type: horizontal-stack
             cards:
@@ -360,9 +357,9 @@ views:
                 entity: sensor.wirelesstag_diamond_crown_humidor_battery
                 graph: none
               - type: custom:mini-graph-card
-                name: ILLUMINATION
+                name: TEMPERATURE
                 entities:
-                  - entity: sensor.wirelesstag_diamond_crown_humidor_light
+                  - entity: sensor.wirelesstag_diamond_crown_humidor_temperature
                 show:
                   graph: bar
                   legend: false
@@ -375,26 +372,22 @@ views:
               - entity: sensor.wirelesstag_desktop_humidor_humidity
                 name: Humidity
                 color: blue
-              - entity: sensor.wirelesstag_desktop_humidor_temperature
-                color: red
-                name: Temperature
-                y_axis: secondary
             show:
+              legend: false
               labels: true
           - type: horizontal-stack
             cards:
-              - type: custom:mini-graph-card
+              - type: sensor
                 name: BATTERY
+                entity: sensor.wirelesstag_desktop_humidor_battery
+                graph: none
+              - type: custom:mini-graph-card
+                name: TEMPERATURE
                 entities:
-                  - entity: sensor.wirelesstag_desktop_humidor_battery
+                  - entity: sensor.wirelesstag_desktop_humidor_temperature
+                    color: red
                 show:
                   graph: bar
-                  legend: false
-              - type: custom:mini-graph-card
-                name: ILLUMINATION
-                entities:
-                  - entity: sensor.wirelesstag_desktop_humidor_light
-                show:
                   legend: false
 
       - type: custom:mini-graph-card
