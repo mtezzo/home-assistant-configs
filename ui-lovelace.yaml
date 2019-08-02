@@ -375,7 +375,7 @@ views:
 
       - type: custom:banner-card
         background: "#B0C2ED"
-        heading: "\U0001F6CC Master Bedroom"
+        heading: "\U0001F6CC Bedroom"
         link: /lovelace/master_bedroom
         entities:
           - light.dresser_lamp
@@ -388,6 +388,16 @@ views:
             name: Lux
           - entity: binary_sensor.master_bedroom_motion_sensor
             name: Motion
+
+      - type: custom:banner-card
+        background: "#B0C2ED"
+        heading: "\U0001F374 Dining Room"
+        link: /lovelace/dining_room
+        entities:
+          - light.dining_room_spot
+          - camera.dining_room
+          - entity: media_player.dining_room
+            when: playing
 
       - type: picture-glance
         title: Living room
