@@ -409,68 +409,8 @@ views:
             name: PING
             y_axis: secondary
 
-  - icon: mdi:robot
-    title: Automations
-    path: automations
-#    background: radial-gradient(orange, skyblue)
-    background: var(--background-image)
-#    theme: clear-dark
-    cards:
-      - type: entities
-        title: Lighting Automations
-        show_header_toggle: false
-        entities:
-          - automation.master_bedroom_motion
-          - automation.living_room_motion
-          - automation.michaels_closet_lighting
-          - automation.julias_closet_lighting
-          - automation.guest_bedroom_closet_lighting
-          - automation.guest_bedroom_storage_lighting
-      - type: entities
-        title: Presence Automations
-        show_header_toggle: false
-        entities:
-          - automation.auto_away
-          - automation.auto_home
-      - type: entities
-        title: Timed Automations
-        show_header_toggle: false
-        entities:
-          - automation.auto_morning
-          - automation.auto_evening
-          - automation.auto_night_weekday
-          - automation.auto_night_weekend
-          - automation.set_theme_based_on_sun
-      - type: entities
-        title: Notifications
-        show_header_toggle: false
-        entities:
-          - automation.alarm_triggered_notification
-          - automation.sound_alarm
-          - automation.update_notification
-          - automation.notify_ios_app
-
-  - icon: mdi:settings
-    title: Settings
-    path: system
-    background: var(--background-image)
-    cards:
-      - type: entities
-        title: System
-        show_header_toggle: false
-        entities:
-          - sensor.date
-          - sensor.time
-          - sensor.processor_use
-          - sensor.disk_use_percent
-          - sensor.memory_use_percent
-          - sensor.last_boot
-          - sensor.network_in_eth0
-          - sensor.network_out_eth0
-          - sensor.load_1m
-          - sensor.load_5m
-          - sensor.load_15m
-          - sensor.current_version
+  - !include lovelace/automations_view.yaml
+  - !include lovelace/settings_view.yaml
 
 ####################################################
 #                                                  #
