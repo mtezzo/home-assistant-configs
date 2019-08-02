@@ -5,33 +5,33 @@ background: var(--background-image)
 #    background: radial-gradient(blueviolet, skyblue)
 #    theme: clear-dark
 cards:
-  # - type: custom:mini-graph-card
-  #   icon: mdi:thermometer
-  #   name: INDOOR TEMPERATURE
-  #   hours_to_show: 12
-  #   points_per_hour: 2
-  #   entities:
-  #     - entity: sensor.living_room_motion_sensor_temperature
-  #       name: Living Room
-  #     - entity: sensor.living_room_thermostat_target
-  #       name: Target
-  #     - entity: sensor.master_bedroom_motion_sensor_temperature
-  #       name: Master Bedroom
-  #     - entity: sensor.kitchen_motion_sensor_temperature
-  #       name: Kitchen
-  #     - entity: sensor.laundry_room_flood_sensor_temperature
-  #       name: Laundry Room
+  - type: custom:mini-graph-card
+    icon: mdi:thermometer
+    name: INDOOR TEMPERATURE
+    hours_to_show: 12
+    points_per_hour: 2
+    entities:
+      - entity: sensor.living_room_motion_sensor_temperature
+        name: Living Room
+      - entity: sensor.living_room_thermostat_target
+        name: Target
+      - entity: sensor.master_bedroom_motion_sensor_temperature
+        name: Master Bedroom
+      - entity: sensor.kitchen_motion_sensor_temperature
+        name: Kitchen
+      - entity: sensor.laundry_room_flood_sensor_temperature
+        name: Laundry Room
 
-  - type: custom:monster-card
-    card:
-      type: custom:mini-graph-card
-      title: INDOOR TEMPERATURE
-      icon: mdi:thermometer
-    filter:
-      include:
-        - domain: sensor
-          attributes:
-            device_class: temperature
+  # - type: custom:monster-card
+  #   card:
+  #     type: custom:mini-graph-card
+  #     title: INDOOR TEMPERATURE
+  #     icon: mdi:thermometer
+  #   filter:
+  #     include:
+  #       - domain: sensor
+  #         attributes:
+  #           device_class: temperature
 
   - type: custom:monster-card
     card:
