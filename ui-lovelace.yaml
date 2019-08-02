@@ -61,7 +61,8 @@ decluttering_templates:
           -webkit-box-shadow: none;
           -moz-box-shadow: none;
           box-shadow: none;
-        }    
+        }
+
   nest_button:
     default:
       - show_state: true
@@ -104,6 +105,7 @@ decluttering_templates:
         #label {
           font-size: 70%;
         }
+
   nest_picture_button:
     card:
       type: custom:button-card
@@ -140,145 +142,8 @@ decluttering_templates:
 views:
   - !include lovelace/home_view.yaml
   - !include lovelace/lights_view.yaml
-
-  - icon: mdi:floor-plan
-    title: Rooms
-    path: rooms
-#    background: radial-gradient(blueviolet, skyblue)
-    background: var(--background-image)
-#    theme: clear-dark
-    cards:
-      - type: custom:banner-card
-        background: "#EDE7B0"
-        heading: "\U0001F6CB Living room"
-        link: /lovelace/living_room
-        entities:
-          - light.table_light
-          - light.living_room_bookshelf_lamp
-          - light.living_room_floor_lamp
-          - entity: sensor.living_room_motion_sensor_luminance
-            name: Lux
-          - entity: climate.living_room
-            name: Thermostat
-
-      - type: custom:banner-card
-        background: "#B0C2ED"
-        heading: "\U0001F6CC Bedroom"
-        link: /lovelace/master_bedroom
-        entities:
-          - light.dresser_lamp
-          - light.nightstand_lamp
-          - entity: sensor.master_bedroom_motion_sensor_relative_humidity
-            name: Humidity
-          - entity: sensor.master_bedroom_motion_sensor_temperature
-            name: Temperature
-          - entity: sensor.master_bedroom_motion_sensor_luminance
-            name: Lux
-          - entity: binary_sensor.master_bedroom_motion_sensor
-            name: Motion
-            map_state:
-              on: mdi:walk
-              off: mdi:run
-
-      - type: custom:banner-card
-        background: "#B0C2ED"
-        heading: "\U0001F374 Dining Room"
-        link: /lovelace/dining_room
-        entities:
-          - light.dining_room_spot
-          - camera.dining_room
-          - entity: media_player.dining_room
-            when: playing
-
-      - type: picture-glance
-        title: Living room
-        entities:
-          - climate.living_room
-          - light.table_light
-          - light.living_room_bookshelf_lamp
-          - light.living_room_floor_lamp
-        image: /local/img/living_room.jpg?v=1
-
-      - type: picture-glance
-        title: Master Bedroom
-        entities:
-          - light.dresser_lamp
-          - light.nightstand_lamp
-        image: /local/img/master_bedroom.jpg?v=1
-
-      - type: picture-glance
-        title: Guest Bedroom
-        entities:
-          - light.guest_bedroom_storage
-          - light.guest_bedroom_closet
-        image: /local/img/guest_bedroom.jpg?v=1
-
-      - type: picture-glance
-        title: Dining Room
-        entities:
-          - light.dining_room_spot
-        camera_image: camera.dining_room
-
-  - icon: mdi:camcorder
-    title: Cameras
-    path: cameras
-#    background: radial-gradient(blueviolet, skyblue)
-    background: var(--background-image)
-    theme: clear-dark
-    cards:
-      - type: picture-entity
-        title: Dining Room
-        entity: camera.dining_room
-
-  - icon: mdi:television-classic
-    title: Media
-    path: media
-#    background: radial-gradient(blueviolet, skyblue)
-    background: var(--background-image)
-    theme: clear-dark
-    cards:
-      - type: custom:roku-card
-        entity: media_player.garage
-        name: Garage TV
-        theme: darkpurple
-        tv: true
-
-      - type: glance
-        title: Living Room Activities
-        entities:
-          - entity: switch.apple_tv
-            tap_action: toggle
-          - entity: switch.lg_tv
-            tap_action: toggle
-          - entity: switch.xbox_one
-            tap_action: toggle
-
-      - type: conditional
-        conditions:
-          - entity: media_player.living_room_tv
-            state: 'playing'
-        card:
-          type: media-control
-          entity: media_player.living_room_tv
-
-      - type: custom:mini-media-player
-        entity: media_player.living_room
-        hide:
-          power: true
-          icon: true
-          source: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities:
-            - entity_id: media_player.dining_room
-              name: Sonos Dining Room
-            - entity_id: media_player.living_room
-              name: Sonos Living Room
-            - entity_id: media_player.office
-              name: Sonos Office
-
-
+  - !include lovelace/rooms_view.yaml
+  - !include lovelace/media_view.yaml
   - !include lovelace/sensor_view.yaml
   - !include lovelace/automations_view.yaml
   - !include lovelace/settings_view.yaml

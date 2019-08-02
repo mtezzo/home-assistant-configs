@@ -1,0 +1,47 @@
+icon: mdi:television-classic
+title: Media
+path: media
+#    background: radial-gradient(blueviolet, skyblue)
+background: var(--background-image)
+theme: clear-dark
+cards:
+  - type: custom:roku-card
+    entity: media_player.garage
+    name: Garage TV
+    theme: darkpurple
+    tv: true
+
+  - type: glance
+    title: Living Room Activities
+    entities:
+      - entity: switch.apple_tv
+        tap_action: toggle
+      - entity: switch.lg_tv
+        tap_action: toggle
+      - entity: switch.xbox_one
+        tap_action: toggle
+
+  - type: conditional
+    conditions:
+      - entity: media_player.living_room_tv
+        state: 'playing'
+    card:
+      type: media-control
+      entity: media_player.living_room_tv
+
+  - type: custom:mini-media-player
+    entity: media_player.living_room
+    hide:
+      power: true
+      icon: true
+      source: true
+    speaker_group:
+      platform: sonos
+      show_group_count: true
+      entities:
+        - entity_id: media_player.dining_room
+          name: Sonos Dining Room
+        - entity_id: media_player.living_room
+          name: Sonos Living Room
+        - entity_id: media_player.office
+          name: Sonos Office
