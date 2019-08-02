@@ -31,6 +31,8 @@ resources:
     type: module
   - url: /community_plugin/mini-media-player/mini-media-player.js
     type: module
+  - url: /community_plugin/monster-card/monster-card.js
+    type: module
   - url: /community_plugin/roku-card/roku-card.js
     type: module
   - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
@@ -388,6 +390,9 @@ views:
             name: Lux
           - entity: binary_sensor.master_bedroom_motion_sensor
             name: Motion
+            map_state:
+              on: mdi:walk
+              off: mdi:run
 
       - type: custom:banner-card
         background: "#B0C2ED"
@@ -525,26 +530,32 @@ views:
           - binary_sensor.julias_closet_door_contact
           - binary_sensor.michaels_closet_door_contact
 
-      - type: entities
-        title: Batteries
-        show_header_toggle: false
-        entities:
-          - sensor.wirelesstag_desktop_humidor_battery
-          - sensor.wirelesstag_diamond_crown_humidor_battery
-          - sensor.guest_bedroom_closet_door_contact_battery
-          - sensor.guest_bedroom_storage_door_contact_battery
-          - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery
-          - sensor.julias_closet_door_contact_battery
-          - sensor.julias_iphone_battery_level
-          - sensor.kitchen_motion_sensor_battery
-          - sensor.laundry_room_flood_sensor_battery
-          - sensor.laundry_room_smoke_and_carbon_monoxide_detector_battery
-          - sensor.living_room_motion_sensor_battery
-          - sensor.living_room_nest_protect_battery_health
-          - sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery
-          - sensor.michaels_closet_door_contact_battery
-          - sensor.michaels_iphone_battery_level
-          - sensor.office_smoke_and_carbon_monoxide_detector_battery
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Batteries
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: sensor
+              entity_id: "*battery"
+        # entities:
+        #   - sensor.wirelesstag_desktop_humidor_battery
+        #   - sensor.wirelesstag_diamond_crown_humidor_battery
+        #   - sensor.guest_bedroom_closet_door_contact_battery
+        #   - sensor.guest_bedroom_storage_door_contact_battery
+        #   - sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery
+        #   - sensor.julias_closet_door_contact_battery
+        #   - sensor.julias_iphone_battery_level
+        #   - sensor.kitchen_motion_sensor_battery
+        #   - sensor.laundry_room_flood_sensor_battery
+        #   - sensor.laundry_room_smoke_and_carbon_monoxide_detector_battery
+        #   - sensor.living_room_motion_sensor_battery
+        #   - sensor.living_room_nest_protect_battery_health
+        #   - sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery
+        #   - sensor.michaels_closet_door_contact_battery
+        #   - sensor.michaels_iphone_battery_level
+        #   - sensor.office_smoke_and_carbon_monoxide_detector_battery
 
       - type: history-graph
         title: 'Presence History'
