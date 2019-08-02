@@ -17,6 +17,8 @@ resources:
     type: css
   - url: /local/js/alarm_control_panel-card.js?v=5
     type: js
+  - url: /community_plugin/bignumber-card/bignumber-card.js
+    type: module
   - url: /community_plugin/banner-card/banner-card.js
     type: module
   - url: /community_plugin/button-card/button-card.js
@@ -569,18 +571,26 @@ views:
               labels: true
           - type: horizontal-stack
             cards:
-              - type: custom:mini-graph-card
-                name: BATTERY
-                entities:
-                  - entity: sensor.wirelesstag_diamond_crown_humidor_battery
-                show:
-                  graph: bar
-                  legend: false
+              - type: custom:bignumber-card
+                title: BATTERY
+                entity: sensor.wirelesstag_diamond_crown_humidor_battery
+                scale: 50px
+                from: left
+                min: 0
+                max: 100
+                severity:
+                  - value: 10
+                    style: 'var(--label-badge-red)'
+                  - value: 50
+                    style: 'var(--label-badge-yellow)'
+                  - value: 100
+                    style: 'var(--label-badge-green)'
               - type: custom:mini-graph-card
                 name: ILLUMINATION
                 entities:
                   - entity: sensor.wirelesstag_diamond_crown_humidor_light
                 show:
+                  graph: bar
                   legend: false
 
       - type: custom:vertical-stack-in-card
