@@ -378,6 +378,7 @@ views:
             name: HUMIDITY
             entities:
               - entity: sensor.wirelesstag_desktop_humidor_humidity
+                name: HUMIDITY
                 color: blue
             show:
               legend: false
@@ -388,6 +389,7 @@ views:
                 name: TEMPERATURE
                 entities:
                   - entity: sensor.wirelesstag_desktop_humidor_temperature
+                    name: TEMPERATURE
                     color: red
                 show:
                   graph: bar
