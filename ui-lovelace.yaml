@@ -571,20 +571,10 @@ views:
               labels: true
           - type: horizontal-stack
             cards:
-              - type: custom:bignumber-card
-                title: BATTERY
+              - type: sensor
+                name: BATTERY
                 entity: sensor.wirelesstag_diamond_crown_humidor_battery
-                scale: 50px
-                from: left
-                min: 0
-                max: 100
-                severity:
-                  - value: 10
-                    style: 'var(--label-badge-red)'
-                  - value: 50
-                    style: 'var(--label-badge-yellow)'
-                  - value: 100
-                    style: 'var(--label-badge-green)'
+                graph: none
               - type: custom:mini-graph-card
                 name: ILLUMINATION
                 entities:
