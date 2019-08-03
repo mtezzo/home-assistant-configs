@@ -95,8 +95,9 @@ cards:
         show_header_toggle: false
         entities:
           - input_boolean.guest_mode
-      - type: thermostat
-        entity: climate.living_room
+
+  - type: thermostat
+    entity: climate.living_room
 
   - type: entities
     title: Favorites
