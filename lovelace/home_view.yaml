@@ -108,18 +108,30 @@ cards:
     entities:
       - type: custom:slider-entity-row
         entity: light.dresser_lamp
+        hide_when_off: true
+        toggle: true
       - type: custom:slider-entity-row
         entity: light.nightstand_lamp
+        hide_when_off: true
+        toggle: true
       - type: divider
       - type: custom:slider-entity-row
         entity: light.table_light
+        hide_when_off: true
+        toggle: true
       - type: custom:slider-entity-row
         entity: light.living_room_bookshelf_lamp
+        hide_when_off: true
+        toggle: true
       - type: custom:slider-entity-row
         entity: light.living_room_floor_lamp
+        hide_when_off: true
+        toggle: true
       - type: divider
       - type: custom:slider-entity-row
         entity: light.dining_room_spot
+        hide_when_off: true
+        toggle: true
       - type: divider
       - cover.garage_door_opener
       - type: divider
