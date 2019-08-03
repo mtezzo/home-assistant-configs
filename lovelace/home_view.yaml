@@ -106,14 +106,20 @@ cards:
     title: Favorites
     show_header_toggle: false
     entities:
-      - light.dresser_lamp
-      - light.nightstand_lamp
+      - type: custom:slider-entity-row
+        entity: light.dresser_lamp
+      - type: custom:slider-entity-row
+        entity: light.nightstand_lamp
       - type: divider
-      - light.table_light
-      - light.living_room_bookshelf_lamp
-      - light.living_room_floor_lamp
+      - type: custom:slider-entity-row
+        entity: light.table_light
+      - type: custom:slider-entity-row
+        entity: light.living_room_bookshelf_lamp
+      - type: custom:slider-entity-row
+        entity: light.living_room_floor_lamp
       - type: divider
-      - light.dining_room_spot
+      - type: custom:slider-entity-row
+        entity: light.dining_room_spot
       - type: divider
       - cover.garage_door_opener
       - type: divider

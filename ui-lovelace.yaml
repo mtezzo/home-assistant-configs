@@ -37,6 +37,8 @@ resources:
     type: module
   - url: /community_plugin/roku-card/roku-card.js
     type: module
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: module
   - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
     type: js
   - url: /community_plugin/weather-card/weather-card.js
