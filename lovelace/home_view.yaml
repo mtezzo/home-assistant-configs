@@ -91,12 +91,16 @@ cards:
       #     h1, h3 {
       #       font-weight: 300 !important;
       #     }
-
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - input_boolean.guest_mode
       - type: thermostat
         entity: climate.living_room
 
   - type: entities
     title: Favorites
+    show_header_toggle: false
     entities:
       - light.dresser_lamp
       - light.nightstand_lamp
