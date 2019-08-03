@@ -19,3 +19,15 @@ cards:
       - sensor.load_5m
       - sensor.load_15m
       - sensor.current_version
+
+  - type: custom:mini-graph-card
+    name: Network
+    icon: mdi:server
+    entities:
+      - entity: sensor.speedtest_download
+        name: DOWNLOAD
+      - entity: sensor.speedtest_upload
+        name: UPLOAD
+      - entity: sensor.speedtest_ping
+        name: PING
+        y_axis: secondary

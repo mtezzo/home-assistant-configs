@@ -22,17 +22,6 @@ cards:
       - entity: sensor.laundry_room_flood_sensor_temperature
         name: Laundry Room
 
-  # - type: custom:monster-card
-  #   card:
-  #     type: custom:mini-graph-card
-  #     title: INDOOR TEMPERATURE
-  #     icon: mdi:thermometer
-  #   filter:
-  #     include:
-  #       - domain: sensor
-  #         attributes:
-  #           device_class: temperature
-
   - type: custom:monster-card
     card:
       type: entities
@@ -165,15 +154,3 @@ cards:
             name: BATTERY
             entity: sensor.wirelesstag_dungeon_battery
             graph: none
-
-  - type: custom:mini-graph-card
-    name: Network
-    icon: mdi:server
-    entities:
-      - entity: sensor.speedtest_download
-        name: DOWNLOAD
-      - entity: sensor.speedtest_upload
-        name: UPLOAD
-      - entity: sensor.speedtest_ping
-        name: PING
-        y_axis: secondary
