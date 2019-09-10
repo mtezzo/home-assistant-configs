@@ -96,11 +96,13 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: updater.updater
+        entity_id: binary_sensor.updater
+        from: 'off'
+        to: 'on'
     action:
       - service: notify.sms
-        data:
-          message: 'There is a new Home Assistant release available.'
+        data_template:
+          message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
           target:
             - !secret mobile_michael
 
