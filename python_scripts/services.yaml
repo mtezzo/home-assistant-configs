@@ -1,0 +1,12 @@
+synology:
+  description: Set House Mode for Surveilance Station.
+  fields:
+    nas_url:
+      description: The url for Surveilance Station.
+      example: https://mynas.com:5001
+    nas_username:
+      description: Your NAS username.
+    nas_password:
+      description: Your NAS password.
+    mode:
+      description: The mode to set.
