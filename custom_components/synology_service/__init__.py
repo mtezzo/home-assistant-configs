@@ -1,8 +1,11 @@
 """Synology Surveillance Station Service."""
 
+import logging
 from requests import get
 
 __version__ = '1.0.0'
+
+_LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'synology_service'
 
@@ -20,7 +23,7 @@ def setup(hass, config):
 
         data = r.json()
 
-        print(data)
+        _LOGGER.error(data)
 
         hass.states.set('synology_service.home', False)
 
