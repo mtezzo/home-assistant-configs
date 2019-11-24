@@ -4,16 +4,13 @@ __version__ = '1.0.0'
 
 import logging
 import voluptuous as vol
+from homeassistant.const import (CONF_USERNAME, CONF_PASSWORD, CONF_URL)
 import homeassistant.helpers.config_validation as cv
 from requests import get
 
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'synology_service'
-
-CONF_USERNAME = 'username'
-CONF_PASSWORD = 'password'
-CONF_URL = 'url'
 
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.All(vol.Schema({
