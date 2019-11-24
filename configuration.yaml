@@ -109,6 +109,9 @@ sun:
 # https://www.home-assistant.io/components/system_health/
 system_health:
 
+# Load custom synology service
+synology_service:
+
 # Text to speech
 tts:
   - platform: google_translate
