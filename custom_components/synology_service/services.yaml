@@ -1,5 +1,5 @@
-synology:
-  description: Set House Mode for Surveilance Station.
+set_home:
+  description: Set Home Mode for Surveilance Station.
   fields:
     nas_url:
       description: The url for Surveilance Station.
@@ -9,4 +9,4 @@ synology:
     nas_password:
       description: Your NAS password.
     mode:
-      description: The mode to set.
+      description: True to turn on home mode, false to turn it off.
