@@ -105,15 +105,15 @@ person:
 # https://home-assistant.io/components/sun/
 sun:
 
-# Enable System Health Component
-# https://www.home-assistant.io/components/system_health/
-system_health:
-
 # Load custom synology service
-synology_service:
+surveillance_station:
   url: !secret nas_url
   username: !secret nas_username
   password: !secret nas_password
+
+# Enable System Health Component
+# https://www.home-assistant.io/components/system_health/
+system_health:
 
 # Text to speech
 tts:

@@ -1,4 +1,4 @@
-"""Synology Surveillance Station Service."""
+"""Synology Surveillance Station."""
 
 __version__ = '1.0.0'
 
@@ -10,7 +10,7 @@ from requests import get
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = 'synology_service'
+DOMAIN = 'surveillance_station'
 
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.All(vol.Schema({
@@ -45,7 +45,7 @@ def setup(hass, config):
             else:
                 _LOGGER.error('Failed set mode to: %s', mode)
 
-        hass.states.set('synology_service.home_mode', mode)
+        hass.states.set('surveillance_station.home_mode', mode)
 
     hass.services.register(DOMAIN, 'set_home_mode', handle_set_home_mode)
 
