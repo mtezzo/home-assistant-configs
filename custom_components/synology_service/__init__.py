@@ -16,7 +16,7 @@ CONF_URL = 'url'
 CONFIG_SCHEMA = vol.Schema({
     vol.Required(CONF_USERNAME): cv.string,
     vol.Required(CONF_PASSWORD): cv.string,
-    vol.Required(CONF_URL): cv.string
+    vol.Required(CONF_URL): cv.url
 })
 
 DOMAIN = 'synology_service'
