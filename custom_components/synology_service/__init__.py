@@ -38,11 +38,34 @@ def setup(hass, config):
                 self.sid = data["data"]["sid"]
                 self.synotoken = data["data"]["synotoken"]
 
-                _LOGGER.error('Logged Into Synology with SID %s', self.sid)
-
+                _LOGGER.debug('Successfully logged into Synology at: %s', self.url)
                 return True
             else:
-                _LOGGER.error('Unable to login to Synology at: %s', self.url)
+                _LOGGER.error('Failed to login to Synology at: %s', self.url)
+                return False
+
+        def set_home(self, mode):
+            # Fail if not logged in
+            if self.sid is None:
+                return False
+
+            modeParams = dict(
+                api = 'SYNO.SurveillanceStation.HomeMode',
+                version = 1,
+                method = 'Switch',
+                on = 'true' if mode else 'false',
+                _sid = self.sid,
+                SynoToken = self.synotoken
+            )
+
+            result = get(self.url, params=modeParams)
+            data = result.json()
+
+            if result and data["success"] is True:
+                _LOGGER.error('Successfully set mode to: %s', 'home' if mode else 'away')
+                return True
+            else:
+                _LOGGER.error('Failed set mode to: %s', 'home' if mode else 'away')
                 return False
 
         def __del__(self):
@@ -57,29 +80,27 @@ def setup(hass, config):
 
             if self.sid is not None:
                 result = get(self.url, params=logoutParams)
+                data = result.json()
 
-                if result:
-                    _LOGGER.error('Logged Out of Synology')
-                    _LOGGER.error(result.json())
+                if result and data["success"] is True:
+                    _LOGGER.debug('Successfully logged out of Synology.')
+                else:
+                    _LOGGER.error('Failed to logout of Synology', self.url)
 
-    def handle_synology(call):
+    def handle_set_home(call):
         """Handle the service call."""
-        mode = call.data.get('home', False)
 
         # Create New SynoService
         synology = SynoService(call.data.get('url', ''))
 
         # If we successfully login
         if synology.login(call.data.get('account', ''), call.data.get('password', '')):
-            _LOGGER.error('YAY')
-
-            modeParams = dict(api='SYNO.SurveillanceStation.HomeMode', version=1, method='Switch', on='false', _sid=sid, SynoToken=synotoken)
-        else:
-            _LOGGER.error('Boo')
+            # Set the Home Mode
+            synology.set_home(call.data.get('home', False))
 
         hass.states.set('synology_service.home', False)
 
-    hass.services.register(DOMAIN, 'synology', handle_synology)
+    hass.services.register(DOMAIN, 'set_home', handle_set_home)
 
     # Return boolean to indicate that initialization was successful.
     return True
