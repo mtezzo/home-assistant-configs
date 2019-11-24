@@ -2,31 +2,35 @@
 
 __version__ = '1.0.0'
 
-import homeassistant.helpers.config_validation as cv
-from requests import get
 import logging
 import voluptuous as vol
+import homeassistant.helpers.config_validation as cv
+from requests import get
 
 _LOGGER = logging.getLogger(__name__)
+
+DOMAIN = 'synology_service'
 
 CONF_USERNAME = 'username'
 CONF_PASSWORD = 'password'
 CONF_URL = 'url'
 
 CONFIG_SCHEMA = vol.Schema({
-    vol.Required(CONF_USERNAME): cv.string,
-    vol.Required(CONF_PASSWORD): cv.string,
-    vol.Required(CONF_URL): cv.url
-})
-
-DOMAIN = 'synology_service'
+    DOMAIN: vol.All(vol.Schema({
+        vol.Required(CONF_USERNAME): cv.string,
+        vol.Required(CONF_PASSWORD): cv.string,
+        vol.Required(CONF_URL): cv.url
+     })),
+}, extra=vol.ALLOW_EXTRA)
 
 def setup(hass, config):
-    """Set up is called when Home Assistant is loading our component."""
+    """Set up the Synology Surveillance Station component."""
 
-    username = config.get(CONF_USERNAME)
-    password = config.get(CONF_PASSWORD)
-    url = config.get(CONF_URL)
+    conf = config[DOMAIN]
+
+    username = conf.get(CONF_USERNAME)
+    password = conf.get(CONF_PASSWORD)
+    url = conf.get(CONF_URL)
 
     def handle_set_home(call):
         """Handle the service call."""
