@@ -60,7 +60,7 @@ def setup(hass, config):
 
             result = get(self.url, params=modeParams)
             data = result.json()
-
+            _LOGGER.error(data)
             if result and data["success"] is True:
                 _LOGGER.error('Successfully set mode to: %s', 'home' if mode else 'away')
                 return True
