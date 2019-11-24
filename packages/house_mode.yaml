@@ -89,6 +89,9 @@ automation:
           code: !secret alarm_code
       - service: script.all_lights_off
       - service: script.set_nest_away
+      - service: surveillance_station.set_home_mode
+        data:
+          home_mode: 'away'
 
   - alias: auto_home
     trigger:
@@ -108,6 +111,9 @@ automation:
         data:
           code: !secret alarm_code
       - service: script.set_nest_home
+      - service: surveillance_station.set_home_mode
+        data:
+          home_mode: 'home'
 
 ################################################
 ## Script

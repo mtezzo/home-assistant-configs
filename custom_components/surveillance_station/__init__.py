@@ -61,7 +61,7 @@ class SynoService():
     def login(self, username, password):
         """Login to synology API"""
 
-        result = get(
+        response = get(
             self.url + 'auth.cgi',
             params = dict(
                 api = 'SYNO.API.Auth',
@@ -76,9 +76,9 @@ class SynoService():
         )
 
         # Get JSON data
-        data = result.json()
+        data = response.json()
 
-        if result and data["success"] is True:
+        if response.status_code == 200 and data["success"] is True:
             self.sid = data["data"]["sid"]
             self.synotoken = data["data"]["synotoken"]
 
@@ -88,6 +88,31 @@ class SynoService():
             _LOGGER.error('Failed to login to Synology at: %s', self.url)
             return False
 
+    def get_home(self):
+        """ Get home mode status of surveillance station"""
+
+        # Fail if not logged in
+        if self.sid is None:
+            return None
+
+        response = get(
+            self.url + 'entry.cgi',
+            params = dict(
+                api = 'SYNO.SurveillanceStation.HomeMode',
+                version = 1,
+                method = 'GetInfo',
+                _sid = self.sid,
+                SynoToken = self.synotoken
+            )
+        )
+
+        data = response.json()
+
+        if response.status_code == 200 and data["success"] is True:
+            return True if data["data"]["on"] else False
+        else:
+            return None
+
     def set_home(self, is_home):
         """ Set home mode of surveillance station"""
 
@@ -95,7 +120,7 @@ class SynoService():
         if self.sid is None:
             return False
 
-        result = get(
+        response = get(
             self.url + 'entry.cgi',
             params = dict(
                 api = 'SYNO.SurveillanceStation.HomeMode',
@@ -107,13 +132,13 @@ class SynoService():
             )
         )
 
-        return (result and result.json()["success"] is True)
+        return (response.status_code == 200 and response.json()["success"] is True)
 
     def __del__(self):
         """Logout automatically on descruction if we're still logged in"""
 
         if self.sid is not None:
-            result = get(
+            response = get(
                 self.url + 'auth.cgi',
                 params = dict(
                     api = 'SYNO.API.Auth',
@@ -125,7 +150,7 @@ class SynoService():
                 )
             )
 
-            if result and result.json()["success"] is True:
+            if response.status_code == 200 and response.json()["success"] is True:
                 _LOGGER.debug('Successfully logged out of Synology.')
             else:
                 _LOGGER.error('Failed to logout of Synology: %s', self.url)
