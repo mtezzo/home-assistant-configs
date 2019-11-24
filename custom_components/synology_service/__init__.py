@@ -23,7 +23,7 @@ def setup(hass, config):
 
         data = r.json()
 
-        if data["success"] = True:
+        if data["success"] is True:
             sid = data["data"]["sid"]
             synotoken = data["data"]["synotoken"]
             _LOGGER.error('sid:'+sid + ' token:'+synotoken)
