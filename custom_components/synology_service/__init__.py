@@ -12,24 +12,70 @@ DOMAIN = 'synology_service'
 def setup(hass, config):
     """Set up is called when Home Assistant is loading our component."""
 
+    class SynoService():
+        def __init__(self, url):
+            self.url = url + '/webapi/auth.cgi'
+            self.sid = None
+            self.synotoken = None
+
+        def login(self, username, password):
+
+            loginParams = dict(
+                api = 'SYNO.API.Auth',
+                method = 'Login',
+                version = 6,
+                account = username,
+                passwd = password,
+                session = 'SurveillanceStation',
+                format = 'sid',
+                enable_syno_token = 'yes'
+            )
+
+            result = get(self.url, params=loginParams)
+            data = result.json()
+
+            if result and data["success"] is True:
+                self.sid = data["data"]["sid"]
+                self.synotoken = data["data"]["synotoken"]
+
+                _LOGGER.error('Logged Into Synology with SID %s', self.sid)
+
+                return True
+            else:
+                _LOGGER.error('Unable to login to Synology at: %s', self.url)
+                return False
+
+        def __del__(self):
+            logoutParams = dict(
+                api = 'SYNO.API.Auth',
+                method = 'Logout',
+                version = 1,
+                session = 'SurveillanceStation',
+                _sid = self.sid,
+                SynoToken = self.synotoken
+            )
+
+            if self.sid is not None:
+                result = get(self.url, params=logoutParams)
+
+                if result:
+                    _LOGGER.error('Logged Out of Synology')
+                    _LOGGER.error(result.json())
+
     def handle_synology(call):
         """Handle the service call."""
-        url = call.data.get('url', '') + '/webapi/auth.cgi'
         mode = call.data.get('home', False)
 
-        loginParams = dict(api='SYNO.API.Auth', method='Login', version=6, account=call.data.get('account', ''), passwd=call.data.get('password', ''), session='SurveillanceStation', format='sid', enable_syno_token='yes')
+        # Create New SynoService
+        synology = SynoService(call.data.get('url', ''))
 
-        r = get(url, params=loginParams)
+        # If we successfully login
+        if synology.login(call.data.get('account', ''), call.data.get('password', '')):
+            _LOGGER.error('YAY')
 
-        data = r.json()
-
-        if data["success"] is True:
-            sid = data["data"]["sid"]
-            synotoken = data["data"]["synotoken"]
-            _LOGGER.error('sid:'+sid + ' token:'+synotoken)
+            modeParams = dict(api='SYNO.SurveillanceStation.HomeMode', version=1, method='Switch', on='false', _sid=sid, SynoToken=synotoken)
         else:
-            _LOGGER.error('Unable to login to NAS.')
-
+            _LOGGER.error('Boo')
 
         hass.states.set('synology_service.home', False)
 
