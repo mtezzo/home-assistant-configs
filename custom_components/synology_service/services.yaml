@@ -1,6 +1,6 @@
 set_home_mode:
-  description: 'New home mode for surveilance station. Valid modes are "away" or "home".'
+  description: 'Set the home mode for Surveillance Station.'
   fields:
     home_mode:
-      description: True to turn on home mode, false to turn it off.
+      description: 'New home mode. Valid modes are "away" or "home".'
       example: 'away'
