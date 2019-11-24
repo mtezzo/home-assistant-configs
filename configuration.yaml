@@ -111,6 +111,9 @@ system_health:
 
 # Load custom synology service
 synology_service:
+  url: !secret nas_url
+  username: !secret nas_username
+  password: !secret nas_password
 
 # Text to speech
 tts:

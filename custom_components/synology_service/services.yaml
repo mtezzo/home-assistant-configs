@@ -1,12 +1,5 @@
 set_home:
   description: Set home mode for surveilance station on/off.
   fields:
-    url:
-      description: The URL for your surveilance station.
-      example: https://mynas.com:5001
-    account:
-      description: Your surveilance station account name.
-    password:
-      description: Your surveilance station password.
     mode:
       description: True to turn on home mode, false to turn it off.
