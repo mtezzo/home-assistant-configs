@@ -23,7 +23,13 @@ def setup(hass, config):
 
         data = r.json()
 
-        _LOGGER.error(data)
+        if data["success"] = True:
+            sid = data["data"]["sid"]
+            synotoken = data["data"]["synotoken"]
+            _LOGGER.error('sid:'+sid + ' token:'+synotoken)
+        else:
+            _LOGGER.error('Unable to login to NAS.')
+
 
         hass.states.set('synology_service.home', False)
 
