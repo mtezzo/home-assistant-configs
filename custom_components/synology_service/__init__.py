@@ -14,7 +14,7 @@ def setup(hass, config):
 
     class SynoService():
         def __init__(self, url):
-            self.url = url + '/webapi/auth.cgi'
+            self.url = url + '/webapi/'
             self.sid = None
             self.synotoken = None
 
@@ -31,7 +31,7 @@ def setup(hass, config):
                 enable_syno_token = 'yes'
             )
 
-            result = get(self.url, params=loginParams)
+            result = get(self.url + 'auth.cgi', params=loginParams)
             data = result.json()
 
             if result and data["success"] is True:
@@ -58,7 +58,7 @@ def setup(hass, config):
                 SynoToken = self.synotoken
             )
 
-            result = get(self.url, params=modeParams)
+            result = get(self.url + 'entry.cgi', params=modeParams)
             data = result.json()
             _LOGGER.error(data)
             if result and data["success"] is True:
@@ -79,7 +79,7 @@ def setup(hass, config):
             )
 
             if self.sid is not None:
-                result = get(self.url, params=logoutParams)
+                result = get(self.url + 'auth.cgi', params=logoutParams)
                 data = result.json()
 
                 if result and data["success"] is True:
