@@ -1,5 +1,6 @@
-set_home:
-  description: Set home mode for surveilance station on/off.
+set_home_mode:
+  description: 'New home mode for surveilance station. Valid modes are "away" or "home".'
   fields:
-    mode:
+    home_mode:
       description: True to turn on home mode, false to turn it off.
+      example: 'away'
