@@ -30,8 +30,7 @@ ozw_config/
 tts/
 deps/
 www/
-custom_components/
-!custom_components/custom_updater/
-!custom_components/surveillance_station/
+custom_components/*
+!custom_components/synology_service/
 custom_components/*/__pycache__/*
 custom_components/__pycache__/*

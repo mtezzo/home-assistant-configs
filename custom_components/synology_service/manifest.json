@@ -1,0 +1,8 @@
+{
+    "domain": "synology_service",
+    "name": "Synology Surveillance Station Service",
+    "documentation": "",
+    "dependencies": [],
+    "codeowners": ["@mtezzo"],
+    "requirements": []
+}
