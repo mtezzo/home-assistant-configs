@@ -51,7 +51,7 @@ def setup(hass, config):
         _LOGGER.exception("Error when initializing SurveillanceStation")
         return False
 
-    hass.states.set('surveillance_station.home_mode', "home" if surveillance.get_home_mode_status() == "true" else "away")
+    hass.states.set('surveillance_station.home_mode', "home" if surveillance.get_home_mode_status() is True else "away")
 
     def handle_set_home_mode(call):
         """Handle the service call."""
