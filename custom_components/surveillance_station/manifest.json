@@ -4,5 +4,5 @@
     "documentation": "",
     "dependencies": [],
     "codeowners": ["@mtezzo"],
-    "requirements": []
+    "requirements": ["py-synology==0.3.0"]
 }
