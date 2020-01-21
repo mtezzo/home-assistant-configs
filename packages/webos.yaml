@@ -20,7 +20,7 @@ homeassistant:
     ## Media Player
     ################################################
 
-    media_player.living_room_tv:
+    webostv.living_room_tv:
       <<: *customize
       friendly_name: "Living Room TV"
 
@@ -28,22 +28,11 @@ homeassistant:
 ## Media Players
 ################################################
 
-media_player:
-  - platform: webostv
-    host: 192.168.1.9
-    name: living_room_tv
-    filename: webostv.conf
-    turn_on_action:
-      service: wake_on_lan.send_magic_packet
-      data:
-        mac: "14-C9-13-7C-BB-FE"
-
-################################################
-## Notify
-################################################
-
-notify:
-  - platform: webostv
-    host: 192.168.1.9
-    name: living_room_tv
-    filename: webostv.conf
+webostv:
+  host: 192.168.1.9
+  name: living_room_tv
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: "14-C9-13-7C-BB-FE"
+  standby_connection: false
