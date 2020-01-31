@@ -124,7 +124,7 @@ script:
     sequence:
       - service: script.light_control
         data:
-          entity_id: group.all_lights
+          entity_id: all
           state: 'off'
           transition: 5
       - service: switch.turn_off
