@@ -98,8 +98,10 @@ script:
           color_temp: >-
             {% if color_temp is defined and color_temp|int(-1) != -1 %}
               {{ color_temp|int }}
-            {% else %}
+            {% elif states(entity_id) != 'unknown' %}
               {{ (states.light[entity_id.split('.', 1)[1]].attributes|default).color_temp|default(370) }}
+            {% else %}
+              370
             {% endif %}
           flash: "{{ flash }}"
           transition: "{{ transition }}"
