@@ -44,6 +44,22 @@ homeassistant:
       persistent: true
       icon: mdi:robot
 
+    automation.auto_sunrise:
+      <<: *customize
+      friendly_name: "Auto Sunrise (Weekdays)"
+      persistent: true
+      icon: mdi:robot
+
+    ################################################
+    ## Input DateTime
+    ################################################
+
+    input_datetime.auto_sunrise_time:
+      <<: *customize
+      friendly_name: "Auto Sunrise Time"
+      persistent: true
+      icon: mdi:weather-sunset-up
+
     ################################################
     ## Script
     ################################################
@@ -57,6 +73,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Good Night"
       icon: mdi:weather-night
+
+    script.sunrise:
+      <<: *customize
+      friendly_name: "Sunrise"
+      icon: mdi:weather-sunset-up
 
 ################################################
 ## Automation
@@ -159,6 +180,39 @@ automation:
     action:
       - service: script.good_night
 
+  - alias: auto_sunrise
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (state_attr('input_datetime.auto_sunrise_time', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
+    condition:
+      condition: and
+      conditions: 
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: state
+          entity_id: alarm_control_panel.alarm_system
+          state: 'armed_home'
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
+    action:
+      - service: script.sunrise
+
+################################################
+## Input DateTime
+################################################
+
+input_datetime:
+  auto_sunrise_time:
+    has_date: false
+    has_time: true
+    initial: '06:45'
+
 ################################################
 ## Script
 ################################################
@@ -181,3 +235,35 @@ script:
             - automation.master_bedroom_motion
 
       - service: script.all_lights_off
+
+  sunrise:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.dresser_lamp
+          xy_color: [0.67,0.39]
+          brightness: 1
+      - delay:
+          seconds: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.dresser_lamp
+          xy_color: [0.65,0.41]
+          brightness: 85
+          transition: 600
+      - delay:
+          seconds: 600
+      - service: light.turn_on
+        data:
+          entity_id: light.dresser_lamp
+          xy_color: [0.60,0.40]
+          brightness: 170
+          transition: 600
+      - delay:
+          seconds: 600
+      - service: light.turn_on
+        data:
+          entity_id: light.dresser_lamp
+          xy_color: [0.48,0.40]
+          brightness: 255
+          transition: 600
