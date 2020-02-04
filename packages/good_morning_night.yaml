@@ -57,7 +57,6 @@ homeassistant:
     input_datetime.auto_sunrise_time:
       <<: *customize
       friendly_name: "Auto Sunrise Time"
-      persistent: true
       icon: mdi:weather-sunset-up
 
     ################################################
@@ -194,9 +193,14 @@ automation:
             - wed
             - thu
             - fri
-        - condition: state
-          entity_id: alarm_control_panel.alarm_system
-          state: 'armed_home'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: alarm_control_panel.alarm_system
+              state: 'armed_home'
+            - condition: state
+              entity_id: alarm_control_panel.alarm_system
+              state: 'armed_night'
         - condition: state
           entity_id: input_boolean.guest_mode
           state: 'off'
