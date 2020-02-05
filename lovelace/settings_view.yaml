@@ -32,7 +32,7 @@ cards:
         name: PING
         y_axis: secondary
 
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: Z-Wave

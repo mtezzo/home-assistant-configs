@@ -22,7 +22,7 @@ cards:
       - entity: sensor.laundry_room_flood_sensor_temperature
         name: Laundry Room
 
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: Motion Sensors
@@ -33,7 +33,7 @@ cards:
           attributes:
             device_class: motion
 
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: Door Sensors
@@ -47,7 +47,7 @@ cards:
           attributes:
             device_class: garage-door
 
-  - type: custom:monster-card
+  - type: custom:auto-entities
     card:
       type: entities
       title: Batteries

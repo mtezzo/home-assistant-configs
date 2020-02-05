@@ -33,7 +33,7 @@ resources:
     type: module
   - url: /community_plugin/mini-media-player/mini-media-player.js
     type: module
-  - url: /community_plugin/monster-card/monster-card.js
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
     type: module
   - url: /community_plugin/roku-card/roku-card.js
     type: module
