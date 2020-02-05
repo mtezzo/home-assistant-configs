@@ -182,7 +182,7 @@ automation:
   - alias: auto_sunrise
     trigger:
       - platform: template
-        value_template: "{{ states('sensor.time') == (state_attr('input_datetime.auto_sunrise_time', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
+        value_template: "{{ states('sensor.time') == (state_attr('input_datetime.auto_sunrise_time', 'timestamp') | int | timestamp_custom('%H:%M', false)) }}"
     condition:
       condition: and
       conditions: 
@@ -215,7 +215,6 @@ input_datetime:
   auto_sunrise_time:
     has_date: false
     has_time: true
-    initial: '06:45'
 
 ################################################
 ## Script
