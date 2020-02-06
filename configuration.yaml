@@ -133,6 +133,7 @@ updater:
 # https://www.home-assistant.io/components/upnp/
 upnp:
   sensors: true
+  local_ip: 192.168.1.11
 
 # Enable Wake-On-LAN
 wake_on_lan:
