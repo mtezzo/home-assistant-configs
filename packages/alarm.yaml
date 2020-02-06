@@ -87,7 +87,6 @@ alarm_control_panel:
 automation:
   - alias: persistence_publish_alarm_control_panel
     initial_state: 'on'
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: alarm_control_panel.alarm_system
@@ -113,7 +112,6 @@ automation:
 
   - alias: persistence_subscribe_alarm_control_panel
     initial_state: 'on'
-    hide_entity: true
     trigger:
       - platform: mqtt
         topic: home-assistant/alarm_control_panel/alarm_system

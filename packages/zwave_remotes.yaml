@@ -70,7 +70,6 @@ automation:
   ################################################
 
   - alias: keyfob_circle_button_tapped
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: event
@@ -88,7 +87,6 @@ automation:
           transition: 2
 
   - alias: keyfob_square_button_tapped
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: event
@@ -110,7 +108,6 @@ automation:
   ################################################
 
   - alias: keyfob_triangle_button_tapped
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: event
@@ -128,7 +125,6 @@ automation:
           transition: 2
 
   - alias: keyfob_x_button_tapped
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: event
@@ -150,7 +146,6 @@ automation:
   ################################################
 
   - alias: keyfob_minus_button_tapped
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: event
@@ -166,7 +161,6 @@ automation:
             - automation.master_bedroom_motion
 
   - alias: keyfob_minus_button_held
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: event
@@ -186,7 +180,6 @@ automation:
   ################################################
 
   - alias: keyfob_plus_button_tapped
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: event

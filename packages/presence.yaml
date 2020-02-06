@@ -167,7 +167,6 @@ sensor:
 
 automation:
   - alias: life360_overdue_update
-    hide_entity: true
     initial_state: true
     trigger:
       platform: event
@@ -183,7 +182,6 @@ automation:
           }} is overdue.
 
   - alias: life360_update_restored
-    hide_entity: true
     initial_state: true
     trigger:
       platform: event
@@ -199,7 +197,6 @@ automation:
           }} restored after {{ trigger.event.data.wait }}.
 
   - alias: person_arriving
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state
@@ -222,7 +219,6 @@ automation:
             {% endif %}
  
   - alias: person_home
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state
@@ -242,7 +238,6 @@ automation:
           option: 'Home'
  
   - alias: person_departing
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state
@@ -260,7 +255,6 @@ automation:
           option: 'Departing'
  
   - alias: person_away
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state
@@ -280,7 +274,6 @@ automation:
           option: 'Away'
  
   - alias: person_vacation
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state
