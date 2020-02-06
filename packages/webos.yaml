@@ -35,4 +35,3 @@ webostv:
     service: wake_on_lan.send_magic_packet
     data:
       mac: "14-C9-13-7C-BB-FE"
-  standby_connection: false
