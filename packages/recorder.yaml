@@ -29,7 +29,6 @@ recorder:
         - camera
         - media_player
         - sun
-        - weblink
         - notify
       entities:
         - automation.guest_bedroom_closet_lighting
