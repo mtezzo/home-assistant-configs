@@ -22,7 +22,6 @@ homeassistant:
 ################################################
 
 http:
-  base_url: !secret ha_url
   cors_allowed_origins:
       - https://google.com
       - https://www.home-assistant.io

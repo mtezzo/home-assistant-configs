@@ -20,6 +20,10 @@ homeassistant:
   # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret ha_time_zone
 
+  # Homeassistant URLS
+  external_url: !secret ha_url
+  internal_url: "http://hassio.local:8123"
+
   # Customizations
   customize: !include customize.yaml
 
@@ -132,7 +136,6 @@ updater:
 # Enables UPnP integration
 # https://www.home-assistant.io/components/upnp/
 upnp:
-  sensors: true
   local_ip: 192.168.1.11
 
 # Enable Wake-On-LAN
