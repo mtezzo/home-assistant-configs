@@ -84,29 +84,29 @@ lovelace:
       type: css
     - url: /local/js/alarm_control_panel-card.js?v=5
       type: js
-    - url: /local/community/bignumber-card/bignumber-card.js
+    - url: /hacsfiles/bignumber-card/bignumber-card.js
       type: module
-    - url: /local/community/banner-card/banner-card.js
+    - url: /hacsfiles/banner-card/banner-card.js
       type: module
-    - url: /local/community/button-card/button-card.js
+    - url: /hacsfiles/button-card/button-card.js
       type: module
-    - url: /local/community/decluttering-card/decluttering-card.js
+    - url: /hacsfiles/decluttering-card/decluttering-card.js
       type: module
-    - url: /local/community/lovelace-card-mod/card-mod.js
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
       type: module
-    - url: /local/community/mini-graph-card/mini-graph-card.js
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: module
-    - url: /local/community/mini-media-player/mini-media-player.js
+    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
       type: module
-    - url: /local/community/lovelace-auto-entities/auto-entities.js
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
       type: module
-    - url: /local/community/roku-card/roku-card.js
+    - url: /hacsfiles/roku-card/roku-card.js
       type: module
-    - url: /local/community/lovelace-slider-entity-row/slider-entity-row.js
+    - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
       type: module
-    - url: /local/community/vertical-stack-in-card/vertical-stack-in-card.js
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
       type: js
-    - url: /local/community/weather-card/weather-card.js
+    - url: 	/hacsfiles/weather-card/weather-card.js
       type: module
 
 # Enables a map showing the location of tracked devices
