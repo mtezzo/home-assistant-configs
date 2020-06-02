@@ -69,6 +69,12 @@ cards:
                     styles:
                       icon:
                         - animation: blink 2s ease infinite
+                  - value: 'arming'
+                    icon: mdi:shield-half-full
+                    color: rgb(169,169,169)
+                    styles:
+                      icon:
+                        - animation: blink 2s ease infinite
           - type: custom:decluttering-card
             template: nest_picture_button
             variables:
