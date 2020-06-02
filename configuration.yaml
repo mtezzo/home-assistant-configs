@@ -94,8 +94,6 @@ lovelace:
       type: module
     - url: /community_plugin/lovelace-card-mod/card-mod.js
       type: module
-    - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
-      type: module
     - url: /community_plugin/mini-graph-card/mini-graph-card.js
       type: module
     - url: /community_plugin/mini-media-player/mini-media-player.js
