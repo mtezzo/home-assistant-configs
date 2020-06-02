@@ -2,6 +2,7 @@
 .HA_VERSION
 .cloud/
 .storage/
+.vscode/
 .homekit.state
 .uuid
 *.swp
