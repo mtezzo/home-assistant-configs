@@ -79,6 +79,37 @@ logbook:
 # https://www.home-assistant.io/lovelace/yaml-mode/
 lovelace:
   mode: yaml
+  resources:
+    - url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
+      type: css
+    - url: /local/js/alarm_control_panel-card.js?v=5
+      type: js
+    - url: /community_plugin/bignumber-card/bignumber-card.js
+      type: module
+    - url: /community_plugin/banner-card/banner-card.js
+      type: module
+    - url: /community_plugin/button-card/button-card.js
+      type: module
+    - url: /community_plugin/decluttering-card/decluttering-card.js
+      type: module
+    - url: /community_plugin/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
+      type: module
+    - url: /community_plugin/mini-graph-card/mini-graph-card.js
+      type: module
+    - url: /community_plugin/mini-media-player/mini-media-player.js
+      type: module
+    - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /community_plugin/roku-card/roku-card.js
+      type: module
+    - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+      type: module
+    - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+      type: js
+    - url: /community_plugin/weather-card/weather-card.js
+      type: module
 
 # Enables a map showing the location of tracked devices
 # https://www.home-assistant.io/components/map/
