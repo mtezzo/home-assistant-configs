@@ -25,7 +25,7 @@ homeassistant:
 ################################################
 
 mqtt:
-#  broker: !secret mqtt_broker
+  broker: localhost
 #  port: !secret mqtt_port
 #  username: !secret mqtt_username
 #  password: !secret mqtt_password
