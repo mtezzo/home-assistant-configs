@@ -1,0 +1,33 @@
+################################################################
+## Packages / MQTT
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'mqtt'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+################################################
+## MQTT
+################################################
+
+mqtt:
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
