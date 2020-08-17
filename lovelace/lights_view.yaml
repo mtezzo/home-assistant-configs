@@ -1,7 +1,7 @@
 title: Lights
 icon: mdi:lightbulb-outline
 path: lights
-background: var(--background-image)
+#background: var(--background-image)
 #    background: radial-gradient(crimson, skyblue)
 #    theme: clear-dark
 cards:

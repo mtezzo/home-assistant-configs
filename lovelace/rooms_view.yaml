@@ -2,7 +2,7 @@ title: Rooms
 icon: mdi:floor-plan
 path: rooms
 #    background: radial-gradient(blueviolet, skyblue)
-background: var(--background-image)
+#background: var(--background-image)
 #    theme: clear-dark
 cards:
   - type: custom:banner-card

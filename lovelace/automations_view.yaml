@@ -2,7 +2,7 @@ title: Automations
 icon: mdi:robot
 path: automations
 #    background: radial-gradient(orange, skyblue)
-background: var(--background-image)
+# background: var(--background-image)
 #    theme: clear-dark
 cards:
   - type: entities

@@ -2,7 +2,7 @@ title: Home
 icon: mdi:home-assistant
 path: home
 #    background: radial-gradient(crimson, skyblue)
-background: var(--background-image)
+#background: var(--background-image)
 #    theme: clear-dark
 cards:
 #       - type: vertical-stack
