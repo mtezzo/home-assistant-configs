@@ -105,7 +105,7 @@ life360:
       password: !secret life360_password
   interval_seconds: 60
   max_update_wait:
-    minutes: 45
+    minutes: 90
 
 ################################################
 ## Input Select
