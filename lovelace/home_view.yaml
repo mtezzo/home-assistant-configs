@@ -153,3 +153,10 @@ cards:
       - person.julia
       - person.michael
       - zone.home
+
+  - type: custom:mini-graph-card
+    name: River Level
+    icon: mdi:water
+    entities:
+      - entity: sensor.river_level
+        name: Height
