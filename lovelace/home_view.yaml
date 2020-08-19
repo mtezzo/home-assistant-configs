@@ -146,6 +146,13 @@ cards:
   - type: custom:weather-card
     entity: weather.dark_sky
 
+  - type: custom:mini-graph-card
+    name: River Level
+    icon: mdi:waves
+    entities:
+      - entity: sensor.river_level
+        name: Height
+
   - type: map
     aspect_ratio: '16:9'
     default_zoom: 16
@@ -153,10 +160,3 @@ cards:
       - person.julia
       - person.michael
       - zone.home
-
-  - type: custom:mini-graph-card
-    name: River Level
-    icon: mdi:water
-    entities:
-      - entity: sensor.river_level
-        name: Height
