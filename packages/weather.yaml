@@ -88,7 +88,7 @@ sensor:
     name: river_level
     verify_ssl: true
     json_attributes_path: "$.site.observed[:1]"
-    value_template: '{{ value_json.site.observed[:1].primary }}'
+    value_template: '{{ value_json["site"]["observed"][0]["primary"] }}'
     unit_of_measurement: ft
     force_update: true
 
