@@ -50,6 +50,11 @@ homeassistant:
       friendly_name: 'Wind Speed'
       icon: mdi:weather-windy
 
+    sensor.river_level:
+      <<: *customize
+      friendly_name: "River Level"
+      icon: mdi:waves
+
     sensor.season:
       <<: *customize
       friendly_name: "Season"
@@ -72,6 +77,20 @@ sensor:
 
   - platform: season
     type: astronomical
+
+  - platform: rest
+    resource: !secret water_endpoint
+    scan_interval: 90
+    json_attributes:
+      - "valid"
+      - "secondary"
+    method: GET
+    name: river_level
+    verify_ssl: true
+    json_attributes_path: "$.site.observed[:1]"
+    value_template: '{{ value_json.site.observed[:1].primary }}'
+    unit_of_measurement: ft
+    force_update: true
 
 ################################################
 ## Weather
