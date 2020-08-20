@@ -26,8 +26,8 @@ homeassistant:
 
 mqtt:
   birth_message:
-    topic: 'hass/status'
+    topic: 'home-assistant/status'
     payload: 'online'
   will_message:
-    topic: 'hass/status'
+    topic: 'home-assistant/status'
     payload: 'offline'
