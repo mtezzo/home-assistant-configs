@@ -24,10 +24,10 @@ homeassistant:
 ## MQTT
 ################################################
 
-mqtt:
-  birth_message:
-    topic: 'home-assistant/status'
-    payload: 'online'
-  will_message:
-    topic: 'home-assistant/status'
-    payload: 'offline'
+#mqtt:
+#  birth_message:
+#    topic: 'home-assistant/status'
+#    payload: 'online'
+#  will_message:
+#    topic: 'home-assistant/status'
+#    payload: 'offline'
