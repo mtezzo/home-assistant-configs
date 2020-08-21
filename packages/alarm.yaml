@@ -106,7 +106,7 @@ automation:
     action:
       - service: mqtt.publish
         data_template:
-          topic: "home-assistant/alarm_control_panel/alarm_system"
+          topic: "homeassistant/alarm_control_panel/alarm_system"
           payload: "{{ trigger.to_state.state }}"
           retain: true
 
@@ -114,7 +114,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: mqtt
-        topic: home-assistant/alarm_control_panel/alarm_system
+        topic: homeassistant/alarm_control_panel/alarm_system
     condition:
       - condition: template
         value_template: "{{ not is_state('alarm_control_panel.alarm_system', trigger.payload) }}"
