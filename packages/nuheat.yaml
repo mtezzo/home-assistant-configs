@@ -1,0 +1,27 @@
+################################################################
+## Packages / NuHeat
+## https://home-assistant.io/components/nuheat/
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+    customize:
+      ################################################
+      ## Node Anchors
+      ################################################
+
+      package.node_anchors:
+        customize: &customize
+          package: 'nuheat'
+
+################################################
+## NuHeat
+################################################
+
+nuheat:
+    username: !secret nuheat_username
+    password: !secret nuheat_password
+    devices: !secret nuheat_device
