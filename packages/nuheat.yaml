@@ -15,7 +15,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-      package: 'nuheat'
+        package: 'nuheat'
 
     ################################################
     ## Climate
