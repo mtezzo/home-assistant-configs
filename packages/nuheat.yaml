@@ -8,20 +8,29 @@
 ################################################
 
 homeassistant:
-    customize:
-      ################################################
-      ## Node Anchors
-      ################################################
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
 
-      package.node_anchors:
-        customize: &customize
-          package: 'nuheat'
+    package.node_anchors:
+      customize: &customize
+      package: 'nuheat'
+
+    ################################################
+    ## Climate
+    ################################################
+
+    climate.bathroom:
+      <<: *customize
+      friendly_name: 'Bathroom Floor'
+      icon: mdi:thermostat
 
 ################################################
 ## NuHeat
 ################################################
 
 nuheat:
-    username: !secret nuheat_username
-    password: !secret nuheat_password
-    devices: !secret nuheat_device
+  username: !secret nuheat_username
+  password: !secret nuheat_password
+  devices: !secret nuheat_device
