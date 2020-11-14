@@ -124,14 +124,14 @@ person:
     id: julia
     user_id: !secret userid_julia
     device_trackers:
-      - device_tracker.julia_ios
+      - device_tracker.julia_iphone
       - device_tracker.life360_julia
 
   - name: Michael
     id: michael
     user_id: !secret userid_michael
     device_trackers:
-      - device_tracker.michael_ios
+      - device_tracker.michael_iphone
       - device_tracker.life360_michael
 
 # Enable Sun Component
