@@ -63,6 +63,7 @@ homekit:
       - light.dining_room_spot
       - light.guest_bedroom_storage
       - switch.aeotec_zstick_disco_light
+      - switch.basement_task_light
     include_entities:
       - automation.master_bedroom_motion
       - automation.living_room_motion
