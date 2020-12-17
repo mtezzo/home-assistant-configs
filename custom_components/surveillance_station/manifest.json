@@ -1,8 +1,0 @@
-{
-    "domain": "surveillance_station",
-    "name": "Synology Surveillance Station",
-    "documentation": "",
-    "dependencies": [],
-    "codeowners": ["@mtezzo"],
-    "requirements": ["py-synology==0.3.0"]
-}

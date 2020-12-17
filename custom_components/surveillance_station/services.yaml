@@ -1,6 +1,0 @@
-set_home_mode:
-  description: 'Set the home mode for Surveillance Station.'
-  fields:
-    home_mode:
-      description: 'New home mode. Valid modes are "away" or "home".'
-      example: 'away'

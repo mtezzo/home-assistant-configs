@@ -7,7 +7,7 @@ path: cameras
 cards:
   - type: picture-entity
     title: Dining Room
-    entity: camera.dining_room
+    entity: camera.mnemosyne_dining_room
   - type: picture-entity
     title: Master Bedroom
-    entity: camera.bedroom_camera
+    entity: camera.mnemosyne_bedroom
