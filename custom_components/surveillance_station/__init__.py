@@ -20,32 +20,27 @@ DEFAULT_TIMEOUT = 5
 DOMAIN = 'surveillance_station'
 
 CONFIG_SCHEMA = vol.Schema({
-    DOMAIN: vol.All(vol.Schema({
+    DOMAIN: vol.Schema({
         vol.Required(CONF_USERNAME): cv.string,
         vol.Required(CONF_PASSWORD): cv.string,
         vol.Required(CONF_URL): cv.url,
         vol.Optional(CONF_VERIFY_SSL, default=True): cv.boolean,
         vol.Optional(CONF_TIMEOUT, default=DEFAULT_TIMEOUT): cv.positive_int
-     })),
+     }),
 }, extra=vol.ALLOW_EXTRA)
 
 def setup(hass, config):
     """Set up the Synology Surveillance Station component."""
 
-    # Get values from config
-    conf = config[DOMAIN]
-    verify_ssl = conf.get(CONF_VERIFY_SSL)
-    timeout = conf.get(CONF_TIMEOUT)
-
     try:
         from synology.surveillance_station import SurveillanceStation
 
         surveillance = SurveillanceStation(
-            conf.get(CONF_URL),
-            conf.get(CONF_USERNAME),
-            conf.get(CONF_PASSWORD),
-            verify_ssl=verify_ssl,
-            timeout=timeout,
+            config[DOMAIN].get(CONF_URL),
+            config[DOMAIN].get(CONF_USERNAME),
+            config[DOMAIN].get(CONF_PASSWORD),
+            verify_ssl=config[DOMAIN].get(CONF_VERIFY_SSL),
+            timeout=config[DOMAIN].get(CONF_TIMEOUT),
         )
     except (RequestException, ValueError):
         _LOGGER.exception("Error when initializing SurveillanceStation")
