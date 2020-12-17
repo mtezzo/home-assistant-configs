@@ -139,10 +139,10 @@ person:
 sun:
 
 # Load custom synology service
-surveillance_station:
-  url: !secret nas_url
-  username: !secret nas_username
-  password: !secret nas_password
+#surveillance_station:
+#  url: !secret nas_url
+#  username: !secret nas_username
+#  password: !secret nas_password
 
 # Enable System Health Component
 # https://www.home-assistant.io/components/system_health/
