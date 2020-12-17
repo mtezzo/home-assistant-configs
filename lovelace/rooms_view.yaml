@@ -74,4 +74,4 @@ cards:
     title: Dining Room
     entities:
       - light.dining_room_spot
-    camera_image: camera.dining_room
+    camera_image: camera.mnemosyne_dining_room
