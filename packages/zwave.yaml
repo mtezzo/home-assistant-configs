@@ -24,10 +24,10 @@ homeassistant:
     ## Binary Sensor
     ################################################
 
-    binary_sensor.entrance_front_door_contact:
-      <<: *customize
-      friendly_name: Entrance Front Door
-      device_class: door
+    # binary_sensor.entrance_front_door_contact:
+    #   <<: *customize
+    #   friendly_name: Entrance Front Door
+    #   device_class: door
 
     binary_sensor.garage_door_opener:
       <<: *customize
@@ -59,10 +59,10 @@ homeassistant:
       friendly_name: Living Room Motion Sensor
       device_class: motion
 
-    binary_sensor.master_bedroom_motion_sensor:
-      <<: *customize
-      friendly_name: Master Bedroom Motion Sensor
-      device_class: motion
+    # binary_sensor.master_bedroom_motion_sensor:
+    #   <<: *customize
+    #   friendly_name: Master Bedroom Motion Sensor
+    #   device_class: motion
 
     # binary_sensor.michaels_closet_door_contact:
     #   <<: *customize

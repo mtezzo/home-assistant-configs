@@ -141,9 +141,9 @@ sensor.living_room_bookshelf_lamp_voltage:
 sensor.living_room_bookshelf_lamp_previous_reading:
   ignored: true
 
-light.guest_bedroom_closet:
-  refresh_value: true
-  delay: 3
+# light.guest_bedroom_closet:
+#   refresh_value: true
+#   delay: 3
 
 light.garage_storage:
   refresh_value: true
