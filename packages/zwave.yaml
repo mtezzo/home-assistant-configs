@@ -87,10 +87,10 @@ homeassistant:
       friendly_name: Basement Task Light
       icon: mdi:desk-lamp
 
-    light.living_room_bookshelf_lamp:
-      <<: *customize
-      friendly_name: Bookshelf Lamp
-      icon: mdi:desk-lamp
+    # light.living_room_bookshelf_lamp:
+    #   <<: *customize
+    #   friendly_name: Bookshelf Lamp
+    #   icon: mdi:desk-lamp
 
     # light.living_room_floor_lamp:
     #   <<: *customize
@@ -298,8 +298,8 @@ homeassistant:
     zwave.dungeon_light_bulb:
       friendly_name: "Dungeon Light Bulb"
 
-    zwave.entrance_front_door_contact:
-      friendly_name: "Entrance Front Door Contact"
+    # zwave.entrance_front_door_contact:
+    #   friendly_name: "Entrance Front Door Contact"
 
     zwave.garage_door_opener:
       friendly_name: "Garage Door Opener"
@@ -307,8 +307,8 @@ homeassistant:
     zwave.garage_storage_light_bulb:
       friendly_name: "Garage Storage Light Bulb"
 
-    zwave.guest_bedroom_closet_door_contact:
-      friendly_name: "Guest Bedroom Closet Door Contact"
+    # zwave.guest_bedroom_closet_door_contact:
+    #   friendly_name: "Guest Bedroom Closet Door Contact"
 
     zwave.guest_bedroom_closet_light_bulb:
       friendly_name: "Guest Bedroom Closet Light Bulb"
@@ -316,11 +316,11 @@ homeassistant:
     zwave.guest_bedroom_smoke_and_carbon_monoxide_detector:
       friendly_name: "Guest Bedroom Smoke and Carbon Monoxide Detector"
 
-    zwave.guest_bedroom_storage_door_contact:
-      friendly_name: "Guest Bedroom Storage Door Contact"
+    # zwave.guest_bedroom_storage_door_contact:
+    #   friendly_name: "Guest Bedroom Storage Door Contact"
 
-    zwave.julias_closet_door_contact:
-      friendly_name: "Julia's Closet Door Contact"
+    # zwave.julias_closet_door_contact:
+    #   friendly_name: "Julia's Closet Door Contact"
 
     zwave.kitchen_motion_sensor:
       friendly_name: "Kitchen Motion Sensor"
@@ -337,17 +337,17 @@ homeassistant:
     zwave.laundry_room_smoke_and_carbon_monoxide_detector:
       friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector"
 
-    zwave.living_room_bookshelf_lamp:
-      friendly_name: "Living Room Bookshelf Lamp"
+    # zwave.living_room_bookshelf_lamp:
+    #   friendly_name: "Living Room Bookshelf Lamp"
 
-    zwave.living_room_floor_lamp:
-      friendly_name: "Living Room Floor Lamp"
+    # zwave.living_room_floor_lamp:
+    #   friendly_name: "Living Room Floor Lamp"
 
     # zwave.living_room_motion_sensor:
     #   friendly_name: "Living Room Motion Sensor"
 
-    zwave.master_bedroom_motion_sensor:
-      friendly_name: "Master Bedroom Motion Sensor"
+    # zwave.master_bedroom_motion_sensor:
+    #   friendly_name: "Master Bedroom Motion Sensor"
 
     zwave.master_bedroom_smoke_and_carbon_monoxide_detector:
       friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector"
@@ -355,8 +355,8 @@ homeassistant:
     zwave.master_bedroom_remote:
       friendly_name: "Master Bedroom Remote"
 
-    zwave.michaels_closet_door_contact:
-      friendly_name: "Michael's Closet Door Contact"
+    # zwave.michaels_closet_door_contact:
+    #   friendly_name: "Michael's Closet Door Contact"
 
     zwave.office_smoke_and_carbon_monoxide_detector:
       friendly_name: "Office Smoke and Carbon Monoxide Detector"
@@ -365,9 +365,9 @@ homeassistant:
   ## Customize Domain
   ################################################
 
-  customize_domain:
-    zwave:
-      <<: *customize
+  # customize_domain:
+  #   zwave:
+  #     <<: *customize
       # hidden: true
 
 ################################################

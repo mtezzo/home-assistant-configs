@@ -15,7 +15,7 @@ cards:
           - type: light
             entity: light.table_light
           - type: light
-            entity: light.living_room_bookshelf_lamp
+            entity: light.living_room_bookshelf_lamp_instance_1_level
       - type: light
         entity: light.living_room_floor_lamp_instance_1_level
 

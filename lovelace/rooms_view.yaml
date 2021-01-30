@@ -11,7 +11,7 @@ cards:
     link: /lovelace/living_room
     entities:
       - light.table_light
-      - light.living_room_bookshelf_lamp
+      - light.living_room_bookshelf_lamp_instance_1_level
       - light.living_room_floor_lamp_instance_1_level
       - entity: sensor.living_room_motion_sensor_illuminance
         name: Lux
@@ -52,7 +52,7 @@ cards:
     entities:
       - climate.living_room
       - light.table_light
-      - light.living_room_bookshelf_lamp
+      - light.living_room_bookshelf_lamp_instance_1_level
       - light.living_room_floor_lamp_instance_1_level
     image: /local/img/living_room.jpg?v=1
 

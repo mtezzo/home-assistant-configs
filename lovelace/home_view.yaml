@@ -129,7 +129,7 @@ cards:
         hide_when_off: true
         toggle: true
       - type: custom:slider-entity-row
-        entity: light.living_room_bookshelf_lamp
+        entity: light.living_room_bookshelf_lamp_instance_1_level
         hide_when_off: true
         toggle: true
       - type: custom:slider-entity-row
