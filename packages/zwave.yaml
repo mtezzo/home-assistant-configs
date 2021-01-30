@@ -29,10 +29,10 @@ homeassistant:
     #   friendly_name: Entrance Front Door
     #   device_class: door
 
-    binary_sensor.garage_door_opener:
-      <<: *customize
-      friendly_name: Garage Door
-      device_class: garage_door
+    # binary_sensor.garage_door_opener:
+    #   <<: *customize
+    #   friendly_name: Garage Door
+    #   device_class: garage_door
 
     # binary_sensor.guest_bedroom_closet_door_contact:
     #   <<: *customize
@@ -73,10 +73,10 @@ homeassistant:
     ## Cover
     ################################################
 
-    cover.garage_door_opener:
-      <<: *customize
-      friendly_name: Garage Door
-      device_class: garage
+    # cover.garage_door_opener:
+    #   <<: *customize
+    #   friendly_name: Garage Door
+    #   device_class: garage
 
     ################################################
     ## Lights
@@ -107,10 +107,10 @@ homeassistant:
       friendly_name: Garage Storage Light
       icon: mdi:lightbulb
 
-    light.dungeon:
-      <<: *customize
-      friendly_name: Dungeon Light
-      icon: mdi:lightbulb
+    # light.dungeon:
+    #   <<: *customize
+    #   friendly_name: Dungeon Light
+    #   icon: mdi:lightbulb
 
     ################################################
     ## Sensor
@@ -295,14 +295,14 @@ homeassistant:
     zwave.basement_task_light:
       friendly_name: "Basement Task Light"
 
-    zwave.dungeon_light_bulb:
-      friendly_name: "Dungeon Light Bulb"
+    # zwave.dungeon_light_bulb:
+    #   friendly_name: "Dungeon Light Bulb"
 
     # zwave.entrance_front_door_contact:
     #   friendly_name: "Entrance Front Door Contact"
 
-    zwave.garage_door_opener:
-      friendly_name: "Garage Door Opener"
+    # zwave.garage_door_opener:
+    #   friendly_name: "Garage Door Opener"
 
     zwave.garage_storage_light_bulb:
       friendly_name: "Garage Storage Light Bulb"

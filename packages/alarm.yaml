@@ -142,7 +142,7 @@ automation:
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.garage_door_opener
+        entity_id: binary_sensor.garage_door_sensor
         from: 'off'
         to: 'on'
       - platform: state
@@ -194,7 +194,7 @@ automation:
           message: >
             Alarm was triggered on:
             {% for state in states.binary_sensor -%}
-              {% if state.state == 'on' and state.entity_id in ['binary_sensor.entrance_front_door_sensor', 'binary_sensor.garage_door_opener', 'binary_sensor.guest_closet_door_access_control_door_window_open', 'binary_sensor.guest_storage_door_access_control_door_window_open', 'binary_sensor.julias_closet_door_access_control_door_window_open',
+              {% if state.state == 'on' and state.entity_id in ['binary_sensor.entrance_front_door_sensor', 'binary_sensor.garage_door_sensor', 'binary_sensor.guest_closet_door_access_control_door_window_open', 'binary_sensor.guest_storage_door_access_control_door_window_open', 'binary_sensor.julias_closet_door_access_control_door_window_open',
               'binary_sensor.kitchen_motion_sensor', 'binary_sensor.living_room_motion_sensor_home_security_motion_detected', 'binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected', 'binary_sensor.michaels_closet_door_access_control_door_window_open'] %}
                 {{ state.name }}
               {%- endif -%}

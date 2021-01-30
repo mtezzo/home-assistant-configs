@@ -142,7 +142,7 @@ cards:
         hide_when_off: true
         toggle: true
       - type: divider
-      - cover.garage_door_opener
+      - cover.garage_door_barrier_state
       - type: divider
       - switch.basement_task_light
 
