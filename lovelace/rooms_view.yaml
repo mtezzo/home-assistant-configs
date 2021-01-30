@@ -25,13 +25,13 @@ cards:
     entities:
       - light.dresser_lamp
       - light.nightstand_lamp
-      - entity: sensor.master_bedroom_motion_sensor_relative_humidity
+      - entity: sensor.master_bedroom_motion_sensor_humidity
         name: Humidity
-      - entity: sensor.master_bedroom_motion_sensor_temperature
+      - entity: sensor.master_bedroom_motion_sensor_air_temperature
         name: Temperature
-      - entity: sensor.master_bedroom_motion_sensor_luminance
+      - entity: sensor.master_bedroom_motion_sensor_illuminance
         name: Lux
-      - entity: binary_sensor.master_bedroom_motion_sensor
+      - entity: binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
         name: Motion
         map_state:
           on: mdi:walk

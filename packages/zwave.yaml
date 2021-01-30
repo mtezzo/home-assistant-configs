@@ -226,25 +226,25 @@ homeassistant:
     #   friendly_name: Living Room Motion Sensor Temperature
     #   device_class: temperature
 
-    sensor.master_bedroom_motion_sensor_burglar:
-      <<: *customize
-      friendly_name: Master Bedroom Motion Sensor Burglar
-      icon: mdi:alarm-bell
+    # sensor.master_bedroom_motion_sensor_burglar:
+    #   <<: *customize
+    #   friendly_name: Master Bedroom Motion Sensor Burglar
+    #   icon: mdi:alarm-bell
 
-    sensor.master_bedroom_motion_sensor_luminance:
-      <<: *customize
-      friendly_name: Master Bedroom Motion Sensor Luminance
-      device_class: illuminance
+    # sensor.master_bedroom_motion_sensor_luminance:
+    #   <<: *customize
+    #   friendly_name: Master Bedroom Motion Sensor Luminance
+    #   device_class: illuminance
 
-    sensor.master_bedroom_motion_sensor_relative_humidity:
-      <<: *customize
-      friendly_name: Master Bedroom Motion Sensor Humidity
-      device_class: humidity
+    # sensor.master_bedroom_motion_sensor_relative_humidity:
+    #   <<: *customize
+    #   friendly_name: Master Bedroom Motion Sensor Humidity
+    #   device_class: humidity
 
-    sensor.master_bedroom_motion_sensor_temperature:
-      <<: *customize
-      friendly_name: Master Bedroom Motion Sensor Temperature
-      device_class: temperature
+    # sensor.master_bedroom_motion_sensor_temperature:
+    #   <<: *customize
+    #   friendly_name: Master Bedroom Motion Sensor Temperature
+    #   device_class: temperature
 
     sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
       <<: *customize

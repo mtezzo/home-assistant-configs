@@ -68,11 +68,11 @@ automation:
   - alias: living_room_motion
     trigger:
       - platform: state
-        entity_id: binary_sensor.living_room_motion_sensor
+        entity_id: binary_sensor.living_room_motion_sensor_home_security_motion_detected
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.living_room_motion_sensor
+        entity_id: binary_sensor.living_room_motion_sensor_home_security_motion_detected
         from: 'on'
         to: 'off'
         for: '00:25:00'
@@ -93,11 +93,11 @@ automation:
   - alias: master_bedroom_motion
     trigger:
       - platform: state
-        entity_id: binary_sensor.master_bedroom_motion_sensor
+        entity_id: binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.master_bedroom_motion_sensor
+        entity_id: binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
         from: 'on'
         to: 'off'
         for: '00:20:00'

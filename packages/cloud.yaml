@@ -53,7 +53,7 @@ cloud:
       sensor.living_room_motion_sensor_air_temperature:
         name: Living Room Temperature
         display_categories: TEMPERATURE_SENSOR
-      sensor.master_bedroom_motion_sensor_temperature:
+      sensor.master_bedroom_motion_sensor_air_temperature:
         name: Bedroom Temperature
         display_categories: TEMPERATURE_SENSOR
       sensor.laundry_room_flood_sensor_temperature:
