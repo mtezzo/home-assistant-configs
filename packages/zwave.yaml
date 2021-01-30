@@ -34,20 +34,20 @@ homeassistant:
       friendly_name: Garage Door
       device_class: garage_door
 
-    binary_sensor.guest_bedroom_closet_door_contact:
-      <<: *customize
-      friendly_name: Guest Bedroom Closet Door
-      device_class: door
+    # binary_sensor.guest_bedroom_closet_door_contact:
+    #   <<: *customize
+    #   friendly_name: Guest Bedroom Closet Door
+    #   device_class: door
 
-    binary_sensor.guest_bedroom_storage_door_contact:
-      <<: *customize
-      friendly_name: Guest Bedroom Storage Door
-      device_class: door
+    # binary_sensor.guest_bedroom_storage_door_contact:
+    #   <<: *customize
+    #   friendly_name: Guest Bedroom Storage Door
+    #   device_class: door
 
-    binary_sensor.julias_closet_door_contact:
-      <<: *customize
-      friendly_name: "Julia's Closet Door"
-      device_class: door
+    # binary_sensor.julias_closet_door_contact:
+    #   <<: *customize
+    #   friendly_name: "Julia's Closet Door"
+    #   device_class: door
 
     binary_sensor.kitchen_motion_sensor:
       <<: *customize
@@ -64,10 +64,10 @@ homeassistant:
       friendly_name: Master Bedroom Motion Sensor
       device_class: motion
 
-    binary_sensor.michaels_closet_door_contact:
-      <<: *customize
-      friendly_name: "Michael's Closet Door"
-      device_class: door
+    # binary_sensor.michaels_closet_door_contact:
+    #   <<: *customize
+    #   friendly_name: "Michael's Closet Door"
+    #   device_class: door
 
     ################################################
     ## Cover
@@ -97,10 +97,10 @@ homeassistant:
       friendly_name: Floor Lamp
       icon: mdi:floor-lamp
 
-    light.guest_bedroom_closet:
-      <<: *customize
-      friendly_name: Guest Closet Light
-      icon: mdi:lightbulb
+    # light.guest_bedroom_closet:
+    #   <<: *customize
+    #   friendly_name: Guest Closet Light
+    #   icon: mdi:lightbulb
 
     light.garage_storage:
       <<: *customize

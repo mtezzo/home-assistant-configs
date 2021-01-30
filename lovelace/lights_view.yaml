@@ -74,4 +74,4 @@ cards:
             entity: light.guest_bedroom_storage
             name: Guest Storage
           - type: light
-            entity: light.guest_bedroom_closet
+            entity: light.guest_closet_light_level

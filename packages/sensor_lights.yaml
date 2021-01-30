@@ -123,11 +123,11 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.guest_bedroom_closet_door_contact
+        entity_id: binary_sensor.guest_closet_door_access_control_door_window_open
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.guest_bedroom_closet
+          entity_id: light.guest_closet_light_level
           state: "{{ trigger.to_state.state }}"
           brightness: 255
           transition: 1
@@ -136,7 +136,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.guest_bedroom_storage_door_contact
+        entity_id: binary_sensor.guest_storage_door_access_control_door_window_open
     action:
       - service: script.light_control
         data_template:
@@ -149,7 +149,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.michaels_closet_door_contact
+        entity_id: binary_sensor.michaels_closet_door_access_control_door_window_open
     action:
       - service: script.light_control
         data_template:
@@ -162,7 +162,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.julias_closet_door_contact
+        entity_id: binary_sensor.julias_closet_door_access_control_door_window_open
     action:
       - service: script.light_control
         data_template:
