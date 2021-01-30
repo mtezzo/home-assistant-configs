@@ -92,10 +92,10 @@ homeassistant:
       friendly_name: Bookshelf Lamp
       icon: mdi:desk-lamp
 
-    light.living_room_floor_lamp:
-      <<: *customize
-      friendly_name: Floor Lamp
-      icon: mdi:floor-lamp
+    # light.living_room_floor_lamp:
+    #   <<: *customize
+    #   friendly_name: Floor Lamp
+    #   icon: mdi:floor-lamp
 
     # light.guest_bedroom_closet:
     #   <<: *customize

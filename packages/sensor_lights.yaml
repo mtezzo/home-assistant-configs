@@ -79,7 +79,7 @@ automation:
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.living_room_floor_lamp
+          entity_id: light.living_room_floor_lamp_instance_1_level
           state: "{{ trigger.to_state.state }}"
           brightness: 178
           transition: 2

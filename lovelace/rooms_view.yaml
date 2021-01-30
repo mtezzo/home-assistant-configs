@@ -12,7 +12,7 @@ cards:
     entities:
       - light.table_light
       - light.living_room_bookshelf_lamp
-      - light.living_room_floor_lamp
+      - light.living_room_floor_lamp_instance_1_level
       - entity: sensor.living_room_motion_sensor_illuminance
         name: Lux
       - entity: climate.living_room
@@ -53,7 +53,7 @@ cards:
       - climate.living_room
       - light.table_light
       - light.living_room_bookshelf_lamp
-      - light.living_room_floor_lamp
+      - light.living_room_floor_lamp_instance_1_level
     image: /local/img/living_room.jpg?v=1
 
   - type: picture-glance

@@ -17,7 +17,7 @@ cards:
           - type: light
             entity: light.living_room_bookshelf_lamp
       - type: light
-        entity: light.living_room_floor_lamp
+        entity: light.living_room_floor_lamp_instance_1_level
 
   - type: custom:vertical-stack-in-card
     cards:
