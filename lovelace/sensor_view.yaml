@@ -11,7 +11,7 @@ cards:
     hours_to_show: 12
     points_per_hour: 2
     entities:
-      - entity: sensor.living_room_motion_sensor_temperature
+      - entity: sensor.living_room_motion_sensor_air_temperature
         name: Living Room
       - entity: sensor.living_room_thermostat_target
         name: Target
@@ -55,7 +55,7 @@ cards:
     filter:
       include:
         - domain: sensor
-          entity_id: "*battery"
+          entity_id: "*battery_level"
 
   - type: history-graph
     title: 'Presence History'
@@ -92,7 +92,7 @@ cards:
               legend: false
           - type: sensor
             name: BATTERY
-            entity: sensor.wirelesstag_diamond_crown_humidor_battery
+            entity: sensor.wirelesstag_diamond_crown_humidor_battery_level
             graph: none
 
   - type: custom:vertical-stack-in-card
@@ -122,7 +122,7 @@ cards:
               legend: false
           - type: sensor
             name: BATTERY
-            entity: sensor.wirelesstag_desktop_humidor_battery
+            entity: sensor.wirelesstag_desktop_humidor_battery_level
             graph: none
 
   - type: custom:vertical-stack-in-card
@@ -152,5 +152,5 @@ cards:
               legend: false
           - type: sensor
             name: BATTERY
-            entity: sensor.wirelesstag_dungeon_battery
+            entity: sensor.wirelesstag_dungeon_battery_level
             graph: none

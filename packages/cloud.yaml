@@ -50,7 +50,7 @@ cloud:
         - sensor.wirelesstag_diamond_crown_humidor_temperature
         - sensor.dark_sky_temperature
     entity_config:
-      sensor.living_room_motion_sensor_temperature:
+      sensor.living_room_motion_sensor_air_temperature:
         name: Living Room Temperature
         display_categories: TEMPERATURE_SENSOR
       sensor.master_bedroom_motion_sensor_temperature:

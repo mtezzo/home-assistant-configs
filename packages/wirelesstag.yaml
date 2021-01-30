@@ -36,7 +36,7 @@ homeassistant:
     ################################################
     ## Sensor
     ################################################
-    sensor.wirelesstag_diamond_crown_humidor_battery:
+    sensor.wirelesstag_diamond_crown_humidor_battery_level:
       <<: *customize
       friendly_name: 'Diamond Crown Humidor Battery Level'
       device_class: battery
@@ -56,7 +56,7 @@ homeassistant:
       friendly_name: 'Diamond Crown Humidor Temperature'
       device_class: temperature
 
-    sensor.wirelesstag_desktop_humidor_battery:
+    sensor.wirelesstag_desktop_humidor_battery_level:
       <<: *customize
       friendly_name: 'Desktop Humidor Battery Level'
       device_class: battery
@@ -76,7 +76,7 @@ homeassistant:
       friendly_name: 'Desktop Humidor Temperature'
       device_class: temperature
 
-    sensor.wirelesstag_dungeon_battery:
+    sensor.wirelesstag_dungeon_battery_level:
       <<: *customize
       friendly_name: 'Dungeon Battery Level'
       device_class: battery
@@ -110,15 +110,15 @@ sensor:
 
   - platform: template
     sensors:
-      wirelesstag_diamond_crown_humidor_battery:
+      wirelesstag_diamond_crown_humidor_battery_level:
         value_template: '{{ (states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
-      wirelesstag_desktop_humidor_battery:
+      wirelesstag_desktop_humidor_battery_level:
         value_template: '{{ (states.sensor.wirelesstag_desktop_humidor_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
-      wirelesstag_dungeon_battery:
+      wirelesstag_dungeon_battery_level:
         value_template: '{{ (states.sensor.wirelesstag_dungeon_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
@@ -131,7 +131,7 @@ plant:
   diamond_crown_humidor:
     sensors:
       moisture: sensor.wirelesstag_diamond_crown_humidor_humidity
-      battery: sensor.wirelesstag_diamond_crown_humidor_battery
+      battery: sensor.wirelesstag_diamond_crown_humidor_battery_level
       temperature: sensor.wirelesstag_diamond_crown_humidor_temperature
       brightness: sensor.wirelesstag_diamond_crown_humidor_light
     min_moisture: 60
@@ -143,7 +143,7 @@ plant:
   desktop_humidor:
     sensors:
       moisture: sensor.wirelesstag_desktop_humidor_humidity
-      battery: sensor.wirelesstag_desktop_humidor_battery
+      battery: sensor.wirelesstag_desktop_humidor_battery_level
       temperature: sensor.wirelesstag_desktop_humidor_temperature
       brightness: sensor.wirelesstag_desktop_humidor_light
     min_moisture: 60
@@ -155,7 +155,7 @@ plant:
   dungeon:
     sensors:
       moisture: sensor.wirelesstag_dungeon_humidity
-      battery: sensor.wirelesstag_dungeon_battery
+      battery: sensor.wirelesstag_dungeon_battery_level
       temperature: sensor.wirelesstag_dungeon_temperature
       brightness: sensor.wirelesstag_dungeon_light
     min_moisture: 35

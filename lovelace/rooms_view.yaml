@@ -13,7 +13,7 @@ cards:
       - light.table_light
       - light.living_room_bookshelf_lamp
       - light.living_room_floor_lamp
-      - entity: sensor.living_room_motion_sensor_luminance
+      - entity: sensor.living_room_motion_sensor_illuminance
         name: Lux
       - entity: climate.living_room
         name: Thermostat

@@ -54,10 +54,10 @@ homeassistant:
       friendly_name: Kitchen Motion Sensor
       device_class: motion
 
-    binary_sensor.living_room_motion_sensor:
-      <<: *customize
-      friendly_name: Living Room Motion Sensor
-      device_class: motion
+    # binary_sensor.living_room_motion_sensor:
+    #   <<: *customize
+    #   friendly_name: Living Room Motion Sensor
+    #   device_class: motion
 
     # binary_sensor.master_bedroom_motion_sensor:
     #   <<: *customize
@@ -201,30 +201,30 @@ homeassistant:
       friendly_name: Laundry Room Smoke Detector Battery Level
       device_class: battery
 
-    sensor.living_room_motion_sensor_battery:
-      <<: *customize
-      friendly_name: Living Room Motion Sensor Battery Level
-      device_class: battery
+    # sensor.living_room_motion_sensor_battery:
+    #   <<: *customize
+    #   friendly_name: Living Room Motion Sensor Battery Level
+    #   device_class: battery
 
-    sensor.living_room_motion_sensor_burglar:
-      <<: *customize
-      friendly_name: Living Room Motion Sensor Burglar
-      icon: mdi:alarm-bell
+    # sensor.living_room_motion_sensor_burglar:
+    #   <<: *customize
+    #   friendly_name: Living Room Motion Sensor Burglar
+    #   icon: mdi:alarm-bell
 
-    sensor.living_room_motion_sensor_luminance:
-      <<: *customize
-      friendly_name: Living Room Motion Sensor Luminance
-      device_class: illuminance
+    # sensor.living_room_motion_sensor_luminance:
+    #   <<: *customize
+    #   friendly_name: Living Room Motion Sensor Luminance
+    #   device_class: illuminance
 
-    sensor.living_room_motion_sensor_seismic_intensity:
-      <<: *customize
-      friendly_name: Living Room Motion Sensor Seismic Intensity
-      icon: mdi:vibrate
+    # sensor.living_room_motion_sensor_seismic_intensity:
+    #   <<: *customize
+    #   friendly_name: Living Room Motion Sensor Seismic Intensity
+    #   icon: mdi:vibrate
 
-    sensor.living_room_motion_sensor_temperature:
-      <<: *customize
-      friendly_name: Living Room Motion Sensor Temperature
-      device_class: temperature
+    # sensor.living_room_motion_sensor_temperature:
+    #   <<: *customize
+    #   friendly_name: Living Room Motion Sensor Temperature
+    #   device_class: temperature
 
     sensor.master_bedroom_motion_sensor_burglar:
       <<: *customize
@@ -343,8 +343,8 @@ homeassistant:
     zwave.living_room_floor_lamp:
       friendly_name: "Living Room Floor Lamp"
 
-    zwave.living_room_motion_sensor:
-      friendly_name: "Living Room Motion Sensor"
+    # zwave.living_room_motion_sensor:
+    #   friendly_name: "Living Room Motion Sensor"
 
     zwave.master_bedroom_motion_sensor:
       friendly_name: "Master Bedroom Motion Sensor"
@@ -421,10 +421,10 @@ sensor:
         value_template: "{{ (states.zwave.laundry_room_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
 
-      living_room_motion_sensor_battery:
-        entity_id: zwave.living_room_motion_sensor
-        value_template: "{{ (states.zwave.living_room_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # living_room_motion_sensor_battery:
+      #   entity_id: zwave.living_room_motion_sensor
+      #   value_template: "{{ (states.zwave.living_room_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       master_bedroom_smoke_and_carbon_monoxide_detector_battery:
         entity_id: zwave.master_bedroom_smoke_and_carbon_monoxide_detector
