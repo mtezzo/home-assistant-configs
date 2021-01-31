@@ -44,7 +44,6 @@ cloud:
         - media_player.dining_room
         - media_player.living_room
         - media_player.office
-        - switch.aeotec_zstick_disco_light
         - switch.basement_task_light
         - sensor.wirelesstag_desktop_humidor_temperature
         - sensor.wirelesstag_diamond_crown_humidor_temperature
@@ -59,5 +58,3 @@ cloud:
       sensor.laundry_room_flood_sensor_air_temperature:
         name: Laundry Room Temperature
         display_categories: TEMPERATURE_SENSOR
-      # switch.living_room_bookshelf_lamp:
-      #   display_categories: LIGHT
