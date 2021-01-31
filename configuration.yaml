@@ -60,7 +60,6 @@ discovery:
 # Enables the frontend
 # https://www.home-assistant.io/components/frontend/
 frontend:
-  javascript_version: latest
   themes: !include_dir_named themes
 
 # Enables HACS

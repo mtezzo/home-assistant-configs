@@ -132,25 +132,24 @@ script:
           away_mode: home
 
 ################################################
-## Sensor
-################################################
-
-# https://home-assistant.io/components/sensor.nest/
-sensor:
-  - platform: nest
-    monitored_conditions:
-      - temperature
-      - target
-      - humidity
-      - operation_mode
-      - hvac_state
-      - co_status
-      - smoke_status
-
-################################################
 ## Nest
 ################################################
 
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
+  binary_sensors:
+    monitored_conditions:
+      - 'away'
+      - 'fan'
+      - 'target'
+  sensors:
+    monitored_conditions:
+      - 'temperature'
+      - 'target'
+      - 'humidity'
+      - 'preset_mode'
+      - 'hvac_state'
+      - 'co_status'
+      - 'smoke_status'
+      - 'battery_health'
