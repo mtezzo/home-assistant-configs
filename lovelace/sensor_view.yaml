@@ -45,7 +45,7 @@ cards:
             device_class: door
         - domain: binary_sensor
           attributes:
-            device_class: garage-door
+            device_class: garage_door
 
   - type: custom:auto-entities
     card:
