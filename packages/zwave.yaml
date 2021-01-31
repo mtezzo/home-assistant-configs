@@ -282,7 +282,7 @@ homeassistant:
 
     switch.basement_task_light:
       <<: *customize
-      # friendly_name: Basement Task Light
+      friendly_name: Basement Task Light
       icon: mdi:desk-lamp
 
 ################################################
@@ -293,65 +293,3 @@ light:
   - platform: switch
     name: Basement Task Light
     entity_id: switch.basement_task_light
-
-################################################
-## Sensors
-################################################
-
-sensor:
-  - platform: template
-    sensors:
-      # guest_bedroom_closet_door_contact_battery:
-      #   entity_id: zwave.guest_bedroom_closet_door_contact
-      #   value_template: "{{ (states.zwave.guest_bedroom_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # guest_bedroom_storage_door_contact_battery:
-      #   entity_id: zwave.guest_bedroom_storage_door_contact
-      #   value_template: "{{ (states.zwave.guest_bedroom_storage_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
-      #   entity_id: zwave.guest_bedroom_smoke_and_carbon_monoxide_detector
-      #   value_template: "{{ (states.zwave.guest_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # julias_closet_door_contact_battery:
-      #   entity_id: zwave.julias_closet_door_contact
-      #   value_template: "{{ (states.zwave.julias_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      kitchen_motion_sensor_battery:
-        entity_id: zwave.kitchen_motion_sensor
-        value_template: "{{ (states.zwave.kitchen_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
-
-      # laundry_room_flood_sensor_battery:
-      #   entity_id: zwave.laundry_room_flood_sensor
-      #   value_template: "{{ (states.zwave.laundry_room_flood_sensor.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # laundry_room_smoke_and_carbon_monoxide_detector_battery:
-      #   entity_id: zwave.laundry_room_smoke_and_carbon_monoxide_detector
-      #   value_template: "{{ (states.zwave.laundry_room_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # living_room_motion_sensor_battery:
-      #   entity_id: zwave.living_room_motion_sensor
-      #   value_template: "{{ (states.zwave.living_room_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # master_bedroom_smoke_and_carbon_monoxide_detector_battery:
-      #   entity_id: zwave.master_bedroom_smoke_and_carbon_monoxide_detector
-      #   value_template: "{{ (states.zwave.master_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # michaels_closet_door_contact_battery:
-      #   entity_id: zwave.michaels_closet_door_contact
-      #   value_template: "{{ (states.zwave.michaels_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
-
-      # office_smoke_and_carbon_monoxide_detector_battery:
-      #   entity_id: zwave.office_smoke_and_carbon_monoxide_detector
-      #   value_template: "{{ (states.zwave.office_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-      #   unit_of_measurement: '%'
