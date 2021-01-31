@@ -38,62 +38,62 @@ homeassistant:
     ################################################
     sensor.wirelesstag_diamond_crown_humidor_battery_level:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor Battery Level'
+      friendly_name: 'Diamond Crown Humidor: Battery Level'
       device_class: battery
 
     sensor.wirelesstag_diamond_crown_humidor_humidity:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor Humidity'
+      friendly_name: 'Diamond Crown Humidor: Humidity'
       device_class: humidity
 
     sensor.wirelesstag_diamond_crown_humidor_light:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor Luminance'
+      friendly_name: 'Diamond Crown Humidor: Illuminance'
       device_class: illuminance
 
     sensor.wirelesstag_diamond_crown_humidor_temperature:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor Temperature'
+      friendly_name: 'Diamond Crown Humidor: Temperature'
       device_class: temperature
 
     sensor.wirelesstag_desktop_humidor_battery_level:
       <<: *customize
-      friendly_name: 'Desktop Humidor Battery Level'
+      friendly_name: 'Desktop Humidor: Battery Level'
       device_class: battery
 
     sensor.wirelesstag_desktop_humidor_humidity:
       <<: *customize
-      friendly_name: 'Desktop Humidor Humidity'
+      friendly_name: 'Desktop Humidor: Humidity'
       device_class: humidity
 
     sensor.wirelesstag_desktop_humidor_light:
       <<: *customize
-      friendly_name: 'Desktop Humidor Luminance'
+      friendly_name: 'Desktop Humidor: Illuminance'
       device_class: illuminance
 
     sensor.wirelesstag_desktop_humidor_temperature:
       <<: *customize
-      friendly_name: 'Desktop Humidor Temperature'
+      friendly_name: 'Desktop Humidor: Temperature'
       device_class: temperature
 
     sensor.wirelesstag_dungeon_battery_level:
       <<: *customize
-      friendly_name: 'Dungeon Battery Level'
+      friendly_name: 'Dungeon: Battery Level'
       device_class: battery
 
     sensor.wirelesstag_dungeon_humidity:
       <<: *customize
-      friendly_name: 'Dungeon Humidity'
+      friendly_name: 'Dungeon: Humidity'
       device_class: humidity
 
     sensor.wirelesstag_dungeon_light:
       <<: *customize
-      friendly_name: 'Dungeon Luminance'
+      friendly_name: 'Dungeon: Illuminance'
       device_class: illuminance
 
     sensor.wirelesstag_dungeon_temperature:
       <<: *customize
-      friendly_name: 'Dungeon Temperature'
+      friendly_name: 'Dungeon: Temperature'
       device_class: temperature
 
 ################################################
