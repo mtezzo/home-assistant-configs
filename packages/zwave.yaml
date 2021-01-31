@@ -24,59 +24,59 @@ homeassistant:
     ## Binary Sensor
     ################################################
 
-    # binary_sensor.entrance_front_door_contact:
-    #   <<: *customize
-    #   friendly_name: Entrance Front Door
-    #   device_class: door
+    binary_sensor.entrance_front_door_sensor:
+      <<: *customize
+      friendly_name: Entrance Front Door
+      device_class: door
 
-    # binary_sensor.garage_door_opener:
-    #   <<: *customize
-    #   friendly_name: Garage Door
-    #   device_class: garage_door
+    binary_sensor.garage_door_sensor:
+      <<: *customize
+      friendly_name: Garage Door
+      device_class: garage_door
 
-    # binary_sensor.guest_bedroom_closet_door_contact:
-    #   <<: *customize
-    #   friendly_name: Guest Bedroom Closet Door
-    #   device_class: door
+    binary_sensor.guest_closet_door_access_control_door_window_open:
+      <<: *customize
+      friendly_name: Guest Bedroom Closet Door
+      device_class: door
 
-    # binary_sensor.guest_bedroom_storage_door_contact:
-    #   <<: *customize
-    #   friendly_name: Guest Bedroom Storage Door
-    #   device_class: door
+    binary_sensor.guest_storage_door_access_control_door_window_open:
+      <<: *customize
+      friendly_name: Guest Bedroom Storage Door
+      device_class: door
 
-    # binary_sensor.julias_closet_door_contact:
-    #   <<: *customize
-    #   friendly_name: "Julia's Closet Door"
-    #   device_class: door
+    binary_sensor.julias_closet_door_access_control_door_window_open:
+      <<: *customize
+      friendly_name: "Julia's Closet Door"
+      device_class: door
 
     binary_sensor.kitchen_motion_sensor:
       <<: *customize
       friendly_name: Kitchen Motion Sensor
       device_class: motion
 
-    # binary_sensor.living_room_motion_sensor:
-    #   <<: *customize
-    #   friendly_name: Living Room Motion Sensor
-    #   device_class: motion
+    binary_sensor.living_room_motion_sensor_home_security_motion_detected:
+      <<: *customize
+      friendly_name: Living Room Motion Sensor
+      device_class: motion
 
-    # binary_sensor.master_bedroom_motion_sensor:
-    #   <<: *customize
-    #   friendly_name: Master Bedroom Motion Sensor
-    #   device_class: motion
+    binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected:
+      <<: *customize
+      friendly_name: Master Bedroom Motion Sensor
+      device_class: motion
 
-    # binary_sensor.michaels_closet_door_contact:
-    #   <<: *customize
-    #   friendly_name: "Michael's Closet Door"
-    #   device_class: door
+    binary_sensor.michaels_closet_door_access_control_door_window_open:
+      <<: *customize
+      friendly_name: "Michael's Closet Door"
+      device_class: door
 
     ################################################
     ## Cover
     ################################################
 
-    # cover.garage_door_opener:
-    #   <<: *customize
-    #   friendly_name: Garage Door
-    #   device_class: garage
+    cover.garage_door_barrier_state:
+      <<: *customize
+      friendly_name: Garage Door
+      device_class: garage
 
     ################################################
     ## Lights
@@ -87,30 +87,30 @@ homeassistant:
       friendly_name: Basement Task Light
       icon: mdi:desk-lamp
 
-    # light.living_room_bookshelf_lamp:
-    #   <<: *customize
-    #   friendly_name: Bookshelf Lamp
-    #   icon: mdi:desk-lamp
+    light.living_room_bookshelf_lamp_instance_1_level:
+      <<: *customize
+      friendly_name: Bookshelf Lamp
+      icon: mdi:desk-lamp
 
-    # light.living_room_floor_lamp:
-    #   <<: *customize
-    #   friendly_name: Floor Lamp
-    #   icon: mdi:floor-lamp
+    light.living_room_floor_lamp_instance_1_level:
+      <<: *customize
+      friendly_name: Floor Lamp
+      icon: mdi:floor-lamp
 
-    # light.guest_bedroom_closet:
-    #   <<: *customize
-    #   friendly_name: Guest Closet Light
-    #   icon: mdi:lightbulb
+    light.guest_closet_light_level:
+      <<: *customize
+      friendly_name: Guest Closet Light
+      icon: mdi:lightbulb
 
-    # light.garage_storage:
-    #   <<: *customize
-    #   friendly_name: Garage Storage Light
-    #   icon: mdi:lightbulb
+    light.garage_light_level:
+      <<: *customize
+      friendly_name: Garage Storage Light
+      icon: mdi:lightbulb
 
-    # light.dungeon:
-    #   <<: *customize
-    #   friendly_name: Dungeon Light
-    #   icon: mdi:lightbulb
+    light.dungeon_light_level:
+      <<: *customize
+      friendly_name: Dungeon Light
+      icon: mdi:lightbulb
 
     ################################################
     ## Sensor
@@ -285,91 +285,6 @@ homeassistant:
       # friendly_name: Basement Task Light
       icon: mdi:desk-lamp
 
-    ################################################
-    ## Z-Wave
-    ################################################
-
-    # zwave.homeseer_smartstick_plus_g2:
-    #   friendly_name: "Z-Wave USB Hub"
-
-    # zwave.basement_task_light:
-    #   friendly_name: "Basement Task Light"
-
-    # zwave.dungeon_light_bulb:
-    #   friendly_name: "Dungeon Light Bulb"
-
-    # zwave.entrance_front_door_contact:
-    #   friendly_name: "Entrance Front Door Contact"
-
-    # zwave.garage_door_opener:
-    #   friendly_name: "Garage Door Opener"
-
-    # zwave.garage_storage_light_bulb:
-    #   friendly_name: "Garage Storage Light Bulb"
-
-    # zwave.guest_bedroom_closet_door_contact:
-    #   friendly_name: "Guest Bedroom Closet Door Contact"
-
-    # zwave.guest_bedroom_closet_light_bulb:
-    #   friendly_name: "Guest Bedroom Closet Light Bulb"
-
-    # zwave.guest_bedroom_smoke_and_carbon_monoxide_detector:
-    #   friendly_name: "Guest Bedroom Smoke and Carbon Monoxide Detector"
-
-    # zwave.guest_bedroom_storage_door_contact:
-    #   friendly_name: "Guest Bedroom Storage Door Contact"
-
-    # zwave.julias_closet_door_contact:
-    #   friendly_name: "Julia's Closet Door Contact"
-
-    zwave.kitchen_motion_sensor:
-      friendly_name: "Kitchen Motion Sensor"
-
-    # zwave.kitchen_range_extender:
-    #   friendly_name: "Kitchen Range Extender"
-
-    # zwave.laundry_room_flood_sensor:
-    #   friendly_name: "Laundry Room Flood Sensor"
-
-    # zwave.laundry_room_range_extender:
-    #   friendly_name: "Laundry Room Range Extender"
-
-    # zwave.laundry_room_smoke_and_carbon_monoxide_detector:
-    #   friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector"
-
-    # zwave.living_room_bookshelf_lamp:
-    #   friendly_name: "Living Room Bookshelf Lamp"
-
-    # zwave.living_room_floor_lamp:
-    #   friendly_name: "Living Room Floor Lamp"
-
-    # zwave.living_room_motion_sensor:
-    #   friendly_name: "Living Room Motion Sensor"
-
-    # zwave.master_bedroom_motion_sensor:
-    #   friendly_name: "Master Bedroom Motion Sensor"
-
-    # zwave.master_bedroom_smoke_and_carbon_monoxide_detector:
-    #   friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector"
-
-    # zwave.master_bedroom_remote:
-    #   friendly_name: "Master Bedroom Remote"
-
-    # zwave.michaels_closet_door_contact:
-    #   friendly_name: "Michael's Closet Door Contact"
-
-    # zwave.office_smoke_and_carbon_monoxide_detector:
-    #   friendly_name: "Office Smoke and Carbon Monoxide Detector"
-
-  ################################################
-  ## Customize Domain
-  ################################################
-
-  # customize_domain:
-  #   zwave:
-  #     <<: *customize
-      # hidden: true
-
 ################################################
 ## Light
 ################################################
@@ -440,12 +355,3 @@ sensor:
       #   entity_id: zwave.office_smoke_and_carbon_monoxide_detector
       #   value_template: "{{ (states.zwave.office_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
       #   unit_of_measurement: '%'
-
-################################################
-## Z-Wave
-################################################
-
-#zwave:
-#  usb_path: /dev/ttyACM0
-#  network_key: !secret zwave_network_key
-#  device_config: !include ../zwave_device_config.yaml
