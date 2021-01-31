@@ -73,9 +73,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave.scene_activated
+        event_type: ozw.scene_activated
         event_data:
-          entity_id: zwave.master_bedroom_remote
+          node_id: 18
           scene_id: 2
           scene_data: 7680
     action:
@@ -90,9 +90,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave.scene_activated
+        event_type: ozw.scene_activated
         event_data:
-          entity_id: zwave.master_bedroom_remote
+          node_id: 18
           scene_id: 1
           scene_data: 7680
     action:
@@ -111,9 +111,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave.scene_activated
+        event_type: ozw.scene_activated
         event_data:
-          entity_id: zwave.master_bedroom_remote
+          node_id: 18
           scene_id: 4
           scene_data: 7680
     action:
@@ -128,9 +128,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave.scene_activated
+        event_type: ozw.scene_activated
         event_data:
-          entity_id: zwave.master_bedroom_remote
+          node_id: 18
           scene_id: 3
           scene_data: 7680
     action:
@@ -149,9 +149,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave.scene_activated
+        event_type: ozw.scene_activated
         event_data:
-          entity_id: zwave.master_bedroom_remote
+          node_id: 18
           scene_id: 5
           scene_data: 7680
     action:
@@ -164,9 +164,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave.scene_activated
+        event_type: ozw.scene_activated
         event_data:
-          entity_id: zwave.master_bedroom_remote
+          node_id: 18
           scene_id: 5
           scene_data: 7800
     action:
@@ -183,9 +183,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave.scene_activated
+        event_type: ozw.scene_activated
         event_data:
-          entity_id: zwave.master_bedroom_remote
+          node_id: 18
           scene_id: 6
           scene_data: 7680
     action:

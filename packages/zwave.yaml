@@ -352,8 +352,8 @@ homeassistant:
     # zwave.master_bedroom_smoke_and_carbon_monoxide_detector:
     #   friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector"
 
-    zwave.master_bedroom_remote:
-      friendly_name: "Master Bedroom Remote"
+    # zwave.master_bedroom_remote:
+    #   friendly_name: "Master Bedroom Remote"
 
     # zwave.michaels_closet_door_contact:
     #   friendly_name: "Michael's Closet Door Contact"
