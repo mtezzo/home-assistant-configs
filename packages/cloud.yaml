@@ -56,7 +56,7 @@ cloud:
       sensor.master_bedroom_motion_sensor_air_temperature:
         name: Bedroom Temperature
         display_categories: TEMPERATURE_SENSOR
-      sensor.laundry_room_flood_sensor_temperature:
+      sensor.laundry_room_flood_sensor_air_temperature:
         name: Laundry Room Temperature
         display_categories: TEMPERATURE_SENSOR
       # switch.living_room_bookshelf_lamp:

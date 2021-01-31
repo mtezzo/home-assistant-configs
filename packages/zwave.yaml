@@ -126,30 +126,30 @@ homeassistant:
       friendly_name: Guest Bedroom Smoke Detector
       icon: mdi:smoke-detector
 
-    sensor.guest_bedroom_closet_door_contact_battery:
-      <<: *customize
-      friendly_name: Guest Bedroom Closet Door Battery Level
-      device_class: battery
+    # sensor.guest_bedroom_closet_door_contact_battery:
+    #   <<: *customize
+    #   friendly_name: Guest Bedroom Closet Door Battery Level
+    #   device_class: battery
 
-    sensor.guest_bedroom_storage_door_contact_battery:
-      <<: *customize
-      friendly_name: Guest Bedroom Storage Door Battery Level
-      device_class: battery
+    # sensor.guest_bedroom_storage_door_contact_battery:
+    #   <<: *customize
+    #   friendly_name: Guest Bedroom Storage Door Battery Level
+    #   device_class: battery
 
-    sensor.guest_bedroom_storage_door_contact_burglar:
-      <<: *customize
-      friendly_name: Guest Bedroom Closet Door Contact Burglar
-      icon: mdi:alarm-bell
+    # sensor.guest_bedroom_storage_door_contact_burglar:
+    #   <<: *customize
+    #   friendly_name: Guest Bedroom Closet Door Contact Burglar
+    #   icon: mdi:alarm-bell
 
-    sensor.julias_closet_door_contact_battery:
-      <<: *customize
-      friendly_name: "Julia's Closet Door Battery Level"
-      device_class: battery
+    # sensor.julias_closet_door_contact_battery:
+    #   <<: *customize
+    #   friendly_name: "Julia's Closet Door Battery Level"
+    #   device_class: battery
 
-    sensor.julias_closet_door_contact_burglar:
-      <<: *customize
-      friendly_name: "Julia's Closet Door Contact Burglar"
-      icon: mdi:alarm-bell
+    # sensor.julias_closet_door_contact_burglar:
+    #   <<: *customize
+    #   friendly_name: "Julia's Closet Door Contact Burglar"
+    #   icon: mdi:alarm-bell
 
     sensor.kitchen_motion_sensor_battery:
       <<: *customize
@@ -171,25 +171,25 @@ homeassistant:
       friendly_name: Kitchen Motion Sensor Temperature
       device_class: temperature
 
-    sensor.laundry_room_flood_sensor:
-      <<: *customize
-      friendly_name: Laundry Room Flood Sensor
-      icon: mdi:water
+    # sensor.laundry_room_flood_sensor:
+    #   <<: *customize
+    #   friendly_name: Laundry Room Flood Sensor
+    #   icon: mdi:water
 
-    sensor.laundry_room_flood_sensor_battery:
-      <<: *customize
-      friendly_name: Laundry Room Flood Sensor Battery Level
-      device_class: battery
+    # sensor.laundry_room_flood_sensor_battery:
+    #   <<: *customize
+    #   friendly_name: Laundry Room Flood Sensor Battery Level
+    #   device_class: battery
 
-    sensor.laundry_room_flood_sensor_burglar:
-      <<: *customize
-      friendly_name: Laundry Room Flood Sensor Burglar
-      icon: mdi:alarm-bell
+    # sensor.laundry_room_flood_sensor_burglar:
+    #   <<: *customize
+    #   friendly_name: Laundry Room Flood Sensor Burglar
+    #   icon: mdi:alarm-bell
 
-    sensor.laundry_room_flood_sensor_temperature:
-      <<: *customize
-      friendly_name: Laundry Room Flood Sensor Temperature
-      device_class: temperature
+    # sensor.laundry_room_flood_sensor_temperature:
+    #   <<: *customize
+    #   friendly_name: Laundry Room Flood Sensor Temperature
+    #   device_class: temperature
 
     sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level:
       <<: *customize
@@ -256,15 +256,15 @@ homeassistant:
       friendly_name: Master Bedroom Smoke Detector Battery Level
       device_class: battery
 
-    sensor.michaels_closet_door_contact_battery:
-      <<: *customize
-      friendly_name: "Michael's Closet Door Battery Level"
-      device_class: battery
+    # sensor.michaels_closet_door_contact_battery:
+    #   <<: *customize
+    #   friendly_name: "Michael's Closet Door Battery Level"
+    #   device_class: battery
 
-    sensor.michaels_closet_door_contact_burglar:
-      <<: *customize
-      friendly_name: "Michael's Closet Door Contact Burglar"
-      icon: mdi:alarm-bell
+    # sensor.michaels_closet_door_contact_burglar:
+    #   <<: *customize
+    #   friendly_name: "Michael's Closet Door Contact Burglar"
+    #   icon: mdi:alarm-bell
 
     sensor.office_smoke_and_carbon_monoxide_detector_alarm_level:
       <<: *customize
@@ -325,14 +325,14 @@ homeassistant:
     zwave.kitchen_motion_sensor:
       friendly_name: "Kitchen Motion Sensor"
 
-    zwave.kitchen_range_extender:
-      friendly_name: "Kitchen Range Extender"
+    # zwave.kitchen_range_extender:
+    #   friendly_name: "Kitchen Range Extender"
 
-    zwave.laundry_room_flood_sensor:
-      friendly_name: "Laundry Room Flood Sensor"
+    # zwave.laundry_room_flood_sensor:
+    #   friendly_name: "Laundry Room Flood Sensor"
 
-    zwave.laundry_room_range_extender:
-      friendly_name: "Laundry Room Range Extender"
+    # zwave.laundry_room_range_extender:
+    #   friendly_name: "Laundry Room Range Extender"
 
     zwave.laundry_room_smoke_and_carbon_monoxide_detector:
       friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector"
@@ -386,35 +386,35 @@ light:
 sensor:
   - platform: template
     sensors:
-      guest_bedroom_closet_door_contact_battery:
-        entity_id: zwave.guest_bedroom_closet_door_contact
-        value_template: "{{ (states.zwave.guest_bedroom_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # guest_bedroom_closet_door_contact_battery:
+      #   entity_id: zwave.guest_bedroom_closet_door_contact
+      #   value_template: "{{ (states.zwave.guest_bedroom_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
-      guest_bedroom_storage_door_contact_battery:
-        entity_id: zwave.guest_bedroom_storage_door_contact
-        value_template: "{{ (states.zwave.guest_bedroom_storage_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # guest_bedroom_storage_door_contact_battery:
+      #   entity_id: zwave.guest_bedroom_storage_door_contact
+      #   value_template: "{{ (states.zwave.guest_bedroom_storage_door_contact.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
         entity_id: zwave.guest_bedroom_smoke_and_carbon_monoxide_detector
         value_template: "{{ (states.zwave.guest_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
 
-      julias_closet_door_contact_battery:
-        entity_id: zwave.julias_closet_door_contact
-        value_template: "{{ (states.zwave.julias_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # julias_closet_door_contact_battery:
+      #   entity_id: zwave.julias_closet_door_contact
+      #   value_template: "{{ (states.zwave.julias_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       kitchen_motion_sensor_battery:
         entity_id: zwave.kitchen_motion_sensor
         value_template: "{{ (states.zwave.kitchen_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
 
-      laundry_room_flood_sensor_battery:
-        entity_id: zwave.laundry_room_flood_sensor
-        value_template: "{{ (states.zwave.laundry_room_flood_sensor.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # laundry_room_flood_sensor_battery:
+      #   entity_id: zwave.laundry_room_flood_sensor
+      #   value_template: "{{ (states.zwave.laundry_room_flood_sensor.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       laundry_room_smoke_and_carbon_monoxide_detector_battery:
         entity_id: zwave.laundry_room_smoke_and_carbon_monoxide_detector
@@ -431,10 +431,10 @@ sensor:
         value_template: "{{ (states.zwave.master_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
         unit_of_measurement: '%'
 
-      michaels_closet_door_contact_battery:
-        entity_id: zwave.michaels_closet_door_contact
-        value_template: "{{ (states.zwave.michaels_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # michaels_closet_door_contact_battery:
+      #   entity_id: zwave.michaels_closet_door_contact
+      #   value_template: "{{ (states.zwave.michaels_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       office_smoke_and_carbon_monoxide_detector_battery:
         entity_id: zwave.office_smoke_and_carbon_monoxide_detector
