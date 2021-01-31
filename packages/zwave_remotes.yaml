@@ -77,7 +77,8 @@ automation:
         event_data:
           node_id: 18
           scene_id: 2
-          scene_data: 7680
+          scene_value_id: 1
+          #scene_data: 7680
     action:
       - service: script.light_control
         data_template:
@@ -94,7 +95,8 @@ automation:
         event_data:
           node_id: 18
           scene_id: 1
-          scene_data: 7680
+          scene_value_id: 1
+          #scene_data: 7680
     action:
       - service: script.light_control
         data_template:
