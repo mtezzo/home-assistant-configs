@@ -116,15 +116,15 @@ homeassistant:
     ## Sensor
     ################################################
 
-    sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
-      <<: *customize
-      friendly_name: Guest Bedroom Smoke Detector Battery Level
-      device_class: battery
+    # sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
+    #   <<: *customize
+    #   friendly_name: Guest Bedroom Smoke Detector Battery Level
+    #   device_class: battery
 
-    sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
-      <<: *customize
-      friendly_name: Guest Bedroom Smoke Detector
-      icon: mdi:smoke-detector
+    # sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
+    #   <<: *customize
+    #   friendly_name: Guest Bedroom Smoke Detector
+    #   icon: mdi:smoke-detector
 
     # sensor.guest_bedroom_closet_door_contact_battery:
     #   <<: *customize
@@ -191,15 +191,15 @@ homeassistant:
     #   friendly_name: Laundry Room Flood Sensor Temperature
     #   device_class: temperature
 
-    sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level:
-      <<: *customize
-      friendly_name: Laundry Room Smoke Detector
-      icon: mdi:smoke-detector
+    # sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level:
+    #   <<: *customize
+    #   friendly_name: Laundry Room Smoke Detector
+    #   icon: mdi:smoke-detector
 
-    sensor.laundry_room_smoke_and_carbon_monoxide_detector_battery:
-      <<: *customize
-      friendly_name: Laundry Room Smoke Detector Battery Level
-      device_class: battery
+    # sensor.laundry_room_smoke_and_carbon_monoxide_detector_battery:
+    #   <<: *customize
+    #   friendly_name: Laundry Room Smoke Detector Battery Level
+    #   device_class: battery
 
     # sensor.living_room_motion_sensor_battery:
     #   <<: *customize
@@ -246,15 +246,15 @@ homeassistant:
     #   friendly_name: Master Bedroom Motion Sensor Temperature
     #   device_class: temperature
 
-    sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
-      <<: *customize
-      friendly_name: Master Bedroom Smoke Detector
-      icon: mdi:smoke-detector
+    # sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level:
+    #   <<: *customize
+    #   friendly_name: Master Bedroom Smoke Detector
+    #   icon: mdi:smoke-detector
 
-    sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery:
-      <<: *customize
-      friendly_name: Master Bedroom Smoke Detector Battery Level
-      device_class: battery
+    # sensor.master_bedroom_smoke_and_carbon_monoxide_detector_battery:
+    #   <<: *customize
+    #   friendly_name: Master Bedroom Smoke Detector Battery Level
+    #   device_class: battery
 
     # sensor.michaels_closet_door_contact_battery:
     #   <<: *customize
@@ -266,15 +266,15 @@ homeassistant:
     #   friendly_name: "Michael's Closet Door Contact Burglar"
     #   icon: mdi:alarm-bell
 
-    sensor.office_smoke_and_carbon_monoxide_detector_alarm_level:
-      <<: *customize
-      friendly_name: Office Smoke Detector
-      icon: mdi:smoke-detector
+    # sensor.office_smoke_and_carbon_monoxide_detector_alarm_level:
+    #   <<: *customize
+    #   friendly_name: Office Smoke Detector
+    #   icon: mdi:smoke-detector
 
-    sensor.office_smoke_and_carbon_monoxide_detector_battery:
-      <<: *customize
-      friendly_name: Office Smoke Detector Battery Level
-      device_class: battery
+    # sensor.office_smoke_and_carbon_monoxide_detector_battery:
+    #   <<: *customize
+    #   friendly_name: Office Smoke Detector Battery Level
+    #   device_class: battery
 
     ################################################
     ## Switches
@@ -313,8 +313,8 @@ homeassistant:
     # zwave.guest_bedroom_closet_light_bulb:
     #   friendly_name: "Guest Bedroom Closet Light Bulb"
 
-    zwave.guest_bedroom_smoke_and_carbon_monoxide_detector:
-      friendly_name: "Guest Bedroom Smoke and Carbon Monoxide Detector"
+    # zwave.guest_bedroom_smoke_and_carbon_monoxide_detector:
+    #   friendly_name: "Guest Bedroom Smoke and Carbon Monoxide Detector"
 
     # zwave.guest_bedroom_storage_door_contact:
     #   friendly_name: "Guest Bedroom Storage Door Contact"
@@ -334,8 +334,8 @@ homeassistant:
     # zwave.laundry_room_range_extender:
     #   friendly_name: "Laundry Room Range Extender"
 
-    zwave.laundry_room_smoke_and_carbon_monoxide_detector:
-      friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector"
+    # zwave.laundry_room_smoke_and_carbon_monoxide_detector:
+    #   friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector"
 
     # zwave.living_room_bookshelf_lamp:
     #   friendly_name: "Living Room Bookshelf Lamp"
@@ -349,8 +349,8 @@ homeassistant:
     # zwave.master_bedroom_motion_sensor:
     #   friendly_name: "Master Bedroom Motion Sensor"
 
-    zwave.master_bedroom_smoke_and_carbon_monoxide_detector:
-      friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector"
+    # zwave.master_bedroom_smoke_and_carbon_monoxide_detector:
+    #   friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector"
 
     zwave.master_bedroom_remote:
       friendly_name: "Master Bedroom Remote"
@@ -358,8 +358,8 @@ homeassistant:
     # zwave.michaels_closet_door_contact:
     #   friendly_name: "Michael's Closet Door Contact"
 
-    zwave.office_smoke_and_carbon_monoxide_detector:
-      friendly_name: "Office Smoke and Carbon Monoxide Detector"
+    # zwave.office_smoke_and_carbon_monoxide_detector:
+    #   friendly_name: "Office Smoke and Carbon Monoxide Detector"
 
   ################################################
   ## Customize Domain
@@ -396,10 +396,10 @@ sensor:
       #   value_template: "{{ (states.zwave.guest_bedroom_storage_door_contact.attributes|default).battery_level|default|int('unknown') }}"
       #   unit_of_measurement: '%'
 
-      guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
-        entity_id: zwave.guest_bedroom_smoke_and_carbon_monoxide_detector
-        value_template: "{{ (states.zwave.guest_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # guest_bedroom_smoke_and_carbon_monoxide_detector_battery:
+      #   entity_id: zwave.guest_bedroom_smoke_and_carbon_monoxide_detector
+      #   value_template: "{{ (states.zwave.guest_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       # julias_closet_door_contact_battery:
       #   entity_id: zwave.julias_closet_door_contact
@@ -416,30 +416,30 @@ sensor:
       #   value_template: "{{ (states.zwave.laundry_room_flood_sensor.attributes|default).battery_level|default|int('unknown') }}"
       #   unit_of_measurement: '%'
 
-      laundry_room_smoke_and_carbon_monoxide_detector_battery:
-        entity_id: zwave.laundry_room_smoke_and_carbon_monoxide_detector
-        value_template: "{{ (states.zwave.laundry_room_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # laundry_room_smoke_and_carbon_monoxide_detector_battery:
+      #   entity_id: zwave.laundry_room_smoke_and_carbon_monoxide_detector
+      #   value_template: "{{ (states.zwave.laundry_room_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       # living_room_motion_sensor_battery:
       #   entity_id: zwave.living_room_motion_sensor
       #   value_template: "{{ (states.zwave.living_room_motion_sensor.attributes|default).battery_level|default|int('unknown') }}"
       #   unit_of_measurement: '%'
 
-      master_bedroom_smoke_and_carbon_monoxide_detector_battery:
-        entity_id: zwave.master_bedroom_smoke_and_carbon_monoxide_detector
-        value_template: "{{ (states.zwave.master_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # master_bedroom_smoke_and_carbon_monoxide_detector_battery:
+      #   entity_id: zwave.master_bedroom_smoke_and_carbon_monoxide_detector
+      #   value_template: "{{ (states.zwave.master_bedroom_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
       # michaels_closet_door_contact_battery:
       #   entity_id: zwave.michaels_closet_door_contact
       #   value_template: "{{ (states.zwave.michaels_closet_door_contact.attributes|default).battery_level|default|int('unknown') }}"
       #   unit_of_measurement: '%'
 
-      office_smoke_and_carbon_monoxide_detector_battery:
-        entity_id: zwave.office_smoke_and_carbon_monoxide_detector
-        value_template: "{{ (states.zwave.office_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
-        unit_of_measurement: '%'
+      # office_smoke_and_carbon_monoxide_detector_battery:
+      #   entity_id: zwave.office_smoke_and_carbon_monoxide_detector
+      #   value_template: "{{ (states.zwave.office_smoke_and_carbon_monoxide_detector.attributes|default).battery_level|default|int('unknown') }}"
+      #   unit_of_measurement: '%'
 
 ################################################
 ## Z-Wave
