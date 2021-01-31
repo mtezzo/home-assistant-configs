@@ -30,13 +30,6 @@ homeassistant:
       friendly_name: HVAC Fan
       icon: mdi:fan
 
-    binary_sensor.living_room_thermostat_has_leaf:
-      <<: *customize
-
-    binary_sensor.living_room_thermostat_is_locked:
-      <<: *customize
-      device_class: lock
-
     binary_sensor.living_room_thermostat_is_using_emergency_heat:
       <<: *customize
       device_class: problem
@@ -74,6 +67,11 @@ homeassistant:
     ## Sensor
     ################################################
 
+    sensor.living_room_nest_protect_battery_health:
+      <<: *customize
+      friendly_name: 'Nest Protect Battery'
+      icon: mdi:battery
+
     sensor.living_room_nest_protect_co_status:
       <<: *customize
       friendly_name: 'Carbon Monoxide'
@@ -84,11 +82,6 @@ homeassistant:
       friendly_name: 'Smoke Detector'
       icon: mdi:fire
 
-    sensor.living_room_away_mode:
-      <<: *customize
-      friendly_name: Away Mode
-      icon: mdi:home-outline
-
     sensor.living_room_thermostat_humidity:
       <<: *customize
       friendly_name: Nest Humidity
@@ -98,11 +91,6 @@ homeassistant:
       <<: *customize
       friendly_name: Nest Status
       icon: mdi:thermostat
-
-    sensor.living_room_thermostat_operation_mode:
-      <<: *customize
-      friendly_name: Nest Mode Setting
-      icon: mdi:information-outline
 
     sensor.living_room_thermostat_target:
       <<: *customize
@@ -141,7 +129,9 @@ nest:
   binary_sensors:
     monitored_conditions:
       - 'away'
+      - 'online'
       - 'fan'
+      - 'is_using_emergency_heat'
       - 'target'
   sensors:
     monitored_conditions:
