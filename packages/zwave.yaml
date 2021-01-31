@@ -102,10 +102,10 @@ homeassistant:
     #   friendly_name: Guest Closet Light
     #   icon: mdi:lightbulb
 
-    light.garage_storage:
-      <<: *customize
-      friendly_name: Garage Storage Light
-      icon: mdi:lightbulb
+    # light.garage_storage:
+    #   <<: *customize
+    #   friendly_name: Garage Storage Light
+    #   icon: mdi:lightbulb
 
     # light.dungeon:
     #   <<: *customize
@@ -289,8 +289,8 @@ homeassistant:
     ## Z-Wave
     ################################################
 
-    zwave.homeseer_smartstick_plus_g2:
-      friendly_name: "Z-Wave USB Hub"
+    # zwave.homeseer_smartstick_plus_g2:
+    #   friendly_name: "Z-Wave USB Hub"
 
     zwave.basement_task_light:
       friendly_name: "Basement Task Light"
@@ -304,14 +304,14 @@ homeassistant:
     # zwave.garage_door_opener:
     #   friendly_name: "Garage Door Opener"
 
-    zwave.garage_storage_light_bulb:
-      friendly_name: "Garage Storage Light Bulb"
+    # zwave.garage_storage_light_bulb:
+    #   friendly_name: "Garage Storage Light Bulb"
 
     # zwave.guest_bedroom_closet_door_contact:
     #   friendly_name: "Guest Bedroom Closet Door Contact"
 
-    zwave.guest_bedroom_closet_light_bulb:
-      friendly_name: "Guest Bedroom Closet Light Bulb"
+    # zwave.guest_bedroom_closet_light_bulb:
+    #   friendly_name: "Guest Bedroom Closet Light Bulb"
 
     zwave.guest_bedroom_smoke_and_carbon_monoxide_detector:
       friendly_name: "Guest Bedroom Smoke and Carbon Monoxide Detector"

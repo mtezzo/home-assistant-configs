@@ -61,7 +61,7 @@ cards:
         content: >
           ## Garage
       - type: light
-        entity: light.garage_storage
+        entity: light.garage_light_level
 
   - type: custom:vertical-stack-in-card
     cards:
