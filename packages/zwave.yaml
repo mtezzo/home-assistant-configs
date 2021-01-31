@@ -282,7 +282,7 @@ homeassistant:
 
     switch.basement_task_light:
       <<: *customize
-      friendly_name: Basement Task Light
+      # friendly_name: Basement Task Light
       icon: mdi:desk-lamp
 
     ################################################
@@ -292,8 +292,8 @@ homeassistant:
     # zwave.homeseer_smartstick_plus_g2:
     #   friendly_name: "Z-Wave USB Hub"
 
-    zwave.basement_task_light:
-      friendly_name: "Basement Task Light"
+    # zwave.basement_task_light:
+    #   friendly_name: "Basement Task Light"
 
     # zwave.dungeon_light_bulb:
     #   friendly_name: "Dungeon Light Bulb"
@@ -376,7 +376,7 @@ homeassistant:
 
 light:
   - platform: switch
-    name: Basement Task Light
+    # name: Basement Task Light
     entity_id: switch.basement_task_light
 
 ################################################
