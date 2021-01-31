@@ -55,13 +55,17 @@ homekit:
       - remote
     exclude_entities:
       - binary_sensor.garage_door_home_security_tampering_cover_removed
+      - binary_sensor.garage_door_sensor
       - binary_sensor.guest_closet_door_home_security_tampering_cover_removed
       - binary_sensor.guest_closet_door_sensor
       - binary_sensor.guest_storage_door_home_security_tampering_cover_removed
       - binary_sensor.guest_storage_door_sensor
       - binary_sensor.julias_closet_door_home_security_tampering_cover_removed
       - binary_sensor.julias_closet_door_sensor
+      - binary_sensor.kitchen_motion_sensor
+      - binary_sensor.laundry_room_flood_sensor
       - binary_sensor.laundry_room_flood_sensor_home_security_tampering_cover_removed
+      - binary_sensor.living_room_motion_sensor
       - binary_sensor.living_room_motion_sensor_home_security_tampering_cover_removed
       - binary_sensor.living_room_nest_protect_online
       - binary_sensor.living_room_thermostat_fan
@@ -95,7 +99,11 @@ homekit:
       - light.michaels_closet
       - light.nightstand_lamp
       - light.table_light
+      - switch.apple_tv
       - switch.basement_task_light
+      - switch.lg_tv
+      - switch.mnemosyne_home_mode
+      - switch.xbox_one
     include_entities:
       - automation.master_bedroom_motion
       - automation.living_room_motion
