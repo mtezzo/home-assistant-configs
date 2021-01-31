@@ -129,7 +129,7 @@ cards:
     cards:
       - type: markdown
         content: >
-          ### Dungeon
+          ### DUNGEON
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
