@@ -78,7 +78,7 @@ automation:
           node_id: 18
           scene_id: 2
           scene_value_id: 1
-          #scene_data: 7680
+          # scene_data: 7680
     action:
       - service: script.light_control
         data_template:
@@ -96,7 +96,7 @@ automation:
           node_id: 18
           scene_id: 1
           scene_value_id: 1
-          #scene_data: 7680
+          # scene_data: 7680
     action:
       - service: script.light_control
         data_template:
@@ -117,7 +117,8 @@ automation:
         event_data:
           node_id: 18
           scene_id: 4
-          scene_data: 7680
+          scene_value_id: 1
+          # scene_data: 7680
     action:
       - service: script.light_control
         data_template:
@@ -134,7 +135,8 @@ automation:
         event_data:
           node_id: 18
           scene_id: 3
-          scene_data: 7680
+          scene_value_id: 1
+          # scene_data: 7680
     action:
       - service: script.light_control
         data_template:
@@ -155,7 +157,8 @@ automation:
         event_data:
           node_id: 18
           scene_id: 5
-          scene_data: 7680
+          scene_value_id: 1
+          # scene_data: 7680
     action:
       - service: automation.turn_off
         data:
@@ -170,7 +173,8 @@ automation:
         event_data:
           node_id: 18
           scene_id: 5
-          scene_data: 7800
+          scene_value_id: 3
+          # scene_data: 7800
     action:
       - service: alarm_control_panel.alarm_arm_night
         entity_id: alarm_control_panel.alarm_system
@@ -189,7 +193,8 @@ automation:
         event_data:
           node_id: 18
           scene_id: 6
-          scene_data: 7680
+          scene_value_id: 1
+          # scene_data: 7680
     action:
       - service: automation.turn_on
         data:
