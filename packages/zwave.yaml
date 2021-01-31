@@ -376,7 +376,7 @@ homeassistant:
 
 light:
   - platform: switch
-    # name: Basement Task Light
+    name: Basement Task Light
     entity_id: switch.basement_task_light
 
 ################################################
