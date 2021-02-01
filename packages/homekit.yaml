@@ -23,18 +23,18 @@ homeassistant:
 
 automation:
   - alias: 'Start HomeKit'
-    trigger:
-      - platform: homeassistant
-        event: start
-    action:
-      - delay: 00:05  # Waits 5 minutes
-      - service: homekit.start
     # trigger:
-    #   - platform: state
-    #     entity_id: binary_sensor.ozw_network_ready
-    #     to: 'on'
+    #   - platform: homeassistant
+    #     event: start
     # action:
+    #   - delay: 00:05  # Waits 5 minutes
     #   - service: homekit.start
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ozw_network_ready
+        to: 'on'
+    action:
+      - service: homekit.start
   #   trigger:
   #     - platform: event
   #       event_type: zwave.network_ready
