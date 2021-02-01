@@ -239,8 +239,9 @@ binary_sensor:
     name: ozw_network_ready
     state_topic: OpenZWave/1/status/
     value_template: >
-      {{ "ON" if value_json.Status in ["driverAwakeNodesQueried", "driverAllNodesQueriedSomeDead", "driverAllNodesQueried"] else "OFF" }}
+      {{ "on" if value_json.Status in ["driverAwakeNodesQueried", "driverAllNodesQueriedSomeDead", "driverAllNodesQueried"] else "off" }}
     json_attributes_topic: OpenZWave/1/status/
+    delay_on: 5
 
 ################################################
 ## Light
