@@ -128,13 +128,20 @@ homeassistant:
 automation:
   - alias: "Fix Guest Closet Light"
     trigger:
-      platform: event
-      event_type: call_service
-      event_data:
-        domain: "light"
-        service: "turn_off"
-        service_data:
-            entity_id: "light.guest_closet_light_level"
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: "light"
+          service: "turn_off"
+          service_data:
+              entity_id: light.guest_closet_light_level
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: "light"
+          service: "turn_on"
+          service_data:
+              entity_id: light.guest_closet_light_level
     action:
       - delay: 5  # Waits 5 seconds
       - service: mqtt.publish
@@ -144,13 +151,20 @@ automation:
 
   - alias: "Fix Dungeon Light"
     trigger:
-      platform: event
-      event_type: call_service
-      event_data:
-        domain: "light"
-        service: "turn_off"
-        service_data:
-            entity_id: "light.dungeon_light_level"
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: "light"
+          service: "turn_off"
+          service_data:
+              entity_id: light.dungeon_light_level
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: "light"
+          service: "turn_on"
+          service_data:
+              entity_id: light.dungeon_light_level
     action:
       - delay: 5  # Waits 5 seconds
       - service: mqtt.publish
@@ -160,13 +174,20 @@ automation:
 
   - alias: "Fix Garage Light"
     trigger:
-      platform: event
-      event_type: call_service
-      event_data:
-        domain: "light"
-        service: "turn_off"
-        service_data:
-            entity_id: "light.garage_light_level"
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: "light"
+          service: "turn_off"
+          service_data:
+              entity_id: light.garage_light_level
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: "light"
+          service: "turn_on"
+          service_data:
+              entity_id: light.garage_light_level
     action:
       - delay: 5  # Waits 5 seconds
       - service: mqtt.publish
