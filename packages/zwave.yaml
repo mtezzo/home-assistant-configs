@@ -69,6 +69,11 @@ homeassistant:
       friendly_name: "Michael's Closet Door"
       device_class: door
 
+    binary_sensor.ozw_network_ready:
+      <<: *customize
+      friendly_name: "Z-Wave Network Ready"
+      device_class: connectivity
+
     ################################################
     ## Cover
     ################################################
@@ -224,6 +229,18 @@ automation:
         data:
           topic: "OpenZWave/1/command/requestnodedynamic/"
           payload: '{ "node": 10}'
+
+################################################
+## Binary Sensor
+################################################
+
+binary_sensor:
+  - platform: mqtt
+    name: ozw_network_ready
+    state_topic: OpenZWave/1/status/
+    value_template: >
+      {{ "ON" if value_json.Status in ["driverAwakeNodesQueried", "driverAllNodesQueriedSomeDead", "driverAllNodesQueried"] else "OFF" }}
+    json_attributes_topic: OpenZWave/1/status/
 
 ################################################
 ## Light

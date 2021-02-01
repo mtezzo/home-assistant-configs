@@ -29,7 +29,12 @@ automation:
     action:
       - delay: 00:05  # Waits 5 minutes
       - service: homekit.start
-  # - alias: 'Start HomeKit'
+    # trigger:
+    #   - platform: state
+    #     entity_id: binary_sensor.ozw_network_ready
+    #     to: 'on'
+    # action:
+    #   - service: homekit.start
   #   trigger:
   #     - platform: event
   #       event_type: zwave.network_ready
