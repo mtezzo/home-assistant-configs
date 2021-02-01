@@ -163,6 +163,11 @@ automation:
         data:
           topic: "OpenZWave/1/command/requestnodedynamic/"
           payload: '{ "node": 7}'
+      - delay: 2  # Waits 2 seconds
+      - service: mqtt.publish
+        data:
+          topic: "OpenZWave/1/command/requestnodedynamic/"
+          payload: '{ "node": 7}'
 
   - alias: "Fix Dungeon Light"
     trigger:
@@ -196,6 +201,11 @@ automation:
         data:
           topic: "OpenZWave/1/command/requestnodedynamic/"
           payload: '{ "node": 9}'
+      - delay: 2  # Waits 5 seconds
+      - service: mqtt.publish
+        data:
+          topic: "OpenZWave/1/command/requestnodedynamic/"
+          payload: '{ "node": 9}'
 
   - alias: "Fix Garage Light"
     trigger:
@@ -214,6 +224,11 @@ automation:
           service_data:
               entity_id: light.garage_light_level
     action:
+      - delay: 2  # Waits 5 seconds
+      - service: mqtt.publish
+        data:
+          topic: "OpenZWave/1/command/requestnodedynamic/"
+          payload: '{ "node": 10}'
       - delay: 2  # Waits 5 seconds
       - service: mqtt.publish
         data:
