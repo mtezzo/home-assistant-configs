@@ -131,8 +131,8 @@ automation:
       platform: event
       event_type: call_service
       event_data:
-        domain: "light",
-        service: "turn_off",
+        domain: "light"
+        service: "turn_off"
         service_data:
             entity_id: "light.guest_closet_light_level"
     action:
@@ -147,8 +147,8 @@ automation:
       platform: event
       event_type: call_service
       event_data:
-        domain: "light",
-        service: "turn_off",
+        domain: "light"
+        service: "turn_off"
         service_data:
             entity_id: "light.dungeon_light_level"
     action:
@@ -163,8 +163,8 @@ automation:
       platform: event
       event_type: call_service
       event_data:
-        domain: "light",
-        service: "turn_off",
+        domain: "light"
+        service: "turn_off"
         service_data:
             entity_id: "light.garage_light_level"
     action:
