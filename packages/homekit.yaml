@@ -49,47 +49,12 @@ homekit:
   filter:
     exclude_domains:
       - automation
+      - binary_sensor
       - device_tracker
       - sensor
       - script
       - remote
     exclude_entities:
-      - binary_sensor.garage_door_home_security_tampering_cover_removed
-      - binary_sensor.garage_door_sensor
-      - binary_sensor.guest_closet_door_home_security_tampering_cover_removed
-      - binary_sensor.guest_closet_door_sensor
-      - binary_sensor.guest_storage_door_home_security_tampering_cover_removed
-      - binary_sensor.guest_storage_door_sensor
-      - binary_sensor.julias_closet_door_home_security_tampering_cover_removed
-      - binary_sensor.julias_closet_door_sensor
-      - binary_sensor.kitchen_motion_sensor
-      - binary_sensor.laundry_room_flood_sensor
-      - binary_sensor.laundry_room_flood_sensor_home_security_tampering_cover_removed
-      - binary_sensor.living_room_motion_sensor
-      - binary_sensor.living_room_motion_sensor_home_security_tampering_cover_removed
-      - binary_sensor.living_room_nest_protect_online
-      - binary_sensor.living_room_thermostat_fan
-      - binary_sensor.living_room_thermostat_has_leaf
-      - binary_sensor.living_room_thermostat_is_locked
-      - binary_sensor.living_room_thermostat_is_using_emergency_heat
-      - binary_sensor.living_room_thermostat_online
-      - binary_sensor.master_bedroom_motion_sensor_home_security_tampering_cover_removed
-      - binary_sensor.master_bedroom_motion_sensor
-      - binary_sensor.michaels_closet_door_home_security_tampering_cover_removed
-      - binary_sensor.michaels_closet_door_sensor
-      - binary_sensor.mnemosyne_drive_1_below_min_remaining_life
-      - binary_sensor.mnemosyne_drive_1_exceeded_max_bad_sectors
-      - binary_sensor.mnemosyne_drive_2_below_min_remaining_life
-      - binary_sensor.mnemosyne_drive_2_exceeded_max_bad_sectors
-      - binary_sensor.mnemosyne_drive_3_below_min_remaining_life
-      - binary_sensor.mnemosyne_drive_3_exceeded_max_bad_sectors
-      - binary_sensor.mnemosyne_drive_4_below_min_remaining_life
-      - binary_sensor.mnemosyne_drive_4_exceeded_max_bad_sectors
-      - binary_sensor.mnemosyne_update_available
-      - binary_sensor.mnemosyne_security_status
-      - binary_sensor.otter_den_away
-      - binary_sensor.remote_ui
-      - binary_sensor.updater
       - light.dining_room_spot
       - light.dresser_lamp
       - light.guest_bedroom_storage
@@ -107,6 +72,15 @@ homekit:
     include_entities:
       - automation.master_bedroom_motion
       - automation.living_room_motion
+      - binary_sensor.entrance_front_door_sensor
+      - binary_sensor.guest_closet_door_access_control_door_window_open
+      - binary_sensor.guest_storage_door_access_control_door_window_open
+      - binary_sensor.julias_closet_door_access_control_door_window_open
+      - binary_sensor.kitchen_motion_sensor_home_security_motion_detected
+      - binary_sensor.laundry_room_flood_sensor_water_water_leak
+      - binary_sensor.living_room_motion_sensor_home_security_motion_detected
+      - binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
+      - binary_sensor.michaels_closet_door_access_control_door_window_open
   entity_config:
     alarm_control_panel.alarm_system:
       code: !secret alarm_code
