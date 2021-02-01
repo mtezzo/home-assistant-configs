@@ -28,14 +28,11 @@ cloud:
         - automation.master_bedroom_motion
         - automation.living_room_motion
         - binary_sensor.entrance_front_door_sensor
-        - binary_sensor.garage_door_sensor
         - binary_sensor.guest_closet_door_access_control_door_window_open
         - binary_sensor.guest_storage_door_access_control_door_window_open
         - binary_sensor.julias_closet_door_access_control_door_window_open
-        - binary_sensor.kitchen_motion_sensor
-        - binary_sensor.laundry_room_flood_sensor
+        - binary_sensor.kitchen_motion_sensor_home_security_motion_detected
         - binary_sensor.laundry_room_flood_sensor_water_water_leak
-        - binary_sensor.living_room_motion_sensor
         - binary_sensor.living_room_motion_sensor_home_security_motion_detected
         - binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
         - binary_sensor.michaels_closet_door_access_control_door_window_open
@@ -68,9 +65,15 @@ cloud:
       sensor.living_room_motion_sensor_air_temperature:
         name: Living Room Temperature
         display_categories: TEMPERATURE_SENSOR
+      sensor.kitchen_motion_sensor_air_temperature:
+        name: Kitchen Temperature
+        display_categories: TEMPERATURE_SENSOR
       sensor.master_bedroom_motion_sensor_air_temperature:
         name: Bedroom Temperature
         display_categories: TEMPERATURE_SENSOR
       sensor.laundry_room_flood_sensor_air_temperature:
         name: Laundry Room Temperature
+        display_categories: TEMPERATURE_SENSOR
+      sensor.wirelesstag_dungeon_temperature:
+        name: Dungeon Temperature
         display_categories: TEMPERATURE_SENSOR
