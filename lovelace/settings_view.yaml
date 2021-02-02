@@ -1,5 +1,5 @@
 title: Settings
-icon: mdi:settings
+icon: mdi:tune
 path: system
 #background: var(--background-image)
 cards:
