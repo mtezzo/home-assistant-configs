@@ -50,59 +50,65 @@ automation:
 ################################################
 
 homekit:
-  - auto_start: false
-    filter:
-      exclude_domains:
-        - automation
-        - binary_sensor
-        - camera
-        - device_tracker
-        - sensor
-        - script
-        - remote
-      exclude_entities:
-        - light.dining_room_spot
-        - light.dresser_lamp
-        - light.guest_bedroom_storage
-        - light.julias_closet
-        - light.living_room_bookshelf_lamp_instance_2_level
-        - light.living_room_floor_lamp_instance_2_level
-        - light.michaels_closet
-        - light.nightstand_lamp
-        - light.table_light
-        - media_player.living_room_tv
-        - switch.apple_tv
-        - switch.basement_task_light
-        - switch.lg_tv
-        - switch.mnemosyne_home_mode
-        - switch.xbox_one
-      include_entities:
-        - automation.master_bedroom_motion
-        - automation.living_room_motion
-        - binary_sensor.entrance_front_door_sensor
-        - binary_sensor.guest_closet_door_access_control_door_window_open
-        - binary_sensor.guest_storage_door_access_control_door_window_open
-        - binary_sensor.julias_closet_door_access_control_door_window_open
-        - binary_sensor.kitchen_motion_sensor
-        - binary_sensor.laundry_room_flood_sensor_water_water_leak
-        - binary_sensor.living_room_motion_sensor_home_security_motion_detected
-        - binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
-        - binary_sensor.michaels_closet_door_access_control_door_window_open
-    entity_config:
-      alarm_control_panel.alarm_system:
-        code: !secret alarm_code
-  - name: Dining Room Camera Bridge
-    mode: accessory
-    filter:
-      include_entities:
-        - camera.mnemosyne_dining_room
-  - name: Bedroom Camera Bridge
-    mode: accessory
-    filter:
-      include_entities:
-        - camera.mnemosyne_bedroom
-  - name: Living Room TV Bridge
-    mode: accessory
-    filter:
-      include_entities:
-        - media_player.living_room_tv
+  auto_start: false
+  filter:
+    exclude_domains:
+      - automation
+      - binary_sensor
+      - camera
+      - device_tracker
+      - sensor
+      - script
+      - remote
+    exclude_entities:
+      - light.dining_room_spot
+      - light.dresser_lamp
+      - light.guest_bedroom_storage
+      - light.julias_closet
+      - light.living_room_bookshelf_lamp_instance_2_level
+      - light.living_room_floor_lamp_instance_2_level
+      - light.michaels_closet
+      - light.nightstand_lamp
+      - light.table_light
+      - media_player.living_room_tv
+      - switch.apple_tv
+      - switch.basement_task_light
+      - switch.lg_tv
+      - switch.mnemosyne_home_mode
+      - switch.xbox_one
+    include_entities:
+      - automation.master_bedroom_motion
+      - automation.living_room_motion
+      - binary_sensor.entrance_front_door_sensor
+      - binary_sensor.guest_closet_door_access_control_door_window_open
+      - binary_sensor.guest_storage_door_access_control_door_window_open
+      - binary_sensor.julias_closet_door_access_control_door_window_open
+      - binary_sensor.kitchen_motion_sensor
+      - binary_sensor.laundry_room_flood_sensor_water_water_leak
+      - binary_sensor.living_room_motion_sensor_home_security_motion_detected
+      - binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
+      - binary_sensor.michaels_closet_door_access_control_door_window_open
+  entity_config:
+    alarm_control_panel.alarm_system:
+      code: !secret alarm_code
+
+homekit:
+  name: Dining Room Camera Bridge
+  mode: accessory
+  filter:
+    include_entities:
+      - camera.mnemosyne_dining_room
+
+homekit:
+  name: Bedroom Camera Bridge
+  mode: accessory
+  filter:
+    include_entities:
+      - camera.mnemosyne_bedroom
+
+homekit:
+  name: Living Room TV Bridge
+  mode: accessory
+  filter:
+    include_entities:
+      - media_player.living_room_tv
