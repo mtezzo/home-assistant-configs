@@ -31,12 +31,3 @@ cards:
       - entity: sensor.speedtest_ping
         name: PING
         y_axis: secondary
-
-  - type: custom:auto-entities
-    card:
-      type: entities
-      title: Z-Wave
-      show_header_toggle: false
-    filter:
-      include:
-        - domain: zwave
