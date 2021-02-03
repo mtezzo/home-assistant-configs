@@ -50,8 +50,8 @@ automation:
 ################################################
 
 homekit:
+  auto_start: false
   - name: Home Assistant Bridge
-    auto_start: false
     mode: bridge
     filter:
       exclude_domains:
@@ -93,7 +93,6 @@ homekit:
     entity_config:
       alarm_control_panel.alarm_system:
         code: !secret alarm_code
-
   - name: Dining Room Camera Bridge
     mode: accessory
     filter:
