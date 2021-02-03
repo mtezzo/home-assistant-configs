@@ -144,7 +144,6 @@ system_health:
 # Text to speech
 tts:
   - platform: google_translate
-    service_name: google_say
 
 # Checks for available updates
 # Note: This component will send some information about your system to

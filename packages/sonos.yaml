@@ -57,7 +57,7 @@ script:
        data_template:
          entity_id: "{{ sonos_entity|default('media_player.living_room') }}"
          volume_level: "{{ volume }}"
-     - service: tts.google_say
+     - service: tts.google_translate_say
        data_template:
          entity_id: "{{ sonos_entity|default('media_player.living_room') }}"
          message: "{{ message }}"
