@@ -63,6 +63,16 @@ homeassistant:
       persistent: true
       icon: mdi:message-text
 
+    automation.trigger_notification_on_smoke:
+      <<: *customize
+      friendly_name: "Send Notification on Smoke"
+      icon: mdi:alarm-bell
+
+    automation.trigger_notification_on_co:
+      <<: *customize
+      friendly_name: "Send Notification on Carbon Monoxide"
+      icon: mdi:alarm-bell
+
 ################################################
 ## Alarm Control Panel
 ################################################
@@ -254,3 +264,97 @@ automation:
           title: Tamper Notification
           message: >
             Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
+
+  - alias: trigger_notification_on_smoke
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_smoke_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_smoke_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: sensor.living_room_nest_protect_smoke_status
+        from: 'Ok'
+        to: 'Emergency'
+      - platform: state
+        entity_id: sensor.living_room_nest_protect_smoke_status
+        from: 'Ok'
+        to: 'Warning'
+    action:
+      - service: notify.ALL_DEVICES
+        data_template:
+          data:
+            title: Smoke Alert
+          message: >
+            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+      - service: persistent_notification.create
+        data_template:
+          title: Smoke Alert
+          message: >
+            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+      - service: script.sonos_say
+        data_template:
+          data:
+            sonos_entity: media_player.living_room
+            volume: 0.6
+            delay: '00:00:05'
+          message: >
+            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+
+  - alias: trigger_notification_on_co
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_co_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_co_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_co_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_co_status
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: sensor.living_room_nest_protect_co_status
+        from: 'Ok'
+        to: 'Emergency'
+      - platform: state
+        entity_id: sensor.living_room_nest_protect_co_status
+        from: 'Ok'
+        to: 'Warning'
+    action:
+      - service: notify.ALL_DEVICES
+        data_template:
+          data:
+            title: Carbon Monoxide Alert
+          message: >
+            Carbon Monoxide from {{ trigger.to_state.attributes.friendly_name }}!
+      - service: persistent_notification.create
+        data_template:
+          title: Carbon Monoxide Alert
+          message: >
+            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+      - service: script.sonos_say
+        data_template:
+          data:
+            sonos_entity: media_player.living_room
+            volume: 0.6
+            delay: '00:00:05'
+          message: >
+            Carbon Monoxide from {{ trigger.to_state.attributes.friendly_name }}!

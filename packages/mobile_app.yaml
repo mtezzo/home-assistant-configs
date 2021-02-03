@@ -61,3 +61,15 @@ automation:
           volume: 0.6
           message: 'Intruder Alert!'
           delay: '00:00:05'
+
+################################################
+## Notification Groups
+################################################
+
+notify:
+  - name: ALL_DEVICES
+    platform: group
+    services:
+      - service: mobile_app_michael_iphone
+      - service: mobile_app_julia_iphone
+      - service: mobile_app_michael_ipad
