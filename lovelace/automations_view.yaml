@@ -40,3 +40,4 @@ cards:
       - automation.sound_alarm
       - automation.update_notification
       - automation.notify_ios_app
+      - automation.trigger_notification_on_sensor_tamper

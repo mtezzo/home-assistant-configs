@@ -57,6 +57,12 @@ homeassistant:
       persistent: true
       icon: mdi:message-text
 
+    trigger_notification_on_sensor_tamper:
+      <<: *customize
+      friendly_name: "Send Notification on Tamper"
+      persistent: true
+      icon: mdi:message-text
+
 ################################################
 ## Alarm Control Panel
 ################################################
@@ -201,3 +207,46 @@ automation:
             {%- endfor -%}
           target:
             - !secret mobile_michael
+
+
+  - alias: trigger_notification_on_sensor_tamper
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.garage_door_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.guest_closet_door_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.guest_storage_door_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.julias_closet_door_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.laundry_room_flood_sensor_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.living_room_motion_sensor_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.master_bedroom_motion_sensor_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.michaels_closet_door_home_security_tampering_cover_removed
+        from: 'off'
+        to: 'on'
+    action:
+      - service: notify.mobile_app_michael_iphone
+        data_template:
+          data:
+            title: "Tamper Notification"
+          message: >
+            Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
