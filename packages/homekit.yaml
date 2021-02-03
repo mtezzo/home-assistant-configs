@@ -91,24 +91,3 @@ homekit:
   entity_config:
     alarm_control_panel.alarm_system:
       code: !secret alarm_code
-
-homekit:
-  name: Dining Room Camera Bridge
-  mode: accessory
-  filter:
-    include_entities:
-      - camera.mnemosyne_dining_room
-
-homekit:
-  name: Bedroom Camera Bridge
-  mode: accessory
-  filter:
-    include_entities:
-      - camera.mnemosyne_bedroom
-
-homekit:
-  name: Living Room TV Bridge
-  mode: accessory
-  filter:
-    include_entities:
-      - media_player.living_room_tv
