@@ -118,6 +118,26 @@ homeassistant:
       icon: mdi:lightbulb
 
     ################################################
+    ## Sensors
+    ################################################
+
+    sensor.guest_bedroom_smoke_status:
+      <<: *customize
+      friendly_name: Guest Bedroom Smoke Detector
+
+    sensor.laundry_room_smoke_status:
+      <<: *customize
+      friendly_name: Laundry Room Smoke Detector
+
+    sensor.master_bedroom_smoke_status:
+      <<: *customize
+      friendly_name: Master Bedroom Smoke Detector
+
+    sensor.office_smoke_status:
+      <<: *customize
+      friendly_name: Office Smoke Detector
+
+    ################################################
     ## Switches
     ################################################
 
@@ -265,3 +285,95 @@ light:
   - platform: switch
     name: Basement Task Light
     entity_id: switch.basement_task_light
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: template
+    sensors:
+      guest_bedroom_smoke_status:
+        value_template: >-
+          {% if is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            Smoke
+          {% elif is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            CO
+          {% elif is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            Test
+          {% elif is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            Idle
+          {% endif %}
+        icon_template: >- 
+          {% if is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            mdi:fire
+          {% elif is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            mdi:cloud-outline
+          {% elif is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            mdi:alert-octagram
+          {% elif is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            mdi:smoke-detector
+          {% endif %}
+      laundry_room_smoke_status:
+        value_template: >-
+          {% if is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            Smoke
+          {% elif is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            CO
+          {% elif is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            Test
+          {% elif is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            Idle
+          {% endif %}
+        icon_template: >- 
+          {% if is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            mdi:fire
+          {% elif is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            mdi:cloud-outline
+          {% elif is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            mdi:alert-octagram
+          {% elif is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.laundry_room_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            mdi:smoke-detector
+          {% endif %}
+      master_beroom_smoke_status:
+        value_template: >-
+          {% if is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            Smoke
+          {% elif is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            CO
+          {% elif is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            Test
+          {% elif is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            Idle
+          {% endif %}
+        icon_template: >- 
+          {% if is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            mdi:fire
+          {% elif is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            mdi:cloud-outline
+          {% elif is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            mdi:alert-octagram
+          {% elif is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.master_bedroom_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            mdi:smoke-detector
+          {% endif %}
+      office_smoke_status:
+        value_template: >-
+          {% if is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            Smoke
+          {% elif is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            CO
+          {% elif is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            Test
+          {% elif is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            Idle
+          {% endif %}
+        icon_template: >- 
+          {% if is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '1') %}
+            mdi:fire
+          {% elif is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '2') %}
+            mdi:cloud-outline
+          {% elif is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '0') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '12') %}
+            mdi:alert-octagram
+          {% elif is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
+            mdi:smoke-detector
+          {% endif %}
