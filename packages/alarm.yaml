@@ -304,12 +304,11 @@ automation:
           message: >
             Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
       - service: script.sonos_say
-        data_template:
+        data:
           sonos_entity: media_player.living_room
           volume: 0.6
           delay: 5
-          message: >
-            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+          message: Smoke Detected!
 
   - alias: trigger_notification_on_co
     trigger:
@@ -350,9 +349,8 @@ automation:
           message: >
             Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
       - service: script.sonos_say
-        data_template:
+        data:
           sonos_entity: media_player.living_room
           volume: 0.6
           delay: 5
-          message: >
-            Carbon Monoxide from {{ trigger.to_state.attributes.friendly_name }}!
+          message: Carbon Monoxide Detected!
