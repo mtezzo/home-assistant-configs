@@ -57,7 +57,7 @@ homeassistant:
       persistent: true
       icon: mdi:message-text
 
-    trigger_notification_on_sensor_tamper:
+    automation.trigger_notification_on_sensor_tamper:
       <<: *customize
       friendly_name: "Send Notification on Tamper"
       persistent: true
