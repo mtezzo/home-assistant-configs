@@ -136,9 +136,6 @@ sensor:
   - platform: template
     sensors:
       household:
-        entity_id:
-          - input_select.julias_status
-          - input_select.michaels_status
         value_template: >-
           {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.michaels_status', 'Home') %}
             Home
