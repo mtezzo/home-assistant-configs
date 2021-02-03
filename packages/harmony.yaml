@@ -52,11 +52,11 @@ homeassistant:
 ################################################
 
 # https://www.home-assistant.io/components/remote.harmony/
-remote:
-  - platform: harmony
-    name: Living Room
-    host: !secret harmony_living_room_host
-    activity: !secret harmony_living_room_activity_watch_tv
+# remote:
+#   - platform: harmony
+#     name: Living Room
+#     host: !secret harmony_living_room_host
+#     activity: !secret harmony_living_room_activity_watch_tv
 
 #  - platform: harmony
 #    name: Basement
