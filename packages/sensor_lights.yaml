@@ -76,6 +76,7 @@ automation:
         from: 'on'
         to: 'off'
         for: '00:25:00'
+    mode: restart
     action:
       - service: script.light_control
         data_template:
@@ -101,6 +102,7 @@ automation:
         from: 'on'
         to: 'off'
         for: '00:20:00'
+    mode: restart
     action:
       - service: script.light_control
         data_template:
