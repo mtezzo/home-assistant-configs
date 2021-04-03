@@ -73,11 +73,11 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: ozw.scene_activated
+        event_type: zwave_js_event
         event_data:
           node_id: 18
-          scene_id: 2
-          scene_value_id: 1
+          property_key_name: '002'
+          value: 'KeyPressed'
           # scene_data: 7680
     action:
       - service: script.light_control
@@ -91,11 +91,11 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: ozw.scene_activated
+        event_type: zwave_js_event
         event_data:
           node_id: 18
-          scene_id: 1
-          scene_value_id: 1
+          property_key_name: '001'
+          value: 'KeyPressed'
           # scene_data: 7680
     action:
       - service: script.light_control
@@ -113,11 +113,11 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: ozw.scene_activated
+        event_type: zwave_js_event
         event_data:
           node_id: 18
-          scene_id: 4
-          scene_value_id: 1
+          property_key_name: '004'
+          value: 'KeyPressed'
           # scene_data: 7680
     action:
       - service: script.light_control
@@ -131,11 +131,11 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: ozw.scene_activated
+        event_type: zwave_js_event
         event_data:
           node_id: 18
-          scene_id: 3
-          scene_value_id: 1
+          property_key_name: '003'
+          value: 'KeyPressed'
           # scene_data: 7680
     action:
       - service: script.light_control
@@ -153,11 +153,11 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: ozw.scene_activated
+        event_type: zwave_js_event
         event_data:
           node_id: 18
-          scene_id: 5
-          scene_value_id: 1
+          property_key_name: '005'
+          value: 'KeyPressed'
           # scene_data: 7680
     action:
       - service: automation.turn_off
@@ -169,11 +169,11 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: ozw.scene_activated
+        event_type: zwave_js_event
         event_data:
           node_id: 18
-          scene_id: 5
-          scene_value_id: 3
+          property_key_name: '005'
+          value: 'KeyHeldDown'
           # scene_data: 7800
     action:
       - service: alarm_control_panel.alarm_arm_night
@@ -189,11 +189,11 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: ozw.scene_activated
+        event_type: zwave_js_event
         event_data:
           node_id: 18
-          scene_id: 6
-          scene_value_id: 1
+          property_key_name: '006'
+          value: 'KeyPressed'
           # scene_data: 7680
     action:
       - service: automation.turn_on

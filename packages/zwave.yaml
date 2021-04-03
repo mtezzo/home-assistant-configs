@@ -59,7 +59,7 @@ homeassistant:
       friendly_name: "Julia's Closet Door"
       device_class: door
 
-    binary_sensor.kitchen_motion_sensor:
+    binary_sensor.kitchen_motion_sensor_home_security_motion_detection:
       <<: *customize
       friendly_name: Kitchen Motion Sensor
       device_class: motion
