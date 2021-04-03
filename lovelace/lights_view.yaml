@@ -45,7 +45,7 @@ cards:
       - type: light
         entity: light.basement_task_light
       - type: light
-        entity: light.dungeon_light_level
+        entity: light.dungeon_dimmable_led_light_bulb
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -61,7 +61,7 @@ cards:
         content: >
           ## Garage
       - type: light
-        entity: light.garage_light_level
+        entity: light.garage_dimmable_led_light_bulb
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -74,4 +74,4 @@ cards:
             entity: light.guest_bedroom_storage
             name: Guest Storage
           - type: light
-            entity: light.guest_closet_light_level
+            entity: light.guest_closet_dimmable_led_light_bulb

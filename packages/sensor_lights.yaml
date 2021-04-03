@@ -129,7 +129,7 @@ automation:
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.guest_closet_light_level
+          entity_id: light.guest_closet_dimmable_led_light_bulb
           state: "{{ trigger.to_state.state }}"
           brightness: 255
           transition: 1

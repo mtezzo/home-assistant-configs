@@ -142,17 +142,17 @@ homeassistant:
       friendly_name: Floor Lamp
       icon: mdi:floor-lamp
 
-    light.guest_closet_light_level:
+    light.guest_closet_dimmable_led_light_bulb:
       <<: *customize
       friendly_name: Guest Closet Light
       icon: mdi:lightbulb
 
-    light.garage_light_level:
+    light.garage_dimmable_led_light_bulb:
       <<: *customize
       friendly_name: Garage Storage Light
       icon: mdi:lightbulb
 
-    light.dungeon_light_level:
+    light.dungeon_dimmable_led_light_bulb:
       <<: *customize
       friendly_name: Dungeon Light
       icon: mdi:lightbulb
@@ -170,120 +170,120 @@ homeassistant:
 ## Automation *HOTFIX*
 ################################################
 
-automation:
-  - alias: "Fix Guest Closet Light"
-    trigger:
-      - platform: event
-        event_type: call_service
-        event_data:
-          domain: "light"
-          service: "turn_off"
-          service_data:
-              entity_id: light.guest_closet_light_level
-      - platform: event
-        event_type: call_service
-        event_data:
-          domain: "light"
-          service: "turn_on"
-          service_data:
-              entity_id: light.guest_closet_light_level
-    action:
-      - delay: 2  # Waits 2 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 7}'
-      - delay: 2  # Waits 2 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 7}'
-      - delay: 2  # Waits 2 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 7}'
-      - delay: 2  # Waits 2 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 7}'
+#automation:
+  # - alias: "Fix Guest Closet Light"
+  #   trigger:
+  #     - platform: event
+  #       event_type: call_service
+  #       event_data:
+  #         domain: "light"
+  #         service: "turn_off"
+  #         service_data:
+  #             entity_id: light.guest_closet_dimmable_led_light_bulb
+  #     - platform: event
+  #       event_type: call_service
+  #       event_data:
+  #         domain: "light"
+  #         service: "turn_on"
+  #         service_data:
+  #             entity_id: light.guest_closet_dimmable_led_light_bulb
+  #   action:
+  #     - delay: 2  # Waits 2 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 7}'
+  #     - delay: 2  # Waits 2 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 7}'
+  #     - delay: 2  # Waits 2 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 7}'
+  #     - delay: 2  # Waits 2 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 7}'
 
-  - alias: "Fix Dungeon Light"
-    trigger:
-      - platform: event
-        event_type: call_service
-        event_data:
-          domain: "light"
-          service: "turn_off"
-          service_data:
-              entity_id: light.dungeon_light_level
-      - platform: event
-        event_type: call_service
-        event_data:
-          domain: "light"
-          service: "turn_on"
-          service_data:
-              entity_id: light.dungeon_light_level
-    action:
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 9}'
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 9}'
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 9}'
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 9}'
+  # - alias: "Fix Dungeon Light"
+  #   trigger:
+  #     - platform: event
+  #       event_type: call_service
+  #       event_data:
+  #         domain: "light"
+  #         service: "turn_off"
+  #         service_data:
+  #             entity_id: light.dungeon_dimmable_led_light_bulb
+  #     - platform: event
+  #       event_type: call_service
+  #       event_data:
+  #         domain: "light"
+  #         service: "turn_on"
+  #         service_data:
+  #             entity_id: light.dungeon_dimmable_led_light_bulb
+  #   action:
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 9}'
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 9}'
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 9}'
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 9}'
 
-  - alias: "Fix Garage Light"
-    trigger:
-      - platform: event
-        event_type: call_service
-        event_data:
-          domain: "light"
-          service: "turn_off"
-          service_data:
-              entity_id: light.garage_light_level
-      - platform: event
-        event_type: call_service
-        event_data:
-          domain: "light"
-          service: "turn_on"
-          service_data:
-              entity_id: light.garage_light_level
-    action:
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 10}'
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 10}'
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 10}'
-      - delay: 2  # Waits 5 seconds
-      - service: mqtt.publish
-        data:
-          topic: "OpenZWave/1/command/requestnodedynamic/"
-          payload: '{ "node": 10}'
+  # - alias: "Fix Garage Light"
+  #   trigger:
+  #     - platform: event
+  #       event_type: call_service
+  #       event_data:
+  #         domain: "light"
+  #         service: "turn_off"
+  #         service_data:
+  #             entity_id: light.garage_dimmable_led_light_bulb
+  #     - platform: event
+  #       event_type: call_service
+  #       event_data:
+  #         domain: "light"
+  #         service: "turn_on"
+  #         service_data:
+  #             entity_id: light.garage_dimmable_led_light_bulb
+  #   action:
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 10}'
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 10}'
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 10}'
+  #     - delay: 2  # Waits 5 seconds
+  #     - service: mqtt.publish
+  #       data:
+  #         topic: "OpenZWave/1/command/requestnodedynamic/"
+  #         payload: '{ "node": 10}'
 
 ################################################
 ## Binary Sensor

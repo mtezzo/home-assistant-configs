@@ -67,7 +67,7 @@ cards:
     title: Guest Bedroom
     entities:
       - light.guest_bedroom_storage
-      - light.guest_closet_light_level
+      - light.guest_closet_dimmable_led_light_bulb
     image: /local/img/guest_bedroom.jpg?v=1
 
   - type: picture-glance
