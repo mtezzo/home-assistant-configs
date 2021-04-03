@@ -118,7 +118,7 @@ homeassistant:
     ## Cover
     ################################################
 
-    cover.garage_door_barrier_state:
+    cover.garage_door:
       <<: *customize
       friendly_name: Garage Door
       device_class: garage

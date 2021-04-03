@@ -221,7 +221,7 @@ automation:
   - alias: trigger_notification_on_sensor_tamper
     trigger:
       - platform: state
-        entity_id: binary_sensor.garage_door_home_security_tampering_cover_removed
+        entity_id: binary_sensor.garage_door_home_security_tampering_product_cover_removed
         from: 'off'
         to: 'on'
       - platform: state
