@@ -237,7 +237,7 @@ automation:
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.laundry_room_flood_sensor_home_security_tampering_cover_removed
+        entity_id: binary_sensor.laundry_room_flood_sensor_home_security_tampering_product_cover_removed
         from: 'off'
         to: 'on'
       - platform: state
