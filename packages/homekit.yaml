@@ -81,7 +81,7 @@ homekit:
       - automation.living_room_motion
       - binary_sensor.entrance_front_door_sensor
       - binary_sensor.guest_closet_door_access_control_door_window_open
-      - binary_sensor.guest_storage_door_access_control_door_window_open
+      - binary_sensor.guest_storage_door_access_control_window_door_is_open
       - binary_sensor.julias_closet_door_access_control_window_door_is_open
       - binary_sensor.kitchen_motion_sensor
       - binary_sensor.laundry_room_flood_sensor_water_water_leak
