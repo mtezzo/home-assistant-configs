@@ -74,7 +74,7 @@ homeassistant:
       friendly_name: "Laundry Room Smoke and Carbon Monoxide Detector: CO Status"
       device_class: gas
 
-    binary_sensor.living_room_motion_sensor_home_security_motion_detected:
+    binary_sensor.living_room_motion_sensor_home_security_motion_detection:
       <<: *customize
       friendly_name: Living Room Motion Sensor
       device_class: motion
