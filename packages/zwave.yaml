@@ -94,7 +94,7 @@ homeassistant:
       friendly_name: "Master Bedroom Smoke and Carbon Monoxide Detector: CO Status"
       device_class: gas
 
-    binary_sensor.michaels_closet_door_access_control_door_window_open:
+    binary_sensor.michaels_closet_door_access_control_window_door_is_open:
       <<: *customize
       friendly_name: "Michael's Closet Door"
       device_class: door
