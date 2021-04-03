@@ -24,7 +24,7 @@ homeassistant:
     ## Binary Sensor
     ################################################
 
-    binary_sensor.entrance_front_door_sensor:
+    binary_sensor.front_door_access_control_window_door_is_open:
       <<: *customize
       friendly_name: Entrance Front Door
       device_class: door
