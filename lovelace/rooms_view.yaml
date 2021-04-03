@@ -31,7 +31,7 @@ cards:
         name: Temperature
       - entity: sensor.master_bedroom_motion_sensor_illuminance
         name: Lux
-      - entity: binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected
+      - entity: binary_sensor.master_bedroom_motion_sensor_home_security_motion_detection
         name: Motion
         map_state:
           on: mdi:walk

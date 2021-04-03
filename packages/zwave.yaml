@@ -79,7 +79,7 @@ homeassistant:
       friendly_name: Living Room Motion Sensor
       device_class: motion
 
-    binary_sensor.master_bedroom_motion_sensor_home_security_motion_detected:
+    binary_sensor.master_bedroom_motion_sensor_home_security_motion_detection:
       <<: *customize
       friendly_name: Master Bedroom Motion Sensor
       device_class: motion
