@@ -70,9 +70,12 @@ homekit:
       - light.michaels_closet
       - light.nightstand_lamp
       - light.table_light
+      - light.task_light
       - media_player.living_room_tv
       - switch.apple_tv
       - switch.basement_task_light
+      - switch.garage_door_signaling_state_audible
+      - switch.garage_door_signaling_state_visual
       - switch.lg_tv
       - switch.mnemosyne_home_mode
       - switch.xbox_one
