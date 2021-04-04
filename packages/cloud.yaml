@@ -49,7 +49,6 @@ cloud:
         - light.living_room_floor_lamp_instance_2_level
         - light.task_light
         - switch.apple_tv
-        - switch.basement_task_light
         - switch.garage_door_signaling_state_audible
         - switch.lg_tv
         - switch.mnemosyne_home_mode
