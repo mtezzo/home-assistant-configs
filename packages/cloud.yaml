@@ -45,6 +45,7 @@ cloud:
         - media_player
         - script
       exclude_entities:
+        - light.basement_task_light
         - light.living_room_bookshelf_lamp_instance_2_level
         - light.living_room_floor_lamp_instance_2_level
         - light.task_light
