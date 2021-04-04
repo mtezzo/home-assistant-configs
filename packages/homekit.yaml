@@ -27,22 +27,22 @@ automation:
       - platform: homeassistant
         event: start
     action:
-      - wait_template: "{{ is_state('binary_sensor.ozw_network_ready', 'on') }}"
-        timeout: 00:10:00
-      - choose:
-          - conditions:
-              - condition: template
-                value_template: "{{ not wait.completed }}"
-            sequence:
-              - service: persistent_notification.create
-                data_template:
-                  title: Homekit Error
-                  message: >
-                    The Homekit bridge has not started.
-        default:
-          - service: homekit.start
-      # - delay: 00:05  # Waits 5 minutes
-      # - service: homekit.start
+      # - wait_template: "{{ is_state('binary_sensor.ozw_network_ready', 'on') }}"
+      #   timeout: 00:10:00
+      # - choose:
+      #     - conditions:
+      #         - condition: template
+      #           value_template: "{{ not wait.completed }}"
+      #       sequence:
+      #         - service: persistent_notification.create
+      #           data_template:
+      #             title: Homekit Error
+      #             message: >
+      #               The Homekit bridge has not started.
+      #   default:
+      #     - service: homekit.start
+      - delay: 00:05  # Waits 5 minutes
+      - service: homekit.start
 
 
 ################################################

@@ -109,10 +109,10 @@ homeassistant:
       friendly_name: "Office Smoke and Carbon Monoxide Detector: CO Status"
       device_class: gas
 
-    binary_sensor.ozw_network_ready:
-      <<: *customize
-      friendly_name: "Z-Wave Network Ready"
-      device_class: connectivity
+    # binary_sensor.ozw_network_ready:
+    #   <<: *customize
+    #   friendly_name: "Z-Wave Network Ready"
+    #   device_class: connectivity
 
     ################################################
     ## Cover
@@ -290,12 +290,12 @@ homeassistant:
 ################################################
 
 binary_sensor:
-  - platform: mqtt
-    name: ozw_network_ready
-    state_topic: OpenZWave/1/status/
-    value_template: >
-      {{ "ON" if value_json.Status in ["driverAwakeNodesQueried", "driverAllNodesQueriedSomeDead", "driverAllNodesQueried"] else "OFF" }}
-    json_attributes_topic: OpenZWave/1/status/
+  # - platform: mqtt
+  #   name: ozw_network_ready
+  #   state_topic: OpenZWave/1/status/
+  #   value_template: >
+  #     {{ "ON" if value_json.Status in ["driverAwakeNodesQueried", "driverAllNodesQueriedSomeDead", "driverAllNodesQueried"] else "OFF" }}
+  #   json_attributes_topic: OpenZWave/1/status/
   - platform: template
     sensors:
       guest_bedroom_smoke_and_carbon_monoxide_detector_smoke_status:
