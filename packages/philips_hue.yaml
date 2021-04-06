@@ -59,6 +59,6 @@ homeassistant:
 
 hue:
   bridges:
-    - host: 192.168.1.16
+    - host: 192.168.2.2
       allow_unreachable: true
       allow_hue_groups: false
