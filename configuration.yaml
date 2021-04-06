@@ -154,12 +154,8 @@ updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
 
-# Enables UPnP integration
-# https://www.home-assistant.io/components/upnp/
-upnp:
-  local_ip: 192.168.1.11
-
 # Enable Wake-On-LAN
+# https://rc.home-assistant.io/integrations/wake_on_lan/
 wake_on_lan:
 
 # Zeroconf/Avahi/Bonjour
