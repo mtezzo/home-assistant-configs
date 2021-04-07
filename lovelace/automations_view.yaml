@@ -37,7 +37,5 @@ cards:
     show_header_toggle: false
     entities:
       - automation.alarm_triggered_notification
-      - automation.sound_alarm
       - automation.update_notification
-      - automation.notify_ios_app
       - automation.trigger_notification_on_sensor_tamper
