@@ -73,10 +73,10 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave_js_event
+        event_type: zwave_js_value_notification
         event_data:
           node_id: 18
-          property_key_name: '002'
+          property_key: '002'
           value: 'KeyPressed'
           # scene_data: 7680
     action:
@@ -91,10 +91,10 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave_js_event
+        event_type: zwave_js_value_notification
         event_data:
           node_id: 18
-          property_key_name: '001'
+          property_key: '001'
           value: 'KeyPressed'
           # scene_data: 7680
     action:
@@ -113,10 +113,10 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave_js_event
+        event_type: zwave_js_value_notification
         event_data:
           node_id: 18
-          property_key_name: '004'
+          property_key: '004'
           value: 'KeyPressed'
           # scene_data: 7680
     action:
@@ -131,10 +131,10 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave_js_event
+        event_type: zwave_js_value_notification
         event_data:
           node_id: 18
-          property_key_name: '003'
+          property_key: '003'
           value: 'KeyPressed'
           # scene_data: 7680
     action:
@@ -153,10 +153,10 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave_js_event
+        event_type: zwave_js_value_notification
         event_data:
           node_id: 18
-          property_key_name: '005'
+          property_key: '005'
           value: 'KeyPressed'
           # scene_data: 7680
     action:
@@ -169,10 +169,10 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave_js_event
+        event_type: zwave_js_value_notification
         event_data:
           node_id: 18
-          property_key_name: '005'
+          property_key: '005'
           value: 'KeyHeldDown'
           # scene_data: 7800
     action:
@@ -189,10 +189,10 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: zwave_js_event
+        event_type: zwave_js_value_notification
         event_data:
           node_id: 18
-          property_key_name: '006'
+          property_key: '006'
           value: 'KeyPressed'
           # scene_data: 7680
     action:
