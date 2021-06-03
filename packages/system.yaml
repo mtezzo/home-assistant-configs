@@ -155,16 +155,3 @@ sensor:
 
   # https://www.home-assistant.io/components/sensor.version/
   - platform: version
-
-################################################
-## Speedtest.net
-################################################
-
-# https://www.home-assistant.io/components/speedtestdotnet/
-speedtestdotnet:
-  scan_interval:
-    hours: 4
-  monitored_conditions:
-    - ping
-    - download
-    - upload
