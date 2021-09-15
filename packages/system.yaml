@@ -80,17 +80,21 @@ automation:
     trigger:
       - platform: homeassistant
         event: start
-      - platform: time_pattern
-        seconds: '/5'
+#      - platform: time_pattern
+#        seconds: '/5'
     action:
-      - service: automation.turn_off
+      - service: frontend.set_theme
         data:
-          entity_id: automation.startup_notification
+          name: default
+          mode: dark
       - service: notify.sms
         data:
           message: "Home Assistant is now up and running."
           target:
             - !secret mobile_michael
+      - service: automation.turn_off
+        data:
+          entity_id: automation.startup_notification
 
   - alias: update_notification
     initial_state: true

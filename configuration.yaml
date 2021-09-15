@@ -22,7 +22,7 @@ homeassistant:
 
   # Homeassistant URLS
   external_url: !secret ha_url
-  internal_url: "http://hassio.local:8123"
+  internal_url: "http://home.assistant:8123"
 
   # Customizations
   customize: !include customize.yaml
