@@ -29,6 +29,8 @@ homekit:
       - camera
       - device_tracker
       - input_select
+      - media_player
+      - select
       - sensor
       - script
       - remote
@@ -45,7 +47,6 @@ homekit:
       - light.nightstand_lamp
       - light.table_light
       - light.task_light
-      - media_player.living_room_tv
       - switch.apple_tv
       - switch.backyard_smart_hose_timer_rain_delay
       - switch.backyard_smart_hose_timer_program_a
