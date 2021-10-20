@@ -37,6 +37,8 @@ homekit:
       - light.dresser_lamp
       - light.guest_bedroom_storage
       - light.julias_closet
+      - light.kitchen_range_extender
+      - light.laundry_room_range_extender
       - light.living_room_bookshelf_lamp_instance_2_level
       - light.living_room_floor_lamp_instance_2_level
       - light.michaels_closet
