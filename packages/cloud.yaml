@@ -50,6 +50,14 @@ cloud:
         - light.living_room_floor_lamp_instance_2_level
         - light.task_light
         - switch.apple_tv
+        - switch.backyard_smart_hose_timer_rain_delay
+        - switch.backyard_smart_hose_timer_program_a
+        - switch.backyard_smart_hose_timer_program_b
+        - switch.backyard_smart_hose_timer_program_c
+        - switch.front_yard_smart_hose_timer_rain_delay
+        - switch.front_yard_smart_hose_timer_program_a
+        - switch.front_yard_smart_hose_timer_program_b
+        - switch.front_yard_smart_hose_timer_program_c
         - switch.garage_door_signaling_state_audible
         - switch.lg_tv
         - switch.mnemosyne_home_mode

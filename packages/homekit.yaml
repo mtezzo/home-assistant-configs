@@ -45,7 +45,15 @@ homekit:
       - light.task_light
       - media_player.living_room_tv
       - switch.apple_tv
+      - switch.backyard_smart_hose_timer_rain_delay
+      - switch.backyard_smart_hose_timer_program_a
+      - switch.backyard_smart_hose_timer_program_b
+      - switch.backyard_smart_hose_timer_program_c
       - switch.basement_task_light
+      - switch.front_yard_smart_hose_timer_rain_delay
+      - switch.front_yard_smart_hose_timer_program_a
+      - switch.front_yard_smart_hose_timer_program_b
+      - switch.front_yard_smart_hose_timer_program_c
       - switch.garage_door_signaling_state_audible
       - switch.garage_door_signaling_state_visual
       - switch.lg_tv
