@@ -85,6 +85,8 @@ homekit:
       - binary_sensor.office_smoke_and_carbon_monoxide_detector_co_status
       - binary_sensor.office_smoke_and_carbon_monoxide_detector_smoke_status
       - script.good_night
+      - sensor.kitchen_motion_sensor_air_temperature
+      - sensor.laundry_room_flood_sensor_air_temperature
       - sensor.master_bedroom_motion_sensor_air_temperature
   entity_config:
     alarm_control_panel.alarm_system:
