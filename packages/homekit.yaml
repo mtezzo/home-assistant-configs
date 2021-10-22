@@ -60,6 +60,8 @@ homekit:
       - switch.garage_door_signaling_state_audible
       - switch.garage_door_signaling_state_visual
       - switch.lg_tv
+      - switch.living_room_harmony_hub_listen_to_living_room_sonos
+      - switch.living_room_harmony_hub_watch_smart_tv
       - switch.mnemosyne_home_mode
       - switch.xbox_one
     include_entities:
