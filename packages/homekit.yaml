@@ -30,6 +30,7 @@ homekit:
       - device_tracker
       - input_select
       - media_player
+      - person
       - select
       - sensor
       - script
