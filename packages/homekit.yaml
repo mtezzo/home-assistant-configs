@@ -31,6 +31,7 @@ homekit:
       - input_select
       - media_player
       - person
+      - scene
       - select
       - sensor
       - script
@@ -59,6 +60,13 @@ homekit:
       - switch.living_room_harmony_hub_listen_to_living_room_sonos
       - switch.living_room_harmony_hub_watch_smart_tv
       - switch.mnemosyne_home_mode
+      - switch.sonos_dining_room_crossfade
+      - switch.sonos_living_room_crossfade
+      - switch.sonos_living_room_night_sound
+      - switch.sonos_living_room_speech_enhancement_2
+      - switch.sonos_living_room_subwoofer_enabled
+      - switch.sonos_living_room_surround_enabled
+      - switch.sonos_office_crossfade
       - switch.xbox_one
     include_entities:
       - automation.master_bedroom_motion

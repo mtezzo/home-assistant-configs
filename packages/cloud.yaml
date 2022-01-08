@@ -63,6 +63,13 @@ cloud:
         - switch.garage_door_signaling_state_audible
         - switch.lg_tv
         - switch.mnemosyne_home_mode
+        - switch.sonos_dining_room_crossfade
+        - switch.sonos_living_room_crossfade
+        - switch.sonos_living_room_night_sound
+        - switch.sonos_living_room_speech_enhancement_2
+        - switch.sonos_living_room_subwoofer_enabled
+        - switch.sonos_living_room_surround_enabled
+        - switch.sonos_office_crossfade
         - switch.xbox_one
         - sensor.mnemosyne_drive_1_temperature
         - sensor.mnemosyne_drive_2_temperature
