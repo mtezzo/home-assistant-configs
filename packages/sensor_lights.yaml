@@ -208,7 +208,7 @@ automation:
         event_data:
           node_id: 30
           label: 'Scene 002'
-          value: 'KeyReleased'
+          value: 'KeyPressed'
     action:
       - service: script.light_control
         data_template:
