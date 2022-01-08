@@ -172,3 +172,51 @@ automation:
           state: "{{ trigger.to_state.state }}"
           brightness: 255
           transition: 1
+
+  ################################################
+  ## Switch Activated Lights
+  ################################################
+
+  - alias: julias_nightstand_switch_top_1x
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 30
+          label: 'Scene 001'
+          value: 'KeyPressed'
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.dresser_lamp
+          state: "on"
+          brightness: 178
+          transition: 2
+      - service: script.light_control
+        data_template:
+          entity_id: light.nightstand_lamp
+          state: "on"
+          brightness: 178
+          transition: 2
+
+  - alias: julias_nightstand_switch_bottom_1x
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 30
+          label: 'Scene 002'
+          value: 'KeyReleased'
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.dresser_lamp
+          state: "off"
+          transition: 10
+      - service: script.light_control
+        data_template:
+          entity_id: light.nightstand_lamp
+          state: "off"
+          transition: 10
