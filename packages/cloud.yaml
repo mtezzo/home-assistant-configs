@@ -66,7 +66,7 @@ cloud:
         - switch.sonos_dining_room_crossfade
         - switch.sonos_living_room_crossfade
         - switch.sonos_living_room_night_sound
-        - switch.sonos_living_room_speech_enhancement_2
+        - switch.sonos_living_room_speech_enhancement
         - switch.sonos_living_room_subwoofer_enabled
         - switch.sonos_living_room_surround_enabled
         - switch.sonos_office_crossfade
