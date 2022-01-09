@@ -184,39 +184,66 @@ automation:
         event_type: zwave_js_value_notification
         event_data:
           node_id: 30
-          label: 'Scene 001'
-          value: 'KeyPressed'
+          #label: 'Scene 001'
+          #value: 'KeyPressed'
     action:
-      - service: script.light_control
-        data_template:
-          entity_id: light.dresser_lamp
-          state: "on"
-          brightness: 178
-          transition: 2
-      - service: script.light_control
-        data_template:
-          entity_id: light.nightstand_lamp
-          state: "on"
-          brightness: 178
-          transition: 2
-
-  - alias: julias_nightstand_switch_bottom_1x
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: zwave_js_value_notification
-        event_data:
-          node_id: 30
-          label: 'Scene 002'
-          value: 'KeyPressed'
-    action:
-      - service: script.light_control
-        data_template:
-          entity_id: light.dresser_lamp
-          state: "off"
-          transition: 10
-      - service: script.light_control
-        data_template:
-          entity_id: light.nightstand_lamp
-          state: "off"
-          transition: 10
+      - choose:
+        - conditions:
+          - condition: template
+              value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.dresser_lamp, light.nightstand_lamp
+                data:
+                  brightness_pct: 100
+                  color_temp: 370
+                  transition: 2
+          - condition: template
+              value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed2x' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.dresser_lamp, light.nightstand_lamp
+                data:
+                  brightness_pct: 70
+                  color_temp: 370
+                  transition: 2
+          - condition: template
+              value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed3x' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.dresser_lamp, light.nightstand_lamp
+                data:
+                  brightness_pct: 50
+                  color_temp: 370
+                  transition: 2
+          - condition: template
+              value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed4x' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.dresser_lamp, light.nightstand_lamp
+                data:
+                  brightness_pct: 30
+                  color_temp: 370
+                  transition: 2
+          - condition: template
+              value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed5x' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.dresser_lamp, light.nightstand_lamp
+                data:
+                  brightness_pct: 10
+                  color_temp: 370
+                  transition: 2
+          - condition: template
+              value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed' }}"
+            sequence:
+              - service: light.turn_off
+                target:
+                  entity_id: light.dresser_lamp, light.nightstand_lamp
+                data:
+                  transition: 3
