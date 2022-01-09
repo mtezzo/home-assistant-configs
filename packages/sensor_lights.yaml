@@ -177,18 +177,20 @@ automation:
   ## Switch Activated Lights
   ################################################
 
-  - alias: julias_nightstand_switch_top_1x
+  - alias: nightstand_switches
     initial_state: true
     trigger:
       - platform: event
         event_type: zwave_js_value_notification
         event_data:
           node_id: 30
-          #label: 'Scene 001'
-          #value: 'KeyPressed'
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 31
     action:
       - choose:
-          # If Top button 1x
+        # If Top button 1x
         - conditions:
           - condition: template
             value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed' }}"
@@ -200,6 +202,7 @@ automation:
                 brightness_pct: 100
                 color_temp: 370
                 transition: 2
+        # If Top button 2x
         - conditions:
           - condition: template
             value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed2x' }}"
@@ -211,6 +214,7 @@ automation:
                 brightness_pct: 70
                 color_temp: 370
                 transition: 2
+        # If Top button 3x
         - conditions:
           - condition: template
             value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed3x' }}"
@@ -222,6 +226,7 @@ automation:
                 brightness_pct: 50
                 color_temp: 370
                 transition: 2
+        # If Top button 4x
         - conditions:
           - condition: template
             value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed4x' }}"
@@ -233,6 +238,7 @@ automation:
                 brightness_pct: 30
                 color_temp: 370
                 transition: 2
+        # If Top button 5x
         - conditions:
           - condition: template
             value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed5x' }}"
@@ -244,6 +250,7 @@ automation:
                 brightness_pct: 10
                 color_temp: 370
                 transition: 2
+        # If Bottom button 1x
         - conditions:
           - condition: template
             value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed' }}"

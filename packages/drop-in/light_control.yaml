@@ -103,8 +103,8 @@ script:
             {% else %}
               370
             {% endif %}
-          flash: "{{ flash }}"
-          transition: "{{ transition }}"
+          flash: "{{ flash|default(none) }}"
+          transition: "{{ transition|default(none) }}"
           color_name: "{{ color_name|default(none) }}"
           # profile: "{{ profile }}"
           # rgb_color: "{{ rgb_color }}"
