@@ -132,6 +132,33 @@ homeassistant:
       friendly_name: Basement Task Light
       icon: mdi:desk-lamp
 
+    light.dresser_lamp:
+      <<: *expose
+      icon: mdi:lamp
+
+    light.dungeon_dimmable_led_light_bulb:
+      <<: *customize
+      friendly_name: Dungeon Light
+      icon: mdi:lightbulb
+
+    light.garage_dimmable_led_light_bulb:
+      <<: *customize
+      friendly_name: Garage Storage Light
+      icon: mdi:lightbulb
+
+    light.guest_bedroom_storage:
+      <<: *expose
+      icon: mdi:lightbulb
+
+    light.guest_closet_dimmable_led_light_bulb:
+      <<: *customize
+      friendly_name: Guest Closet Light
+      icon: mdi:lightbulb
+
+    light.julias_closet:
+      <<: *expose
+      icon: mdi:lightbulb
+
     light.living_room_bookshelf_lamp_instance_1_level:
       <<: *customize
       friendly_name: Bookshelf Lamp
@@ -142,20 +169,13 @@ homeassistant:
       friendly_name: Floor Lamp
       icon: mdi:floor-lamp
 
-    light.guest_closet_dimmable_led_light_bulb:
-      <<: *customize
-      friendly_name: Guest Closet Light
+    light.michaels_closet:
+      <<: *expose
       icon: mdi:lightbulb
 
-    light.garage_dimmable_led_light_bulb:
-      <<: *customize
-      friendly_name: Garage Storage Light
-      icon: mdi:lightbulb
-
-    light.dungeon_dimmable_led_light_bulb:
-      <<: *customize
-      friendly_name: Dungeon Light
-      icon: mdi:lightbulb
+    light.nightstand_lamp:
+      <<: *expose
+      icon: mdi:lamp
 
     ################################################
     ## Switches
