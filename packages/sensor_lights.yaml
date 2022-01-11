@@ -85,31 +85,30 @@ automation:
     mode: restart
     max_exceeded: silent
     action:
-      # - service: script.light_control
-      #   data_template:
-      #     entity_id: light.living_room_floor_lamp_instance_1_level
-      #     state: "{{ trigger.to_state.state }}"
-      #     brightness: 178
-      #     transition: 2
-      # - service: script.light_control
-      #   data_template:
-      #     entity_id: light.table_light
-      #     state: "{{ trigger.to_state.state }}"
-      #     brightness: 178
-      #     effect: "colorloop"
-      - service: >
-          {% if trigger.to_state.state == "on" %}
-            light.turn_on
-          {% else %}
-            light.turn_off
-          {% endif %}
-        target:
-          entity_id: light.living_room_floor_lamp_instance_1_level, light.table_light
-        data:
-          brightness_pct: 70
-          color_temp: 370
-          transition: 2
-
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.living_room_floor_lamp_instance_1_level
+                data:
+                  brightness_pct: 70
+                  transition: 2
+              - service: light.turn_on
+                target:
+                  entity_id: light.table_light
+                data:
+                  brightness_pct: 70
+                  transition: 2
+                  effect: 'colorloop'
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.living_room_floor_lamp_instance_1_level, light.table_light
+            data:
+              transition: 3
 
   - alias: master_bedroom_motion
     trigger:
@@ -125,30 +124,24 @@ automation:
     mode: restart
     max_exceeded: silent
     action:
-      # - service: script.light_control
-      #   data_template:
-      #     entity_id: light.dresser_lamp
-      #     state: "{{ trigger.to_state.state }}"
-      #     brightness: 178
-      #     transition: 2
-      # - service: script.light_control
-      #   data_template:
-      #     entity_id: light.nightstand_lamp
-      #     state: "{{ trigger.to_state.state }}"
-      #     brightness: 178
-      #     transition: 2
-      - service: >
-          {% if trigger.to_state.state == "on" %}
-            light.turn_on
-          {% else %}
-            light.turn_off
-          {% endif %}
-        target:
-          entity_id: light.dresser_lamp, light.nightstand_lamp
-        data:
-          brightness_pct: 70
-          color_temp: 370
-          transition: 2
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.dresser_lamp, light.nightstand_lamp
+                data:
+                  brightness_pct: 70
+                  color_temp: 370
+                  transition: 2
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.dresser_lamp, light.nightstand_lamp
+            data:
+              transition: 3
 
   ################################################
   ## Door Activated Lights
@@ -160,18 +153,24 @@ automation:
       - platform: state
         entity_id: binary_sensor.guest_closet_door_access_control_window_door_is_open
     action:
-      - service: >
-          {% if trigger.to_state.state == "on" %}
-            light.turn_on
-          {% else %}
-            light.turn_off
-          {% endif %}
-        target:
-          entity_id: light.guest_closet_dimmable_led_light_bulb
-        data:
-          brightness: 255
-          color_temp: 370
-          transition: 1
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.guest_closet_dimmable_led_light_bulb
+                data:
+                  brightness: 255
+                  color_temp: 370
+                  transition: 1
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.guest_closet_dimmable_led_light_bulb
+            data:
+              transition: 1
 
   - alias: guest_bedroom_storage_lighting
     initial_state: true
@@ -179,18 +178,24 @@ automation:
       - platform: state
         entity_id: binary_sensor.guest_storage_door_access_control_window_door_is_open
     action:
-      - service: >
-          {% if trigger.to_state.state == "on" %}
-            light.turn_on
-          {% else %}
-            light.turn_off
-          {% endif %}
-        target:
-          entity_id: light.guest_bedroom_storage
-        data:
-          brightness: 255
-          color_temp: 370
-          transition: 1
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.guest_bedroom_storage
+                data:
+                  brightness: 255
+                  color_temp: 370
+                  transition: 1
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.guest_bedroom_storage
+            data:
+              transition: 1
 
   - alias: michaels_closet_lighting
     initial_state: true
@@ -223,18 +228,24 @@ automation:
       - platform: state
         entity_id: binary_sensor.julias_closet_door_access_control_window_door_is_open
     action:
-      - service: >
-          {% if trigger.to_state.state == "on" %}
-            light.turn_on
-          {% else %}
-            light.turn_off
-          {% endif %}
-        target:
-          entity_id: light.julias_closet
-        data:
-          brightness: 255
-          color_temp: 370
-          transition: 1
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.julias_closet
+                data:
+                  brightness: 255
+                  color_temp: 370
+                  transition: 1
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.julias_closet
+            data:
+              transition: 1
 
   ################################################
   ## Switch Activated Lights

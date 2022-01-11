@@ -120,10 +120,9 @@ automation:
 script:
   all_lights_off:
     sequence:
-      - service: script.light_control
+      - service: light.turn_off
         data:
           entity_id: all
-          state: 'off'
           transition: 5
       - service: switch.turn_off
         data:

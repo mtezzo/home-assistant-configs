@@ -80,11 +80,12 @@ automation:
           value: 'KeyPressed'
           # scene_data: 7680
     action:
-      - service: script.light_control
-        data_template:
+      - service: light.turn_on
+        target:
           entity_id: light.nightstand_lamp
-          state: 'on'
-          brightness: 178
+        data:
+          brightness_pct: 70
+          color_temp: 370
           transition: 2
 
   - alias: keyfob_square_button_tapped
@@ -98,11 +99,10 @@ automation:
           value: 'KeyPressed'
           # scene_data: 7680
     action:
-      - service: script.light_control
-        data_template:
+      - service: light.turn_off
+        target:
           entity_id: light.nightstand_lamp
-          state: 'off'
-          brightness: 178
+        data:
           transition: 2
 
   ################################################
@@ -120,11 +120,12 @@ automation:
           value: 'KeyPressed'
           # scene_data: 7680
     action:
-      - service: script.light_control
-        data_template:
+      - service: light.turn_on
+        target:
           entity_id: light.dresser_lamp
-          state: 'on'
-          brightness: 178
+        data:
+          brightness_pct: 70
+          color_temp: 370
           transition: 2
 
   - alias: keyfob_x_button_tapped
@@ -138,11 +139,10 @@ automation:
           value: 'KeyPressed'
           # scene_data: 7680
     action:
-      - service: script.light_control
-        data_template:
+      - service: light.turn_off
+        target:
           entity_id: light.dresser_lamp
-          state: 'off'
-          brightness: 178
+        data:
           transition: 2
 
   ################################################
