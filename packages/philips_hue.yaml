@@ -25,22 +25,6 @@ homeassistant:
     ## Lights
     ################################################
 
-    light.dresser_lamp:
-      <<: *expose
-      icon: mdi:lamp
-
-    light.nightstand_lamp:
-      <<: *expose
-      icon: mdi:lamp
-
-    light.julias_closet:
-      <<: *expose
-      icon: mdi:lightbulb
-
-    light.michaels_closet:
-      <<: *expose
-      icon: mdi:lightbulb
-
     light.table_light:
       <<: *expose
       icon: mdi:lava-lamp
@@ -48,10 +32,6 @@ homeassistant:
     light.dining_room_spot:
       <<: *expose
       icon: mdi:track-light
-
-    light.guest_bedroom_storage:
-      <<: *expose
-      icon: mdi:lightbulb
 
 ################################################
 ## Philips Hue

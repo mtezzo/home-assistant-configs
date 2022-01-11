@@ -109,14 +109,14 @@ automation:
         conditions:
           - condition: template
             value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'automation' }}"
-          - condition: template
-            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_boolean' }}"
-          - condition: template
-            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_select' }}"
-          - condition: template
-            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_number' }}"
-          - condition: template
-            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_text' }}"
+          # - condition: template
+          #   value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_boolean' }}"
+          # - condition: template
+          #   value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_select' }}"
+          # - condition: template
+          #   value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_number' }}"
+          # - condition: template
+          #   value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_text' }}"
           - condition: template
             value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'light' }}"
           - condition: template
@@ -137,8 +137,8 @@ automation:
     trigger:
       - platform: mqtt
         topic: homeassistant/automation/+
-      - platform: mqtt
-        topic: homeassistant/input_boolean/+
+      # - platform: mqtt
+      #   topic: homeassistant/input_boolean/+
       - platform: mqtt
         topic: homeassistant/light/+
       - platform: mqtt
@@ -153,28 +153,28 @@ automation:
         data_template:
           entity_id: "{{ trigger.topic|replace('homeassistant/', '')|replace('/', '.') }}"
 
-  - alias: persistence_subscribe_select_option
-    initial_state: 'on'
-    trigger:
-      - platform: mqtt
-        topic: homeassistant/input_select/+
-    condition: *subscribe_condition
-    action:
-      - service_template: "{{ trigger.topic.split('/')[1] }}.select_option"
-        data_template:
-          entity_id: "{{ trigger.topic|replace('homeassistant/', '')|replace('/', '.') }}"
-          option: "{{ trigger.payload }}"
+  # - alias: persistence_subscribe_select_option
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: mqtt
+  #       topic: homeassistant/input_select/+
+  #   condition: *subscribe_condition
+  #   action:
+  #     - service_template: "{{ trigger.topic.split('/')[1] }}.select_option"
+  #       data_template:
+  #         entity_id: "{{ trigger.topic|replace('homeassistant/', '')|replace('/', '.') }}"
+  #         option: "{{ trigger.payload }}"
 
-  - alias: persistence_subscribe_set_value
-    initial_state: 'on'
-    trigger:
-      - platform: mqtt
-        topic: homeassistant/input_number/+
-      - platform: mqtt
-        topic: homeassistant/input_text/+
-    condition: *subscribe_condition
-    action:
-      - service_template: "{{ trigger.topic.split('/')[1] }}.set_value"
-        data_template:
-          entity_id: "{{ trigger.topic|replace('homeassistant/', '')|replace('/', '.') }}"
-          value: "{{ trigger.payload }}"
+  # - alias: persistence_subscribe_set_value
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: mqtt
+  #       topic: homeassistant/input_number/+
+  #     - platform: mqtt
+  #       topic: homeassistant/input_text/+
+  #   condition: *subscribe_condition
+  #   action:
+  #     - service_template: "{{ trigger.topic.split('/')[1] }}.set_value"
+  #       data_template:
+  #         entity_id: "{{ trigger.topic|replace('homeassistant/', '')|replace('/', '.') }}"
+  #         value: "{{ trigger.payload }}"

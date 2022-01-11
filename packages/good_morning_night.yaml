@@ -47,7 +47,7 @@ homeassistant:
     automation.auto_sunrise:
       <<: *customize
       friendly_name: "Auto Sunrise (Weekdays)"
-      persistent: true
+      # persistent: true
       icon: mdi:robot
 
     ################################################
