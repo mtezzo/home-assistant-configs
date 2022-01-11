@@ -214,6 +214,8 @@ automation:
           - service: light.turn_off
             target:
               entity_id: light.michaels_closet
+            data:
+              transition: 1
 
   - alias: julias_closet_lighting
     initial_state: true
