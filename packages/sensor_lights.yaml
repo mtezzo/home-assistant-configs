@@ -160,11 +160,17 @@ automation:
       - platform: state
         entity_id: binary_sensor.guest_closet_door_access_control_window_door_is_open
     action:
-      - service: script.light_control
-        data_template:
+      - service: >
+          {% if trigger.to_state.state == "on" %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        target:
           entity_id: light.guest_closet_dimmable_led_light_bulb
-          state: "{{ trigger.to_state.state }}"
+        data:
           brightness: 255
+          color_temp: 370
           transition: 1
 
   - alias: guest_bedroom_storage_lighting
@@ -173,11 +179,17 @@ automation:
       - platform: state
         entity_id: binary_sensor.guest_storage_door_access_control_window_door_is_open
     action:
-      - service: script.light_control
-        data_template:
+      - service: >
+          {% if trigger.to_state.state == "on" %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        target:
           entity_id: light.guest_bedroom_storage
-          state: "{{ trigger.to_state.state }}"
+        data:
           brightness: 255
+          color_temp: 370
           transition: 1
 
   - alias: michaels_closet_lighting
@@ -186,11 +198,17 @@ automation:
       - platform: state
         entity_id: binary_sensor.michaels_closet_door_access_control_window_door_is_open
     action:
-      - service: script.light_control
-        data_template:
+      - service: >
+          {% if trigger.to_state.state == "on" %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        target:
           entity_id: light.michaels_closet
-          state: "{{ trigger.to_state.state }}"
+        data:
           brightness: 255
+          color_temp: 370
           transition: 1
 
   - alias: julias_closet_lighting
@@ -199,11 +217,17 @@ automation:
       - platform: state
         entity_id: binary_sensor.julias_closet_door_access_control_window_door_is_open
     action:
-      - service: script.light_control
-        data_template:
+      - service: >
+          {% if trigger.to_state.state == "on" %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        target:
           entity_id: light.julias_closet
-          state: "{{ trigger.to_state.state }}"
+        data:
           brightness: 255
+          color_temp: 370
           transition: 1
 
   ################################################
