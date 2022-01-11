@@ -56,6 +56,12 @@ homeassistant:
       persistent: true
       icon: mdi:robot
 
+    automation.nightstand_switches:
+      <<: *customize
+      friendly_name: "Nightstand Switches"
+      persistent: true
+      icon: mdi:robot
+
 ################################################
 ## Automation
 ################################################
@@ -78,18 +84,31 @@ automation:
         for: '00:25:00'
     mode: restart
     action:
-      - service: script.light_control
-        data_template:
-          entity_id: light.living_room_floor_lamp_instance_1_level
-          state: "{{ trigger.to_state.state }}"
-          brightness: 178
+      # - service: script.light_control
+      #   data_template:
+      #     entity_id: light.living_room_floor_lamp_instance_1_level
+      #     state: "{{ trigger.to_state.state }}"
+      #     brightness: 178
+      #     transition: 2
+      # - service: script.light_control
+      #   data_template:
+      #     entity_id: light.table_light
+      #     state: "{{ trigger.to_state.state }}"
+      #     brightness: 178
+      #     effect: "colorloop"
+      - service_template: >
+          {% if is_state('trigger.to_state.state', 'on') %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        target:
+          entity_id: light.living_room_floor_lamp_instance_1_level, light.table_light
+        data:
+          brightness_pct: 70
+          color_temp: 370
           transition: 2
-      - service: script.light_control
-        data_template:
-          entity_id: light.table_light
-          state: "{{ trigger.to_state.state }}"
-          brightness: 178
-          effect: "colorloop"
+
 
   - alias: master_bedroom_motion
     trigger:
@@ -104,17 +123,29 @@ automation:
         for: '00:20:00'
     mode: restart
     action:
-      - service: script.light_control
-        data_template:
-          entity_id: light.dresser_lamp
-          state: "{{ trigger.to_state.state }}"
-          brightness: 178
-          transition: 2
-      - service: script.light_control
-        data_template:
-          entity_id: light.nightstand_lamp
-          state: "{{ trigger.to_state.state }}"
-          brightness: 178
+      # - service: script.light_control
+      #   data_template:
+      #     entity_id: light.dresser_lamp
+      #     state: "{{ trigger.to_state.state }}"
+      #     brightness: 178
+      #     transition: 2
+      # - service: script.light_control
+      #   data_template:
+      #     entity_id: light.nightstand_lamp
+      #     state: "{{ trigger.to_state.state }}"
+      #     brightness: 178
+      #     transition: 2
+      - service_template: >
+          {% if is_state('trigger.to_state.state', 'on') %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        target:
+          entity_id: light.dresser_lamp, light.nightstand_lamp
+        data:
+          brightness_pct: 70
+          color_temp: 370
           transition: 2
 
   ################################################
