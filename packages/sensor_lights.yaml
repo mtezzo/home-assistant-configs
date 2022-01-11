@@ -83,6 +83,7 @@ automation:
         to: 'off'
         for: '00:25:00'
     mode: restart
+    max_exceeded: silent
     action:
       # - service: script.light_control
       #   data_template:
@@ -96,8 +97,8 @@ automation:
       #     state: "{{ trigger.to_state.state }}"
       #     brightness: 178
       #     effect: "colorloop"
-      - service_template: >
-          {% if is_state('trigger.to_state.state', 'on') %}
+      - service: >
+          {% if trigger.to_state.state == "on" %}
             light.turn_on
           {% else %}
             light.turn_off
@@ -122,6 +123,7 @@ automation:
         to: 'off'
         for: '00:20:00'
     mode: restart
+    max_exceeded: silent
     action:
       # - service: script.light_control
       #   data_template:
@@ -135,8 +137,8 @@ automation:
       #     state: "{{ trigger.to_state.state }}"
       #     brightness: 178
       #     transition: 2
-      - service_template: >
-          {% if is_state('trigger.to_state.state', 'on') %}
+      - service: >
+          {% if trigger.to_state.state == "on" %}
             light.turn_on
           {% else %}
             light.turn_off
