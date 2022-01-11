@@ -197,24 +197,23 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.michaels_closet_door_access_control_window_door_is_open
-        from: 'off'
-        to: 'on'
     action:
-      - service: light.turn_on
-        target:
-          entity_id: light.michaels_closet
-        data:
-          brightness: 255
-          color_temp: 370
-          transition: 1
-      - wait_for_trigger:
-        - platform: state
-          entity_id: '{{ trigger.entity_id }}'
-          from: 'on'
-          to: 'off'
-      - service: light.turn_off
-        target:
-          entity_id: light.michaels_closet
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.michaels_closet
+                data:
+                  brightness: 255
+                  color_temp: 370
+                  transition: 1
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.michaels_closet
 
   - alias: julias_closet_lighting
     initial_state: true
