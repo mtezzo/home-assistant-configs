@@ -207,14 +207,14 @@ automation:
           brightness: 255
           color_temp: 370
           transition: 1
-        - wait_for_trigger:
-          - platform: state
-            entity_id: '{{ trigger.entity_id }}'
-            from: 'on'
-            to: 'off'
-        - service: light.turn_off
-          target:
-            entity_id: light.michaels_closet
+      - wait_for_trigger:
+        - platform: state
+          entity_id: '{{ trigger.entity_id }}'
+          from: 'on'
+          to: 'off'
+      - service: light.turn_off
+        target:
+          entity_id: light.michaels_closet
 
   - alias: julias_closet_lighting
     initial_state: true
