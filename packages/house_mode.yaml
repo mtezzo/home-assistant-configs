@@ -27,13 +27,11 @@ homeassistant:
     automation.auto_away:
       <<: *customize
       friendly_name: "Auto Away"
-      persistent: true
       icon: mdi:robot
 
     automation.auto_home:
       <<: *customize
       friendly_name: "Auto Home"
-      persistent: true
       icon: mdi:robot
 
     ################################################

@@ -107,8 +107,8 @@ automation:
         value_template: "{{ trigger.event.data.new_state.state != trigger.event.data.old_state.state }}"
       - condition: or
         conditions:
-          - condition: template
-            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'automation' }}"
+          # - condition: template
+          #   value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'automation' }}"
           # - condition: template
           #   value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_boolean' }}"
           # - condition: template
@@ -135,8 +135,8 @@ automation:
   - alias: persistence_subscribe_binary
     initial_state: 'on'
     trigger:
-      - platform: mqtt
-        topic: homeassistant/automation/+
+      # - platform: mqtt
+      #   topic: homeassistant/automation/+
       # - platform: mqtt
       #   topic: homeassistant/input_boolean/+
       - platform: mqtt

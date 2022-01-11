@@ -23,43 +23,36 @@ homeassistant:
     automation.living_room_motion:
       <<: *customize
       friendly_name: "Living Room Motion"
-      persistent: true
       icon: mdi:robot
 
     automation.master_bedroom_motion:
       <<: *customize
       friendly_name: "Bedroom Motion"
-      persistent: true
       icon: mdi:robot
 
     automation.guest_bedroom_closet_lighting:
       <<: *customize
       friendly_name: "Guest Closet Lighting"
-      persistent: true
       icon: mdi:robot
 
     automation.guest_bedroom_storage_lighting:
       <<: *customize
       friendly_name: "Guest Storage Lighting"
-      persistent: true
       icon: mdi:robot
 
     automation.michaels_closet_lighting:
       <<: *customize
       friendly_name: "Michael's Closet Lighting"
-      persistent: true
       icon: mdi:robot
   
     automation.julias_closet_lighting:
       <<: *customize
       friendly_name: "Julia's Closet Lighting"
-      persistent: true
       icon: mdi:robot
 
     automation.nightstand_switches:
       <<: *customize
       friendly_name: "Nightstand Switches"
-      persistent: true
       icon: mdi:robot
 
 ################################################

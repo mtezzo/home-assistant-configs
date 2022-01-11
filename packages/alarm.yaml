@@ -54,13 +54,11 @@ homeassistant:
     automation.alarm_triggered_notification:
       <<: *customize
       friendly_name: "Send Notification on Alarm Trigger"
-      persistent: true
       icon: mdi:message-text
 
     automation.trigger_notification_on_sensor_tamper:
       <<: *customize
       friendly_name: "Send Notification on Tamper"
-      persistent: true
       icon: mdi:message-text
 
     automation.trigger_notification_on_smoke:
