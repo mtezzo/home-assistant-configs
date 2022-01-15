@@ -94,7 +94,7 @@ automation:
                 data:
                   brightness_pct: 70
                   transition: 2
-                  effect: 'colorloop'
+                  color_name: "{{ ['lawngreen', 'blueviolet', 'magenta', 'yellow', 'red'] | random }}"
         # ELSE door closed
         default:
           - service: light.turn_off
