@@ -56,12 +56,17 @@ cards:
       - light.living_room_floor_lamp_instance_1_level
     image: /local/img/living_room.jpg?v=1
 
-  - type: picture-glance
-    title: Master Bedroom
-    entities:
-      - light.dresser_lamp
-      - light.nightstand_lamp
-    image: /local/img/master_bedroom.jpg?v=1
+  # - type: picture-glance
+  #   title: Master Bedroom
+  #   entities:
+  #     - light.dresser_lamp
+  #     - light.nightstand_lamp
+  #   image: /local/img/master_bedroom.jpg?v=1
+
+  # Master Bedroom
+  - type: area
+    area: be9c90e562724c789bafa8ca9563f34b
+    show_camera: true
 
   - type: picture-glance
     title: Guest Bedroom
@@ -70,8 +75,7 @@ cards:
       - light.guest_closet_dimmable_led_light_bulb
     image: /local/img/guest_bedroom.jpg?v=1
 
-  - type: picture-glance
-    title: Dining Room
-    entities:
-      - light.dining_room_spot
-    camera_image: camera.mnemosyne_dining_room
+  # Dining Room
+  - type: area
+    area: fea73d3ae1c548a88559cb39ce002174
+    show_camera: true
