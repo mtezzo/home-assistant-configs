@@ -112,6 +112,10 @@ lovelace:
 # https://www.home-assistant.io/components/map/
 map:
 
+# Enables media browser
+# https://www.home-assistant.io/integrations/media_source/
+media_source:
+
 # Enables the mobile app component
 # https://www.home-assistant.io/components/mobile_app/
 mobile_app:
