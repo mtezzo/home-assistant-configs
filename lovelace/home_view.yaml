@@ -145,6 +145,15 @@ cards:
       - cover.garage_door
       - type: divider
       - switch.basement_task_light
+      - type: divider
+      - type: custom:slider-entity-row
+        entity: light.left_key_light_air
+        hide_when_off: true
+        toggle: true
+      - type: custom:slider-entity-row
+        entity: light.right_key_light_air
+        hide_when_off: true
+        toggle: true
 
   - type: custom:weather-card
     entity: weather.dark_sky
