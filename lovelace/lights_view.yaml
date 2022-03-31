@@ -89,3 +89,5 @@ cards:
           - type: light
             entity: light.right_key_light_air
             name: Right Key Light
+      - type: light
+        entity: light.office_lamp
