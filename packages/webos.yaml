@@ -28,10 +28,10 @@ homeassistant:
 ## Media Players
 ################################################
 
-webostv:
-  host: 192.168.1.9
-  name: living_room_tv
-  turn_on_action:
-    service: wake_on_lan.send_magic_packet
-    data:
-      mac: "14-C9-13-7C-BB-FE"
+# webostv:
+#   host: 192.168.1.9
+#   name: living_room_tv
+#   turn_on_action:
+#     service: wake_on_lan.send_magic_packet
+#     data:
+#       mac: "14-C9-13-7C-BB-FE"
