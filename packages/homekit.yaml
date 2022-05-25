@@ -42,6 +42,7 @@ homekit:
       - light.laundry_room_range_extender
       - light.living_room_bookshelf_lamp_instance_2_level
       - light.living_room_floor_lamp_instance_2_level
+      - light.office_lamp
       - light.table_light
       - light.task_light
       - switch.apple_tv
