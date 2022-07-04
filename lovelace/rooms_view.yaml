@@ -15,7 +15,7 @@ cards:
       - light.living_room_floor_lamp_instance_1_level
       - entity: sensor.living_room_motion_sensor_illuminance
         name: Lux
-      - entity: climate.living_room
+      - entity: climate.dining_room
         name: Thermostat
 
   - type: custom:banner-card
@@ -50,7 +50,7 @@ cards:
   # - type: picture-glance
   #   title: Living room
   #   entities:
-  #     - climate.living_room
+  #     - climate.dining_room
   #     - light.table_light
   #     - light.living_room_bookshelf_lamp_instance_1_level
   #     - light.living_room_floor_lamp_instance_1_level

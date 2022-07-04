@@ -106,7 +106,7 @@ cards:
           - input_boolean.guest_mode
 
   - type: thermostat
-    entity: climate.living_room
+    entity: climate.dining_room
 
   - type: thermostat
     entity: climate.bathroom

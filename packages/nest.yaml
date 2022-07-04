@@ -30,11 +30,11 @@ homeassistant:
       friendly_name: HVAC Fan
       icon: mdi:fan
 
-    binary_sensor.living_room_thermostat_is_using_emergency_heat:
+    binary_sensor.dining_room_thermostat_is_using_emergency_heat:
       <<: *customize
       device_class: problem
 
-    binary_sensor.living_room_thermostat_online:
+    binary_sensor.dining_room_thermostat_online:
       <<: *customize
       device_class: connectivity
 
@@ -46,7 +46,7 @@ homeassistant:
     ## Climate
     ################################################
 
-    climate.living_room:
+    climate.dining_room:
       <<: *customize
       friendly_name: 'Nest'
       icon: mdi:thermostat
@@ -82,22 +82,22 @@ homeassistant:
       friendly_name: 'Smoke Detector'
       icon: mdi:fire
 
-    sensor.living_room_thermostat_humidity:
+    sensor.dining_room_thermostat_humidity:
       <<: *customize
       friendly_name: Nest Humidity
       device_class: humidity
 
-    sensor.living_room_thermostat_hvac_state:
+    sensor.dining_room_thermostat_hvac_state:
       <<: *customize
       friendly_name: Nest Status
       icon: mdi:thermostat
 
-    sensor.living_room_thermostat_target:
+    sensor.dining_room_thermostat_target:
       <<: *customize
       friendly_name: Nest Target Temperature
       icon: mdi:thermometer-lines
 
-    sensor.living_room_thermostat_temperature:
+    sensor.dining_room_thermostat_temperature:
       <<: *customize
       friendly_name: Nest Temperature
       device_class: temperature
