@@ -120,6 +120,10 @@ media_source:
 # https://www.home-assistant.io/components/mobile_app/
 mobile_app:
 
+# Enables the my integration
+# https://www.home-assistant.io/integrations/my/
+my:
+
 # Nest
 # https://www.home-assistant.io/integrations/nest/
 nest:
