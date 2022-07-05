@@ -21,10 +21,6 @@ homeassistant:
     ## Binary Sensor
     ################################################
 
-    binary_sensor.living_room_nest_protect_online:
-      <<: *customize
-      device_class: connectivity
-
     binary_sensor.living_room_thermostat_fan:
       <<: *customize
       friendly_name: HVAC Fan
@@ -66,21 +62,6 @@ homeassistant:
     ################################################
     ## Sensor
     ################################################
-
-    sensor.living_room_nest_protect_battery_health:
-      <<: *customize
-      friendly_name: 'Nest Protect Battery'
-      icon: mdi:battery
-
-    sensor.living_room_nest_protect_co_status:
-      <<: *customize
-      friendly_name: 'Carbon Monoxide'
-      icon: mdi:gas-cylinder
-
-    sensor.living_room_nest_protect_smoke_status:
-      <<: *customize
-      friendly_name: 'Smoke Detector'
-      icon: mdi:fire
 
     sensor.dining_room_thermostat_humidity:
       <<: *customize
@@ -126,20 +107,4 @@ script:
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-  binary_sensors:
-    monitored_conditions:
-      - 'away'
-      - 'online'
-      - 'fan'
-      - 'is_using_emergency_heat'
-      - 'target'
-  sensors:
-    monitored_conditions:
-      - 'temperature'
-      - 'target'
-      - 'humidity'
-      - 'preset_mode'
-      - 'hvac_state'
-      - 'co_status'
-      - 'smoke_status'
-      - 'battery_health'
+  project_id: !secret nest_project_id

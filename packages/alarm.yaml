@@ -281,14 +281,6 @@ automation:
         entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_smoke_status
         from: 'off'
         to: 'on'
-      - platform: state
-        entity_id: sensor.living_room_nest_protect_smoke_status
-        from: 'Ok'
-        to: 'Emergency'
-      - platform: state
-        entity_id: sensor.living_room_nest_protect_smoke_status
-        from: 'Ok'
-        to: 'Warning'
     action:
       - service: notify.ALL_DEVICES
         data_template:
@@ -326,14 +318,6 @@ automation:
         entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_co_status
         from: 'off'
         to: 'on'
-      - platform: state
-        entity_id: sensor.living_room_nest_protect_co_status
-        from: 'Ok'
-        to: 'Emergency'
-      - platform: state
-        entity_id: sensor.living_room_nest_protect_co_status
-        from: 'Ok'
-        to: 'Warning'
     action:
       - service: notify.ALL_DEVICES
         data_template:
