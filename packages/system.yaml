@@ -154,6 +154,3 @@ sensor:
       - type: load_1m
       - type: load_5m
       - type: load_15m
-
-  # https://www.home-assistant.io/components/sensor.version/
-  - platform: version
