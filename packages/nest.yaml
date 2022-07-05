@@ -18,27 +18,6 @@ homeassistant:
         package: 'nest'
 
     ################################################
-    ## Binary Sensor
-    ################################################
-
-    binary_sensor.living_room_thermostat_fan:
-      <<: *customize
-      friendly_name: HVAC Fan
-      icon: mdi:fan
-
-    binary_sensor.dining_room_thermostat_is_using_emergency_heat:
-      <<: *customize
-      device_class: problem
-
-    binary_sensor.dining_room_thermostat_online:
-      <<: *customize
-      device_class: connectivity
-
-    binary_sensor.otter_den_away:
-      <<: *customize
-      device_class: presence
-
-    ################################################
     ## Climate
     ################################################
 
@@ -63,24 +42,14 @@ homeassistant:
     ## Sensor
     ################################################
 
-    sensor.dining_room_thermostat_humidity:
+    sensor.dining_room_humidity:
       <<: *customize
-      friendly_name: Nest Humidity
+      friendly_name: Dining Room Humidity
       device_class: humidity
 
-    sensor.dining_room_thermostat_hvac_state:
+    sensor.dining_room_temperature:
       <<: *customize
-      friendly_name: Nest Status
-      icon: mdi:thermostat
-
-    sensor.dining_room_thermostat_target:
-      <<: *customize
-      friendly_name: Nest Target Temperature
-      icon: mdi:thermometer-lines
-
-    sensor.dining_room_thermostat_temperature:
-      <<: *customize
-      friendly_name: Nest Temperature
+      friendly_name: Dining Room Temperature
       device_class: temperature
 
 ################################################
@@ -90,12 +59,14 @@ homeassistant:
 script:
   set_nest_away:
     sequence:
-      - service: nest.set_away_mode
+      - service: climate.set_preset_mode
         data:
-          away_mode: away
+          entity_id: climate.dining_room
+          preset_mode: eco
 
   set_nest_home:
     sequence:
-      - service: nest.set_away_mode
+      - service: climate.set_preset_mode
         data:
-          away_mode: home
+          entity_id: climate.dining_room
+          preset_mode: none
