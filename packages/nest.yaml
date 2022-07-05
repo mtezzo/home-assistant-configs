@@ -99,12 +99,3 @@ script:
       - service: nest.set_away_mode
         data:
           away_mode: home
-
-################################################
-## Nest
-################################################
-
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-  project_id: !secret nest_project_id
