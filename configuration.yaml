@@ -139,14 +139,14 @@ person:
     user_id: !secret userid_julia
     device_trackers:
       - device_tracker.julia_iphone
-      - device_tracker.life360_julia
+      - device_tracker.julia_life360
 
   - name: Michael
     id: michael
     user_id: !secret userid_michael
     device_trackers:
       - device_tracker.michael_iphone
-      - device_tracker.life360_michael
+      - device_tracker.michael_life360
 
 # Enable Sun Component
 # https://home-assistant.io/components/sun/

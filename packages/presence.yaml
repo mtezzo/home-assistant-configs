@@ -24,16 +24,6 @@ homeassistant:
     ## Automation
     ################################################
 
-    automation.life360_overdue_update:
-      <<: *expose
-      friendly_name: "Life360 Overdue Update"
-      icon: mdi:bell-outline
-
-    automation.life360_update_restored:
-      <<: *expose
-      friendly_name: "Life360 Update Restored"
-      icon: mdi:bell-outline
-
     automation.person_arriving:
       <<: *expose
       friendly_name: "Mark person as just arrived"
@@ -96,18 +86,6 @@ homeassistant:
       friendly_name: "Household"
 
 ################################################
-## Device Tracker
-################################################
-
-life360:
-  accounts:
-    - username: !secret life360_username
-      password: !secret life360_password
-  interval_seconds: 60
-  max_update_wait:
-    minutes: 90
-
-################################################
 ## Input Select
 ################################################
 
@@ -161,37 +139,6 @@ sensor:
 ################################################
 ## Automation
 ################################################
-
-automation:
-  - alias: life360_overdue_update
-    initial_state: true
-    trigger:
-      platform: event
-      event_type: life360_update_overdue
-    action:
-      service: persistent_notification.create
-      data_template:
-        title: Life360 update overdue
-        message: >
-          Update for {{
-            state_attr(trigger.event.data.entity_id, 'friendly_name') or
-            trigger.event.data.entity_id
-          }} is overdue.
-
-  - alias: life360_update_restored
-    initial_state: true
-    trigger:
-      platform: event
-      event_type: life360_update_restored
-    action:
-      service: persistent_notification.create
-      data_template:
-        title: Life360 update restored
-        message: >
-          Update for {{
-            state_attr(trigger.event.data.entity_id, 'friendly_name') or
-            trigger.event.data.entity_id
-          }} restored after {{ trigger.event.data.wait }}.
 
   - alias: person_arriving
     initial_state: true
