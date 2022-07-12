@@ -13,7 +13,7 @@ cards:
     entities:
       - entity: sensor.living_room_motion_sensor_air_temperature
         name: Dining Room
-      - entity:sensor.dining_room_temperature
+      - entity: sensor.dining_room_temperature
         name: Target
       - entity: sensor.master_bedroom_motion_sensor_air_temperature
         name: Master Bedroom
