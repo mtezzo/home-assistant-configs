@@ -65,15 +65,15 @@ homeassistant:
 ################################################
 
 sensor:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    monitored_conditions:
-      - cloud_cover
-      - humidity
-      - precip_probability
-      - precip_type
-      - temperature
-      - wind_speed
+  # - platform: darksky
+  #   api_key: !secret darksky_api_key
+  #   monitored_conditions:
+  #     - cloud_cover
+  #     - humidity
+  #     - precip_probability
+  #     - precip_type
+  #     - temperature
+  #     - wind_speed
 
   - platform: season
     type: astronomical
