@@ -140,6 +140,7 @@ sensor:
 ## Automation
 ################################################
 
+automation:
   - alias: person_arriving
     initial_state: true
     trigger:
