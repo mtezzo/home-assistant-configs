@@ -124,13 +124,6 @@ mobile_app:
 # https://www.home-assistant.io/integrations/my/
 my:
 
-# Nest
-# https://www.home-assistant.io/integrations/nest/
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-  project_id: !secret nest_project_id
-
 # Connects device trackers to persons 
 # https://www.home-assistant.io/components/person/
 person:
