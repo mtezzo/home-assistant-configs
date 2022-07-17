@@ -18,6 +18,7 @@ homeassistant:
 
       expose: &expose
         <<: *customize
+        track_ios: true
 
     ################################################
     ## Zone
