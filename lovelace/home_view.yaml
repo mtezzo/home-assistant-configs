@@ -108,9 +108,6 @@ cards:
   - type: thermostat
     entity: climate.dining_room
 
-  - type: thermostat
-    entity: climate.bathroom
-
   - type: entities
     title: Favorites
     show_header_toggle: false
