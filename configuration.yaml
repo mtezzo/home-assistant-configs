@@ -16,6 +16,9 @@ homeassistant:
   # 'metric' for Metric, 'imperial' for Imperial
   unit_system: imperial
 
+  # Pick your time zone from the column TZ of Wikipedia’s list of tz database time zones
+  currency: USD
+
   # Pick yours from here:
   # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret ha_time_zone
