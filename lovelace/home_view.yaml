@@ -139,6 +139,11 @@ cards:
         hide_when_off: true
         toggle: true
       - type: divider
+      - type: custom:slider-entity-row
+        entity: light.kitchen_lights
+        hide_when_off: true
+        toggle: true
+      - type: divider
       - cover.garage_door
       - type: divider
       - switch.basement_task_light
