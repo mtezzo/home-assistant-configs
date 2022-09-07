@@ -135,7 +135,7 @@ cards:
         toggle: true
       - type: divider
       - type: custom:slider-entity-row
-        entity: light.dining_room_spot
+        entity: light.dining_room_light
         hide_when_off: true
         toggle: true
       - type: divider
@@ -155,6 +155,9 @@ cards:
         entity: light.office_lamp
         hide_when_off: true
         toggle: true
+      - type: divider
+      - light.front_porch_light
+      - switch.back_porch_light
 
   - type: custom:weather-card
     entity: weather.dark_sky

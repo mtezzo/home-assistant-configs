@@ -91,3 +91,16 @@ cards:
             name: Right Key Light
       - type: light
         entity: light.office_lamp
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: >
+          ## Outdoors
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.back_porch_light
+            name: Guest Storage
+          - type: light
+            entity: light.front_porch_light
