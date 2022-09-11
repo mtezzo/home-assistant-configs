@@ -52,8 +52,12 @@ cards:
       - type: markdown
         content: >
           ## Dining Room
-      - type: light
-        entity: light.dining_room_spot
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.dining_room_light
+          - type: light
+            entity: light.dining_room_hutch_light
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -98,7 +102,7 @@ cards:
             entity: light.right_key_light_air
             name: Right Key Light
       - type: light
-        entity: light.office_lamp
+        entity: light.office_bookshelf_lamp
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -109,6 +113,5 @@ cards:
         cards:
           - type: light
             entity: light.back_porch_light
-            name: Guest Storage
           - type: light
             entity: light.front_porch_light

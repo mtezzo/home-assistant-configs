@@ -138,6 +138,7 @@ cards:
         entity: light.dining_room_light
         hide_when_off: true
         toggle: true
+      - light.dining_room_hutch_light
       - type: divider
       - type: custom:slider-entity-row
         entity: light.kitchen_lights
@@ -157,7 +158,7 @@ cards:
         hide_when_off: true
         toggle: true
       - type: custom:slider-entity-row
-        entity: light.office_lamp
+        entity: light.office_bookshelf_lamp
         hide_when_off: true
         toggle: true
       - type: divider
