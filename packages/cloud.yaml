@@ -45,12 +45,10 @@ cloud:
         - media_player
         - script
       exclude_entities:
-        - light.basement_task_light
         - light.kitchen_range_extender
         - light.laundry_room_range_extender
         - light.living_room_bookshelf_lamp_instance_2_level
         - light.living_room_floor_lamp_instance_2_level
-        - light.task_light
         - switch.apple_tv
         - switch.backyard_smart_hose_timer_rain_delay
         - switch.backyard_smart_hose_timer_program_a

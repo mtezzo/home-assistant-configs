@@ -122,6 +122,3 @@ script:
         data:
           entity_id: all
           transition: 5
-      - service: switch.turn_off
-        data:
-          entity_id: switch.basement_task_light

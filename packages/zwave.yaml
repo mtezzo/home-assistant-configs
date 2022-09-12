@@ -127,11 +127,6 @@ homeassistant:
     ## Lights
     ################################################
 
-    light.basement_task_light:
-      <<: *customize
-      friendly_name: Basement Task Light
-      icon: mdi:desk-lamp
-
     light.dresser_lamp:
       <<: *expose
       icon: mdi:lamp
@@ -176,15 +171,6 @@ homeassistant:
     light.nightstand_lamp:
       <<: *expose
       icon: mdi:lamp
-
-    ################################################
-    ## Switches
-    ################################################
-
-    switch.basement_task_light:
-      <<: *customize
-      friendly_name: Basement Task Light
-      icon: mdi:desk-lamp
 
 ################################################
 ## Automation *HOTFIX*
@@ -387,12 +373,3 @@ homeassistant:
 #           {% elif is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_level', '255') and is_state('sensor.office_smoke_and_carbon_monoxide_detector_alarm_type', '13') %}
 #             off
 #           {% endif %}
-
-################################################
-## Light
-################################################
-
-# light:
-#   - platform: switch
-#     name: Basement Task Light
-#     entity_id: switch.basement_task_light
