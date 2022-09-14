@@ -164,7 +164,7 @@ cards:
       - light.back_porch_light
 
   - type: custom:weather-card
-    entity: weather.dark_sky
+    entity: weather.weatherflow_day_based_forecast
 
   - type: custom:mini-graph-card
     name: River Level
