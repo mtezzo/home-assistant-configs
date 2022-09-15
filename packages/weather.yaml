@@ -20,35 +20,35 @@ homeassistant:
     ## Sensor
     ################################################
 
-    sensor.dark_sky_cloud_coverage:
-      <<: *customize
-      friendly_name: "Cloud Coverage"
-      icon: mdi:weather-partlycloudy
+    # sensor.dark_sky_cloud_coverage:
+    #   <<: *customize
+    #   friendly_name: "Cloud Coverage"
+    #   icon: mdi:weather-partlycloudy
 
-    sensor.dark_sky_humidity:
-      <<: *customize
-      friendly_name: "Humidity"
-      device_class: humidity
+    # sensor.dark_sky_humidity:
+    #   <<: *customize
+    #   friendly_name: "Humidity"
+    #   device_class: humidity
 
-    sensor.dark_sky_precip_probability:
-      <<: *customize
-      friendly_name: "Chance Precipitation"
-      icon: mdi:weather-rainy
+    # sensor.dark_sky_precip_probability:
+    #   <<: *customize
+    #   friendly_name: "Chance Precipitation"
+    #   icon: mdi:weather-rainy
 
-    sensor.dark_sky_precip:
-      <<: *customize
-      friendly_name: 'Precipitation'
-      icon: mdi:weather-pouring
+    # sensor.dark_sky_precip:
+    #   <<: *customize
+    #   friendly_name: 'Precipitation'
+    #   icon: mdi:weather-pouring
 
-    sensor.dark_sky_temperature:
-      <<: *customize
-      friendly_name: "Temperature"
-      icon: mdi:thermometer
+    # sensor.dark_sky_temperature:
+    #   <<: *customize
+    #   friendly_name: "Temperature"
+    #   icon: mdi:thermometer
 
-    sensor.dark_sky_wind_speed:
-      <<: *customize
-      friendly_name: 'Wind Speed'
-      icon: mdi:weather-windy
+    # sensor.dark_sky_wind_speed:
+    #   <<: *customize
+    #   friendly_name: 'Wind Speed'
+    #   icon: mdi:weather-windy
 
     sensor.river_level:
       <<: *customize
@@ -98,7 +98,7 @@ sensor:
 
 # Dark Sky
 # https://www.home-assistant.io/components/weather.darksky/
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    mode: daily
+# weather:
+#   - platform: darksky
+#     api_key: !secret darksky_api_key
+#     mode: daily
