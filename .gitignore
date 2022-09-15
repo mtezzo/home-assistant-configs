@@ -35,3 +35,4 @@ custom_components/*
 !custom_components/surveillance_station/
 custom_components/*/__pycache__/*
 custom_components/__pycache__/*
+themes/*/
