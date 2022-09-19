@@ -42,8 +42,12 @@ cards:
       - type: markdown
         content: >
           ## Basement
-      - type: light
-        entity: light.dungeon_dimmable_led_light_bulb
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.basement_sump_pump_closet_light
+          - type: light
+            entity: light.basement_stair_closet_light
 
   - type: custom:vertical-stack-in-card
     cards:
