@@ -55,11 +55,6 @@ homeassistant:
       friendly_name: "River Level"
       icon: mdi:waves
 
-    sensor.season:
-      <<: *customize
-      friendly_name: "Season"
-      icon: mdi:weather-snowy-rainy
-
 ################################################
 ## Sensor
 ################################################
@@ -74,9 +69,6 @@ sensor:
   #     - precip_type
   #     - temperature
   #     - wind_speed
-
-  - platform: season
-    type: astronomical
 
   - platform: rest
     resource: !secret water_endpoint
