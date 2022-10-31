@@ -257,7 +257,7 @@ automation:
         id: 'on'
       - platform: time
         id: 'off'
-        at: 23:00
+        at: '23:00:00'
     condition: []
     action:
       - service: light.turn_{{ trigger.id }}
