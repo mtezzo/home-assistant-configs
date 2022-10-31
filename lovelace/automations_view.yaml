@@ -32,6 +32,7 @@ cards:
       - automation.auto_night_weekday
       - automation.auto_night_weekend
       # - automation.set_theme_based_on_sun
+      - automation.exterior_lighting
   - type: entities
     title: Notifications
     show_header_toggle: false

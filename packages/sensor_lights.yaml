@@ -55,6 +55,11 @@ homeassistant:
       friendly_name: "Nightstand Switches"
       icon: mdi:robot
 
+    automation.exterior_lighting:
+      <<: *customize
+      friendly_name: "Exterior Lighting"
+      icon: mdi:robot
+
 ################################################
 ## Automation
 ################################################
@@ -239,3 +244,23 @@ automation:
               entity_id: light.julias_closet
             data:
               transition: 1
+
+  ################################################
+  ## Sun Activated Lights
+  ################################################
+
+  - alias: exterior_lighting
+    initial_state: true
+    trigger:
+      - platform: sun
+        event: sunset
+        id: 'on'
+      - platform: time
+        id: 'off'
+        at: 23:00
+    condition: []
+    action:
+      - service: light.turn_{{ trigger.id }}
+        target:
+          entity_id: light.front_porch_light
+    mode: single
