@@ -45,9 +45,9 @@ homeassistant:
 ################################################
 
 zone:    
-  - name: Computer Center
-    latitude: !secret computer_center_latitude
-    longitude: !secret computer_center_longitude
+  - name: Procurement
+    latitude: !secret procurement_latitude
+    longitude: !secret procurement_longitude
     radius: 150
 
   - name: Library
