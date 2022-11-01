@@ -1,0 +1,45 @@
+################################################################
+## Packages / River
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'river'
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.river_level:
+      <<: *customize
+      friendly_name: "River Level"
+      icon: mdi:waves
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: rest
+    resource: !secret water_endpoint
+    scan_interval: 90
+    json_attributes:
+      - "valid"
+      - "secondary"
+    method: GET
+    name: river_level
+    verify_ssl: true
+    json_attributes_path: "$.site.observed.datum.[:1]"
+    value_template: '{{ value_json["site"]["observed"]["datum"][0]["primary"]["#text"] }}'
+    unit_of_measurement: ft
+    force_update: true
