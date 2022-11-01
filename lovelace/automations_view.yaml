@@ -15,6 +15,7 @@ cards:
       - automation.julias_closet_lighting
       - automation.guest_bedroom_closet_lighting
       - automation.guest_bedroom_storage_lighting
+      - automation.exterior_lighting
       - automation.auto_sunrise
       - input_datetime.auto_sunrise_time
   - type: entities
@@ -32,7 +33,6 @@ cards:
       - automation.auto_night_weekday
       - automation.auto_night_weekend
       # - automation.set_theme_based_on_sun
-      - automation.exterior_lighting
   - type: entities
     title: Notifications
     show_header_toggle: false
