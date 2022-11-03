@@ -31,6 +31,19 @@ cards:
 # #            labels:
 # #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
 
+ - type: vertical-stack
+   cards:
+    - type: horizontal-stack
+      cards:
+        - type: tile
+          entity: input_select.michaels_status
+          show_entity_picture: true
+        - type: tile
+          entity: input_select.julias_status
+          show_entity_picture: true
+    - type: tile
+      entity: alarm_control_panel.alarm_system
+
   - type: custom:vertical-stack-in-card
     cards:
       - type: horizontal-stack
