@@ -1,0 +1,37 @@
+################################################################
+## Packages / Airthings
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'airthings'
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.basement_radon_pcil:
+      <<: *customize
+      friendly_name: "Basement Radon"
+      icon: mdi:radioactive
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: template
+    sensors:
+      sensor.basement_radon_pcil:
+        unit_of_measurement: 'pCi/L'
+        value_template: {{ float(states('sensor.basement_radon')) / 37 }}

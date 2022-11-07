@@ -41,8 +41,12 @@ cards:
           - type: tile
             entity: input_select.julias_status
             show_entity_picture: true
-      - type: tile
-        entity: alarm_control_panel.alarm_system
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: alarm_control_panel.alarm_system
+          - type: tile
+            entity: sensor.basement_radon_pcil
       - type: entities
         show_header_toggle: false
         entities:
