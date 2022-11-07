@@ -252,8 +252,10 @@ automation:
   - alias: exterior_lighting
     initial_state: true
     trigger:
-      - platform: sun
-        event: sunset
+      - platform: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: -4.0
         id: 'on'
       - platform: time
         id: 'off'
