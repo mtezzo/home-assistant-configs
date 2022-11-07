@@ -32,6 +32,6 @@ homeassistant:
 sensor:
   - platform: template
     sensors:
-      sensor.basement_radon_pcil:
+      basement_radon_pcil:
         unit_of_measurement: 'pCi/L'
-        value_template: {{ float(states('sensor.basement_radon')) / 37 }}
+        value_template: "{{ (states('sensor.basement_radon') | float / 37) | round(2) }}"
