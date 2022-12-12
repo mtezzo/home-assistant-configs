@@ -265,4 +265,7 @@ automation:
       - service: light.turn_{{ trigger.id }}
         target:
           entity_id: light.front_porch_light
+      - service: switch.turn_{{ trigger.id }}
+        target:
+          entity_id: switch.front_porch_outdoor_double_plug
     mode: single
