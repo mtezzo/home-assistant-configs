@@ -259,7 +259,7 @@ automation:
         id: 'on'
       - platform: time
         id: 'off'
-        at: '23:00:00'
+        at: '23:59:59'
     condition: []
     action:
       - service: light.turn_{{ trigger.id }}
@@ -267,5 +267,5 @@ automation:
           entity_id: light.front_porch_light
       - service: switch.turn_{{ trigger.id }}
         target:
-          entity_id: switch.front_porch_outdoor_double_plug
+          entity_id: switch.front_porch_outdoor_double_plug, switch.christmas_tree_switch
     mode: single
