@@ -267,5 +267,5 @@ automation:
           entity_id: light.front_porch_light
       - service: switch.turn_{{ trigger.id }}
         target:
-          entity_id: switch.front_porch_outdoor_double_plug, switch.christmas_tree_switch
+          entity_id: switch.front_porch_outdoor_double_plug, switch.front_porch_outdoor_double_plug_2, switch.christmas_tree_switch
     mode: single
