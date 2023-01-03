@@ -11,7 +11,7 @@ cards:
     hours_to_show: 12
     points_per_hour: 2
     entities:
-      - entity: sensor.living_room_motion_sensor_air_temperature
+      - entity: sensor.family_room_motion_sensor_air_temperature
         name: Dining Room
       - entity: sensor.dining_room_temperature
         name: Target
