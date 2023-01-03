@@ -73,27 +73,6 @@ cards:
     cards:
       - type: markdown
         content: >
-          ## Garage
-      - type: light
-        entity: light.garage_dimmable_led_light_bulb
-
-  - type: custom:vertical-stack-in-card
-    cards:
-      - type: markdown
-        content: >
-          ## Guest Bedroom
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.guest_bedroom_storage
-            name: Guest Storage
-          - type: light
-            entity: light.guest_closet_dimmable_led_light_bulb
-
-  - type: custom:vertical-stack-in-card
-    cards:
-      - type: markdown
-        content: >
           ## Office
       - type: horizontal-stack
         cards:

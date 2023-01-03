@@ -35,6 +35,11 @@ homeassistant:
       friendly_name: "Basement Stair Closet Lighting"
       icon: mdi:robot
 
+    automation.basement_sump_pump_closet_lighting:
+      <<: *customize
+      friendly_name: "Basement Sump Pump Closet Lighting"
+      icon: mdi:robot
+
     automation.nightstand_switches:
       <<: *customize
       friendly_name: "Nightstand Switches"
@@ -43,6 +48,11 @@ homeassistant:
     automation.exterior_lighting:
       <<: *customize
       friendly_name: "Exterior Lighting"
+      icon: mdi:robot
+
+    automation.holiday_lighting:
+      <<: *customize
+      friendly_name: "Holiday Lighting"
       icon: mdi:robot
 
 ################################################
@@ -155,6 +165,31 @@ automation:
             data:
               transition: 1
 
+  - alias: basement_sump_pump_closet_lighting
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.basement_sump_pump_closet_door_window_door_is_open
+    action:
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.basement_sump_pump_closet_light
+                data:
+                  brightness: 255
+                  color_temp: 370
+                  transition: 1
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.basement_sump_pump_closet_light
+            data:
+              transition: 1
+
   ################################################
   ## Sun Activated Lights
   ################################################
@@ -175,6 +210,21 @@ automation:
       - service: light.turn_{{ trigger.id }}
         target:
           entity_id: light.front_porch_light
+    mode: single
+
+  - alias: holiday_lighting
+    initial_state: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: -4.0
+        id: 'on'
+      - platform: time
+        id: 'off'
+        at: '23:59:59'
+    condition: []
+    action:
       - service: switch.turn_{{ trigger.id }}
         target:
           entity_id: switch.front_porch_outdoor_double_plug, switch.christmas_tree_switch

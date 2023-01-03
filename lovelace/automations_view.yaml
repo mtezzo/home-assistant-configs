@@ -11,11 +11,10 @@ cards:
     entities:
       - automation.master_bedroom_motion
       - automation.living_room_motion
-      - automation.michaels_closet_lighting
-      - automation.julias_closet_lighting
-      - automation.guest_bedroom_closet_lighting
-      - automation.guest_bedroom_storage_lighting
+      - automation.basement_stair_closet_lighting
+      - automation.basement_sump_pump_closet_lighting
       - automation.exterior_lighting
+      - automation.holiday_lighting
       - automation.auto_sunrise
       - input_datetime.auto_sunrise_time
   - type: entities
