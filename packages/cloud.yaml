@@ -27,15 +27,11 @@ cloud:
       include_entities:
         - automation.master_bedroom_motion
         - automation.living_room_motion
-        - binary_sensor.front_door_access_control_window_door_is_open
-        - binary_sensor.guest_closet_door_access_control_window_door_is_open
-        - binary_sensor.guest_storage_door_access_control_window_door_is_open
-        - binary_sensor.julias_closet_door_access_control_window_door_is_open
-        - binary_sensor.kitchen_motion_sensor_motion
-        - binary_sensor.laundry_room_flood_sensor_water_alarm_water_leak_detected
-        - binary_sensor.living_room_motion_sensor_home_security_motion_detection
-        - binary_sensor.master_bedroom_motion_sensor_home_security_motion_detection
-        - binary_sensor.michaels_closet_door_access_control_window_door_is_open
+        - binary_sensor.basement_stair_closet_door_window_door_is_open
+        - binary_sensor.basement_sump_pump_closet_door_window_door_is_open
+        - binary_sensor.kitchen_motion_sensor_motion_detection
+        - binary_sensor.water_heater_flood_sensor_water_leak_detected
+        - binary_sensor.family_room_motion_sensor_motion_detection
       exclude_domains:
         - alert
         - automation
