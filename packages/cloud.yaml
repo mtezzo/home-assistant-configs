@@ -45,10 +45,9 @@ cloud:
         - media_player
         - script
       exclude_entities:
-        - light.kitchen_range_extender
-        - light.laundry_room_range_extender
-        - light.living_room_bookshelf_lamp_instance_2_level
-        - light.living_room_floor_lamp_instance_2_level
+        - light.dining_room_hutch_light_light_ring
+        - light.office_bookshelf_lamp_light_ring
+        - light.christmas_tree_switch
         - switch.apple_tv
         - switch.backyard_smart_hose_timer_rain_delay
         - switch.backyard_smart_hose_timer_program_a
@@ -61,13 +60,19 @@ cloud:
         - switch.garage_door_signaling_state_audible
         - switch.lg_tv
         - switch.mnemosyne_home_mode
-        - switch.sonos_dining_room_crossfade
-        - switch.sonos_living_room_crossfade
-        - switch.sonos_living_room_night_sound
-        - switch.sonos_living_room_speech_enhancement
-        - switch.sonos_living_room_subwoofer_enabled
-        - switch.sonos_living_room_surround_enabled
-        - switch.sonos_office_crossfade
+        - switch.basement_sonos_crossfade
+        - switch.basement_sonos_loudness
+        - switch.dining_room_sonos_crossfade
+        - switch.dining_room_sonos_loudness
+        - switch.living_room_sonos_crossfade
+        - switch.living_room_sonos_loudness
+        - switch.family_room_sonos_subwoofer_enabled
+        - switch.family_room_sonos_speech_enhancement
+        - switch.family_room_sonos_crossfade
+        - switch.family_room_sonos_surround_music_full_volume
+        - switch.family_room_sonos_surround_enabled
+        - switch.family_room_sonos_loudness
+        - switch.family_room_sonos_night_sound
         - switch.xbox_one
         - sensor.mnemosyne_drive_1_temperature
         - sensor.mnemosyne_drive_2_temperature
