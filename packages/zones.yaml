@@ -32,9 +32,9 @@ homeassistant:
         major: !secret beacon_major
 #        minor: !secret beacon_minor
 
-    zone.computer_center:
+    zone.procurement:
       <<: *expose
-      icon: mdi:laptop
+      icon: mdi:shopping
 
     zone.library:
       <<: *expose
@@ -44,7 +44,7 @@ homeassistant:
 ## Zone
 ################################################
 
-zone:    
+zone:
   - name: Procurement
     latitude: !secret procurement_latitude
     longitude: !secret procurement_longitude
