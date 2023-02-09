@@ -207,3 +207,8 @@ cards:
       - person.julia
       - person.michael
       - zone.home
+
+  - type: calendar
+    initial_view: 'dayGridDay'
+    entities:
+      - calendar.home
