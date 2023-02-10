@@ -30,6 +30,7 @@ cloud:
         - binary_sensor.basement_stair_closet_door_window_door_is_open
         - binary_sensor.basement_sump_pump_closet_door_window_door_is_open
         - binary_sensor.kitchen_motion_sensor_motion_detection
+        - binary_sensor.laundry_room_door_window_door_is_open
         - binary_sensor.water_heater_flood_sensor_water_leak_detected
         - binary_sensor.family_room_motion_sensor_motion_detection
         - binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
