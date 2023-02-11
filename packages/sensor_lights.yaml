@@ -55,6 +55,11 @@ homeassistant:
       friendly_name: "Holiday Lighting"
       icon: mdi:robot
 
+    automation.workroom_closet_lighting:
+      <<: *customize
+      friendly_name: "Workroom Closet Lighting"
+      icon: mdi:robot
+
 ################################################
 ## Automation
 ################################################
@@ -187,6 +192,31 @@ automation:
           - service: light.turn_off
             target:
               entity_id: light.basement_sump_pump_closet_light
+            data:
+              transition: 1
+
+  - alias: workroom_closet_lighting
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.workroom_closet_door_window_door_is_open
+    action:
+      - choose:
+          # IF door opened
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.workroom_closet_light
+                data:
+                  brightness: 255
+                  color_temp: 370
+                  transition: 1
+        # ELSE door closed
+        default:
+          - service: light.turn_off
+            target:
+              entity_id: light.workroom_closet_light
             data:
               transition: 1
 

@@ -13,6 +13,7 @@ cards:
       - automation.living_room_motion
       - automation.basement_stair_closet_lighting
       - automation.basement_sump_pump_closet_lighting
+      - automation.workroom_closet_lighting
       - automation.exterior_lighting
       - automation.holiday_lighting
       - automation.auto_sunrise
