@@ -9,20 +9,6 @@ cards:
     cards:
       - type: markdown
         content: >
-          ## Living Room
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.table_light
-          - type: light
-            entity: light.living_room_bookshelf_lamp_instance_1_level
-      - type: light
-        entity: light.living_room_floor_lamp_instance_1_level
-
-  - type: custom:vertical-stack-in-card
-    cards:
-      - type: markdown
-        content: >
           ## Bedroom
       - type: horizontal-stack
         cards:
@@ -30,12 +16,6 @@ cards:
             entity: light.dresser_lamp
           - type: light
             entity: light.nightstand_lamp
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.michaels_closet
-          - type: light
-            entity: light.julias_closet
 
   - type: custom:vertical-stack-in-card
     cards:
