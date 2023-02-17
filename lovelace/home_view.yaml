@@ -187,6 +187,6 @@ cards:
       - zone.home
 
   - type: calendar
-    initial_view: 'dayGridDay'
+    initial_view: 'listWeek'
     entities:
       - calendar.home
