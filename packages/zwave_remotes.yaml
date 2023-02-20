@@ -171,9 +171,10 @@ automation:
                     target:
                       entity_id: light.nightstand_lamp
                     data:
-                      brightness_pct: '{{ ((states.light.nightstand_lamp.attributes.brightness|default(0))/255|int)*100 + ((repeat.index+1) * 10) | int }}'
+                      brightness_pct: '{{ ((states.light.nightstand_lamp.attributes.brightness|default(10))/255|int)*100 + (repeat.index * 10) | int }}'
                       color_temp: 370
-                      transition: 2
+                      transition: 1
+                  - delay: 1
         # If Bottom button 1x
         - conditions:
           - condition: template
@@ -198,7 +199,8 @@ automation:
                     data:
                       brightness_pct: '{{ ((states.light.nightstand_lamp.attributes.brightness|default(255))/255|int)*100 - (repeat.index * 10) | int }}'
                       color_temp: 370
-                      transition: 2
+                      transition: 1
+                  - delay: 1
         # If Bottom button 3x
         - conditions:
           - condition: template
