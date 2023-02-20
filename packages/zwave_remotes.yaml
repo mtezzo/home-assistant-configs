@@ -215,3 +215,19 @@ automation:
                 entity_id: light.dresser_lamp, light.nightstand_lamp
               data:
                 transition: 3
+
+        # If Bottom button held
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyHeldDown' }}"
+          sequence:
+            - repeat:
+                while: '{{ repeat.index < 10 | int }}'
+                sequence:
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.dresser_lamp, light.nightstand_lamp
+                    data:
+                      brightness_pct: '{{ 100 - (repeat.index * 10) | int }}'
+                      color_temp: 370
+                      transition: 2
