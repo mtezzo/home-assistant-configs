@@ -238,14 +238,14 @@ script:
     sequence:
       - service: light.turn_on
         data:
-          entity_id: light.dresser_lamp
+          entity_id: light.nightstand_lamp
           xy_color: [0.67,0.39]
           brightness: 1
       - delay:
           seconds: 1
       - service: light.turn_on
         data:
-          entity_id: light.dresser_lamp
+          entity_id: light.nightstand_lamp
           xy_color: [0.65,0.41]
           brightness: 85
           transition: 600
@@ -253,7 +253,7 @@ script:
           seconds: 600
       - service: light.turn_on
         data:
-          entity_id: light.dresser_lamp
+          entity_id: light.nightstand_lamp
           xy_color: [0.60,0.40]
           brightness: 170
           transition: 600
@@ -261,7 +261,7 @@ script:
           seconds: 600
       - service: light.turn_on
         data:
-          entity_id: light.dresser_lamp
+          entity_id: light.nightstand_lamp
           xy_color: [0.48,0.40]
           brightness: 255
           transition: 600
