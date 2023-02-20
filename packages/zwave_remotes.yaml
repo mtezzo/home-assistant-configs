@@ -165,14 +165,14 @@ automation:
             value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyHeldDown' }}"
           sequence:
             - repeat:
-                while: '{{ repeat.index < 10 | int and states.light.nightstand_lamp.attributes.brightness|default(0) <  255 }}'
+                while: '{{ repeat.index <= 5 | int and states.light.nightstand_lamp.attributes.brightness|default(0) <  255 }}'
                 sequence:
                   - service: light.turn_on
                     target:
                       entity_id: light.nightstand_lamp
                     data:
                       #brightness: '{{ states.light.nightstand_lamp.attributes.brightness|default(17)|int + (repeat.index * 17) | int }}'
-                      brightness_step_pct: 10
+                      brightness_step_pct: 20
                       color_temp: 370
                       transition: 1
                   - delay: 1
@@ -192,14 +192,14 @@ automation:
             value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyHeldDown' }}"
           sequence:
             - repeat:
-                while: '{{ repeat.index < 10 | int and states.light.nightstand_lamp.attributes.brightness|default(0) > 10 }}'
+                while: '{{ repeat.index <= 5 | int and states.light.nightstand_lamp.attributes.brightness|default(0) > 20 }}'
                 sequence:
                   - service: light.turn_on
                     target:
                       entity_id: light.nightstand_lamp
                     data:
                       #brightness: '{{ states.light.nightstand_lamp.attributes.brightness|default(255)|int - (repeat.index * 17) | int }}'
-                      brightness_step_pct: -10
+                      brightness_step_pct: -20
                       color_temp: 370
                       transition: 1
                   - delay: 1
