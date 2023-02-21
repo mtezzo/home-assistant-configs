@@ -192,7 +192,7 @@ automation:
             value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyHeldDown' }}"
           sequence:
             - repeat:
-                while: '{{ repeat.index <= 5 | int and states.light.nightstand_lamp.attributes.brightness|default(0) > 20 }}'
+                while: '{{ repeat.index <= 5 | int and states.light.nightstand_lamp.attributes.brightness|default(0) > 51 }}'
                 sequence:
                   - service: light.turn_on
                     target:
