@@ -129,7 +129,7 @@ cards:
     cards:
       - type: markdown
         content: >
-          ### Wine Rack
+          ### WINE RACK
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
