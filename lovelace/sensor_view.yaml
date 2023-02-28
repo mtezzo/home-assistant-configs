@@ -69,11 +69,11 @@ cards:
     cards:
       - type: markdown
         content: >
-          ### DIAMOND CROWN HUMIDOR
+          ### WORKROOM CLOSET
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
-          - entity: sensor.wirelesstag_diamond_crown_humidor_humidity
+          - entity: sensor.wirelesstag_workroom_closet_humidity
             name: HUMIDITY
             color: blue
         show:
@@ -84,7 +84,7 @@ cards:
           - type: custom:mini-graph-card
             name: TEMPERATURE
             entities:
-              - entity: sensor.wirelesstag_diamond_crown_humidor_temperature
+              - entity: sensor.wirelesstag_workroom_closet_temperature
                 name: TEMPERATURE
                 color: red
             show:
@@ -92,18 +92,18 @@ cards:
               legend: false
           - type: sensor
             name: BATTERY
-            entity: sensor.wirelesstag_diamond_crown_humidor_battery_level
+            entity: sensor.wirelesstag_workroom_closet_battery_level
             graph: none
 
   - type: custom:vertical-stack-in-card
     cards:
       - type: markdown
         content: >
-          ### DESKTOP HUMIDOR
+          ### HUMIDOR
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
-          - entity: sensor.wirelesstag_desktop_humidor_humidity
+          - entity: sensor.wirelesstag_humidor_humidity
             name: HUMIDITY
             color: blue
         show:
@@ -114,7 +114,7 @@ cards:
           - type: custom:mini-graph-card
             name: TEMPERATURE
             entities:
-              - entity: sensor.wirelesstag_desktop_humidor_temperature
+              - entity: sensor.wirelesstag_humidor_temperature
                 name: TEMPERATURE
                 color: red
             show:
@@ -122,18 +122,18 @@ cards:
               legend: false
           - type: sensor
             name: BATTERY
-            entity: sensor.wirelesstag_desktop_humidor_battery_level
+            entity: sensor.wirelesstag_humidor_battery_level
             graph: none
 
   - type: custom:vertical-stack-in-card
     cards:
       - type: markdown
         content: >
-          ### DUNGEON
+          ### Wine Rack
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
-          - entity: sensor.wirelesstag_dungeon_humidity
+          - entity: sensor.wirelesstag_wine_rack_humidity
             name: HUMIDITY
             color: blue
         show:
@@ -144,7 +144,7 @@ cards:
           - type: custom:mini-graph-card
             name: TEMPERATURE
             entities:
-              - entity: sensor.wirelesstag_dungeon_temperature
+              - entity: sensor.wirelesstag_wine_rack_temperature
                 name: TEMPERATURE
                 color: red
             show:
@@ -152,5 +152,5 @@ cards:
               legend: false
           - type: sensor
             name: BATTERY
-            entity: sensor.wirelesstag_dungeon_battery_level
+            entity: sensor.wirelesstag_wine_rack_battery_level
             graph: none
