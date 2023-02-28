@@ -21,79 +21,79 @@ homeassistant:
     ## Plant
     ################################################
 
-    plant.diamond_crown_humidor:
+    plant.workroom_closet:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor'
+      friendly_name: 'Workroom Closet'
 
-    plant.desktop_humidor:
+    plant.humidor:
       <<: *customize
-      friendly_name: 'Desktop Humidor'
+      friendly_name: 'Humidor'
 
-    plant.dungeon:
+    plant.wine_rack:
       <<: *customize
-      friendly_name: 'Dungeon'
+      friendly_name: 'Wine Rack'
 
     ################################################
     ## Sensor
     ################################################
-    sensor.wirelesstag_diamond_crown_humidor_battery_level:
+    sensor.wirelesstag_workroom_closet_battery_level:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor: Battery Level'
+      friendly_name: 'Workroom Closet: Battery Level'
       device_class: battery
 
-    sensor.wirelesstag_diamond_crown_humidor_humidity:
+    sensor.wirelesstag_workroom_closet_humidity:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor: Humidity'
+      friendly_name: 'Workroom Closet: Humidity'
       device_class: humidity
 
-    sensor.wirelesstag_diamond_crown_humidor_light:
+    sensor.wirelesstag_workroom_closet_light:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor: Illuminance'
+      friendly_name: 'Workroom Closet: Illuminance'
       device_class: illuminance
 
-    sensor.wirelesstag_diamond_crown_humidor_temperature:
+    sensor.wirelesstag_workroom_closet_temperature:
       <<: *customize
-      friendly_name: 'Diamond Crown Humidor: Temperature'
+      friendly_name: 'Workroom Closet: Temperature'
       device_class: temperature
 
-    sensor.wirelesstag_desktop_humidor_battery_level:
+    sensor.wirelesstag_humidor_battery_level:
       <<: *customize
-      friendly_name: 'Desktop Humidor: Battery Level'
+      friendly_name: 'Humidor: Battery Level'
       device_class: battery
 
-    sensor.wirelesstag_desktop_humidor_humidity:
+    sensor.wirelesstag_humidor_humidity:
       <<: *customize
-      friendly_name: 'Desktop Humidor: Humidity'
+      friendly_name: 'Humidor: Humidity'
       device_class: humidity
 
-    sensor.wirelesstag_desktop_humidor_light:
+    sensor.wirelesstag_humidor_light:
       <<: *customize
-      friendly_name: 'Desktop Humidor: Illuminance'
+      friendly_name: 'Humidor: Illuminance'
       device_class: illuminance
 
-    sensor.wirelesstag_desktop_humidor_temperature:
+    sensor.wirelesstag_humidor_temperature:
       <<: *customize
-      friendly_name: 'Desktop Humidor: Temperature'
+      friendly_name: 'Humidor: Temperature'
       device_class: temperature
 
-    sensor.wirelesstag_dungeon_battery_level:
+    sensor.wirelesstag_wine_rack_battery_level:
       <<: *customize
-      friendly_name: 'Dungeon: Battery Level'
+      friendly_name: 'Wine Rack: Battery Level'
       device_class: battery
 
-    sensor.wirelesstag_dungeon_humidity:
+    sensor.wirelesstag_wine_rack_humidity:
       <<: *customize
-      friendly_name: 'Dungeon: Humidity'
+      friendly_name: 'Wine Rack: Humidity'
       device_class: humidity
 
-    sensor.wirelesstag_dungeon_light:
+    sensor.wirelesstag_wine_rack_light:
       <<: *customize
-      friendly_name: 'Dungeon: Illuminance'
+      friendly_name: 'Wine Rack: Illuminance'
       device_class: illuminance
 
-    sensor.wirelesstag_dungeon_temperature:
+    sensor.wirelesstag_wine_rack_temperature:
       <<: *customize
-      friendly_name: 'Dungeon: Temperature'
+      friendly_name: 'Wine Rack: Temperature'
       device_class: temperature
 
 ################################################
@@ -110,16 +110,16 @@ sensor:
 
   - platform: template
     sensors:
-      wirelesstag_diamond_crown_humidor_battery_level:
-        value_template: '{{ (states.sensor.wirelesstag_diamond_crown_humidor_humidity.attributes.battery_level|float)|round }}'
+      wirelesstag_workroom_closet_battery_level:
+        value_template: '{{ (states.sensor.wirelesstag_workroom_closet_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
-      wirelesstag_desktop_humidor_battery_level:
-        value_template: '{{ (states.sensor.wirelesstag_desktop_humidor_humidity.attributes.battery_level|float)|round }}'
+      wirelesstag_humidor_battery_level:
+        value_template: '{{ (states.sensor.wirelesstag_humidor_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
-      wirelesstag_dungeon_battery_level:
-        value_template: '{{ (states.sensor.wirelesstag_dungeon_humidity.attributes.battery_level|float)|round }}'
+      wirelesstag_wine_rack_battery_level:
+        value_template: '{{ (states.sensor.wirelesstag_wine_rack_humidity.attributes.battery_level|float)|round }}'
         unit_of_measurement: '%'
 
 ################################################
@@ -128,36 +128,36 @@ sensor:
 ################################################
 
 plant:
-  diamond_crown_humidor:
+  workroom_closet:
     sensors:
-      moisture: sensor.wirelesstag_diamond_crown_humidor_humidity
-      battery: sensor.wirelesstag_diamond_crown_humidor_battery_level
-      temperature: sensor.wirelesstag_diamond_crown_humidor_temperature
-      brightness: sensor.wirelesstag_diamond_crown_humidor_light
+      moisture: sensor.wirelesstag_workroom_closet_humidity
+      battery: sensor.wirelesstag_workroom_closet_battery_level
+      temperature: sensor.wirelesstag_workroom_closet_temperature
+      brightness: sensor.wirelesstag_workroom_closet_light
     min_moisture: 60
     max_moisture: 75
     min_battery: 10
     min_temperature: 60
     max_temperature: 80
 
-  desktop_humidor:
+  humidor:
     sensors:
-      moisture: sensor.wirelesstag_desktop_humidor_humidity
-      battery: sensor.wirelesstag_desktop_humidor_battery_level
-      temperature: sensor.wirelesstag_desktop_humidor_temperature
-      brightness: sensor.wirelesstag_desktop_humidor_light
+      moisture: sensor.wirelesstag_humidor_humidity
+      battery: sensor.wirelesstag_humidor_battery_level
+      temperature: sensor.wirelesstag_humidor_temperature
+      brightness: sensor.wirelesstag_humidor_light
     min_moisture: 60
     max_moisture: 75
     min_battery: 10
     min_temperature: 60
     max_temperature: 80
 
-  dungeon:
+  wine_rack:
     sensors:
-      moisture: sensor.wirelesstag_dungeon_humidity
-      battery: sensor.wirelesstag_dungeon_battery_level
-      temperature: sensor.wirelesstag_dungeon_temperature
-      brightness: sensor.wirelesstag_dungeon_light
+      moisture: sensor.wirelesstag_wine_rack_humidity
+      battery: sensor.wirelesstag_wine_rack_battery_level
+      temperature: sensor.wirelesstag_wine_rack_temperature
+      brightness: sensor.wirelesstag_wine_rack_light
     min_moisture: 35
     max_moisture: 75
     min_battery: 10
