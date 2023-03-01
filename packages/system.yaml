@@ -138,6 +138,12 @@ sensor:
     display_options:
       - date
       - time
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
 
   # https://home-assistant.io/components/sensor.systemmonitor/
   - platform: systemmonitor
