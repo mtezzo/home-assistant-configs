@@ -5,31 +5,6 @@ path: home
 #background: var(--background-image)
 #    theme: clear-dark
 cards:
-#       - type: vertical-stack
-#         cards:
-#           - type: entity-filter
-#             entities:
-#               - entity: input_select.michaels_status
-#               - entity: input_select.julias_status
-#             state_filter:
-#               - 'Home'
-#               - 'Arriving'
-#               - 'Departing'
-#             card:
-#               type: glance
-#               title: People that are home
-#           - type: alarm-panel
-#             entity: alarm_control_panel.alarm_system
-#             title: Alarm System
-# #            display_letters: true
-# #            scale: 15px
-#             states:
-#               - arm_away
-#               - arm_home
-#               - arm_night
-#               - arm_custom_bypass
-# #            labels:
-# #              ui.card.alarm_control_panel.arm_custom_bypass: Arm Custom
 
   - type: vertical-stack
     cards:
@@ -53,128 +28,54 @@ cards:
         entities:
           - input_boolean.guest_mode
 
-  # - type: custom:vertical-stack-in-card
-  #   cards:
-  #     - type: horizontal-stack
-  #       cards:
-  #         - type: custom:decluttering-card
-  #           template: nest_picture_button
-  #           variables:
-  #             - entity: input_select.michaels_status
-  #             - entity_picture: /local/img/michael.jpg
-  #         - type: custom:decluttering-card
-  #           template: nest_button
-  #           variables:
-  #             - entity: alarm_control_panel.alarm_system
-  #             - state:
-  #                 - value: 'armed_away'
-  #                   icon: mdi:shield-lock
-  #                   color: rgb(152,251,152)
-  #                 - value: 'armed_night'
-  #                   icon: mdi:shield-home-outline
-  #                   color: rgb(110,95,156)
-  #                 - value: 'armed_home'
-  #                   icon: mdi:shield-home
-  #                   color: rgb(251, 210, 41)
-  #                 - value: 'triggered'
-  #                   icon: mdi:shield-alert
-  #                   color: rgb(255, 0, 0)
-  #                   styles:
-  #                     icon:
-  #                       - animation: blink 2s ease infinite
-  #                 - value: 'disarmed'
-  #                   icon: mdi:shield-off
-  #                   color: rgb(169,169,169)
-  #                 - value: 'pending'
-  #                   icon: mdi:shield-half-full
-  #                   color: rgb(169,169,169)
-  #                   styles:
-  #                     icon:
-  #                       - animation: blink 2s ease infinite
-  #                 - value: 'arming'
-  #                   icon: mdi:shield-half-full
-  #                   color: rgb(169,169,169)
-  #                   styles:
-  #                     icon:
-  #                       - animation: blink 2s ease infinite
-  #         - type: custom:decluttering-card
-  #           template: nest_picture_button
-  #           variables:
-  #             - entity: input_select.julias_status
-  #             - entity_picture: /local/img/julia.jpg
-      # - type: markdown
-      #   content: >
-      #       ## [[ sensor.time.state ]]
-            
-      #       ### [[ sensor.date.state ]]
-      #   style: |
-      #     ha-card {
-      #       #margin-top: 30px;
-      #       #padding-bottom: 20px;
-      #       # background-color: rgba(0, 0, 0, 0);
-      #       font-family: 'Open Sans', sans-serif;
-      #       font-size: 150%;
-      #       # -webkit-box-shadow: none;
-      #       # -moz-box-shadow: none;
-      #       # box-shadow: none;
-      #       text-align: center;
-      #     }
-      #     h1, h3 {
-      #       font-weight: 300 !important;
-      #     }
-      # - type: entities
-      #   show_header_toggle: false
-      #   entities:
-      #     - input_boolean.guest_mode
+  # - type: thermostat
+  #   entity: climate.dining_room
 
-  - type: thermostat
-    entity: climate.dining_room
+  # - type: entities
+  #   title: Favorites
+  #   show_header_toggle: false
+  #   entities:
+  #     - type: custom:slider-entity-row
+  #       entity: light.nightstand_lamp
+  #       hide_when_off: true
+  #       toggle: true
+  #     - type: divider
+  #     - type: custom:slider-entity-row
+  #       entity: light.dining_room_light
+  #       hide_when_off: true
+  #       toggle: true
+  #     - light.dining_room_hutch_light
+  #     - type: divider
+  #     - type: custom:slider-entity-row
+  #       entity: light.kitchen_lights
+  #       hide_when_off: true
+  #       toggle: true
+  #     - type: divider
+  #     - cover.garage_door
+  #     - type: divider
+  #     - type: custom:slider-entity-row
+  #       entity: light.left_key_light_air
+  #       hide_when_off: true
+  #       toggle: true
+  #     - type: custom:slider-entity-row
+  #       entity: light.right_key_light_air
+  #       hide_when_off: true
+  #       toggle: true
+  #     - type: custom:slider-entity-row
+  #       entity: light.office_bookshelf_lamp
+  #       hide_when_off: true
+  #       toggle: true
+  #     - type: divider
+  #     - type: custom:slider-entity-row
+  #       entity: light.basement_overhead_lights
+  #       hide_when_off: true
+  #       toggle: true
+  #     - type: divider
+  #     - light.front_porch_light
+  #     - light.back_porch_light
 
-  - type: entities
-    title: Favorites
-    show_header_toggle: false
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.nightstand_lamp
-        hide_when_off: true
-        toggle: true
-      - type: divider
-      - type: custom:slider-entity-row
-        entity: light.dining_room_light
-        hide_when_off: true
-        toggle: true
-      - light.dining_room_hutch_light
-      - type: divider
-      - type: custom:slider-entity-row
-        entity: light.kitchen_lights
-        hide_when_off: true
-        toggle: true
-      - type: divider
-      - cover.garage_door
-      - type: divider
-      - type: custom:slider-entity-row
-        entity: light.left_key_light_air
-        hide_when_off: true
-        toggle: true
-      - type: custom:slider-entity-row
-        entity: light.right_key_light_air
-        hide_when_off: true
-        toggle: true
-      - type: custom:slider-entity-row
-        entity: light.office_bookshelf_lamp
-        hide_when_off: true
-        toggle: true
-      - type: divider
-      - type: custom:slider-entity-row
-        entity: light.basement_overhead_lights
-        hide_when_off: true
-        toggle: true
-      - type: divider
-      - light.front_porch_light
-      - light.back_porch_light
-
-  - type: custom:weather-card
-    entity: weather.weatherflow_day_based_forecast
+  # - type: custom:weather-card
+  #   entity: weather.weatherflow_day_based_forecast
 
   - type: vertical-stack
     cards:
@@ -190,6 +91,57 @@ cards:
         entity: climate.dining_room
         card_mod:
           class: footer
+
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# Favorites'
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.nightstand_lamp
+            hide_when_off: true
+            toggle: true
+          - type: divider
+          - type: custom:slider-entity-row
+            entity: light.dining_room_light
+            hide_when_off: true
+            toggle: true
+          - light.dining_room_hutch_light
+          - type: divider
+          - type: custom:slider-entity-row
+            entity: light.kitchen_lights
+            hide_when_off: true
+            toggle: true
+          - type: divider
+          - cover.garage_door
+          - type: divider
+          - type: custom:slider-entity-row
+            entity: light.left_key_light_air
+            hide_when_off: true
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.right_key_light_air
+            hide_when_off: true
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.office_bookshelf_lamp
+            hide_when_off: true
+            toggle: true
+          - type: divider
+          - type: custom:slider-entity-row
+            entity: light.basement_overhead_lights
+            hide_when_off: true
+            toggle: true
+          - type: divider
+          - light.front_porch_light
+          - light.back_porch_light
+        card_mod:
+          class: footer
+
 
   - type: custom:mini-graph-card
     name: River Level
