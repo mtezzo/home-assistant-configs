@@ -31,10 +31,6 @@ recorder:
         - sun
         - notify
       entities:
-        - automation.guest_bedroom_closet_lighting
-        - automation.guest_bedroom_storage_lighting
-        - automation.michaels_closet_lighting
-        - automation.julias_closet_lighting
         - automation.keyfob_circle_button_tapped
         - automation.keyfob_square_button_tapped
         - automation.keyfob_triangle_button_tapped
