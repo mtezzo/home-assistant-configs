@@ -46,18 +46,21 @@ cards:
           type: entities
           title: Motion Sensors
           show_header_toggle: false
+          card_mod:
+            class: middle-right
         filter:
           include:
             - domain: binary_sensor
               attributes:
                 device_class: motion
-        card_mod:
-          class: middle-right
+
       - type: custom:auto-entities
         card:
           type: entities
           title: Door Sensors
           show_header_toggle: false
+          card_mod:
+            class: footer-right
         filter:
           include:
             - domain: binary_sensor
@@ -66,5 +69,3 @@ cards:
             - domain: binary_sensor
               attributes:
                 device_class: garage_door
-        card_mod:
-          class: footer-right
