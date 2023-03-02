@@ -162,7 +162,7 @@ cards:
     cards:
       - type: markdown
         card_mod:
-          class: header
+          class: header-contained
         content: '# Location'
       - type: map
         aspect_ratio: '16:9'
@@ -172,15 +172,22 @@ cards:
           - person.michael
           - zone.home
         card_mod:
-          class: middle
+          class: middle-contained
+      - type: markdown
+        card_mod:
+          class: middle-contained
+        content: '# River Level'
       - type: custom:mini-graph-card
-        name: River Level
         icon: mdi:waves
         entities:
           - entity: sensor.river_level
             name: Height
         card_mod:
-          class: footer
+          class: middle-contained
+      - type: markdown
+        card_mod:
+          class: footer-contained
+        content: '## &nbsp;'
 
   - type: calendar
     initial_view: 'listWeek'
