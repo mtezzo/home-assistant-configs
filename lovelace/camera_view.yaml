@@ -1,13 +1,30 @@
 title: Cameras
 icon: mdi:camcorder
 path: cameras
-#    background: radial-gradient(blueviolet, skyblue)
-#background: var(--background-image)
-#theme: clear-dark
 cards:
-  - type: picture-entity
-    title: Dining Room
-    entity: camera.mnemosyne_dining_room
-  - type: picture-entity
-    title: Master Bedroom
-    entity: camera.mnemosyne_bedroom
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# Surveillance'
+      - type: markdown
+        card_mod:
+          class: middle
+        content: '## Basement'
+      - type: picture-entity
+        name: Basement
+        show_name: false
+        entity: camera.mnemosyne_basement
+        card_mod:
+          class: middle
+      - type: markdown
+        card_mod:
+          class: middle
+        content: '## Family Room'
+      - type: picture-entity
+        name: Family Room
+        show_name: false
+        entity: camera.mnemosyne_family_room
+        card_mod:
+          class: footer
