@@ -1,0 +1,70 @@
+title: Surveillance
+icon: mdi:cctv
+path: surveillance
+cards:
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# Surveillance Subsystem'
+      - type: markdown
+        card_mod:
+          class: middle
+        content: '## Basement'
+      - type: picture-entity
+        name: Basement
+        show_name: false
+        show_state: false
+        entity: camera.mnemosyne_basement
+        card_mod:
+          class: middle
+      - type: markdown
+        card_mod:
+          class: middle
+        content: '## Family Room'
+      - type: picture-entity
+        name: Family Room
+        show_name: false
+        show_state: false
+        entity: camera.mnemosyne_family_room
+        card_mod:
+          class: middle
+      - type: markdown
+        card_mod:
+          class: footer
+        content: '## &nbsp;'
+
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        card_mod:
+          class: header-right
+        content: '# Security Sensors'
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Motion Sensors
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: binary_sensor
+              attributes:
+                device_class: motion
+        card_mod:
+          class: middle-right
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Door Sensors
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: binary_sensor
+              attributes:
+                device_class: door
+            - domain: binary_sensor
+              attributes:
+                device_class: garage_door
+        card_mod:
+          class: footer-right
