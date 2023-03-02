@@ -1,6 +1,7 @@
 title: Cameras
 icon: mdi:camcorder
 path: cameras
+type: panel
 cards:
   - type: vertical-stack
     cards:
