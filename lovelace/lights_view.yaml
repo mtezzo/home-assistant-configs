@@ -7,99 +7,113 @@ cards:
       - type: markdown
         card_mod:
           class: header
-        content: '## Bedroom'
-      - type: horizontal-stack
+        content: '# Lighting Subsystem'
+      - type: grid
+        card_mod:
+          class: middle
         cards:
-          - type: light
-            entity: light.dresser_lamp
-            card_mod:
-              class: middle
-          - type: light
-            entity: light.nightstand_lamp
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                card_mod:
+                  class: header
+                content: '## Bedroom'
+              - type: horizontal-stack
+                cards:
+                  - type: light
+                    entity: light.dresser_lamp
+                    card_mod:
+                      class: middle
+                  - type: light
+                    entity: light.nightstand_lamp
 
-  - type: vertical-stack
-    cards:
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                card_mod:
+                  class: header
+                content: >
+                  ## Basement
+              - type: horizontal-stack
+                cards:
+                  - type: light
+                    entity: light.basement_sump_pump_closet_light
+                    card_mod:
+                      class: button-small
+                  - type: light
+                    entity: light.basement_stair_closet_light
+                    card_mod:
+                      class: button-small
+
+
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                card_mod:
+                  class: bar-large
+                content: >
+                  ## Dining Room
+              - type: horizontal-stack
+                cards:
+                  - type: light
+                    entity: light.dining_room_light
+                  - type: light
+                    entity: light.dining_room_hutch_light
+                card_mod:
+                  class: middle-right
+
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                card_mod:
+                  class: bar-large-right
+                content: >
+                  # Kitchen
+              - type: light
+                entity: light.kitchen_lights
+
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                card_mod:
+                  class: header-contained
+                content: >
+                  ## Office
+              - type: horizontal-stack
+                cards:
+                  - type: light
+                    entity: light.left_key_light_air
+                    name: Left Key Light
+                    card_mod:
+                      class: middle
+                  - type: light
+                    entity: light.right_key_light_air
+                    name: Right Key Light
+                    card_mod:
+                      class: middle-right
+              - type: light
+                entity: light.office_bookshelf_lamp
+                card_mod:
+                  class: footer
+
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                card_mod:
+                  class: header-contained
+                content: >
+                  ## Outdoors
+              - type: horizontal-stack
+                cards:
+                  - type: light
+                    entity: light.back_porch_light
+                    card_mod:
+                      class: middle
+                  - type: light
+                    entity: light.front_porch_light
+                    card_mod:
+                      class: middle-right
       - type: markdown
-        card_mod:
-          class: header
-        content: >
-          ## Basement
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.basement_sump_pump_closet_light
-            card_mod:
-              class: button-small
-          - type: light
-            entity: light.basement_stair_closet_light
-            card_mod:
-              class: button-small
-
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        card_mod:
-          class: bar-large
-        content: >
-          ## Dining Room
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.dining_room_light
-          - type: light
-            entity: light.dining_room_hutch_light
-        card_mod:
-          class: middle-right
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        card_mod:
-          class: bar-large-right
-        content: >
-          # Kitchen
-      - type: light
-        entity: light.kitchen_lights
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        card_mod:
-          class: header-contained
-        content: >
-          ## Office
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.left_key_light_air
-            name: Left Key Light
-            card_mod:
-              class: middle
-          - type: light
-            entity: light.right_key_light_air
-            name: Right Key Light
-            card_mod:
-              class: middle-right
-      - type: light
-        entity: light.office_bookshelf_lamp
         card_mod:
           class: footer
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        card_mod:
-          class: header-contained
-        content: >
-          ## Outdoors
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.back_porch_light
-            card_mod:
-              class: middle
-          - type: light
-            entity: light.front_porch_light
-            card_mod:
-              class: middle-right
+        content: '# &nbsp;'
