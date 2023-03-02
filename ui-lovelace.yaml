@@ -111,7 +111,7 @@ decluttering_templates:
 
 views:
   - !include lovelace/home_view.yaml
-  - !include lovelace/lights_view.yaml
+  - !include lovelace/lighting_view.yaml
   - !include lovelace/rooms_view.yaml
   - !include lovelace/surveillance_view.yaml
   - !include lovelace/media_view.yaml
