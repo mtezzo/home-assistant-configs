@@ -51,7 +51,7 @@ cards:
 
       - type: markdown
         card_mod:
-          class: middle-right
+          class: bar-large-right
         content: >
           ## Kitchen
       - type: light
@@ -68,7 +68,7 @@ cards:
 
       - type: markdown
         card_mod:
-          class: middle
+          class: bar-large-right
         content: '## Master Bedroom'
       - type: horizontal-stack
         cards:
@@ -79,7 +79,7 @@ cards:
 
       - type: markdown
         card_mod:
-          class: middle
+          class: bar-large-right
         content: >
           ## Office
       - type: horizontal-stack
@@ -102,7 +102,7 @@ cards:
 
       - type: markdown
         card_mod:
-          class: middle
+          class: bar-large-right
         content: >
           ## Outdoors
       - type: horizontal-stack
