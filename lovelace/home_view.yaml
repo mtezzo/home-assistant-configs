@@ -167,6 +167,7 @@ cards:
       - type: map
         aspect_ratio: '16:9'
         default_zoom: 16
+        dark_mode: true
         entities:
           - person.julia
           - person.michael
