@@ -27,4 +27,8 @@ cards:
         show_name: true
         entity: camera.mnemosyne_family_room
         card_mod:
+          class: middle
+      - type: markdown
+        card_mod:
           class: footer
+        content: '## &nbsp;'

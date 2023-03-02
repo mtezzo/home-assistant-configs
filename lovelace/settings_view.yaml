@@ -1,7 +1,6 @@
 title: Settings
 icon: mdi:tune
 path: system
-#background: var(--background-image)
 cards:
   - type: entities
     title: System
