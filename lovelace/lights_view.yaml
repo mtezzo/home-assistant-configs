@@ -12,17 +12,13 @@ cards:
       - type: markdown
         card_mod:
           class: middle
-        content: '## Bedroom'
+        content: '## Master Bedroom'
       - type: horizontal-stack
         cards:
           - type: light
-            entity: light.dresser_lamp
-            card_mod:
-              class: middle
-          - type: light
             entity: light.nightstand_lamp
             card_mod:
-              class: middle-right
+              class: middle
 
       - type: markdown
         card_mod:
@@ -32,13 +28,17 @@ cards:
       - type: horizontal-stack
         cards:
           - type: light
-            entity: light.basement_sump_pump_closet_light
+            entity: light.basement_overhead_lights
             card_mod:
               class: middle
           - type: light
+            entity: light.basement_sump_pump_closet_light
+            card_mod:
+              class: middle-blank
+          - type: light
             entity: light.basement_stair_closet_light
             card_mod:
-              class: middle-right
+              class: middle-blank
 
       - type: markdown
         card_mod:
@@ -54,7 +54,7 @@ cards:
           - type: light
             entity: light.dining_room_hutch_light
             card_mod:
-              class: middle-right
+              class: middle-blank
 
       - type: markdown
         card_mod:
@@ -90,7 +90,7 @@ cards:
             entity: light.left_key_light_air
             name: Left Key Light
             card_mod:
-              class: middle
+              class: middle-blank
           - type: light
             entity: light.right_key_light_air
             name: Right Key Light
@@ -111,7 +111,7 @@ cards:
           - type: light
             entity: light.back_porch_light
             card_mod:
-              class: middle
+              class: middle-blank
           - type: light
             entity: light.front_porch_light
             card_mod:
