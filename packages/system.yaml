@@ -85,7 +85,7 @@ automation:
         data:
           name: LCARS Default
           # name: default
-          # mode: dark
+          mode: dark
       - service: notify.sms
         data:
           message: "Home Assistant is now up and running."
