@@ -83,8 +83,9 @@ automation:
     action:
       - service: frontend.set_theme
         data:
-          name: default
-          mode: dark
+          name: LCARS Default
+          # name: default
+          # mode: dark
       - service: notify.sms
         data:
           message: "Home Assistant is now up and running."
