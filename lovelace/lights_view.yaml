@@ -1,6 +1,7 @@
 title: Lights
 icon: mdi:lightbulb-outline
 path: lights
+type: panel
 cards:
   - type: vertical-stack
     cards:

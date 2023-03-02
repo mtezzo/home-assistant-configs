@@ -15,7 +15,7 @@ cards:
         content: '## Basement'
       - type: picture-entity
         name: Basement
-        show_name: true
+        show_name: false
         entity: camera.mnemosyne_basement
         card_mod:
           class: middle
@@ -25,7 +25,7 @@ cards:
         content: '## Family Room'
       - type: picture-entity
         name: Family Room
-        show_name: true
+        show_name: false
         entity: camera.mnemosyne_family_room
         card_mod:
           class: middle
