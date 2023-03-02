@@ -1,7 +1,6 @@
-title: Lights
+title: Lighting Subsystem
 icon: mdi:lightbulb-outline
-path: lights
-type: panel
+path: lighting
 cards:
   - type: vertical-stack
     cards:
@@ -17,8 +16,8 @@ cards:
             cards:
               - type: markdown
                 card_mod:
-                  class: header
-                content: '## Bedroom'
+                  class: bar-large-right
+                content: '# Bedroom'
               - type: horizontal-stack
                 cards:
                   - type: light
@@ -32,20 +31,15 @@ cards:
             cards:
               - type: markdown
                 card_mod:
-                  class: header
+                  class: bar-large-right
                 content: >
                   ## Basement
               - type: horizontal-stack
                 cards:
                   - type: light
                     entity: light.basement_sump_pump_closet_light
-                    card_mod:
-                      class: button-small
                   - type: light
                     entity: light.basement_stair_closet_light
-                    card_mod:
-                      class: button-small
-
 
           - type: vertical-stack
             cards:
