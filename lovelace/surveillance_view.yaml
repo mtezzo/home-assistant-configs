@@ -76,7 +76,3 @@ cards:
             - domain: binary_sensor
               attributes:
                 device_class: garage_door
-      - type: markdown
-        card_mod:
-          class: footer-open
-        content: '## &nbsp;'
