@@ -11,27 +11,30 @@ cards:
 
       - type: markdown
         card_mod:
-          class: middle-right
+          class: bar-large-right
         content: >
           ## Basement
       - type: horizontal-stack
         cards:
           - type: light
             entity: light.basement_overhead_lights
+            name: Overhead Lights
             card_mod:
               class: middle-blank
           - type: light
             entity: light.basement_sump_pump_closet_light
+            name: Sump Pump Closet Light
             card_mod:
               class: middle-blank
           - type: light
             entity: light.basement_stair_closet_light
+            name: Stair Closet Light
             card_mod:
               class: middle-right
 
       - type: markdown
         card_mod:
-          class: middle-right
+          class: bar-large-right
         content: >
           ## Dining Room
       - type: horizontal-stack
@@ -42,6 +45,7 @@ cards:
               class: middle-blank
           - type: light
             entity: light.dining_room_hutch_light
+            name: Hutch Light
             card_mod:
               class: middle-right
 
@@ -82,6 +86,7 @@ cards:
         cards:
           - type: light
             entity: light.office_bookshelf_lamp
+            name: Bookshelf Lamp
             card_mod:
               class: middle
           - type: light
