@@ -39,12 +39,16 @@ cards:
     cards:
       - type: markdown
         card_mod:
-          class: header-right
-        content: '## Security Sensors'
+          class: header-open
+        content: '# &nbsp;'
+      - type: markdown
+        card_mod:
+          class: middle-right
+        content: '## Motion Sensors'
       - type: custom:auto-entities
         card:
           type: entities
-          title: Motion Sensors
+          # title: Motion Sensors
           show_header_toggle: false
           card_mod:
             class: middle-right
@@ -53,11 +57,14 @@ cards:
             - domain: binary_sensor
               attributes:
                 device_class: motion
-
+      - type: markdown
+        card_mod:
+          class: middle-right
+        content: '## Door Sensors'
       - type: custom:auto-entities
         card:
           type: entities
-          title: Door Sensors
+          # title: Door Sensors
           show_header_toggle: false
           card_mod:
             class: middle-right
@@ -71,5 +78,5 @@ cards:
                 device_class: garage_door
       - type: markdown
         card_mod:
-          class: footer
+          class: footer-open
         content: '## &nbsp;'
