@@ -83,7 +83,7 @@ automation:
     action:
       - service: frontend.set_theme
         data:
-          name: LCARS Default
+          name: LCARS TNG
           # name: default
           mode: dark
       - service: notify.sms
