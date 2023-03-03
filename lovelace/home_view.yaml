@@ -182,7 +182,7 @@ cards:
           - entity: sensor.river_level
             name: Height
         card_mod:
-          class: middle2-contained
+          class: middle-contained
       - type: markdown
         card_mod:
           class: footer-contained
