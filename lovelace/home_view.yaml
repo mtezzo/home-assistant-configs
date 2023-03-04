@@ -2,7 +2,6 @@ title: Home
 icon: mdi:home-assistant
 path: home
 cards:
-
   - type: vertical-stack
     cards:
       - type: horizontal-stack
@@ -47,7 +46,7 @@ cards:
           action: toggle
         entity: input_boolean.guest_mode
         card_mod:
-          class: button-lozenge
+          class: button-lozenge-left
 
 
   # - type: thermostat
