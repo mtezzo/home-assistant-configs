@@ -91,6 +91,12 @@ cards:
           - light.front_porch_light
           - light.back_porch_light
         card_mod:
+          class: middle
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - automation.master_bedroom_motion
+        card_mod:
           class: footer
 
   - type: vertical-stack
