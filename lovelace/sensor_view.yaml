@@ -22,7 +22,7 @@ cards:
       - entity: sensor.water_heater_flood_sensor_air_temperature
         name: Mechanical Room
     card_mod:
-      class: middle
+      class: header
 
   - type: vertical-stack
     cards:
@@ -95,7 +95,7 @@ cards:
     cards:
       - type: markdown
         content: >
-          ### Workroom Closet
+          ## Workroom Closet
         card_mod:
           class: header
       - type: custom:mini-graph-card
@@ -129,7 +129,7 @@ cards:
     cards:
       - type: markdown
         content: >
-          ### Humidor
+          ## Humidor
         card_mod:
           class: header
       - type: custom:mini-graph-card
@@ -163,7 +163,7 @@ cards:
     cards:
       - type: markdown
         content: >
-          ### Wine Rack
+          ## Wine Rack
         card_mod:
           class: header
       - type: custom:mini-graph-card
@@ -188,7 +188,11 @@ cards:
             show:
               graph: bar
               legend: false
+            card_mod:
+              class: footer
           - type: sensor
             name: BATTERY
             entity: sensor.wirelesstag_wine_rack_battery_level
             graph: none
+            card_mod:
+              class: footer-blank
