@@ -9,17 +9,17 @@ cards:
         cards:
           - type: button
             show_name: true
-            show_icon: true
+            show_icon: false
             show_state: true
             tap_action:
               action: more-info
             entity: input_select.michaels_status
             card_mod:
-              class: button-lozenge
+              class: button-lozenge-right
 
           - type: button
             show_name: true
-            show_icon: true
+            show_icon: false
             show_state: true
             tap_action:
               action: more-info
@@ -60,7 +60,7 @@ cards:
               action: more-info
             entity: sensor.basement_radon_pcil
             card_mod:
-              class: button-lozenge
+              class: button-lozenge-right
       - type: entities
         show_header_toggle: false
         entities:
