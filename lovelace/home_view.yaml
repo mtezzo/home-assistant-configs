@@ -7,41 +7,15 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: button
-            show_name: true
-            show_entity_picture: true
-            show_state: true
-            tap_action:
-              action: more-info
+          - type: tile
             entity: input_select.michaels_status
-            card_mod:
-              class: button-lozenge-right
-
-          - type: button
-            show_name: true
-            show_icon: false
-            show_state: true
-            tap_action:
-              action: more-info
+            show_entity_picture: true
+          - type: tile
             entity: input_select.julias_status
-            card_mod:
-              class: button-lozenge
-
-          # - type: tile
-          #   entity: input_select.michaels_status
-          #   show_entity_picture: true
-          # - type: tile
-          #   entity: input_select.julias_status
-          #   show_entity_picture: true
+            show_entity_picture: true
       - type: horizontal-stack
         cards:
-          # - type: tile
-          #   entity: alarm_control_panel.alarm_system
-          # - type: tile
-          #   name: 'Radon'
-          #   entity: sensor.basement_radon_pcil
           - type: button
-            name: 'Alarm System'
             show_name: true
             show_icon: true
             show_state: true
@@ -61,10 +35,20 @@ cards:
             entity: sensor.basement_radon_pcil
             card_mod:
               class: button-lozenge
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - input_boolean.guest_mode
+      # - type: entities
+      #   show_header_toggle: false
+      #   entities:
+      #     - input_boolean.guest_mode
+      - type: button
+        show_name: true
+        show_icon: true
+        show_state: true
+        tap_action:
+          action: toggle
+        entity: input_boolean.guest_mode
+        card_mod:
+          class: button-lozenge
+
 
   # - type: thermostat
   #   entity: climate.dining_room
