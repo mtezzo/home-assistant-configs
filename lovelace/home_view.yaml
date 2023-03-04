@@ -24,6 +24,7 @@ cards:
             name: 'Alarm System'
             show_name: true
             show_icon: true
+            show_state: true
             tap_action:
               action: more-info
             entity: alarm_control_panel.alarm_system
@@ -34,6 +35,7 @@ cards:
             name: 'Radon'
             show_name: true
             show_icon: true
+            show_state: true
             tap_action:
               action: more-info
             entity: sensor.basement_radon_pcil
