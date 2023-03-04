@@ -7,12 +7,32 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: tile
+          - type: button
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
             entity: input_select.michaels_status
-            show_entity_picture: true
-          - type: tile
+            card_mod:
+              class: button-lozenge
+
+          - type: button
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
             entity: input_select.julias_status
-            show_entity_picture: true
+            card_mod:
+              class: button-lozenge
+
+          # - type: tile
+          #   entity: input_select.michaels_status
+          #   show_entity_picture: true
+          # - type: tile
+          #   entity: input_select.julias_status
+          #   show_entity_picture: true
       - type: horizontal-stack
         cards:
           # - type: tile
