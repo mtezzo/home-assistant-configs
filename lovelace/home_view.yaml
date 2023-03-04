@@ -15,11 +15,30 @@ cards:
             show_entity_picture: true
       - type: horizontal-stack
         cards:
-          - type: tile
+          # - type: tile
+          #   entity: alarm_control_panel.alarm_system
+          # - type: tile
+          #   name: 'Radon'
+          #   entity: sensor.basement_radon_pcil
+          - type: button
+            name: 'Alarm System'
+            show_name: true
+            show_icon: true
+            tap_action:
+              action: more-info
             entity: alarm_control_panel.alarm_system
-          - type: tile
+            card_mod:
+              class: button-lozenge
+
+          - type: button
             name: 'Radon'
+            show_name: true
+            show_icon: true
+            tap_action:
+              action: more-info
             entity: sensor.basement_radon_pcil
+            card_mod:
+              class: button-lozenge
       - type: entities
         show_header_toggle: false
         entities:
