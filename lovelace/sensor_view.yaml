@@ -1,9 +1,6 @@
-title: Sensors
+title: Sensor Subsystem
 icon: mdi:access-point
 path: sensors
-#background: var(--background-image)
-#    background: radial-gradient(blueviolet, skyblue)
-#    theme: clear-dark
 cards:
   - type: custom:mini-graph-card
     icon: mdi:thermometer
@@ -120,10 +117,14 @@ cards:
             show:
               graph: bar
               legend: false
+            card_mod:
+              class: middle
           - type: sensor
             name: BATTERY
             entity: sensor.wirelesstag_workroom_closet_battery_level
             graph: none
+            card_mod:
+              class: middle-blank
 
   - type: vertical-stack
     cards:
@@ -154,10 +155,14 @@ cards:
             show:
               graph: bar
               legend: false
+            card_mod:
+              class: middle
           - type: sensor
             name: BATTERY
             entity: sensor.wirelesstag_humidor_battery_level
             graph: none
+            card_mod:
+              class: middle-blank
 
   - type: vertical-stack
     cards:
@@ -189,10 +194,10 @@ cards:
               graph: bar
               legend: false
             card_mod:
-              class: footer
+              class: middle
           - type: sensor
             name: BATTERY
             entity: sensor.wirelesstag_wine_rack_battery_level
             graph: none
             card_mod:
-              class: footer-blank
+              class: middle-blank
