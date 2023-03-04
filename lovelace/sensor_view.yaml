@@ -91,11 +91,13 @@ cards:
       - input_select.michaels_status
       - alarm_control_panel.alarm_system
 
-  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
     cards:
       - type: markdown
         content: >
-          ### WORKROOM CLOSET
+          ### Workroom Closet
+        card_mod:
+          class: header
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
@@ -105,6 +107,8 @@ cards:
         show:
           legend: false
           labels: true
+        card_mod:
+          class: middle
       - type: horizontal-stack
         cards:
           - type: custom:mini-graph-card
@@ -121,11 +125,13 @@ cards:
             entity: sensor.wirelesstag_workroom_closet_battery_level
             graph: none
 
-  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
     cards:
       - type: markdown
         content: >
-          ### HUMIDOR
+          ### Humidor
+        card_mod:
+          class: header
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
@@ -135,6 +141,8 @@ cards:
         show:
           legend: false
           labels: true
+        card_mod:
+          class: middle
       - type: horizontal-stack
         cards:
           - type: custom:mini-graph-card
@@ -151,11 +159,13 @@ cards:
             entity: sensor.wirelesstag_humidor_battery_level
             graph: none
 
-  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
     cards:
       - type: markdown
         content: >
-          ### WINE RACK
+          ### Wine Rack
+        card_mod:
+          class: header
       - type: custom:mini-graph-card
         name: HUMIDITY
         entities:
@@ -165,6 +175,8 @@ cards:
         show:
           legend: false
           labels: true
+        card_mod:
+          class: middle
       - type: horizontal-stack
         cards:
           - type: custom:mini-graph-card

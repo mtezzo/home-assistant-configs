@@ -46,8 +46,7 @@ cards:
           action: toggle
         entity: input_boolean.guest_mode
         card_mod:
-          class: button-lozenge-left
-
+          class: button-lozenge-right
 
   # - type: thermostat
   #   entity: climate.dining_room
