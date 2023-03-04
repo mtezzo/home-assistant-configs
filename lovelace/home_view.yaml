@@ -48,22 +48,6 @@ cards:
       - type: markdown
         card_mod:
           class: header
-        content: '# Climate'
-      # - type: weather-forecast
-      - type: custom:weather-card
-        entity: weather.weatherflow_day_based_forecast
-        card_mod:
-          class: middle
-      - type: thermostat
-        entity: climate.dining_room
-        card_mod:
-          class: footer
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        card_mod:
-          class: header
         content: '# Favorites'
       - type: entities
         show_header_toggle: false
@@ -108,6 +92,22 @@ cards:
           - light.back_porch_light
         card_mod:
           class: footer
+
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        card_mod:
+          class: header-right
+        content: '# Climate'
+      # - type: weather-forecast
+      - type: custom:weather-card
+        entity: weather.weatherflow_day_based_forecast
+        card_mod:
+          class: middle-right
+      - type: thermostat
+        entity: climate.dining_room
+        card_mod:
+          class: footer-right
 
   - type: vertical-stack
     cards:
