@@ -9,7 +9,7 @@ cards:
         cards:
           - type: button
             show_name: true
-            show_icon: false
+            show_entity_picture: true
             show_state: true
             tap_action:
               action: more-info
