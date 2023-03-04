@@ -23,7 +23,6 @@ cards:
             entity: alarm_control_panel.alarm_system
             card_mod:
               class: button-lozenge
-
           - type: button
             name: 'Radon'
             show_name: true
@@ -34,10 +33,6 @@ cards:
             entity: sensor.basement_radon_pcil
             card_mod:
               class: button-lozenge
-      # - type: entities
-      #   show_header_toggle: false
-      #   entities:
-      #     - input_boolean.guest_mode
       - type: button
         show_name: true
         show_icon: true
@@ -47,55 +42,6 @@ cards:
         entity: input_boolean.guest_mode
         card_mod:
           class: button-lozenge-right
-
-  # - type: thermostat
-  #   entity: climate.dining_room
-
-  # - type: entities
-  #   title: Favorites
-  #   show_header_toggle: false
-  #   entities:
-  #     - type: custom:slider-entity-row
-  #       entity: light.nightstand_lamp
-  #       hide_when_off: true
-  #       toggle: true
-  #     - type: divider
-  #     - type: custom:slider-entity-row
-  #       entity: light.dining_room_light
-  #       hide_when_off: true
-  #       toggle: true
-  #     - light.dining_room_hutch_light
-  #     - type: divider
-  #     - type: custom:slider-entity-row
-  #       entity: light.kitchen_lights
-  #       hide_when_off: true
-  #       toggle: true
-  #     - type: divider
-  #     - cover.garage_door
-  #     - type: divider
-  #     - type: custom:slider-entity-row
-  #       entity: light.left_key_light_air
-  #       hide_when_off: true
-  #       toggle: true
-  #     - type: custom:slider-entity-row
-  #       entity: light.right_key_light_air
-  #       hide_when_off: true
-  #       toggle: true
-  #     - type: custom:slider-entity-row
-  #       entity: light.office_bookshelf_lamp
-  #       hide_when_off: true
-  #       toggle: true
-  #     - type: divider
-  #     - type: custom:slider-entity-row
-  #       entity: light.basement_overhead_lights
-  #       hide_when_off: true
-  #       toggle: true
-  #     - type: divider
-  #     - light.front_porch_light
-  #     - light.back_porch_light
-
-  # - type: custom:weather-card
-  #   entity: weather.weatherflow_day_based_forecast
 
   - type: vertical-stack
     cards:
@@ -163,22 +109,6 @@ cards:
         card_mod:
           class: footer
 
-
-  # - type: custom:mini-graph-card
-  #   name: River Level
-  #   icon: mdi:waves
-  #   entities:
-  #     - entity: sensor.river_level
-  #       name: Height
-
-  # - type: map
-  #   aspect_ratio: '16:9'
-  #   default_zoom: 16
-  #   entities:
-  #     - person.julia
-  #     - person.michael
-  #     - zone.home
-
   - type: vertical-stack
     cards:
       - type: markdown
@@ -210,10 +140,3 @@ cards:
         card_mod:
           class: footer
         content: '## &nbsp;'
-
-  - type: calendar
-    initial_view: 'listWeek'
-    entities:
-      - calendar.home
-    card_mod:
-          class: header
