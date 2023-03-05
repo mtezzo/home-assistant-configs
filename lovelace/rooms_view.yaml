@@ -56,10 +56,10 @@ cards:
   #     - light.living_room_floor_lamp_instance_1_level
   #   image: /local/img/living_room.jpg?v=1
 
-  # Living Room
+  # Family Room
   - type: area
     area: 524d9761030444c38a734882ef7dfec3
-    show_camera: false
+    show_camera: true
 
   # - type: picture-glance
   #   title: Master Bedroom
@@ -70,17 +70,10 @@ cards:
 
   # Master Bedroom
   - type: area
-    area: be9c90e562724c789bafa8ca9563f34b
+    area: family room
     show_camera: true
-
-  - type: picture-glance
-    title: Guest Bedroom
-    entities:
-      - light.guest_bedroom_storage
-      - light.guest_closet_dimmable_led_light_bulb
-    image: /local/img/guest_bedroom.jpg?v=1
 
   # Dining Room
   - type: area
-    area: fea73d3ae1c548a88559cb39ce002174
-    show_camera: true
+    area: family room
+    show_camera: false
