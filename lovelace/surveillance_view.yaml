@@ -12,22 +12,32 @@ cards:
         card_mod:
           class: middle
         content: '## Basement'
-      - type: picture-entity
-        name: Basement
-        show_name: false
-        show_state: false
-        entity: camera.mnemosyne_basement
+      # - type: picture-entity
+      #   name: Basement
+      #   show_name: false
+      #   show_state: false
+      #   entity: camera.mnemosyne_basement
+      #   card_mod:
+      #     class: middle
+      - type: area
+        area: 65c1e8c8ce7046b49fd30a25bb1d1d79
+        show_camera: true
         card_mod:
           class: middle
       - type: markdown
         card_mod:
           class: middle
         content: '## Family Room'
-      - type: picture-entity
-        name: Family Room
-        show_name: false
-        show_state: false
-        entity: camera.mnemosyne_family_room
+      # - type: picture-entity
+      #   name: Family Room
+      #   show_name: false
+      #   show_state: false
+      #   entity: camera.mnemosyne_family_room
+      #   card_mod:
+      #     class: middle
+      - type: area
+        area: 524d9761030444c38a734882ef7dfec3
+        show_camera: true
         card_mod:
           class: middle
       - type: markdown
