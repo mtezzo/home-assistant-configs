@@ -51,6 +51,15 @@ cards:
         card_mod:
           class: header-open
         content: '# &nbsp;'
+      - type: history-graph
+        title: 'Presence History'
+        entities:
+          - sensor.household
+          - input_select.julias_status
+          - input_select.michaels_status
+          - alarm_control_panel.alarm_system
+        card_mod:
+          class: middle-right
       - type: markdown
         card_mod:
           class: middle-right
