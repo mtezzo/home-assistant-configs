@@ -4,8 +4,13 @@ path: system
 cards:
   - type: vertical-stack
     cards:
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# System Diagnostics'
+
       - type: entities
-        title: System
+        title: Hardware Status
         show_header_toggle: false
         entities:
           - sensor.date
@@ -21,11 +26,16 @@ cards:
           - sensor.load_15m
           - sensor.current_version
         card_mod:
-          class: header
+          class: middle
+
+      - type: markdown
+        card_mod:
+          class: middle
+        content: '## Network Transmission'
 
       - type: custom:mini-graph-card
-        name: Network
-        icon: mdi:server
+        # name: Network
+        # icon: mdi:server
         entities:
           - entity: sensor.speedtest_download
             name: DOWNLOAD
