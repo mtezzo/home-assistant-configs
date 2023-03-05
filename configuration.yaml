@@ -46,6 +46,9 @@ homeassistant:
 # General automations
 # automation: !include automations.yaml
 
+# https://www.home-assistant.io/integrations/cloud/
+cloud:
+
 # Enables configuration UI
 # https://home-assistant.io/components/config/
 config:
@@ -54,12 +57,11 @@ config:
 # https://www.home-assistant.io/components/conversation/
 conversation:
 
-# Discover some devices automatically
-# https://www.home-assistant.io/components/discovery/
-discovery:
-  ignore:
-    - apple_tv
-    - philips_hue
+# https://www.home-assistant.io/integrations/counter/
+counter:
+
+# https://www.home-assistant.io/integrations/dhcp/
+dhcp:
 
 # Enables the frontend
 # https://www.home-assistant.io/components/frontend/
@@ -71,9 +73,21 @@ frontend:
 hacs:
   token: !secret github_token
 
+# https://www.home-assistant.io/integrations/hardware/
+hardware:
+
 # Enables support for tracking state changes over time.
 # https://home-assistant.io/components/history/
 history:
+
+# https://www.home-assistant.io/integrations/homeassistant_alerts
+homeassistant_alerts:
+
+# https://www.home-assistant.io/integrations/input_number/
+input_number:
+
+# https://www.home-assistant.io/integrations/input_text/
+input_text:
 
 # View all events in a logbook
 # https://www.home-assistant.io/components/logbook/
@@ -141,6 +155,9 @@ person:
       - device_tracker.michael_iphone
       - device_tracker.michael_life360
 
+# https://www.home-assistant.io/integrations/ssdp/
+ssdp:
+
 # Enable Sun Component
 # https://home-assistant.io/components/sun/
 sun:
@@ -149,9 +166,15 @@ sun:
 # https://www.home-assistant.io/components/system_health/
 system_health:
 
+# https://www.home-assistant.io/integrations/timer/
+timer:
+
 # Text to speech
 tts:
   - platform: google_translate
+
+# https://www.home-assistant.io/integrations/usb/
+usb:
 
 # Enable Wake-On-LAN
 # https://rc.home-assistant.io/integrations/wake_on_lan/

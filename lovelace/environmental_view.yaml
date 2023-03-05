@@ -24,24 +24,19 @@ cards:
   - type: statistics-graph
     title: 'Temperature'
     chart_type: line
-    days_to_show: 2
+    days_to_show: 1
     stat_types:
       - mean
     period: hour
     entities:
       - entity: sensor.weatherflow_air_temperature
         name: Outside
-      - entity: sensor.family_room_motion_sensor_air_temperature
-        name: Dining Room
-      - entity: sensor.dining_room_temperature
-        name: Target
       - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
-        name: Master Bedroom
-      - entity: sensor.kitchen_motion_sensor_air_temperature
-        name: Kitchen
-      - entity: sensor.water_heater_flood_sensor_air_temperature
-        name: Mechanical Room
-
+        name: Upstairs
+      - entity: sensor.mean_main_floor_temperature
+        name: Main Floor
+      - entity: sensor.mean_basement_temperature
+        name: Basement
 
   - type: vertical-stack
     cards:
