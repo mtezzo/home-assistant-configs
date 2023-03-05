@@ -37,6 +37,8 @@ cards:
         name: Main Floor
       - entity: sensor.mean_basement_temperature
         name: Basement
+    card_mod:
+      class: middle
 
   - type: vertical-stack
     cards:
