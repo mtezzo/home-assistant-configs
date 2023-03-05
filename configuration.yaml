@@ -83,8 +83,23 @@ history:
 # https://www.home-assistant.io/integrations/homeassistant_alerts
 homeassistant_alerts:
 
+# https://www.home-assistant.io/integrations/image_upload/
+image_upload:
+
+# https://www.home-assistant.io/integrations/input_boolean/
+input_boolean:
+
+# https://www.home-assistant.io/integrations/input_button/
+input_button:
+
+# https://www.home-assistant.io/integrations/input_datetime/
+input_datetime:
+
 # https://www.home-assistant.io/integrations/input_number/
 input_number:
+
+# https://www.home-assistant.io/integrations/input_select/
+input_select:
 
 # https://www.home-assistant.io/integrations/input_text/
 input_text:
@@ -154,6 +169,9 @@ person:
     device_trackers:
       - device_tracker.michael_iphone
       - device_tracker.michael_life360
+
+# https://www.home-assistant.io/integrations/schedule/
+schedule:
 
 # https://www.home-assistant.io/integrations/ssdp/
 ssdp:
