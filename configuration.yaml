@@ -93,8 +93,6 @@ lovelace:
       type: module
     - url: /hacsfiles/button-card/button-card.js
       type: module
-    - url: /hacsfiles/decluttering-card/decluttering-card.js
-      type: module
     - url: /hacsfiles/lovelace-card-mod/card-mod.js
       type: module
     - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
