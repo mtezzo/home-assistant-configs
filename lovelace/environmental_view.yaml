@@ -1,6 +1,6 @@
-title: Sensor Subsystem
+title: Environmental Subsystem
 icon: mdi:access-point
-path: sensors
+path: environmental
 cards:
   - type: custom:mini-graph-card
     icon: mdi:thermometer
@@ -20,6 +20,26 @@ cards:
         name: Mechanical Room
     card_mod:
       class: header
+
+  - type: statistics-graph
+    title: 'Temperature'
+    chart_type: line
+    # stat_types: mean
+    period: hour
+    entities:
+      - entity: sensor.weatherflow_air_temperature
+        name: Outside
+      - entity: sensor.family_room_motion_sensor_air_temperature
+        name: Dining Room
+      - entity: sensor.dining_room_temperature
+        name: Target
+      - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
+        name: Master Bedroom
+      - entity: sensor.kitchen_motion_sensor_air_temperature
+        name: Kitchen
+      - entity: sensor.water_heater_flood_sensor_air_temperature
+        name: Mechanical Room
+
 
   - type: vertical-stack
     cards:

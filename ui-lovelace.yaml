@@ -15,9 +15,9 @@ excluded_entities:
 views:
   - !include lovelace/home_view.yaml
   - !include lovelace/lighting_view.yaml
-  - !include lovelace/surveillance_view.yaml
+  - !include lovelace/security_view.yaml
   - !include lovelace/media_view.yaml
-  - !include lovelace/sensor_view.yaml
+  - !include lovelace/environmental_view.yaml
   - !include lovelace/automations_view.yaml
   - !include lovelace/settings_view.yaml
 
