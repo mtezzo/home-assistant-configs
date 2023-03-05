@@ -24,7 +24,9 @@ cards:
   - type: statistics-graph
     title: 'Temperature'
     chart_type: line
-    # stat_types: mean
+    days_to_show: 2
+    stat_types:
+      - mean
     period: hour
     entities:
       - entity: sensor.weatherflow_air_temperature
@@ -99,14 +101,6 @@ cards:
           include:
             - domain: sensor
               entity_id: "*battery_level"
-
-  - type: history-graph
-    title: 'Presence History'
-    entities:
-      - sensor.household
-      - input_select.julias_status
-      - input_select.michaels_status
-      - alarm_control_panel.alarm_system
 
   - type: vertical-stack
     cards:
