@@ -45,47 +45,6 @@ cards:
       - type: markdown
         card_mod:
           class: header
-        content: '# Motion Sensors'
-      - type: custom:auto-entities
-        card:
-          type: entities
-          # title: Motion Sensors
-          show_header_toggle: false
-          card_mod:
-            class: middle
-        filter:
-          include:
-            - domain: binary_sensor
-              attributes:
-                device_class: motion
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        card_mod:
-          class: header
-        content: '# Door Sensors'
-      - type: custom:auto-entities
-        card:
-          type: entities
-          # title: Door Sensors
-          show_header_toggle: false
-          card_mod:
-            class: middle
-        filter:
-          include:
-            - domain: binary_sensor
-              attributes:
-                device_class: door
-            - domain: binary_sensor
-              attributes:
-                device_class: garage_door
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        card_mod:
-          class: header
         content: '# Batteries'
       - type: custom:auto-entities
         card:
