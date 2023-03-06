@@ -134,10 +134,10 @@ plant:
       battery: sensor.wirelesstag_workroom_closet_battery_level
       temperature: sensor.wirelesstag_workroom_closet_temperature
       brightness: sensor.wirelesstag_workroom_closet_light
-    min_moisture: 60
-    max_moisture: 75
+    min_moisture: 25
+    max_moisture: 50
     min_battery: 10
-    min_temperature: 60
+    min_temperature: 55
     max_temperature: 80
 
   humidor:
@@ -146,11 +146,11 @@ plant:
       battery: sensor.wirelesstag_humidor_battery_level
       temperature: sensor.wirelesstag_humidor_temperature
       brightness: sensor.wirelesstag_humidor_light
-    min_moisture: 60
+    min_moisture: 55
     max_moisture: 75
     min_battery: 10
     min_temperature: 60
-    max_temperature: 80
+    max_temperature: 79
 
   wine_rack:
     sensors:
@@ -159,9 +159,9 @@ plant:
       temperature: sensor.wirelesstag_wine_rack_temperature
       brightness: sensor.wirelesstag_wine_rack_light
     min_moisture: 35
-    max_moisture: 75
+    max_moisture: 50
     min_battery: 10
-    min_temperature: 55
+    min_temperature: 50
     max_temperature: 80
 
 ################################################
