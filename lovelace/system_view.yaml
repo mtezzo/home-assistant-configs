@@ -14,6 +14,16 @@ cards:
         card_mod:
           class: button-lozenge-right
 
+      - type: button
+        show_name: true
+        show_icon: true
+        show_state: true
+        tap_action:
+          action: toggle
+        entity: input_boolean.disable_theme_gradient
+        card_mod:
+          class: button-lozenge
+
       - type: markdown
         card_mod:
           class: header-right
