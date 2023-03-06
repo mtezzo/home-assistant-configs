@@ -106,4 +106,23 @@ cards:
             name: PING
             y_axis: secondary
         card_mod:
-          class: footer
+          class: middle
+
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# Failing Batteries'
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          # title: Batteries
+          show_header_toggle: false
+          card_mod:
+            class: footer
+        filter:
+          include:
+            - domain: sensor
+              entity_id: "*battery_level"
+            - attributes:
+              battery: "<= 20" # Attribute battery_level is 20 or less
