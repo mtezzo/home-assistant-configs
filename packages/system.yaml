@@ -34,11 +34,6 @@ homeassistant:
       friendly_name: "Update Notification"
       icon: mdi:message-text
 
-    automation.set_theme_based_on_sun:
-      <<: *customize
-      friendly_name: "Set Theme by Sun Position"
-      icon: mdi:message-text
-
     ################################################
     ## Sensor
     ################################################
@@ -108,26 +103,6 @@ automation:
           message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
           target:
             - !secret mobile_michael
-
-#  - alias: set_theme_based_on_sun
-#    trigger:
-#      - platform: homeassistant
-#        event: start
-#      - platform: state
-#        entity_id: sun.sun
-#        to: above_horizon
-#      - platform: state
-#        entity_id: sun.sun
-#        to: below_horizon
-#    action:
-#      - service_template: frontend.set_theme
-#        data_template:
-#          name: >-
-#            {%- if states.sun.sun.state == "above_horizon" -%}
-#              clear
-#            {%- else -%}
-#              clear-dark
-#            {%- endif -%}
 
 ################################################
 ## Sensor
