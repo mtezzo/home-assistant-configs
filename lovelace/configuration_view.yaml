@@ -6,7 +6,7 @@ cards:
     cards:
       - type: markdown
         card_mod:
-          class: header
+          class: header-right
         content: '# Automations'
 
       - type: entities
@@ -20,7 +20,7 @@ cards:
           - automation.auto_sunrise
           - input_datetime.auto_sunrise_time
         card_mod:
-          class: middle
+          class: middle-right
 
       - type: entities
         title: Presence
@@ -29,7 +29,7 @@ cards:
           - automation.auto_away
           - automation.auto_home
         card_mod:
-          class: middle
+          class: middle-right
 
       - type: entities
         title: Time Based
@@ -41,7 +41,7 @@ cards:
           - automation.auto_night_weekend
           # - automation.set_theme_based_on_sun
         card_mod:
-          class: middle
+          class: middle-right
 
       - type: entities
         title: Notifications
@@ -51,7 +51,7 @@ cards:
           - automation.update_notification
           - automation.trigger_notification_on_sensor_tamper
         card_mod:
-          class: footer
+          class: footer-right
 
   - type: vertical-stack
     cards:
