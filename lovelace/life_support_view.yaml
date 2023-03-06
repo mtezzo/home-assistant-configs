@@ -52,7 +52,12 @@ cards:
           - entity: sensor.mean_basement_humidity
             name: Basement
         card_mod:
+          class: middle
+
+      - type: markdown
+        card_mod:
           class: footer
+        content: '## &nbsp;'
 
   - type: vertical-stack
     cards:
@@ -92,6 +97,11 @@ cards:
             card_mod:
               class: middle-blank
 
+      - type: markdown
+        card_mod:
+          class: footer
+        content: '## &nbsp;'
+
   - type: vertical-stack
     cards:
       - type: markdown
@@ -130,6 +140,11 @@ cards:
             card_mod:
               class: middle-blank
 
+      - type: markdown
+        card_mod:
+          class: footer
+        content: '## &nbsp;'
+
   - type: vertical-stack
     cards:
       - type: markdown
@@ -167,3 +182,8 @@ cards:
             graph: none
             card_mod:
               class: middle-blank
+
+      - type: markdown
+        card_mod:
+          class: footer
+        content: '## &nbsp;'

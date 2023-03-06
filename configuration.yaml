@@ -46,6 +46,9 @@ homeassistant:
 # General automations
 # automation: !include automations.yaml
 
+# https://www.home-assistant.io/integrations/bluetooth/
+bluetooth:
+
 # https://www.home-assistant.io/integrations/cloud/
 cloud:
 
