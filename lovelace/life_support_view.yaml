@@ -1,44 +1,58 @@
-title: Environmental Subsystem
-icon: mdi:access-point
-path: environmental
+title: Life Support Subsystem
+icon: mdi:vital-signs
+path: life-support
 cards:
-  - type: custom:mini-graph-card
-    icon: mdi:thermometer
-    name: INDOOR TEMPERATURE
-    hours_to_show: 12
-    points_per_hour: 2
-    entities:
-      - entity: sensor.family_room_motion_sensor_air_temperature
-        name: Dining Room
-      - entity: sensor.dining_room_temperature
-        name: Target
-      - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
-        name: Master Bedroom
-      - entity: sensor.kitchen_motion_sensor_air_temperature
-        name: Kitchen
-      - entity: sensor.water_heater_flood_sensor_air_temperature
-        name: Mechanical Room
-    card_mod:
-      class: header
 
-  - type: statistics-graph
-    title: 'Temperature'
-    chart_type: line
-    days_to_show: 1
-    stat_types:
-      - mean
-    period: hour
-    entities:
-      - entity: sensor.weatherflow_air_temperature
-        name: Outside
-      - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
-        name: Upstairs
-      - entity: sensor.mean_main_floor_temperature
-        name: Main Floor
-      - entity: sensor.mean_basement_temperature
-        name: Basement
-    card_mod:
-      class: middle
+  - type: vertical-stack
+    cards:
+
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# Life Support'
+
+      - type: thermostat
+        entity: climate.dining_room
+        card_mod:
+          class: middle
+
+      - type: statistics-graph
+        title: 'Temperature'
+        chart_type: line
+        days_to_show: 1
+        stat_types:
+          - mean
+        period: hour
+        entities:
+          - entity: sensor.weatherflow_air_temperature
+            name: Outside
+          - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
+            name: Upstairs
+          - entity: sensor.mean_main_floor_temperature
+            name: Main Floor
+          - entity: sensor.mean_basement_temperature
+            name: Basement
+        card_mod:
+          class: middle
+
+      - type: statistics-graph
+        title: 'Humidity'
+        chart_type: line
+        days_to_show: 1
+        stat_types:
+          - mean
+        period: hour
+        entities:
+          - entity: sensor.weatherflow_relative_humidity
+            name: Outside
+          - entity: sensor.master_bedroom_dresser_motion_sensor_humidity
+            name: Upstairs
+          - entity: sensor.dining_room_humidity
+            name: Main Floor
+          - entity: sensor.mean_basement_humidity
+            name: Basement
+        card_mod:
+          class: footer
 
   - type: vertical-stack
     cards:

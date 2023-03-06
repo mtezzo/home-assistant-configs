@@ -17,8 +17,8 @@ views:
   - !include lovelace/lighting_view.yaml
   - !include lovelace/security_view.yaml
   - !include lovelace/media_view.yaml
-  - !include lovelace/environmental_view.yaml
-  - !include lovelace/configuration_view.yaml
+  - !include lovelace/life_support_view.yaml
+  - !include lovelace/system_view.yaml
 
 ####################################################
 #                                                  #

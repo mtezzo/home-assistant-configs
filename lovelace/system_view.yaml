@@ -1,9 +1,19 @@
-title: Configuration
+title: System
 icon: mdi:tune
-path: configuration
+path: system
 cards:
   - type: vertical-stack
     cards:
+      - type: button
+        show_name: true
+        show_icon: true
+        show_state: true
+        tap_action:
+          action: toggle
+        entity: input_boolean.guest_mode
+        card_mod:
+          class: button-lozenge-right
+
       - type: markdown
         card_mod:
           class: header-right
