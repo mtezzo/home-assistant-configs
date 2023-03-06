@@ -1,0 +1,99 @@
+title: Configuration
+icon: mdi:tune
+path: configuration
+cards:
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# Automations'
+
+      - type: entities
+        title: Lighting
+        show_header_toggle: false
+        entities:
+          - automation.master_bedroom_motion
+          - automation.living_room_motion
+          - automation.exterior_lighting
+          - automation.holiday_lighting
+          - automation.auto_sunrise
+          - input_datetime.auto_sunrise_time
+        card_mod:
+          class: middle
+
+      - type: entities
+        title: Presence
+        show_header_toggle: false
+        entities:
+          - automation.auto_away
+          - automation.auto_home
+        card_mod:
+          class: middle
+
+      - type: entities
+        title: Time Based
+        show_header_toggle: false
+        entities:
+          - automation.auto_morning
+          - automation.auto_evening
+          - automation.auto_night_weekday
+          - automation.auto_night_weekend
+          # - automation.set_theme_based_on_sun
+        card_mod:
+          class: middle
+
+      - type: entities
+        title: Notifications
+        show_header_toggle: false
+        entities:
+          - automation.alarm_triggered_notification
+          - automation.update_notification
+          - automation.trigger_notification_on_sensor_tamper
+        card_mod:
+          class: footer
+
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        card_mod:
+          class: header
+        content: '# System Diagnostics'
+
+      - type: entities
+        title: Hardware Status
+        show_header_toggle: false
+        entities:
+          - sensor.date
+          - sensor.time
+          - sensor.processor_use
+          - sensor.disk_use_percent
+          - sensor.memory_use_percent
+          - sensor.last_boot
+          - sensor.network_in_eth0
+          - sensor.network_out_eth0
+          - sensor.load_1m
+          - sensor.load_5m
+          - sensor.load_15m
+          - sensor.current_version
+        card_mod:
+          class: middle
+
+      - type: markdown
+        card_mod:
+          class: middle
+        content: '## Network Transmission'
+
+      - type: custom:mini-graph-card
+        name: Network
+        icon: mdi:server
+        entities:
+          - entity: sensor.speedtest_download
+            name: DOWNLOAD
+          - entity: sensor.speedtest_upload
+            name: UPLOAD
+          - entity: sensor.speedtest_ping
+            name: PING
+            y_axis: secondary
+        card_mod:
+          class: footer
