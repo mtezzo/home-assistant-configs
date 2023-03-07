@@ -142,7 +142,7 @@ lovelace:
 
 # Enables a map showing the location of tracked devices
 # https://www.home-assistant.io/components/map/
-map:
+# map:
 
 # Enables media browser
 # https://www.home-assistant.io/integrations/media_source/
