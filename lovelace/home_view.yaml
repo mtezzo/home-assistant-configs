@@ -141,6 +141,8 @@ cards:
         content: '# River Level'
       - type: custom:mini-graph-card
         icon: mdi:waves
+        hours_to_show: 120
+        points_per_hour: .2
         entities:
           - entity: sensor.river_level
             name: Height

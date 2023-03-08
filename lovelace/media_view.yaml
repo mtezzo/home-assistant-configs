@@ -1,9 +1,6 @@
 icon: mdi:television-classic
 title: Media
 path: media
-#    background: radial-gradient(blueviolet, skyblue)
-#background: var(--background-image)
-#theme: clear-dark
 cards:
   - type: custom:roku-card
     entity: media_player.garage
