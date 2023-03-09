@@ -108,6 +108,10 @@ cards:
         entity: weather.weatherflow_day_based_forecast
         card_mod:
           class: middle-right
+          style: |
+            ha-card .forecast .day {
+              border-right-color: '#E89924' !important;
+            }
       - type: thermostat
         entity: climate.dining_room
         card_mod:
