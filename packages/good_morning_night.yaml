@@ -232,7 +232,7 @@ script:
             - automation.living_room_motion
             - automation.master_bedroom_motion
 
-      - service: script.all_lights_off
+      - service: script.all_interior_lights_off
 
   sunrise:
     sequence:
