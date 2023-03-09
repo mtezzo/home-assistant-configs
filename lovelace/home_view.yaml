@@ -112,6 +112,9 @@ cards:
             .day {
               border-right: 0.1em solid #E89924 !important;
             }
+            .day:last-of-type {
+              border-right: none !important;
+            }
       - type: thermostat
         entity: climate.dining_room
         card_mod:
