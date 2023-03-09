@@ -110,7 +110,7 @@ cards:
           class: middle-right
           style: |
             .day {
-              border-right: 1em solid '#E89924' !important;
+              border-right: 0.1em solid #E89924 !important;
             }
       - type: thermostat
         entity: climate.dining_room
