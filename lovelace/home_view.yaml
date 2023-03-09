@@ -109,8 +109,8 @@ cards:
         card_mod:
           class: middle-right
           style: |
-            ha-card .forecast .day {
-              border-right-color: '#E89924' !important;
+            .day {
+              border-right: 1em solid '#E89924' !important;
             }
       - type: thermostat
         entity: climate.dining_room
