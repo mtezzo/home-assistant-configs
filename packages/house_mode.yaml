@@ -47,9 +47,9 @@ homeassistant:
     ## Script
     ################################################
 
-    script.all_lights_off:
+    script.all_interior_lights_off:
       <<: *customize
-      friendly_name: Turn All Lights Off
+      friendly_name: Turn All Interior Lights Off
 
 ################################################
 ## Input Boolean
@@ -85,7 +85,7 @@ automation:
         entity_id: alarm_control_panel.alarm_system
         data:
           code: !secret alarm_code
-      - service: script.all_lights_off
+      - service: script.all_interior_lights_off
 #      - service: script.set_nest_away
       - service: switch.turn_off
         entity_id: switch.mnemosyne_home_mode
@@ -116,9 +116,15 @@ automation:
 ################################################
 
 script:
-  all_lights_off:
+  all_interior_lights_off:
     sequence:
       - service: light.turn_off
         data:
-          entity_id: all
+          entity_id: light.interior_lights
+          transition: 5
+  all_exterior_lights_off:
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.exterior_lights
           transition: 5

@@ -17,7 +17,7 @@ cards:
         show_state: false
         tap_action:
           action: call-service
-        entity: script.all_lights_off
+        service: script.all_interior_lights_off
         card_mod:
           class: button-lozenge-right
 
