@@ -37,6 +37,7 @@ homekit:
       - script
       - remote
     exclude_entities:
+      - input_boolean.disable_theme_gradient
       - light.christmas_tree_switch
       - light.dining_room_hutch_light_light_ring
       - light.office_bookshelf_lamp_light_ring
