@@ -94,7 +94,7 @@ cards:
           class: middle
           style: |
             ha-card.middle {
-              border-left-color: #7e3863 !important;
+              border-left-color: var(--lcars-c54, none)  !important;
             }
       - type: media-control
         entity: media_player.family_room_tv
@@ -114,7 +114,7 @@ cards:
           class: middle-right
           style: |
             .day {
-              border-right: 0.1em solid #E89924 !important;
+              border-right: 0.1em solid var(--lcars-gold, #d9d9d9) !important;
             }
             .day:last-of-type {
               border-right: none !important;
