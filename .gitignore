@@ -30,7 +30,7 @@ known_devices.yaml
 ozw_config/
 tts/
 deps/
-www/
+www/img
 custom_components/*
 !custom_components/surveillance_station/
 custom_components/*/__pycache__/*
