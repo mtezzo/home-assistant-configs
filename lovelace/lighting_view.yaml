@@ -33,11 +33,14 @@ cards:
           ## Basement
       - type: horizontal-stack
         cards:
-          - type: light
+          - type: custom:mushroom-light-card
             entity: light.basement_overhead_lights
-            name: Overhead Lights
-            card_mod:
-              class: middle-blank
+            show_brightness_control: true
+          # - type: light
+          #   entity: light.basement_overhead_lights
+          #   name: Overhead Lights
+          #   card_mod:
+          #     class: middle-blank
           - type: light
             entity: light.basement_sump_pump_closet_light
             name: Sump Pump Closet Light

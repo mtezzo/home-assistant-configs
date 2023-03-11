@@ -13,6 +13,8 @@ cards:
               style: |
                 ha-card.type-tile {
                   text-transform: uppercase;
+                }
+                ha-card.type-tile .primary, ha-card.type-tile .secondary {
                   color: var(--lcars-gold, var(--primary-text-color)) !important;
                 }
           - type: tile
@@ -22,6 +24,8 @@ cards:
               style: |
                 ha-card.type-tile {
                   text-transform: uppercase;
+                }
+                ha-card.type-tile .primary, ha-card.type-tile .secondary {
                   color: var(--lcars-gold, var(--primary-text-color)) !important;
                 }
       - type: horizontal-stack
