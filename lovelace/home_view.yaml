@@ -9,9 +9,21 @@ cards:
           - type: tile
             entity: input_select.michaels_status
             show_entity_picture: true
+            card_mod:
+              style: |
+                ha-card.tile {
+                  text-transform: uppercase;
+                  color: black !important;
+                }
           - type: tile
             entity: input_select.julias_status
             show_entity_picture: true
+            card_mod:
+              style: |
+                ha-card.tile {
+                  text-transform: uppercase;
+                  color: black !important;
+                }
       - type: horizontal-stack
         cards:
           - type: button
