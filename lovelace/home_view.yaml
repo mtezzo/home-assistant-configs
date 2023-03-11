@@ -13,7 +13,7 @@ cards:
               style: |
                 ha-card.type-tile {
                   text-transform: uppercase;
-                  color: black !important;
+                  color: var(--lcars-gold, var(--primary-text-color)) !important;
                 }
           - type: tile
             entity: input_select.julias_status
@@ -22,7 +22,7 @@ cards:
               style: |
                 ha-card.type-tile {
                   text-transform: uppercase;
-                  color: black !important;
+                  color: var(--lcars-gold, var(--primary-text-color)) !important;
                 }
       - type: horizontal-stack
         cards:
