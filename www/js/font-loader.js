@@ -1,4 +1,4 @@
-export let WebFontConfig = {
+WebFontConfig = {
     google: {
         families: ['Antonio:400,700', 'Open Sans']
     }

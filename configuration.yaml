@@ -72,7 +72,7 @@ frontend:
   themes: !include_dir_merge_named themes
   extra_module_url:
     - /hacsfiles/lovelace-card-mod/card-mod.js
-    - /local/js/font-loader.js
+    #- /local/js/font-loader.js
 
 # Enables HACS
 # https://custom-components.github.io/hacs/installation/configuration/
@@ -118,10 +118,10 @@ logbook:
 lovelace:
   mode: yaml
   resources:
-    # - url: https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap
-    #   type: css
-    # - url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
-    #   type: css
+    - url: https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap
+      type: css
+    - url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
+      type: css
     - url: /hacsfiles/bignumber-card/bignumber-card.js
       type: module
     - url: /hacsfiles/banner-card/banner-card.js
