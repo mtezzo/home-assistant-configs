@@ -13,6 +13,8 @@ cards:
               style: |
                 ha-card.type-tile {
                   text-transform: uppercase;
+                }
+                :host {
                   color: var(--lcars-gold, var(--primary-text-color)) !important;
                 }
           - type: tile
@@ -23,8 +25,7 @@ cards:
                 ha-card.type-tile {
                   text-transform: uppercase;
                 }
-                ha-tile-info .primary, 
-                ha-tile-info .secondary {
+                :host {
                   color: var(--lcars-gold, var(--primary-text-color)) !important;
                 }
       - type: horizontal-stack
@@ -48,6 +49,16 @@ cards:
             entity: sensor.basement_radon_pcil
             card_mod:
               class: button-lozenge
+              style: |
+                ha-card {
+                  {% if states('sensor.basement_radon_pcil') | float < 2 -%}
+                  background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- elif states('sensor.basement_radon_pcil') | float < 4 -%}
+                  background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- else -%}
+                  background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- endif %}
+                }
       - type: button
         show_name: true
         show_icon: true
