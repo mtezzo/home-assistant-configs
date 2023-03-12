@@ -37,24 +37,16 @@ cards:
             entity: light.basement_overhead_lights
             card_mod:
               class: button-small
-          # - type: custom:mushroom-light-card
-          #   entity: light.basement_overhead_lights
-          #   show_brightness_control: true
-          # - type: light
-          #   entity: light.basement_overhead_lights
-          #   name: Overhead Lights
-          #   card_mod:
-          #     class: middle-blank
           - type: light
             entity: light.basement_sump_pump_closet_light
             name: Sump Pump Closet Light
             card_mod:
-              class: middle-blank
+              class: button-small
           - type: light
             entity: light.basement_stair_closet_light
             name: Stair Closet Light
             card_mod:
-              class: middle-right
+              class: button-small
 
       - type: markdown
         card_mod:
@@ -66,12 +58,12 @@ cards:
           - type: light
             entity: light.dining_room_light
             card_mod:
-              class: middle-blank
+              class: button-small
           - type: light
             entity: light.dining_room_hutch_light
             name: Hutch Light
             card_mod:
-              class: middle-right
+              class: button-small
 
       - type: markdown
         card_mod:
@@ -81,7 +73,7 @@ cards:
       - type: light
         entity: light.kitchen_lights
         card_mod:
-              class: middle-right
+              class: button-small
 
   - type: vertical-stack
     cards:
