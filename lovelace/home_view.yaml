@@ -51,7 +51,7 @@ cards:
               class: button-lozenge
               style: |
                 ha-card {
-                  {% if states('sensor.basement_radon_pcil') | float < 2 -%}
+                  {% if states('sensor.basement_radon_pcil') | float < 2.7 -%}
                   background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
                   {%- elif states('sensor.basement_radon_pcil') | float < 4 -%}
                   background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
