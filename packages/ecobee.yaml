@@ -1,6 +1,6 @@
 ################################################################
-## Packages / Nest
-## https://home-assistant.io/components/nest/
+## Packages / Ecobee
+## https://www.home-assistant.io/integrations/ecobee/
 ################################################################
 
 ################################################
@@ -15,7 +15,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'nest'
+        package: 'ecobee'
 
     ################################################
     ## Climate
@@ -23,20 +23,20 @@ homeassistant:
 
     climate.dining_room:
       <<: *customize
-      friendly_name: 'Nest'
+      friendly_name: 'Thermostat'
       icon: mdi:thermostat
 
     ################################################
     ## Script
     ################################################
 
-    script.set_nest_away:
+    script.set_ecobee_away:
       <<: *customize
-      friendly_name: Set Nest Thermostat Away
+      friendly_name: Set Ecobee Thermostat Away
 
-    script.set_nest_home:
+    script.set_ecobee_home:
       <<: *customize
-      friendly_name: Set Nest Thermostat Home
+      friendly_name: Set Ecobee Thermostat Home
 
     ################################################
     ## Sensor
@@ -57,16 +57,16 @@ homeassistant:
 ################################################
 
 script:
-  set_nest_away:
+  set_ecobee_away:
     sequence:
       - service: climate.set_preset_mode
         data:
           entity_id: climate.dining_room
-          preset_mode: eco
+          preset_mode: 'away'
 
-  set_nest_home:
+  set_ecobee_home:
     sequence:
-      - service: climate.set_preset_mode
+      - service: ecobee.resume_program
         data:
           entity_id: climate.dining_room
-          preset_mode: none
+          resume_all: true

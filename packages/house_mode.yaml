@@ -86,7 +86,7 @@ automation:
         data:
           code: !secret alarm_code
       - service: script.all_interior_lights_off
-#      - service: script.set_nest_away
+      - service: script.set_ecobee_away
       - service: switch.turn_off
         entity_id: switch.mnemosyne_home_mode
 
@@ -107,7 +107,7 @@ automation:
         entity_id: alarm_control_panel.alarm_system
         data:
           code: !secret alarm_code
-#      - service: script.set_nest_home
+      - service: script.set_ecobee_home
       - service: switch.turn_on
         entity_id: switch.mnemosyne_home_mode
 
