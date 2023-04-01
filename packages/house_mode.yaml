@@ -47,6 +47,10 @@ homeassistant:
     ## Script
     ################################################
 
+    script.all_exterior_lights_off:
+      <<: *customize
+      friendly_name: Turn All Exterior Lights Off
+
     script.all_interior_lights_off:
       <<: *customize
       friendly_name: Turn All Interior Lights Off
@@ -64,6 +68,7 @@ input_boolean:
 
 automation:
   - alias: auto_away
+    mode: parallel
     trigger:
       - platform: state
         entity_id: sensor.household
@@ -91,6 +96,7 @@ automation:
         entity_id: switch.mnemosyne_home_mode
 
   - alias: auto_home
+    mode: parallel
     trigger:
       - platform: state
         entity_id: sensor.household
@@ -116,15 +122,14 @@ automation:
 ################################################
 
 script:
-  all_interior_lights_off:
-    sequence:
-      - service: light.turn_off
-        data:
-          entity_id: light.interior_lights
-          transition: 5
   all_exterior_lights_off:
     sequence:
       - service: light.turn_off
         data:
           entity_id: light.exterior_lights
+  all_interior_lights_off:
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.interior_lights
           transition: 5
