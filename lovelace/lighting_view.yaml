@@ -33,10 +33,14 @@ cards:
           ## Basement
       - type: horizontal-stack
         cards:
-          - type: light
+          - type: tile
             entity: light.basement_overhead_lights
-            card_mod:
-              class: button-small
+            features:
+              - type: "light-brightness"
+          # - type: light
+          #   entity: light.basement_overhead_lights
+          #   card_mod:
+          #     class: button-small
           - type: light
             entity: light.basement_sump_pump_closet_light
             name: Sump Pump Closet Light

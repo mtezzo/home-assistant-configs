@@ -140,8 +140,6 @@ lovelace:
       type: module
     - url: /hacsfiles/weather-card/weather-card.js
       type: module
-    - url: /hacsfiles/lovelace-mushroom/mushroom.js
-      type: module
 
 # Enables a map showing the location of tracked devices
 # https://www.home-assistant.io/components/map/
