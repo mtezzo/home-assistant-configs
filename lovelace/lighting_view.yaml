@@ -39,7 +39,10 @@ cards:
             features:
               - type: "light-brightness"
             card_mod:
-              class: button-lozenge
+              style: |
+                ha-card.type-tile {
+                  text-transform: uppercase;
+                }
           - type: tile
             entity: light.basement_sump_pump_closet_light
             vertical: true
@@ -56,7 +59,7 @@ cards:
             features:
               - type: "light-brightness"
             card_mod:
-              sclass: button-small
+              class: button-small
           # - type: light
           #   entity: light.basement_overhead_lights
           #   card_mod:
