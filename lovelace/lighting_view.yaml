@@ -35,22 +35,33 @@ cards:
         cards:
           - type: tile
             entity: light.basement_overhead_lights
+            vertical: true
+            features:
+              - type: "light-brightness"
+          - type: tile
+            entity: light.basement_sump_pump_closet_light
+            vertical: true
+            features:
+              - type: "light-brightness"
+          - type: tile
+            entity: light.basement_stair_closet_light
+            vertical: true
             features:
               - type: "light-brightness"
           # - type: light
           #   entity: light.basement_overhead_lights
           #   card_mod:
           #     class: button-small
-          - type: light
-            entity: light.basement_sump_pump_closet_light
-            name: Sump Pump Closet Light
-            card_mod:
-              class: button-small
-          - type: light
-            entity: light.basement_stair_closet_light
-            name: Stair Closet Light
-            card_mod:
-              class: button-small
+          # - type: light
+          #   entity: light.basement_sump_pump_closet_light
+          #   name: Sump Pump Closet Light
+          #   card_mod:
+          #     class: button-small
+          # - type: light
+          #   entity: light.basement_stair_closet_light
+          #   name: Stair Closet Light
+          #   card_mod:
+          #     class: button-small
 
       - type: markdown
         card_mod:
