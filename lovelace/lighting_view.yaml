@@ -38,11 +38,21 @@ cards:
             vertical: true
             features:
               - type: "light-brightness"
+            card_mod:
+              class: button-lozenge
           - type: tile
             entity: light.basement_sump_pump_closet_light
             vertical: true
             features:
               - type: "light-brightness"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  text-transform: uppercase;
+                }
+                :host {
+                  color: var(--lcars-gold, var(--primary-text-color)) !important;
+                }
           - type: tile
             entity: light.basement_stair_closet_light
             vertical: true
