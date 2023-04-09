@@ -45,7 +45,7 @@ cards:
                 }
           - type: tile
             entity: light.basement_sump_pump_closet_light
-            vertical: true
+            vertical: false
             features:
               - type: "light-brightness"
             card_mod:
@@ -55,11 +55,14 @@ cards:
                 }
           - type: tile
             entity: light.basement_stair_closet_light
-            vertical: true
+            vertical: false
             features:
               - type: "light-brightness"
             card_mod:
-              class: button-small
+              style: |
+                ha-card.type-tile {
+                  text-transform: uppercase;
+                }
           # - type: light
           #   entity: light.basement_overhead_lights
           #   card_mod:
