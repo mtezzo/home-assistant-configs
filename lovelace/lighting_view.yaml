@@ -30,35 +30,38 @@ cards:
         cards:
           - type: tile
             entity: light.basement_overhead_lights
-            vertical: false
+            vertical: true
             name: "Overhead"
             features:
               - type: "light-brightness"
             card_mod:
               style: |
                 ha-card.type-tile {
+                  border-radius: 20px !important;
                   text-transform: uppercase;
                 }
           - type: tile
             entity: light.basement_sump_pump_closet_light
-            vertical: false
+            vertical: true
             name: "Sump Closet"
             features:
               - type: "light-brightness"
             card_mod:
               style: |
                 ha-card.type-tile {
+                  border-radius: 20px !important;
                   text-transform: uppercase;
                 }
           - type: tile
             entity: light.basement_stair_closet_light
-            vertical: false
+            vertical: true
             name: "Stair Closet"
             features:
               - type: "light-brightness"
             card_mod:
               style: |
                 ha-card.type-tile {
+                  border-radius: 20px !important;
                   text-transform: uppercase;
                 }
           # - type: light
