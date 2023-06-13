@@ -142,6 +142,7 @@ sensor:
 
 automation:
   - alias: person_arriving
+    mode: parallel
     initial_state: true
     trigger:
       - platform: state
@@ -164,6 +165,7 @@ automation:
             {% endif %}
  
   - alias: person_home
+    mode: parallel
     initial_state: true
     trigger:
       - platform: state
@@ -183,6 +185,7 @@ automation:
           option: 'Home'
  
   - alias: person_departing
+    mode: parallel
     initial_state: true
     trigger:
       - platform: state
@@ -200,6 +203,7 @@ automation:
           option: 'Departing'
  
   - alias: person_away
+    mode: parallel
     initial_state: true
     trigger:
       - platform: state
@@ -219,6 +223,7 @@ automation:
           option: 'Away'
  
   - alias: person_vacation
+    mode: parallel
     initial_state: true
     trigger:
       - platform: state

@@ -20,7 +20,7 @@ cards:
         show_state: true
         tap_action:
           action: toggle
-        entity: input_boolean.disable_theme_gradient
+        entity: input_boolean.lcars_texture
         card_mod:
           class: button-lozenge
 

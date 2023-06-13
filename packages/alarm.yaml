@@ -90,7 +90,7 @@ alarm_control_panel:
     armed_night:
       arming_time: 0
       delay_time: 0
-    armed_custom_bypass:
+    armed_vacation:
       arming_time: 0
       delay_time: 0
 
@@ -140,8 +140,8 @@ automation:
             alarm_control_panel.alarm_arm_night
           {% elif trigger.payload == 'disarmed' %}
             alarm_control_panel.alarm_disarm
-          {% elif trigger.payload == 'armed_custom_bypass' %}
-            alarm_control_panel.alarm_arm_custom_bypass
+          {% elif trigger.payload == 'armed_vacation' %}
+            alarm_control_panel.alarm_arm_vacation
           {% else %}
             alarm_control_panel.alarm_arm_away
           {% endif %}
@@ -151,40 +151,55 @@ automation:
 
   - alias: trigger_alarm_on_binary_sensor
     trigger:
+      # Door Sensors
       - platform: state
-        entity_id: binary_sensor.front_door_access_control_window_door_is_open
+        entity_id: cover.garage_door
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.garage_door_sensor
+        entity_id: binary_sensor.basement_stair_closet_door_window_door_is_open
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.guest_closet_door_access_control_window_door_is_open
+        entity_id: binary_sensor.basement_sump_pump_closet_door_window_door_is_open
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.guest_storage_door_access_control_window_door_is_open
+        entity_id: binary_sensor.workroom_closet_door_window_door_is_open
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.julias_closet_door_access_control_window_door_is_open
+        entity_id: binary_sensor.laundry_room_door_window_door_is_open
+        from: 'off'
+        to: 'on'
+      # Ecobee Occupancy Sensors
+      - platform: state
+        entity_id: binary_sensor.dining_room_occupancy
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.kitchen_motion_sensor_motion
+        entity_id: binary_sensor.family_room_occupancy
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.living_room_motion_sensor_home_security_motion_detection
+        entity_id: binary_sensor.katherine_s_room_occupancy
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.master_bedroom_motion_sensor_home_security_motion_detection
+        entity_id: binary_sensor.master_bedroom_occupancy
+        from: 'off'
+        to: 'on'
+      # Motion Sensors
+      - platform: state
+        entity_id: binary_sensor.family_room_motion_sensor_motion_detection
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.michaels_closet_door_access_control_window_door_is_open
+        entity_id: binary_sensor.kitchen_motion_sensor_motion_detection
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
         from: 'off'
         to: 'on'
     condition:
@@ -208,8 +223,8 @@ automation:
           message: >
             Alarm was triggered on:
             {% for state in states.binary_sensor -%}
-              {% if state.state == 'on' and state.entity_id in ['binary_sensor.front_door_access_control_window_door_is_open', 'binary_sensor.garage_door_sensor', 'binary_sensor.guest_closet_door_access_control_window_door_is_open', 'binary_sensor.guest_storage_door_access_control_window_door_is_open', 'binary_sensor.julias_closet_door_access_control_window_door_is_open',
-              'binary_sensor.kitchen_motion_sensor_motion', 'binary_sensor.living_room_motion_sensor_home_security_motion_detection', 'binary_sensor.master_bedroom_motion_sensor_home_security_motion_detection', 'binary_sensor.michaels_closet_door_access_control_window_door_is_open'] %}
+              {% if state.state == 'on' and state.entity_id in ['cover.garage_door', 'binary_sensor.basement_stair_closet_door_window_door_is_open', 'binary_sensor.basement_sump_pump_closet_door_window_door_is_open', 'binary_sensor.workroom_closet_door_window_door_is_open', 'binary_sensor.laundry_room_door_window_door_is_open',
+              'binary_sensor.dining_room_occupancy', 'binary_sensor.family_room_occupancy', 'binary_sensor.katherine_s_room_occupancy', 'binary_sensor.master_bedroom_occupancy', 'binary_sensor.family_room_motion_sensor_motion_detection', 'binary_sensor.kitchen_motion_sensor_motion_detection', 'binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection'] %}
                 {{ state.name }}
               {%- endif -%}
             {%- endfor -%}
@@ -218,36 +233,29 @@ automation:
 
   - alias: trigger_notification_on_sensor_tamper
     trigger:
+
       - platform: state
-        entity_id: binary_sensor.garage_door_home_security_tampering_product_cover_removed
+        entity_id: binary_sensor.basement_stair_closet_door_tampering_product_cover_removed
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.guest_closet_door_home_security_tampering_product_cover_removed
+        entity_id: binary_sensor.basement_sump_pump_closet_door_tampering_product_cover_removed
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.guest_storage_door_home_security_tampering_product_cover_removed
+        entity_id: binary_sensor.workroom_closet_door_tampering_product_cover_removed
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.julias_closet_door_home_security_tampering_product_cover_removed
+        entity_id: binary_sensor.door_laundry_room_door_tampering_product_cover_removed
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.laundry_room_flood_sensor_home_security_tampering_product_cover_removed
+        entity_id: binary_sensor.water_heater_flood_sensor_tampering_product_cover_removed
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.living_room_motion_sensor_home_security_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.master_bedroom_motion_sensor_home_security_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.michaels_closet_door_home_security_tampering_product_cover_removed
+        entity_id: binary_sensor.family_room_motion_sensor_tampering_product_cover_removed
         from: 'off'
         to: 'on'
     action:
@@ -263,76 +271,76 @@ automation:
           message: >
             Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
 
-  - alias: trigger_notification_on_smoke
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_smoke_status
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_smoke_status
-        from: 'off'
-        to: 'on'
-    action:
-      - service: notify.ALL_DEVICES
-        data_template:
-          data:
-            title: Smoke Alert
-          message: >
-            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
-      - service: persistent_notification.create
-        data_template:
-          title: Smoke Alert
-          message: >
-            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
-      - service: script.sonos_say
-        data:
-          sonos_entity: media_player.living_room
-          volume: 0.6
-          delay: 5
-          message: Smoke Detected!
+  # - alias: trigger_notification_on_smoke
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
+  #       from: 'off'
+  #       to: 'on'
+  #     - platform: state
+  #       entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_smoke_status
+  #       from: 'off'
+  #       to: 'on'
+  #     - platform: state
+  #       entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
+  #       from: 'off'
+  #       to: 'on'
+  #     - platform: state
+  #       entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_smoke_status
+  #       from: 'off'
+  #       to: 'on'
+  #   action:
+  #     - service: notify.ALL_DEVICES
+  #       data_template:
+  #         data:
+  #           title: Smoke Alert
+  #         message: >
+  #           Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+  #     - service: persistent_notification.create
+  #       data_template:
+  #         title: Smoke Alert
+  #         message: >
+  #           Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+  #     - service: script.sonos_say
+  #       data:
+  #         sonos_entity: media_player.living_room
+  #         volume: 0.6
+  #         delay: 5
+  #         message: Smoke Detected!
 
-  - alias: trigger_notification_on_co
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_co_status
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_co_status
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_co_status
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_co_status
-        from: 'off'
-        to: 'on'
-    action:
-      - service: notify.ALL_DEVICES
-        data_template:
-          data:
-            title: Carbon Monoxide Alert
-          message: >
-            Carbon Monoxide from {{ trigger.to_state.attributes.friendly_name }}!
-      - service: persistent_notification.create
-        data_template:
-          title: Carbon Monoxide Alert
-          message: >
-            Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
-      - service: script.sonos_say
-        data:
-          sonos_entity: media_player.living_room
-          volume: 0.6
-          delay: 5
-          message: Carbon Monoxide Detected!
+  # - alias: trigger_notification_on_co
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_co_status
+  #       from: 'off'
+  #       to: 'on'
+  #     - platform: state
+  #       entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_co_status
+  #       from: 'off'
+  #       to: 'on'
+  #     - platform: state
+  #       entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_co_status
+  #       from: 'off'
+  #       to: 'on'
+  #     - platform: state
+  #       entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_co_status
+  #       from: 'off'
+  #       to: 'on'
+  #   action:
+  #     - service: notify.ALL_DEVICES
+  #       data_template:
+  #         data:
+  #           title: Carbon Monoxide Alert
+  #         message: >
+  #           Carbon Monoxide from {{ trigger.to_state.attributes.friendly_name }}!
+  #     - service: persistent_notification.create
+  #       data_template:
+  #         title: Carbon Monoxide Alert
+  #         message: >
+  #           Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
+  #     - service: script.sonos_say
+  #       data:
+  #         sonos_entity: media_player.living_room
+  #         volume: 0.6
+  #         delay: 5
+  #         message: Carbon Monoxide Detected!

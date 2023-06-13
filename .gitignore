@@ -30,7 +30,7 @@ known_devices.yaml
 ozw_config/
 tts/
 deps/
-www/
+www/*
 !www/js/
 custom_components/*
 !custom_components/surveillance_station/
