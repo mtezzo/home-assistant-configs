@@ -24,6 +24,16 @@ cards:
         card_mod:
           class: button-lozenge
 
+      - type: button
+        show_name: true
+        show_icon: true
+        show_state: true
+        tap_action:
+          action: toggle
+        entity: input_boolean.lcars_sound
+        card_mod:
+          class: button-lozenge
+
       - type: markdown
         card_mod:
           class: header-right
@@ -105,16 +115,15 @@ cards:
         content: '## Network Transmission'
 
       - type: custom:mini-graph-card
-        name: Network
+        name: Resources
         icon: mdi:server
         entities:
-          - entity: sensor.speedtest_download
-            name: DOWNLOAD
-          - entity: sensor.speedtest_upload
-            name: UPLOAD
-          - entity: sensor.speedtest_ping
-            name: PING
-            y_axis: secondary
+          - entity: sensor.processor_use
+            name: CPU
+          - entity: sensor.memory_use_percent
+            name: MEM
+          - entity: sensor.disk_use_percent
+            name: DISK
         card_mod:
           class: middle
 
