@@ -95,7 +95,8 @@ cards:
             toggle: true
           - type: divider
           - cover.garage_door
-          - type: divider
+          - type: section
+            label: Office
           - type: custom:slider-entity-row
             entity: light.left_key_light_air
             hide_when_off: true
@@ -108,7 +109,16 @@ cards:
             entity: light.office_bookshelf_lamp
             hide_when_off: true
             toggle: true
-          - type: divider
+        card_mod:
+          class: middle
+          style: |
+            ha-card.middle {
+              border-left-color: var(--lcars-c54, transparent) !important;
+            }
+      - type: entities
+        show_header_toggle: false
+        title: Basement
+        entities:
           - type: custom:slider-entity-row
             entity: light.basement_overhead_lights
             hide_when_off: true
@@ -129,7 +139,16 @@ cards:
             entity: light.workroom_light
             hide_when_off: true
             toggle: true
-          - type: divider
+        card_mod:
+          class: middle
+          style: |
+            ha-card.middle {
+              border-left-color: var(--lcars-c54, transparent) !important;
+            }
+      - type: entities
+        show_header_toggle: false
+        title: Outside
+        entities:
           - light.front_porch_light
           - light.back_porch_light
         card_mod:
