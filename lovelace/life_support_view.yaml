@@ -46,7 +46,7 @@ cards:
             name: Outside
           - entity: sensor.master_bedroom_dresser_motion_sensor_humidity
             name: Upstairs
-          - entity: sensor.dining_room_humidity
+          - entity: sensor.mean_main_floor_humidity
             name: Main Floor
           - entity: sensor.mean_basement_humidity
             name: Basement
