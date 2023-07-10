@@ -78,23 +78,23 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+          - type: section
+            label: Bedroom
           - type: custom:slider-entity-row
             entity: light.nightstand_lamp
             hide_when_off: true
             toggle: true
-          - type: divider
+          - type: section
+            label: Kitchen & Dining
+          - type: custom:slider-entity-row
+            entity: light.kitchen_lights
+            hide_when_off: true
+            toggle: true
           - type: custom:slider-entity-row
             entity: light.dining_room_light
             hide_when_off: true
             toggle: true
           - light.dining_room_hutch_light
-          - type: divider
-          - type: custom:slider-entity-row
-            entity: light.kitchen_lights
-            hide_when_off: true
-            toggle: true
-          - type: divider
-          - cover.garage_door
           - type: section
             label: Office
           - type: custom:slider-entity-row
@@ -109,16 +109,8 @@ cards:
             entity: light.office_bookshelf_lamp
             hide_when_off: true
             toggle: true
-        card_mod:
-          class: middle
-          style: |
-            ha-card.middle {
-              border-left-color: var(--lcars-c54, transparent) !important;
-            }
-      - type: entities
-        show_header_toggle: false
-        title: Basement
-        entities:
+          - type: section
+            label: Basement
           - type: custom:slider-entity-row
             entity: light.basement_overhead_lights
             hide_when_off: true
@@ -139,16 +131,9 @@ cards:
             entity: light.workroom_light
             hide_when_off: true
             toggle: true
-        card_mod:
-          class: middle
-          style: |
-            ha-card.middle {
-              border-left-color: var(--lcars-c54, transparent) !important;
-            }
-      - type: entities
-        show_header_toggle: false
-        title: Outside
-        entities:
+          - type: section
+            label: Outside
+          - cover.garage_door
           - light.front_porch_light
           - light.back_porch_light
         card_mod:
