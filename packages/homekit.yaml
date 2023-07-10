@@ -42,6 +42,8 @@ homekit:
       - input_boolean.lcars_sound
       - light.christmas_tree_switch
       - light.dining_room_hutch_light_light_ring
+      - light.exterior_lights
+      - light.interior_lights
       - light.office_bookshelf_lamp_light_ring
       - switch.apple_tv
       - switch.backyard_smart_hose_timer_rain_delay
@@ -72,6 +74,7 @@ homekit:
       - binary_sensor.family_room_motion_sensor_motion_detection
       - script.good_night
       - sensor.family_room_motion_sensor_air_temperature
+      - sensor.family_room_motion_sensor_humidity
       - sensor.family_room_motion_sensor_illuminance
       - sensor.kitchen_motion_sensor_air_temperature
       - sensor.kitchen_motion_sensor_illuminance
