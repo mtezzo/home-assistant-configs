@@ -113,6 +113,22 @@ cards:
             entity: light.basement_overhead_lights
             hide_when_off: true
             toggle: true
+          - type: custom:slider-entity-row
+            entity: light.rear_basement_overhead_lights
+            hide_when_off: true
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.basement_track_lights
+            hide_when_off: true
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.pool_table_light
+            hide_when_off: true
+            toggle: true
+          - type: custom:slider-entity-row
+            entity: light.workroom_light
+            hide_when_off: true
+            toggle: true
           - type: divider
           - light.front_porch_light
           - light.back_porch_light

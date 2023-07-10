@@ -41,6 +41,70 @@ cards:
                   text-transform: uppercase;
                 }
           - type: tile
+            entity: light.rear_basement_overhead_lights
+            vertical: true
+            name: "Rear Overhead"
+            features:
+              - type: "light-brightness"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
+          - type: tile
+            entity: light.basement_track_lights
+            vertical: true
+            name: "Track Lights"
+            features:
+              - type: "light-brightness"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: light.pool_table_light
+            vertical: true
+            name: "Pool Table"
+            features:
+              - type: "light-brightness"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
+          - type: tile
+            entity: light.workroom_light
+            vertical: true
+            name: "Workroom Light"
+            features:
+              - type: "light-brightness"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: light.workroom_closet_light
+            vertical: true
+            name: "Workroom Closet"
+            features:
+              - type: "light-brightness"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
+          - type: tile
             entity: light.basement_sump_pump_closet_light
             vertical: true
             name: "Sump Closet"
