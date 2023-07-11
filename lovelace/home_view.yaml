@@ -107,20 +107,24 @@ cards:
             toggle: true
           - type: custom:slider-entity-row
             entity: light.office_bookshelf_lamp
+            name: "Bookshelf Light"
             hide_when_off: true
             toggle: true
           - type: section
             label: Basement
           - type: custom:slider-entity-row
             entity: light.basement_overhead_lights
+            name: "Overhead"
             hide_when_off: true
             toggle: true
           - type: custom:slider-entity-row
             entity: light.rear_basement_overhead_lights
+            name: "Rear Overhead"
             hide_when_off: true
             toggle: true
           - type: custom:slider-entity-row
             entity: light.basement_track_lights
+            name: "Track Lights"
             hide_when_off: true
             toggle: true
           - type: custom:slider-entity-row
