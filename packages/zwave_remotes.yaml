@@ -212,3 +212,72 @@ automation:
               entity_id: alarm_control_panel.alarm_system
               data:
                 code: !secret alarm_code
+
+  - alias: workroom_switches
+    initial_state: true
+    mode: restart
+    max_exceeded: silent
+    trigger:
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 33
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 34
+    action:
+      - choose:
+        # If Top button 1x
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed' }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.workroom_light
+              data:
+                brightness_pct: 100
+                transition: 2
+        # If Top button held
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyHeldDown' }}"
+          sequence:
+            - repeat:
+                while: '{{ repeat.index <= 5 | int and states.light.workroom_light.attributes.brightness|default(0) <  255 }}'
+                sequence:
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.workroom_light
+                    data:
+                      #brightness: '{{ states.light.nightstand_lamp.attributes.brightness|default(17)|int + (repeat.index * 17) | int }}'
+                      brightness_step_pct: 20
+                      transition: 1
+                  - delay: 1
+        # If Bottom button 1x
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed' }}"
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.workroom_light
+              data:
+                transition: 3
+        # If Bottom button held
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyHeldDown' }}"
+          sequence:
+            - repeat:
+                while: '{{ repeat.index <= 5 | int and states.light.workroom_light.attributes.brightness|default(0) > 51 }}'
+                sequence:
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.workroom_light
+                    data:
+                      #brightness: '{{ states.light.nightstand_lamp.attributes.brightness|default(255)|int - (repeat.index * 17) | int }}'
+                      brightness_step_pct: -20
+                      transition: 1
+                  - delay: 1
