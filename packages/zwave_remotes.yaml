@@ -237,7 +237,7 @@ automation:
               target:
                 entity_id: light.workroom_light
               data:
-                brightness_pct: 100
+                # brightness_pct: 100
                 transition: 2
         # If Top button held
         - conditions:
