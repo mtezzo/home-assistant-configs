@@ -210,9 +210,9 @@ cards:
                   text-transform: uppercase;
                 }
           - type: tile
-            entity: switch.master_bedroom_plug_switch
+            entity: switch.master_bedroom_outlet_switch
             vertical: true
-            name: "Plugs"
+            name: "Outlets"
             card_mod:
               style: |
                 ha-card.type-tile {

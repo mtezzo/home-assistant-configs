@@ -86,9 +86,11 @@ cards:
             toggle: true
           - type: custom:slider-entity-row
             entity: light.master_bedroom_overhead_light
+            name: "Overhead"
             hide_when_off: true
             toggle: true
-          - switch.master_bedroom_plug_switch
+          - switch.master_bedroom_outlet_switch
+            name: "Outlets"
           - type: section
             label: Kitchen & Dining
           - type: custom:slider-entity-row
@@ -100,6 +102,7 @@ cards:
             hide_when_off: true
             toggle: true
           - light.dining_room_hutch_light
+            name: "Hutch Light"
           - type: section
             label: Office
           - type: custom:slider-entity-row

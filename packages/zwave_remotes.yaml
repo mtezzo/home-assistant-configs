@@ -176,6 +176,21 @@ automation:
                       color_temp: 370
                       transition: 1
                   - delay: 1
+        # If Top button 2x
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed2x' }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.nightstand_lamp, light.master_bedroom_overhead_light
+              data:
+                brightness_pct: 100
+                color_temp: 370
+                transition: 2
+            - service: switch.turn_on
+              target:
+                entity_id: switch.master_bedroom_outlet_switch
         # If Bottom button 1x
         - conditions:
           - condition: template
@@ -203,6 +218,19 @@ automation:
                       color_temp: 370
                       transition: 1
                   - delay: 1
+        # If Bottom button 2x
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed2x' }}"
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.nightstand_lamp, light.master_bedroom_overhead_light
+              data:
+                transition: 3
+            - service: switch.turn_off
+              target:
+                entity_id: switch.master_bedroom_outlet_switch
         # If Bottom button 3x
         - conditions:
           - condition: template
