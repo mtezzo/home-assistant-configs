@@ -197,6 +197,29 @@ cards:
                   border-radius: 20px !important;
                   text-transform: uppercase;
                 }
+          - type: tile
+            entity: light.master_bedroom_overhead_light
+            vertical: true
+            name: "Overhead"
+            features:
+              - type: "light-brightness"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
+          - type: tile
+            entity: switch.master_bedroom_plug_switch
+            vertical: true
+            name: "Plugs"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
+
 
       - type: markdown
         card_mod:

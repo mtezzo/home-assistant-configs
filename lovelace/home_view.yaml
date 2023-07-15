@@ -84,6 +84,11 @@ cards:
             entity: light.nightstand_lamp
             hide_when_off: true
             toggle: true
+          - type: custom:slider-entity-row
+            entity: light.master_bedroom_overhead_light
+            hide_when_off: true
+            toggle: true
+          - switch.master_bedroom_plug_switch
           - type: section
             label: Kitchen & Dining
           - type: custom:slider-entity-row
