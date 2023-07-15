@@ -41,6 +41,7 @@ cloud:
         - switch.front_porch_light
         - switch.front_porch_outdoor_double_plug
         - switch.front_porch_outdoor_double_plug_2
+        - switch.master_bedroom_outlet_switch
       exclude_domains:
         - alert
         - automation
