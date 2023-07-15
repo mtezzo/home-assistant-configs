@@ -35,53 +35,51 @@ cloud:
         - binary_sensor.water_heater_flood_sensor_water_leak_detected
         - binary_sensor.family_room_motion_sensor_motion_detection
         - binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
+        - switch.christmas_tree_switch
+        - switch.back_porch_light
+        - switch.dining_room_hutch_light
+        - switch.front_porch_light
+        - switch.front_porch_outdoor_double_plug
+        - switch.front_porch_outdoor_double_plug_2
       exclude_domains:
         - alert
         - automation
         - binary_sensor
         - camera
         - group
+        - input_boolean
         - media_player
+        - number
         - script
+        - switch
       exclude_entities:
         - light.dining_room_hutch_light_light_ring
+        - light.exterior_lights
+        - light.interior_lights
         - light.office_bookshelf_lamp_light_ring
         - light.christmas_tree_switch
-        - switch.apple_tv
-        - switch.backyard_smart_hose_timer_rain_delay
-        - switch.backyard_smart_hose_timer_program_a
-        - switch.backyard_smart_hose_timer_program_b
-        - switch.backyard_smart_hose_timer_program_c
-        - switch.front_yard_smart_hose_timer_rain_delay
-        - switch.front_yard_smart_hose_timer_program_a
-        - switch.front_yard_smart_hose_timer_program_b
-        - switch.front_yard_smart_hose_timer_program_c
-        - switch.garage_door_signaling_state_audible
-        - switch.lg_tv
-        - switch.mnemosyne_home_mode
-        - switch.basement_sonos_crossfade
-        - switch.basement_sonos_loudness
-        - switch.dining_room_sonos_crossfade
-        - switch.dining_room_sonos_loudness
-        - switch.living_room_sonos_crossfade
-        - switch.living_room_sonos_loudness
-        - switch.family_room_sonos_subwoofer_enabled
-        - switch.family_room_sonos_speech_enhancement
-        - switch.family_room_sonos_crossfade
-        - switch.family_room_sonos_surround_music_full_volume
-        - switch.family_room_sonos_surround_enabled
-        - switch.family_room_sonos_loudness
-        - switch.family_room_sonos_night_sound
-        - switch.xbox_one
+        - sensor.mean_basement_temperature
+        - sensor.mean_main_floor_temperature
+        - sensor.mnemosyne_average_disk_temp
         - sensor.mnemosyne_drive_1_temperature
         - sensor.mnemosyne_drive_2_temperature
         - sensor.mnemosyne_volume_2_average_disk_temp
         - sensor.mnemosyne_drive_3_temperature
         - sensor.mnemosyne_drive_4_temperature
         - sensor.mnemosyne_temperature
+        - sensor.mnemosyne_temperature_2
+        - sensor.mnemosyne_temperature_3
+        - sensor.mnemosyne_temperature_4
+        - sensor.mnemosyne_temperature_5
         - sensor.wirelesstag_desktop_humidor_temperature
         - sensor.wirelesstag_diamond_crown_humidor_temperature
-        - sensor.dark_sky_temperature
+        - sensor.weatherflow_air_temperature
+        - sensor.weatherflow_dewpoint
+        - sensor.weatherflow_feels_like_temperature
+        - sensor.weatherflow_delta_t
+        - sensor.weatherflow_heat_index
+        - sensor.weatherflow_wet_bulb_temperature
+        - sensor.weatherflow_wind_chill
     entity_config:
       sensor.living_room_motion_sensor_air_temperature:
         name: Living Room Temperature
