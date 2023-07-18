@@ -36,9 +36,6 @@ cloud:
         - binary_sensor.family_room_motion_sensor_motion_detection
         - binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
         - switch.christmas_tree_switch
-        - switch.back_porch_light
-        - switch.dining_room_hutch_light
-        - switch.front_porch_light
         - switch.front_porch_outdoor_double_plug
         - switch.front_porch_outdoor_double_plug_2
         - switch.master_bedroom_outlet_switch
