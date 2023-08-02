@@ -27,6 +27,7 @@ known_devices.yaml
 *.xml
 *.db
 *.sqlite
+automations.yaml
 ozw_config/
 tts/
 deps/

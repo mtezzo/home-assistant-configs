@@ -43,8 +43,8 @@ homeassistant:
 ### GENERAL                                     ####
 ####################################################
 
-# General automations
-# automation: !include automations.yaml
+# The configuration required for the UI to work
+automation: !include automations.yaml
 
 # https://www.home-assistant.io/integrations/bluetooth/
 bluetooth:
