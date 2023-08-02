@@ -77,7 +77,7 @@ homeassistant:
 ## Automation
 ################################################
 
-automation:
+automation morningnight:
   - alias: auto_morning
     initial_state: true
     trigger:

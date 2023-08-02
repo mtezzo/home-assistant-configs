@@ -49,7 +49,7 @@ homeassistant:
 ## Automation
 ################################################
 
-automation:
+automation sensorlights:
   ################################################
   ## Motion Activated Lights
   ################################################

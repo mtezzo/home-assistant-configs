@@ -140,7 +140,7 @@ sensor:
 ## Automation
 ################################################
 
-automation:
+automation presence:
   - alias: person_arriving
     mode: parallel
     initial_state: true

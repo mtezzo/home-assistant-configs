@@ -98,7 +98,7 @@ alarm_control_panel:
 ## Automation
 ################################################
 
-automation:
+automation alarm:
   - alias: persistence_publish_alarm_control_panel
     initial_state: 'on'
     trigger:

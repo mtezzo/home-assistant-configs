@@ -38,7 +38,7 @@ homeassistant:
 ## Automation
 ################################################
 
-automation:
+automation remotes:
 
   ################################################
   ## Remote

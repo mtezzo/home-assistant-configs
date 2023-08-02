@@ -67,7 +67,7 @@ homeassistant:
 ## Automation
 ################################################
 
-automation:
+automation system:
   - alias: startup_notification
     initial_state: true
     trigger:

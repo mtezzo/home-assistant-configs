@@ -176,7 +176,7 @@ homeassistant:
 ## Automation *HOTFIX*
 ################################################
 
-#automation:
+#automation zwave:
   # - alias: "Fix Guest Closet Light"
   #   trigger:
   #     - platform: event
