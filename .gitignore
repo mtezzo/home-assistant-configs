@@ -16,6 +16,7 @@
 *.crt
 *.key
 *.pem
+automations.yaml
 secrets.yaml
 ip_bans.yaml
 known_devices.yaml
@@ -27,7 +28,6 @@ known_devices.yaml
 *.xml
 *.db
 *.sqlite
-automations.yaml
 ozw_config/
 tts/
 deps/
