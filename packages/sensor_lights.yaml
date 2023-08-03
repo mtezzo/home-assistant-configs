@@ -20,30 +20,11 @@ homeassistant:
     ## Automation
     ################################################
 
-    automation.living_room_motion:
-      <<: *customize
-      friendly_name: "Living Room Motion"
-      icon: mdi:robot
-
     automation.master_bedroom_motion:
       <<: *customize
       friendly_name: "Bedroom Motion"
       icon: mdi:robot
 
-    automation.nightstand_switches:
-      <<: *customize
-      friendly_name: "Nightstand Switches"
-      icon: mdi:robot
-
-    automation.exterior_lighting:
-      <<: *customize
-      friendly_name: "Exterior Lighting"
-      icon: mdi:robot
-
-    automation.holiday_lighting:
-      <<: *customize
-      friendly_name: "Holiday Lighting"
-      icon: mdi:robot
 
 ################################################
 ## Automation
@@ -53,45 +34,6 @@ automation sensorlights:
   ################################################
   ## Motion Activated Lights
   ################################################
-
-  - alias: living_room_motion
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.living_room_motion_sensor_home_security_motion_detection
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.living_room_motion_sensor_home_security_motion_detection
-        from: 'on'
-        to: 'off'
-        for: '00:25:00'
-    mode: restart
-    max_exceeded: silent
-    action:
-      - choose:
-          # IF door opened
-          - conditions: "{{ trigger.to_state.state == 'on' }}"
-            sequence:
-              - service: light.turn_on
-                target:
-                  entity_id: light.living_room_floor_lamp_instance_1_level
-                data:
-                  brightness_pct: 70
-                  transition: 2
-              - service: light.turn_on
-                target:
-                  entity_id: light.table_light
-                data:
-                  brightness_pct: 70
-                  transition: 2
-                  color_name: "{{ ['coral', 'crimson', 'darkmagenta', 'fuchsia', 'goldenrod', 'honeydew', 'indianred', 'maroon', 'mediumvioletred', 'orange', 'orchid', 'peru', 'red', 'sienna', 'tomato'] | random }}"
-        # ELSE door closed
-        default:
-          - service: light.turn_off
-            target:
-              entity_id: light.living_room_floor_lamp_instance_1_level, light.table_light
-            data:
-              transition: 3
 
   - alias: master_bedroom_motion
     trigger:
