@@ -26,7 +26,6 @@ cloud:
     filter:
       include_entities:
         - automation.master_bedroom_motion
-        - automation.living_room_motion
         - binary_sensor.basement_stair_closet_door_window_door_is_open
         - binary_sensor.basement_sump_pump_closet_door_window_door_is_open
         - binary_sensor.laundry_room_door_window_door_is_open

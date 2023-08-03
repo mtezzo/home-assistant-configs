@@ -221,7 +221,6 @@ script:
       - service: automation.turn_on
         data:
           entity_id:
-            - automation.living_room_motion
             - automation.master_bedroom_motion
 
   good_night:
@@ -229,7 +228,6 @@ script:
       - service: automation.turn_off
         data:
           entity_id:
-            - automation.living_room_motion
             - automation.master_bedroom_motion
 
       - service: script.all_interior_lights_off

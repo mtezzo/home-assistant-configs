@@ -44,7 +44,6 @@ cards:
         show_header_toggle: false
         entities:
           - automation.master_bedroom_motion
-          - automation.living_room_motion
           - automation.exterior_lighting
           - automation.holiday_lighting
           - automation.auto_sunrise
