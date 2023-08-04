@@ -29,9 +29,6 @@ homeassistant:
   external_url: !secret ha_url
   internal_url: "http://home.assistant:8123"
 
-  # Customizations
-  customize: !include customize.yaml
-
   # Packages
   packages: !include_dir_named packages/
 
