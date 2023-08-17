@@ -52,7 +52,7 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - type: input_button.nemesis_wol
+          - input_button.nemesis_wol
         card_mod:
           class: middle
           style: |
