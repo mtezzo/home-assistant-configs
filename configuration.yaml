@@ -71,11 +71,6 @@ frontend:
     - /hacsfiles/lovelace-card-mod/card-mod.js
     #- /local/js/font-loader.js
 
-# Enables HACS
-# https://custom-components.github.io/hacs/installation/configuration/
-hacs:
-  token: !secret github_token
-
 # https://www.home-assistant.io/integrations/hardware/
 hardware:
 
