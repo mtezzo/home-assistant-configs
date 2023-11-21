@@ -23,7 +23,7 @@ cards:
           - mean
         period: hour
         entities:
-          - entity: sensor.weatherflow_air_temperature
+          - entity: sensor.wood_valley_haslett_sensors_temperature
             name: Outside
           - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
             name: Upstairs
@@ -42,7 +42,7 @@ cards:
           - mean
         period: hour
         entities:
-          - entity: sensor.weatherflow_relative_humidity
+          - entity: sensor.wood_valley_haslett_sensors_humidity
             name: Outside
           - entity: sensor.master_bedroom_dresser_motion_sensor_humidity
             name: Upstairs

@@ -167,7 +167,7 @@ cards:
         content: '# Climate'
       # - type: weather-forecast
       - type: custom:weather-card
-        entity: weather.weatherflow_day_based_forecast
+        entity: weather.forecast_wood_valley_haslett
         card_mod:
           class: middle-right
           style: |
