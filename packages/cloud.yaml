@@ -34,6 +34,19 @@ cloud:
         - binary_sensor.water_heater_flood_sensor_water_leak_detected
         - binary_sensor.family_room_motion_sensor_motion_detection
         - binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
+        - sensor.family_room_motion_sensor_air_temperature
+        - sensor.family_room_motion_sensor_humidity
+        - sensor.family_room_motion_sensor_illuminance
+        - sensor.kitchen_motion_sensor_air_temperature
+        - sensor.kitchen_motion_sensor_illuminance
+        - sensor.master_bedroom_dresser_motion_sensor_air_temperature
+        - sensor.master_bedroom_dresser_motion_sensor_humidity
+        - sensor.master_bedroom_dresser_motion_sensor_illuminance
+        - sensor.water_heater_flood_sensor_air_temperature
+        - sensor.wirelesstag_workroom_closet_humidity
+        - sensor.wirelesstag_workroom_closet_temperature
+        - sensor.wirelesstag_wine_rack_humidity
+        - sensor.wirelesstag_wine_rack_temperature
         - switch.christmas_tree_switch
         - switch.front_porch_outdoor_double_plug
         - switch.front_porch_outdoor_double_plug_2
@@ -48,6 +61,7 @@ cloud:
         - media_player
         - number
         - script
+        - sensor
         - switch
       exclude_entities:
         - light.dining_room_hutch_light_light_ring
@@ -55,28 +69,6 @@ cloud:
         - light.interior_lights
         - light.office_bookshelf_lamp_light_ring
         - light.christmas_tree_switch
-        - sensor.mean_basement_temperature
-        - sensor.mean_main_floor_temperature
-        - sensor.mnemosyne_average_disk_temp
-        - sensor.mnemosyne_drive_1_temperature
-        - sensor.mnemosyne_drive_2_temperature
-        - sensor.mnemosyne_volume_2_average_disk_temp
-        - sensor.mnemosyne_drive_3_temperature
-        - sensor.mnemosyne_drive_4_temperature
-        - sensor.mnemosyne_temperature
-        - sensor.mnemosyne_temperature_2
-        - sensor.mnemosyne_temperature_3
-        - sensor.mnemosyne_temperature_4
-        - sensor.mnemosyne_temperature_5
-        - sensor.wirelesstag_desktop_humidor_temperature
-        - sensor.wirelesstag_diamond_crown_humidor_temperature
-        - sensor.weatherflow_air_temperature
-        - sensor.weatherflow_dewpoint
-        - sensor.weatherflow_feels_like_temperature
-        - sensor.weatherflow_delta_t
-        - sensor.weatherflow_heat_index
-        - sensor.weatherflow_wet_bulb_temperature
-        - sensor.weatherflow_wind_chill
     entity_config:
       sensor.family_room_motion_sensor_air_temperature:
         name: Family Room Temperature

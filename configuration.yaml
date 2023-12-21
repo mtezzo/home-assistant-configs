@@ -168,6 +168,9 @@ person:
       - device_tracker.michael_iphone
       - device_tracker.michael_life360
 
+# https://www.home-assistant.io/docs/scene/editor/
+scene: !include scenes.yaml
+
 # https://www.home-assistant.io/integrations/schedule/
 schedule:
 
