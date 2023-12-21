@@ -26,6 +26,7 @@ homekit:
     exclude_domains:
       - automation
       - binary_sensor
+      - button
       - camera
       - device_tracker
       - input_select
@@ -60,6 +61,7 @@ homekit:
       - switch.living_room_harmony_hub_listen_to_living_room_sonos
       - switch.living_room_harmony_hub_watch_smart_tv
       - switch.mnemosyne_home_mode
+      - switch.pi_hole
       - switch.xbox_one
     include_entities:
       - automation.master_bedroom_motion
