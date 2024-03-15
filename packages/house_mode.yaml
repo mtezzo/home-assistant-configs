@@ -133,3 +133,5 @@ script:
         data:
           entity_id: light.interior_lights
           transition: 5
+      - service: switch.turn_on
+        entity_id: switch.master_bedroom_outlet_switch

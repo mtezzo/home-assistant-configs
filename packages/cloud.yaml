@@ -47,7 +47,6 @@ cloud:
         - sensor.wirelesstag_workroom_closet_temperature
         - sensor.wirelesstag_wine_rack_humidity
         - sensor.wirelesstag_wine_rack_temperature
-        - switch.christmas_tree_switch
         - switch.front_porch_outdoor_double_plug
         - switch.front_porch_outdoor_double_plug_2
         - switch.master_bedroom_outlet_switch
@@ -64,11 +63,10 @@ cloud:
         - sensor
         - switch
       exclude_entities:
-        - light.dining_room_hutch_light_light_ring
         - light.exterior_lights
         - light.interior_lights
-        - light.office_bookshelf_lamp_light_ring
-        - light.christmas_tree_switch
+        - light.dining_room_hutch_light_indicator
+        - light.christmas_tree_switch_indicator
     entity_config:
       sensor.family_room_motion_sensor_air_temperature:
         name: Family Room Temperature

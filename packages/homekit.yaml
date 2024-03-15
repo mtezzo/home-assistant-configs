@@ -41,11 +41,10 @@ homekit:
       - climate.dining_room
       - input_boolean.lcars_texture
       - input_boolean.lcars_sound
-      - light.christmas_tree_switch
-      - light.dining_room_hutch_light_light_ring
+      - light.dining_room_hutch_light_indicator
+      - light.christmas_tree_switch_indicator
       - light.exterior_lights
       - light.interior_lights
-      - light.office_bookshelf_lamp_light_ring
       - switch.apple_tv
       - switch.backyard_smart_hose_timer_rain_delay
       - switch.backyard_smart_hose_timer_program_a
