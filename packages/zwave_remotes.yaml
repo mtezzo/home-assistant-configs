@@ -34,6 +34,11 @@ homeassistant:
       friendly_name: "Bedroom Nightstand Switch Light Control"
       icon: mdi:light-switch
 
+      automation.garage_switch:
+      <<: *customize
+      friendly_name: "Garage Door Switch"
+      icon: mdi:garage-door
+      
 ################################################
 ## Automation
 ################################################
@@ -131,6 +136,33 @@ automation remotes:
   ################################################
   ## Switches
   ################################################
+  - alias: garage_switch
+    initial_state: true
+    mode: restart
+    max_exceeded: silent
+    trigger:
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 14
+    action:
+      - choose:
+        # If Top button 1x
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed' }}"
+          sequence:
+            - service: cover.open_cover
+              target:
+                entity_id: cover.garage_door
+        # If Bottom button 1x
+        - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed' }}"
+          sequence:
+            - service: cover.close_cover
+              target:
+                entity_id: cover.garage_door
 
   - alias: nightstand_switches
     initial_state: true
@@ -140,11 +172,11 @@ automation remotes:
       - platform: event
         event_type: zwave_js_value_notification
         event_data:
-          node_id: 36
+          node_id: 13
       - platform: event
         event_type: zwave_js_value_notification
         event_data:
-          node_id: 37
+          node_id: 14
     action:
       - choose:
         # If Top button 1x
