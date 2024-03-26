@@ -34,7 +34,7 @@ homeassistant:
       friendly_name: "Bedroom Nightstand Switch Light Control"
       icon: mdi:light-switch
 
-      automation.garage_switch:
+    automation.garage_switch:
       <<: *customize
       friendly_name: "Garage Door Switch"
       icon: mdi:garage
