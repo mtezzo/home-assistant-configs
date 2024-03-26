@@ -172,11 +172,11 @@ automation remotes:
       - platform: event
         event_type: zwave_js_value_notification
         event_data:
-          node_id: 13
+          node_id: 36
       - platform: event
         event_type: zwave_js_value_notification
         event_data:
-          node_id: 14
+          node_id: 37
     action:
       - choose:
         # If Top button 1x
