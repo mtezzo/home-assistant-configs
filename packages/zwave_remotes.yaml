@@ -37,7 +37,7 @@ homeassistant:
       automation.garage_switch:
       <<: *customize
       friendly_name: "Garage Door Switch"
-      icon: mdi:garage-door
+      icon: mdi:garage
       
 ################################################
 ## Automation
