@@ -90,6 +90,16 @@ cards:
                   border-radius: 20px !important;
                   text-transform: uppercase;
                 }
+          - type: tile
+            entity: light.neon_dino
+            vertical: true
+            name: "Dino"
+            card_mod:
+              style: |
+                ha-card.type-tile {
+                  border-radius: 20px !important;
+                  text-transform: uppercase;
+                }
       - type: horizontal-stack
         cards:
           - type: tile
