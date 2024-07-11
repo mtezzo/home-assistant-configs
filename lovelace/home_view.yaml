@@ -183,7 +183,11 @@ cards:
       - type: thermostat
         entity: climate.dining_room
         card_mod:
+          class: middle-right
+      - type: markdown
+        card_mod:
           class: footer-right
+        content: '## &nbsp;'
 
   - type: vertical-stack
     cards:
