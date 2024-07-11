@@ -33,13 +33,13 @@ sensor:
   - platform: rest
     resource: !secret water_endpoint
     scan_interval: 90
-    json_attributes:
-      - "valid"
-      - "secondary"
+#    json_attributes:
+#      - "valid"
+#      - "secondary"
     method: GET
     name: river_level
     verify_ssl: true
-    json_attributes_path: "$.site.observed.datum.[:1]"
-    value_template: '{{ value_json["site"]["observed"]["datum"][0]["primary"]["#text"] }}'
+    json_attributes_path: "$.status.observed.primary.[:1]"
+    value_template: '{{ value_json["status"]["observed"]["primary"]["#text"] }}'
     unit_of_measurement: ft
     force_update: true
