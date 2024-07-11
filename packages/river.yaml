@@ -32,7 +32,7 @@ homeassistant:
 sensor:
   - platform: rest
     resource: !secret water_endpoint
-    scan_interval: 90
+    scan_interval: 1800
     method: GET
     name: river_level
     verify_ssl: true
