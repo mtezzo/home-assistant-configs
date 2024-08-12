@@ -28,3 +28,10 @@ homeassistant:
 # https://www.home-assistant.io/integrations/zabbix/
 zabbix:
   host: 192.168.1.35
+  ssl: false
+  username: !secret zbx_username
+  password: !secret zbx_password
+  publish_states_host: !secret zbx_host
+  include:
+    entities:
+      - sensor.water_heater_flood_sensor_air_temperature
