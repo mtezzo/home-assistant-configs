@@ -71,10 +71,12 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: header
-        content: '# Favorites'
+        content: |
+          <h1>Favorites</h1>
       - type: entities
         show_header_toggle: false
         entities:
@@ -159,10 +161,12 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>Climate</h1>
         card_mod:
           class: header-right
-        content: '# Climate'
       # - type: weather-forecast
       - type: custom:weather-card
         entity: weather.forecast_wood_valley_haslett
@@ -184,17 +188,21 @@ cards:
         entity: climate.dining_room
         card_mod:
           class: middle-right
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: footer-right
-        content: '## &nbsp;'
+        content: |
+          <h2>&nbsp;</h2>
 
   - type: vertical-stack
     cards:
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>Location</h1>
         card_mod:
           class: header
-        content: '# Location'
       - type: map
         aspect_ratio: '16:9'
         default_zoom: 16
@@ -218,7 +226,9 @@ cards:
             name: Height
         card_mod:
           class: middle
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: footer
-        content: '## &nbsp;'
+        content: |
+          <h2>&nbsp;</h2>

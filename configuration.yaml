@@ -133,6 +133,8 @@ lovelace:
       type: module
     - url: /hacsfiles/weather-card/weather-card.js
       type: module
+    - url: /local/custom_lovelace/html_card/html-card.js
+      type: js
     - url: /local/js/lcars.js
       type: js
 
