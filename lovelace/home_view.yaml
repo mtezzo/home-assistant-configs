@@ -193,7 +193,7 @@ cards:
         card_mod:
           class: footer-right
         content: |
-          <h2>&nbsp;</h2>
+          <h3>&nbsp;</h3>
 
   - type: vertical-stack
     cards:
@@ -213,10 +213,12 @@ cards:
           - zone.home
         card_mod:
           class: middle
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: middle
-        content: '# River Level'
+        content: |
+          <h1>River Level</h1>
       - type: custom:mini-graph-card
         icon: mdi:waves
         hours_to_show: 120
@@ -231,4 +233,4 @@ cards:
         card_mod:
           class: footer
         content: |
-          <h2>&nbsp;</h2>
+          <h3>&nbsp;</h3>

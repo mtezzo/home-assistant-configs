@@ -34,10 +34,12 @@ cards:
         card_mod:
           class: button-lozenge
 
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>Automations</h1>
         card_mod:
           class: header-right
-        content: '# Automations'
 
       - type: entities
         title: Lighting
@@ -84,10 +86,12 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>System Diagnostics</h1>
         card_mod:
           class: header
-        content: '# System Diagnostics'
 
       - type: entities
         title: Hardware Status
@@ -108,10 +112,12 @@ cards:
         card_mod:
           class: middle
 
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h2>Resource Utilization</h2>
         card_mod:
           class: middle
-        content: '## Resource Utilization'
 
       - type: custom:mini-graph-card
         name: Resources
@@ -126,10 +132,12 @@ cards:
         card_mod:
           class: middle
 
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h2>Failing Batteries</h2>
         card_mod:
           class: middle
-        content: '## Failing Batteries'
 
       - type: custom:auto-entities
         card:
@@ -145,7 +153,9 @@ cards:
             - attributes:
               battery: "<= 20" # Attribute battery_level is 20 or less
         else:
-          type: markdown
+          type: custom:html-card
+          title: ''
+          content: |
+            <h2>None</h2>
           card_mod:
             class: footer
-          content: '## None'
