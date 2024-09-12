@@ -45,10 +45,12 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>Computers</h1>
         card_mod:
           class: header
-        content: '# Computers'
       - type: entities
         show_header_toggle: false
         entities:
