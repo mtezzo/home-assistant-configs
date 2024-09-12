@@ -58,7 +58,7 @@ cards:
       - type: custom:html-card
         title: ''
         content: |
-          <h1>&nbsp;/h1>
+          <h1>&nbsp;</h1>
         card_mod:
           class: header-open
       - type: history-graph
@@ -73,7 +73,7 @@ cards:
       - type: custom:html-card
         title: ''
         content: |
-          <h1>Motion Sensors/h1>
+          <h1>Motion Sensors</h1>
         card_mod:
           class: middle-right
       - type: custom:auto-entities
@@ -91,7 +91,7 @@ cards:
       - type: custom:html-card
         title: ''
         content: |
-          <h1>Door Sensors/h1>
+          <h1>Door Sensors</h1>
         card_mod:
           class: middle-right
       - type: custom:auto-entities
