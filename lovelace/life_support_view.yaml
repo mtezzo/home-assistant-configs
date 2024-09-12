@@ -5,10 +5,12 @@ cards:
   - type: vertical-stack
     cards:
 
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>Life Support</h1>
         card_mod:
           class: header
-        content: '# Life Support'
 
       - type: thermostat
         entity: climate.dining_room
@@ -53,18 +55,21 @@ cards:
         card_mod:
           class: middle
 
-      - type: markdown
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>&nbsp;</h1>
         card_mod:
           class: footer
-        content: '## &nbsp;'
 
   - type: vertical-stack
     cards:
       - type: vertical-stack
         cards:
-          - type: markdown
-            content: >
-              ## Workroom Closet
+          - type: custom:html-card
+            title: ''
+            content: |
+              <h1>Workroom Closet</h1>
             card_mod:
               class: header
           - type: custom:mini-graph-card
@@ -97,16 +102,19 @@ cards:
                 graph: none
                 card_mod:
                   class: middle-blank
-          - type: markdown
+          - type: custom:html-card
+            title: ''
+            content: |
+              <h1>&nbsp;</h1>
             card_mod:
               class: footer
-            content: '## &nbsp;'
 
       - type: vertical-stack
         cards:
-          - type: markdown
-            content: >
-              ## Humidor
+          - type: custom:html-card
+            title: ''
+            content: |
+              <h1>Humidor</h1>
             card_mod:
               class: header
           - type: custom:mini-graph-card
@@ -139,16 +147,19 @@ cards:
                 graph: none
                 card_mod:
                   class: middle-blank
-          - type: markdown
+          - type: custom:html-card
+            title: ''
+            content: |
+              <h1>&nbsp;</h1>
             card_mod:
               class: footer
-            content: '## &nbsp;'
 
       - type: vertical-stack
         cards:
-          - type: markdown
-            content: >
-              ## Wine Rack
+          - type: custom:html-card
+            title: ''
+            content: |
+              <h1>Wine Rack</h1>
             card_mod:
               class: header
           - type: custom:mini-graph-card
@@ -181,7 +192,9 @@ cards:
                 graph: none
                 card_mod:
                   class: middle-blank
-          - type: markdown
+          - type: custom:html-card
+            title: ''
+            content: |
+              <h1>&nbsp;</h1>
             card_mod:
               class: footer
-            content: '## &nbsp;'
