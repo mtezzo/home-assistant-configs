@@ -115,7 +115,7 @@ cards:
       - type: custom:html-card
         title: ''
         content: |
-          <h2>Resource Utilization</h2>
+          <h1>Resource Utilization</h1>
         card_mod:
           class: middle
 
@@ -135,7 +135,7 @@ cards:
       - type: custom:html-card
         title: ''
         content: |
-          <h2>Failing Batteries</h2>
+          <h1>Failing Batteries</h1>
         card_mod:
           class: middle
 
@@ -156,6 +156,6 @@ cards:
           type: custom:html-card
           title: ''
           content: |
-            <h2>None</h2>
+            <h1>None</h1>
           card_mod:
             class: footer

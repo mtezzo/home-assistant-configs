@@ -193,7 +193,7 @@ cards:
         card_mod:
           class: footer-right
         content: |
-          <h3>&nbsp;</h3>
+          <h1>&nbsp;</h1>
 
   - type: vertical-stack
     cards:
@@ -233,4 +233,4 @@ cards:
         card_mod:
           class: footer
         content: |
-          <h3>&nbsp;</h3>
+          <h1>&nbsp;</h1>
