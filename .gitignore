@@ -38,6 +38,7 @@ deps/
 www/*
 !www/js/
 blueprints/
+!blueprints/automation/custom/
 custom_components/*
 !custom_components/surveillance_station/
 custom_components/*/__pycache__/*
