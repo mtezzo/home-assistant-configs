@@ -41,7 +41,7 @@ www/*
 blueprints/*
 !blueprints/automation
 blueprints/automation/*
-!blueprints/automation/custom
+!blueprints/automation/local
 custom_components/*
 !custom_components/surveillance_station/
 custom_components/*/__pycache__/*

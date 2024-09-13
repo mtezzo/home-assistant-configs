@@ -2,7 +2,6 @@ blueprint:
   name: Inovelli Red Series VZW31-SN Red Series Switch (ZWave-JS)
   description: Automation blueprint for Inovelli Smart Dimmer VZW31-SN switches with up/down buttons
     and multiple key press scene gestures.
-  source_url: https://github.com/mtezzo/homeassistant-blueprints//zwavejs-dimmer-switch.yaml
   domain: automation
   input:
     zwavejs_device_id:
