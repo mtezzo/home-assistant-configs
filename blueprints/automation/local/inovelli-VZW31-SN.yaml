@@ -1,10 +1,11 @@
 blueprint:
-  name: Inovelli Red Series VZW31-SN Red Series Switch (ZWave-JS)
-  description: Automation blueprint for Inovelli Smart Dimmer VZW31-SN switches with up/down buttons
-    and multiple key press scene gestures.
+  name: Inovelli Red Series Dimmer Switch VZW31-SN (ZWave-JS)
+  description: |
+    For Inovelli Red Series 2-in-1 switch + dimmer, model VZW31-SN
+    Allows setting a few different actions such as 2,3,4,5 clicking the up/down and config buttons.
   domain: automation
   input:
-    zwavejs_device_id:
+    zwavejs_device:
       name: Inovelli Smart Dimmer (Z-WaveJS)
       description: Select the sensor device which offers scene selection.
         Listed devices are not guaranteed to work with any/all of these button mappings.
@@ -13,7 +14,7 @@ blueprint:
           integration: zwave_js
           manufacturer: Inovelli
           model: VZW31-SN
-          multiple: true
+          multiple: false
     is_key_up_scene_two:
       name: Key Up/Down orientation
       description: The key-up scene button varies for some devices. Toggle this value
@@ -63,6 +64,12 @@ blueprint:
       default: false
       selector:
         boolean:
+    key_config_held:
+      name: Key Config held
+      description: Action to run, when the config button is held.
+      default: []
+      selector:
+        action: {}
     key_up_released:
       name: Key Up/On released
       description: Action to run, when the up button is released.
@@ -75,6 +82,12 @@ blueprint:
       default: []
       selector:
         action: {}
+    key_config_released:
+      name: Key Config released
+      description: Action to run, when the config button is released.
+      default: []
+      selector:
+        action: {}   
     key_up_2x:
       name: Key Up/On press 2x
       description: Action to run, when the up button is pressed two times.
@@ -148,10 +161,10 @@ blueprint:
       selector:
         action: {}
 # mode restart ensures hold actions are interrupted when the corresponding release action is received
-mode: restart
+mode: queued
 max_exceeded: silent
 variables:
-  zwavejs_device_id: !input 'zwavejs_device_id'
+  zwavejs_device: !input 'zwavejs_device'
   is_key_up_scene_two: !input 'is_key_up_scene_two'
   key_up_scene_id: '{{ ( (1,2)[is_key_up_scene_two] | int ) }}'
   key_down_scene_id: '{{ ( (2,1)[is_key_up_scene_two] | int ) }}'
@@ -160,7 +173,7 @@ variables:
 trigger:
 - platform: event
   event_type: zwave_js_value_notification
-condition: '{{ trigger.event.data.device_id == (zwavejs_device_id | string) and trigger.event.data.command_class == 91 }}'
+condition: '{{ trigger.event.data.device_id == (zwavejs_device | string) and trigger.event.data.command_class == 91 }}'
 action:
 - variables:
     scene_id: '{{ (trigger.event.data.property_key_name | int) }}' # values 001,002 and sometimes 003
@@ -176,6 +189,8 @@ action:
     sequence: !input 'key_up_released'
   - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyReleased" }}'
     sequence: !input 'key_down_released'
+  - conditions: '{{ scene_id == 3 and key_pressed == "KeyReleased" }}'
+    sequence: !input 'key_config_released'
   - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyHeldDown" }}'
     sequence:
       # if looping is enabled, loop the action indefinitely
@@ -190,19 +205,29 @@ action:
       - repeat:
           sequence: !input 'key_down_held'
           until: '{{ not is_loop_for_key_down_held }}'
+  - conditions: '{{ scene_id == 3 and key_pressed == "KeyHeldDown" }}'
+    sequence: !input 'key_config_held'
   - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed2x" }}'
     sequence: !input 'key_up_2x'
   - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed2x" }}'
     sequence: !input 'key_down_2x'
+  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed2x" }}'
+    sequence: !input 'key_config_2x'
   - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed3x" }}'
     sequence: !input 'key_up_3x'
   - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed3x" }}'
     sequence: !input 'key_down_3x'
+  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed3x" }}'
+    sequence: !input 'key_config_3x'
   - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed4x" }}'
     sequence: !input 'key_up_4x'
   - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed4x" }}'
     sequence: !input 'key_down_4x'
+  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed4x" }}'
+    sequence: !input 'key_config_4x'
   - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed5x" }}'
     sequence: !input 'key_up_5x'
   - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed5x" }}'
     sequence: !input 'key_down_5x'
+  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed5x" }}'
+    sequence: !input 'key_config_5x'
