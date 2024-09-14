@@ -161,7 +161,7 @@ blueprint:
       selector:
         action: {}
 # mode restart ensures hold actions are interrupted when the corresponding release action is received
-mode: queued
+mode: restart
 max_exceeded: silent
 variables:
   zwavejs_device: !input 'zwavejs_device'
