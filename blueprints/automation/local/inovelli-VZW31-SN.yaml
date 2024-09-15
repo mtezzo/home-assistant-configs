@@ -171,65 +171,65 @@ variables:
   is_loop_for_key_up_held: !input 'is_loop_for_key_up_held'
   is_loop_for_key_down_held: !input 'is_loop_for_key_down_held'
 trigger:
-- platform: event
-  event_type: zwave_js_value_notification
-  event_data:
-    device_id: !input zwavejs_device
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: !input zwavejs_device
 condition: '{{ trigger.event.data.device_id == (zwavejs_device | string) and trigger.event.data.command_class == 91 }}'
 action:
-- variables:
-    scene_id: '{{ (trigger.event.data.property_key_name | int) }}' # values 001,002 and sometimes 003
-    key_pressed: '{{ trigger.event.data.value }}'
-- choose:
-  - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}'
-    sequence: !input 'key_up'
-  - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed" }}'
-    sequence: !input 'key_down'
-  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed" }}'
-    sequence: !input 'key_config'
-  - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyReleased" }}'
-    sequence: !input 'key_up_released'
-  - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyReleased" }}'
-    sequence: !input 'key_down_released'
-  - conditions: '{{ scene_id == 3 and key_pressed == "KeyReleased" }}'
-    sequence: !input 'key_config_released'
-  - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyHeldDown" }}'
-    sequence:
-      # if looping is enabled, loop the action indefinitely
-      # repeat until the automation is restarted ie. when the corresponding release message is received
-      - repeat:
-          sequence: !input 'key_up_held'
-          until: '{{ not is_loop_for_key_up_held }}'
-  - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" }}'
-    sequence:
-      # if looping is enabled, loop the action indefinitely
-      # repeat until the automation is restarted ie. when the corresponding release message is received
-      - repeat:
-          sequence: !input 'key_down_held'
-          until: '{{ not is_loop_for_key_down_held }}'
-  - conditions: '{{ scene_id == 3 and key_pressed == "KeyHeldDown" }}'
-    sequence: !input 'key_config_held'
-  - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed2x" }}'
-    sequence: !input 'key_up_2x'
-  - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed2x" }}'
-    sequence: !input 'key_down_2x'
-  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed2x" }}'
-    sequence: !input 'key_config_2x'
-  - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed3x" }}'
-    sequence: !input 'key_up_3x'
-  - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed3x" }}'
-    sequence: !input 'key_down_3x'
-  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed3x" }}'
-    sequence: !input 'key_config_3x'
-  - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed4x" }}'
-    sequence: !input 'key_up_4x'
-  - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed4x" }}'
-    sequence: !input 'key_down_4x'
-  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed4x" }}'
-    sequence: !input 'key_config_4x'
-  - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed5x" }}'
-    sequence: !input 'key_up_5x'
-  - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed5x" }}'
-    sequence: !input 'key_down_5x'
-  - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed5x" }}'
-    sequence: !input 'key_config_5x'
+  - variables:
+      scene_id: '{{ (trigger.event.data.property_key_name | int) }}' # values 001,002 and sometimes 003
+      key_pressed: '{{ trigger.event.data.value }}'
+  - choose:
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}'
+      sequence: !input 'key_up'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed" }}'
+      sequence: !input 'key_down'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed" }}'
+      sequence: !input 'key_config'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyReleased" }}'
+      sequence: !input 'key_up_released'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyReleased" }}'
+      sequence: !input 'key_down_released'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyReleased" }}'
+      sequence: !input 'key_config_released'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyHeldDown" }}'
+      sequence:
+        # if looping is enabled, loop the action indefinitely
+        # repeat until the automation is restarted ie. when the corresponding release message is received
+        - repeat:
+            sequence: !input 'key_up_held'
+            until: '{{ not is_loop_for_key_up_held }}'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" }}'
+      sequence:
+        # if looping is enabled, loop the action indefinitely
+        # repeat until the automation is restarted ie. when the corresponding release message is received
+        - repeat:
+            sequence: !input 'key_down_held'
+            until: '{{ not is_loop_for_key_down_held }}'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyHeldDown" }}'
+      sequence: !input 'key_config_held'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed2x" }}'
+      sequence: !input 'key_up_2x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed2x" }}'
+      sequence: !input 'key_down_2x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed2x" }}'
+      sequence: !input 'key_config_2x'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed3x" }}'
+      sequence: !input 'key_up_3x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed3x" }}'
+      sequence: !input 'key_down_3x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed3x" }}'
+      sequence: !input 'key_config_3x'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed4x" }}'
+      sequence: !input 'key_up_4x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed4x" }}'
+      sequence: !input 'key_down_4x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed4x" }}'
+      sequence: !input 'key_config_4x'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed5x" }}'
+      sequence: !input 'key_up_5x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed5x" }}'
+      sequence: !input 'key_down_5x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed5x" }}'
+      sequence: !input 'key_config_5x'
