@@ -173,6 +173,8 @@ variables:
 trigger:
 - platform: event
   event_type: zwave_js_value_notification
+  event_data:
+    device_id: !input zwavejs_device
 condition: '{{ trigger.event.data.device_id == (zwavejs_device | string) and trigger.event.data.command_class == 91 }}'
 action:
 - variables:
