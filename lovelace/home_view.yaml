@@ -146,6 +146,7 @@ cards:
           - type: section
             label: Outside
           - cover.garage_door
+          - switch.driveway_lights
           - light.front_porch_light
           - light.back_porch_light
         card_mod:
