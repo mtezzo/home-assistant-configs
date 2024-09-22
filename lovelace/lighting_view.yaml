@@ -290,3 +290,13 @@ cards:
                   border-radius: 20px !important;
                   text-transform: uppercase;
                 }
+      - type: tile
+        entity: switch.driveway_lights
+        vertical: true
+        name: "Driveway"
+        card_mod:
+          style: |
+            ha-card.type-tile {
+              border-radius: 20px !important;
+              text-transform: uppercase;
+            }
