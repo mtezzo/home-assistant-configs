@@ -275,7 +275,7 @@ action:
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}' # Up Pressed 1x
       sequence:
         - choose:
-            - conditions: '{{ default_scene != '' }}'
+            - conditions: '{{ default_scene != "" }}'
               sequence:
                 - service: hue.activate_scene
                   entity_id: !input default_scene
