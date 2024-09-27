@@ -328,7 +328,7 @@ action:
                     transition: '{{ light_transition / 1000 }}'
                     entity_id: !input light
                 - delay:
-                    milliseconds: !input light_transition
+                    milliseconds: '{{ light_transition / brightness_steps_long }}'
             # if light is off and smooth power on is enabled, turn it on at minimum brightness
             - conditions: '{{ states(light) == "off" and smooth_power_on}}'
               sequence:
@@ -338,7 +338,7 @@ action:
                     transition: '{{ light_transition / 1000 }}'
                     entity_id: !input light
                 - delay:
-                    milliseconds: !input light_transition
+                    milliseconds: '{{ light_transition / brightness_steps_long }}'
         # else move on to the loop for increasing the light brightness
         - repeat:
             while: '{{ true }}'
@@ -346,10 +346,10 @@ action:
               - service: light.turn_on
                 data:
                   brightness: '{{ [ [(state_attr(light,"brightness") | default(0) | int)+step_long, min_brightness] | max, max_brightness] | min }}'
-                  transition: 0.25
+                  transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
                   entity_id: !input light
               - delay:
-                  milliseconds: 250
+                  milliseconds: '{{ light_transition / brightness_steps_long }}'
     - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" and states(light) == "on" }}' # Down Key held down
       sequence:
         - choose:
