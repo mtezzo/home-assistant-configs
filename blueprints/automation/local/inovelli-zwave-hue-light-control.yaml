@@ -274,14 +274,14 @@ action:
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}' # Up Pressed 1x
       sequence:
         - choose:
-            - conditions: '{{ default_scene is not None  }}'
+            - conditions: '{{ default_scene is not None }}'
               sequence:
                 - service: hue.activate_scene
                   entity_id: !input default_scene
                   data:
                     transition: '{{ light_transition / 1000 }}'
                 - delay:
-                  milliseconds: '{{ light_transition + 500 }}'
+                    milliseconds: '{{ light_transition + 500 }}'
                 - service: light.turn_on
                   device_id: !input zwavejs_device
                   data:
