@@ -1,0 +1,300 @@
+blueprint:
+  name: Inovelli Dimmer Switch + Philips Hue Bulb Control (ZWave-JS + Hue)
+  description: |
+    For Inovelli Red Series 2-in-1 switch + dimmer, model VZW31-SN in Smart Bulb Mode for controlling Hue Lights.
+  domain: automation
+  input:
+    zwavejs_device:
+      name: Inovelli Smart Dimmer (Z-WaveJS)
+      description: Select the sensor device which offers scene selection.
+        Listed devices are not guaranteed to work with any/all of these button mappings.
+      selector:
+        device:
+          integration: zwave_js
+          manufacturer: Inovelli
+          model: VZW31-SN
+          multiple: false
+    light:
+      name: (Required) Hue Light
+      description: The Hue light which will be controlled with this automation.
+      selector:
+        entity:
+          integration: hue
+          domain: light
+    light_transition:
+      name: (Optional) Light Transition
+      description: Number that represents the time (in milliseconds) the light should take turn on or off, if the light supports it.
+      default: 250
+      selector:
+        number:
+          min: 0
+          max: 60000
+          step: 1
+          unit_of_measurement: milliseconds
+          mode: box
+    min_brightness:
+      name: (Optional) Light minimum brightness
+      description: The minimum brightness the light can be set with this automation.
+      default: 1
+      selector:
+        number:
+          min: 1
+          max: 255
+          step: 1
+          unit_of_measurement: brightness
+          mode: slider
+    max_brightness:
+      name: (Optional) Light maximum brightness
+      description: The maximum brightness the light can be set with this automation.
+      default: 255
+      selector:
+        number:
+          min: 0
+          max: 255
+          step: 1
+          unit_of_measurement: brightness
+          mode: slider
+    force_brightness:
+      name: (Optional) Force brightness value at turn on
+      description: Force brightness to the "On brightness" input value, when the light is being turned on.
+      default: false
+      selector:
+        boolean:
+    on_brightness:
+      name: (Optional) On brightness
+      description: Brightness value to force when turning on the light
+      default: 1
+      selector:
+        number:
+          min: 0
+          max: 255
+          step: 1
+          unit_of_measurement: brightness
+          mode: slider
+    smooth_power_on:
+      name: (Optional) Smooth power on
+      description: Force the light to turn on at minimum brightness when a brightness up command (single or continuous) is triggered and light is off.
+      default: true
+      selector:
+        boolean:
+    smooth_power_off:
+      name: (Optional) Smooth power off
+      description: Allow a brightness down command (single or continuous) to turn off the light when at minimum brightness. Disabling this will prevent the light from being turned off by brightness down commands.
+      default: true
+      selector:
+        boolean:
+    is_key_up_scene_two:
+      name: Key Up/Down orientation
+      description: The key-up scene button varies for some devices. Toggle this value
+        when the up/down buttons are backwards.
+      default: true
+      selector:
+        boolean:
+    key_up:
+      name: Key Up/On press 1x
+      description: Action to run, when the up button is pressed one time.
+      default: []
+      selector:
+        action: {}
+    key_config:
+      name: Config scene
+      description: Action to run, when the config button is pressed
+      default: []
+      selector:
+        action: {}
+    key_up_held:
+      name: Key Up/On held
+      description: Action to run, when the up button is held.
+      default: []
+      selector:
+        action: {}
+    key_down_held:
+      name: Key Down/Off held
+      description: Action to run, when the down button is held.
+      default: []
+      selector:
+        action: {}
+    key_config_held:
+      name: Key Config held
+      description: Action to run, when the config button is held.
+      default: []
+      selector:
+        action: {}
+    key_up_released:
+      name: Key Up/On released
+      description: Action to run, when the up button is released.
+      default: []
+      selector:
+        action: {}
+    key_down_released:
+      name: Key Down/Off released
+      description: Action to run, when the down button is released.
+      default: []
+      selector:
+        action: {}
+    key_config_released:
+      name: Key Config released
+      description: Action to run, when the config button is released.
+      default: []
+      selector:
+        action: {}   
+    key_up_2x:
+      name: Key Up/On press 2x
+      description: Action to run, when the up button is pressed two times.
+      default: []
+      selector:
+        action: {}
+    key_down_2x:
+      name: Key Down/Off press 2x
+      description: Action to run, when the down button is pressed two times.
+      default: []
+      selector:
+        action: {}
+    key_config_2x:
+      name: Config Press 2x
+      description: Action to run, when the config button is pressed two times.
+      default: []
+      selector:
+        action: {}
+    key_up_3x:
+      name: Key Up/On press 3x
+      description: Action to run, when the up button is pressed three times.
+      default: []
+      selector:
+        action: {}
+    key_down_3x:
+      name: Key Down/Off press 3x
+      description: Action to run, when the down button is pressed three times.
+      default: []
+      selector:
+        action: {}
+    key_config_3x:
+      name: Config Press 3x
+      description: Action to run, when the config button is pressed three times.
+      default: []
+      selector:
+        action: {}
+    key_up_4x:
+      name: Key Up/On press 4x
+      description: Action to run, when the up button is pressed four times.
+      default: []
+      selector:
+        action: {}
+    key_down_4x:
+      name: Key Down/Off press 4x
+      description: Action to run, when the down button is pressed four times.
+      default: []
+      selector:
+        action: {}
+    key_config_4x:
+      name: Config Press 4x
+      description: Action to run, when the config button is pressed four times.
+      default: []
+      selector:
+        action: {}
+    key_up_5x:
+      name: Key Up/On press 5x
+      description: Action to run, when the up button is pressed five times.
+      default: []
+      selector:
+        action: {}
+    key_down_5x:
+      name: Key Down/Off press 5x
+      description: Action to run, when the down button is pressed five times.
+      default: []
+      selector:
+        action: {}
+    key_config_5x:
+      name: Config Press 5x
+      description: Action to run, when the config button is pressed five times.
+      default: []
+      selector:
+        action: {}
+# mode restart ensures hold actions are interrupted when the corresponding release action is received
+mode: restart
+max_exceeded: silent
+variables:
+  zwavejs_device: !input 'zwavejs_device'
+  is_key_up_scene_two: !input 'is_key_up_scene_two'
+  key_up_scene_id: '{{ ( (1,2)[is_key_up_scene_two] | int ) }}'
+  key_down_scene_id: '{{ ( (2,1)[is_key_up_scene_two] | int ) }}'
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: !input zwavejs_device
+condition: '{{ trigger.event.data.device_id == (zwavejs_device | string) and trigger.event.data.command_class == 91 }}'
+action:
+  - variables:
+      scene_id: '{{ (trigger.event.data.property_key_name | int) }}' # values 001,002 and sometimes 003
+      key_pressed: '{{ trigger.event.data.value }}'
+  - choose:
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}' # Up Pressed 1x
+      sequence:
+        - choose:
+            - conditions: '{{ force_brightness }}'
+              sequence:
+                - service: light.turn_on
+                  entity_id: !input light
+                  data:
+                    brightness: !input on_brightness
+                    transition: '{{ light_transition / 1000 }}'
+          default:
+            - service: light.turn_on
+              entity_id: !input light
+              data:
+                transition: '{{ light_transition / 1000 }}'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed" }}' # Down Pressed 1x
+      sequence:
+        - service: light.turn_off
+          entity_id: !input light
+          data:
+            transition: '{{ light_transition / 1000 }}'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed" }}'
+      sequence: !input 'key_config'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyReleased" }}'
+      sequence: !input 'key_up_released'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyReleased" }}'
+      sequence: !input 'key_down_released'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyReleased" }}'
+      sequence: !input 'key_config_released'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyHeldDown" }}'
+      sequence:
+        # if looping is enabled, loop the action indefinitely
+        # repeat until the automation is restarted ie. when the corresponding release message is received
+        - repeat:
+            sequence: !input 'key_up_held'
+            until: '{{ not is_loop_for_key_up_held }}'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" }}'
+      sequence:
+        # if looping is enabled, loop the action indefinitely
+        # repeat until the automation is restarted ie. when the corresponding release message is received
+        - repeat:
+            sequence: !input 'key_down_held'
+            until: '{{ not is_loop_for_key_down_held }}'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyHeldDown" }}'
+      sequence: !input 'key_config_held'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed2x" }}'
+      sequence: !input 'key_up_2x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed2x" }}'
+      sequence: !input 'key_down_2x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed2x" }}'
+      sequence: !input 'key_config_2x'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed3x" }}'
+      sequence: !input 'key_up_3x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed3x" }}'
+      sequence: !input 'key_down_3x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed3x" }}'
+      sequence: !input 'key_config_3x'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed4x" }}'
+      sequence: !input 'key_up_4x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed4x" }}'
+      sequence: !input 'key_down_4x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed4x" }}'
+      sequence: !input 'key_config_4x'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed5x" }}'
+      sequence: !input 'key_up_5x'
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed5x" }}'
+      sequence: !input 'key_down_5x'
+    - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed5x" }}'
+      sequence: !input 'key_config_5x'
