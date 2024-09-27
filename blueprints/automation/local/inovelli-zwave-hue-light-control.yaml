@@ -22,8 +22,8 @@ blueprint:
           integration: hue
           domain: light
     default_scene:
-      name: (Required) Default Scene
-      description: Select the Hue Scene to apply to the light by default.
+      name: Default Scene
+      description: Activate a Hue Scene on Key Up/On press 1x.
       selector:
         entity:
           integration: hue
@@ -248,6 +248,7 @@ variables:
   key_up_scene_id: '{{ ( (1,2)[is_key_up_scene_two] | int ) }}'
   key_down_scene_id: '{{ ( (2,1)[is_key_up_scene_two] | int ) }}'
   light: !input light
+  default_scene: !input default_scene
   light_transition: !input light_transition
   min_brightness: !input min_brightness
   max_brightness: !input max_brightness
@@ -273,18 +274,32 @@ action:
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}' # Up Pressed 1x
       sequence:
         - choose:
-            - conditions: '{{ force_brightness }}'
+            - conditions: '{{ default_scene is not None  }}'
               sequence:
+                - service: hue.activate_scene
+                  entity_id: !input default_scene
+                  data:
+                    transition: '{{ light_transition / 1000 }}'
+                - delay:
+                  milliseconds: '{{ light_transition + 500 }}'
+                # - service: light.turn_on
+                #   entity_id: 
+                #   data:
+                #     brightness: '{{ state_attr(light, "brightness") | default(255) | int }}'
+          default:
+            - choose:
+                - conditions: '{{ force_brightness }}'
+                  sequence:
+                    - service: light.turn_on
+                      entity_id: !input light
+                      data:
+                        brightness: !input on_brightness
+                        transition: '{{ (on_brightness / 255) * (light_transition / 1000) }}'
+              default:
                 - service: light.turn_on
                   entity_id: !input light
                   data:
-                    brightness: !input on_brightness
-                    transition: '{{ (on_brightness / 255) * (light_transition / 1000) }}'
-          default:
-            - service: light.turn_on
-              entity_id: !input light
-              data:
-                transition: '{{ light_transition / 1000 }}'
+                    transition: '{{ light_transition / 1000 }}'
     - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed" }}' # Down Pressed 1x
       sequence:
         - service: light.turn_off
