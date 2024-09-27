@@ -282,7 +282,7 @@ action:
                   data:
                     transition: '{{ light_transition / 1000 }}'
                 - delay:
-                    milliseconds: '{{ light_transition + 500 }}'
+                    milliseconds: '{{ light_transition + 1000 }}'
                 - service: light.turn_on
                   target:
                     device_id: !input zwavejs_device
