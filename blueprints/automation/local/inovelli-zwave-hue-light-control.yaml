@@ -326,7 +326,7 @@ action:
                   entity_id: !input light
               - delay:
                   milliseconds: 250
-    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" states(light) == "on" }}' # Down Key held down
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" and states(light) == "on" }}' # Down Key held down
       sequence:
         - choose:
             # using a separate sequence for the smooth power off feature to not perform unnecessary checks at every iteration when the feature is disabled
