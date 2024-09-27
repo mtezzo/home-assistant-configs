@@ -24,6 +24,7 @@ blueprint:
     default_scene:
       name: Default Scene
       description: Activate a Hue Scene on Key Up/On press 1x.
+      default: ''
       selector:
         entity:
           integration: hue
@@ -274,7 +275,7 @@ action:
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}' # Up Pressed 1x
       sequence:
         - choose:
-            - conditions: '{{ default_scene is not None }}'
+            - conditions: '{{ default_scene != '' }}'
               sequence:
                 - service: hue.activate_scene
                   entity_id: !input default_scene
