@@ -54,6 +54,28 @@ blueprint:
           step: 1
           unit_of_measurement: brightness
           mode: slider
+    brightness_steps_short:
+      name: (Optional) Light brightness steps - short actions
+      description: Number of steps from min to max brightness when controlling brightness with short actions (eg. button press).
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 255
+          step: 1
+          unit_of_measurement: steps
+          mode: box
+    brightness_steps_long:
+      name: (Optional) Light brightness steps - long actions
+      description: Number of steps from min to max brightness when controlling brightness with long actions (eg. button hold or controller rotation).
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 255
+          step: 1
+          unit_of_measurement: steps
+          mode: box
     force_brightness:
       name: (Optional) Force brightness value at turn on
       description: Force brightness to the "On brightness" input value, when the light is being turned on.
@@ -218,6 +240,18 @@ variables:
   is_key_up_scene_two: !input 'is_key_up_scene_two'
   key_up_scene_id: '{{ ( (1,2)[is_key_up_scene_two] | int ) }}'
   key_down_scene_id: '{{ ( (2,1)[is_key_up_scene_two] | int ) }}'
+  light: !input light
+  light_transition: !input light_transition
+  min_brightness: !input min_brightness
+  max_brightness: !input max_brightness
+  brightness_steps_short: !input brightness_steps_short
+  brightness_steps_long: !input brightness_steps_long
+  force_brightness: !input force_brightness
+  on_brightness: !input on_brightness
+  smooth_power_on: !input smooth_power_on
+  smooth_power_off: !input smooth_power_off
+  step_short: '{{ (max_brightness-min_brightness)/brightness_steps_short }}'
+  step_long: '{{ (max_brightness-min_brightness)/brightness_steps_long }}'
 trigger:
   - platform: event
     event_type: zwave_js_value_notification
@@ -258,20 +292,82 @@ action:
       sequence: !input 'key_down_released'
     - conditions: '{{ scene_id == 3 and key_pressed == "KeyReleased" }}'
       sequence: !input 'key_config_released'
-    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyHeldDown" }}'
+    - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyHeldDown" }}' # Up held down
       sequence:
-        # if looping is enabled, loop the action indefinitely
-        # repeat until the automation is restarted ie. when the corresponding release message is received
+        # first step for the smooth power on feature: subsequent steps can skip this check since light will be already on
+        - choose:
+            # if light is off and smooth power on is disabled, turn it on at the previously saved brightness
+            - conditions: '{{ states(light) == "off" and not smooth_power_on}}'
+              sequence:
+                - service: light.turn_on
+                  data:
+                    transition: '{{ light_transition / 1000 }}'
+                    entity_id: !input light
+                - delay:
+                    milliseconds: !input light_transition
+            # if light is off and smooth power on is enabled, turn it on at minimum brightness
+            - conditions: '{{ states(light) == "off" and smooth_power_on}}'
+              sequence:
+                - service: light.turn_on
+                  data:
+                    brightness: '{{ min_brightness }}'
+                    transition: '{{ light_transition / 1000 }}'
+                    entity_id: !input light
+                - delay:
+                    milliseconds: !input light_transition
+        # else move on to the loop for increasing the light brightness
         - repeat:
-            sequence: !input 'key_up_held'
-            until: '{{ not is_loop_for_key_up_held }}'
-    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" }}'
+            while: '{{ true }}'
+            sequence:
+              - service: light.turn_on
+                data:
+                  brightness: '{{ [ [state_attr(light,"brightness")+step_long, min_brightness] | max, max_brightness] | min }}'
+                  transition: 0.25
+                  entity_id: !input light
+              - delay:
+                  milliseconds: 250
+    - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" states(light) == "on" }}' # Down Key held down
       sequence:
-        # if looping is enabled, loop the action indefinitely
-        # repeat until the automation is restarted ie. when the corresponding release message is received
-        - repeat:
-            sequence: !input 'key_down_held'
-            until: '{{ not is_loop_for_key_down_held }}'
+        - choose:
+            # using a separate sequence for the smooth power off feature to not perform unnecessary checks at every iteration when the feature is disabled
+            - conditions: '{{ smooth_power_off }}'
+              sequence:
+                - repeat:
+                    # continue lowering brightness until the light turns off
+                    while: '{{ states(light) != "off" }}'
+                    sequence:
+                      - choose:
+                          # if the light is at minimum brightness, turn it off
+                          - conditions: '{{ state_attr(light,"brightness") == min_brightness }}'
+                            sequence:
+                              - service: light.turn_off
+                                data:
+                                  transition: '{{ light_transition / 1000 }}'
+                                  entity_id: !input light
+                              - delay:
+                                  milliseconds: !input light_transition
+                        # else lower the light's brightness
+                        default:
+                          - service: light.turn_on
+                            data:
+                              brightness: '{{ [ [state_attr(light,"brightness")-step_long, min_brightness] | max, max_brightness] | min }}'
+                              transition: 0.25
+                              entity_id: !input light
+                          - delay:
+                              milliseconds: 250
+          default:
+            - repeat:
+                # continue lowering brightness until the light turns off
+                while: '{{ states(light) != "off" }}'
+                sequence:
+                  # lower the light's brightness. since smooth power off is disabled, never let the brightness move below the user-provided minimum
+                  - service: light.turn_on
+                    data:
+                      brightness: '{{ [ [state_attr(light,"brightness")-step_long, min_brightness] | max, max_brightness] | min }}'
+                      transition: 0.25
+                      entity_id: !input light
+                  - delay:
+                      milliseconds: 250
     - conditions: '{{ scene_id == 3 and key_pressed == "KeyHeldDown" }}'
       sequence: !input 'key_config_held'
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed2x" }}'
