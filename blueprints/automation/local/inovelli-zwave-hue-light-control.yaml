@@ -350,7 +350,7 @@ action:
                         default:
                           - service: light.turn_on
                             data:
-                              brightness: '{{ [ [(state_attr(light,"brightness") default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
+                              brightness: '{{ [ [(state_attr(light,"brightness") | default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
                               transition: 0.25
                               entity_id: !input light
                           - delay:
@@ -363,7 +363,7 @@ action:
                   # lower the light's brightness. since smooth power off is disabled, never let the brightness move below the user-provided minimum
                   - service: light.turn_on
                     data:
-                      brightness: '{{ [ [(state_attr(light,"brightness") default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
+                      brightness: '{{ [ [(state_attr(light,"brightness") | default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
                       transition: 0.25
                       entity_id: !input light
                   - delay:
