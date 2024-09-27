@@ -21,14 +21,13 @@ blueprint:
         entity:
           integration: hue
           domain: light
-    scene:
+    default_scene:
       name: (Required) Default Scene
       description: Select the Hue Scene to apply to the light by default
       selector:
         entity:
           integration: hue
           domain: scene
-        multiple: false
     light_transition:
       name: (Optional) Light Transition
       description: Number that represents the time (in milliseconds) the light should take turn on or off, if the light supports it.
