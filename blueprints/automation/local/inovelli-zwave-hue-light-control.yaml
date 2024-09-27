@@ -21,6 +21,14 @@ blueprint:
         entity:
           integration: hue
           domain: light
+    scene:
+      name: (Required) Default Scene
+      description: Select the Hue Scene to apply to the light by default
+      selector:
+        entity:
+          integration: hue
+          domain: scene
+        multiple: false
     light_transition:
       name: (Optional) Light Transition
       description: Number that represents the time (in milliseconds) the light should take turn on or off, if the light supports it.
@@ -272,7 +280,7 @@ action:
                   entity_id: !input light
                   data:
                     brightness: !input on_brightness
-                    transition: '{{ light_transition / 1000 }}'
+                    transition: '{{ (on_brightness / 255) * (light_transition / 1000) }}'
           default:
             - service: light.turn_on
               entity_id: !input light
@@ -283,7 +291,7 @@ action:
         - service: light.turn_off
           entity_id: !input light
           data:
-            transition: '{{ light_transition / 1000 }}'
+            transition: '{{ ((state_attr(light,"brightness") | default(0) | int) / 255) * (light_transition / 1000) }}'
     - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed" }}'
       sequence: !input 'key_config'
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyReleased" }}'
