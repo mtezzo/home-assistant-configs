@@ -23,7 +23,7 @@ blueprint:
           domain: light
     default_scene:
       name: (Required) Default Scene
-      description: Select the Hue Scene to apply to the light by default
+      description: Select the Hue Scene to apply to the light by default.
       selector:
         entity:
           integration: hue
