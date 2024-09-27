@@ -282,10 +282,10 @@ action:
                     transition: '{{ light_transition / 1000 }}'
                 - delay:
                   milliseconds: '{{ light_transition + 500 }}'
-                # - service: light.turn_on
-                #   entity_id: 
-                #   data:
-                #     brightness: '{{ state_attr(light, "brightness") | default(255) | int }}'
+                - service: light.turn_on
+                   device_id: !input zwavejs_device
+                   data:
+                     brightness: '{{ state_attr(light, "brightness") | default(255) | int }}'
           default:
             - choose:
                 - conditions: '{{ force_brightness }}'
