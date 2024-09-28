@@ -325,7 +325,7 @@ action:
               sequence:
                 - service: light.turn_on
                   data:
-                    transition: '{{ light_transition / 1000 }}'
+                    transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
                     entity_id: !input light
                 - delay:
                     milliseconds: '{{ light_transition / brightness_steps_long }}'
@@ -335,7 +335,7 @@ action:
                 - service: light.turn_on
                   data:
                     brightness: '{{ min_brightness }}'
-                    transition: '{{ light_transition / 1000 }}'
+                    transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
                     entity_id: !input light
                 - delay:
                     milliseconds: '{{ light_transition / brightness_steps_long }}'
@@ -368,19 +368,19 @@ action:
                             sequence:
                               - service: light.turn_off
                                 data:
-                                  transition: '{{ light_transition / 1000 }}'
+                                  transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
                                   entity_id: !input light
                               - delay:
-                                  milliseconds: !input light_transition
+                                  milliseconds: '{{ light_transition / brightness_steps_long }}'
                         # else lower the light's brightness
                         default:
                           - service: light.turn_on
                             data:
                               brightness: '{{ [ [(state_attr(light,"brightness") | default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
-                              transition: 0.25
+                              transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
                               entity_id: !input light
                           - delay:
-                              milliseconds: 250
+                              milliseconds: '{{ light_transition / brightness_steps_long }}'
           default:
             - repeat:
                 # continue lowering brightness until the light turns off
@@ -390,10 +390,10 @@ action:
                   - service: light.turn_on
                     data:
                       brightness: '{{ [ [(state_attr(light,"brightness") | default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
-                      transition: 0.25
+                      transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
                       entity_id: !input light
                   - delay:
-                      milliseconds: 250
+                      milliseconds: '{{ light_transition / brightness_steps_long }}'
     - conditions: '{{ scene_id == 3 and key_pressed == "KeyHeldDown" }}'
       sequence: !input 'key_config_held'
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed2x" }}'
