@@ -341,15 +341,17 @@ action:
                     milliseconds: '{{ light_transition / brightness_steps_long }}'
         # else move on to the loop for increasing the light brightness
         - repeat:
-            while: '{{ true }}'
+            #while: '{{ true }}'
+            count: '{{ ((255 - (state_attr(light,"brightness") | default(0) | int)) / (255 / step_long)) | int }}'
             sequence:
-              - service: light.turn_on
-                data:
-                  brightness: '{{ [ [(state_attr(light,"brightness") | default(0) | int)+step_long, min_brightness] | max, max_brightness] | min }}'
-                  transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
-                  entity_id: !input light
-              - delay:
-                  milliseconds: '{{ light_transition / brightness_steps_long }}'
+              - parallel:
+                - service: light.turn_on
+                  data:
+                    brightness: '{{ [ [(state_attr(light,"brightness") | default(0) | int)+step_long, min_brightness] | max, max_brightness] | min }}'
+                    transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
+                    entity_id: !input light
+                - delay:
+                    milliseconds: '{{ light_transition / brightness_steps_long }}'
     - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" and states(light) == "on" }}' # Down Key held down
       sequence:
         - choose:
