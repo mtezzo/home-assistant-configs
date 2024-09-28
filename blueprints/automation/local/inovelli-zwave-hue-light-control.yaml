@@ -29,14 +29,25 @@ blueprint:
         entity:
           integration: hue
           domain: scene
-    light_transition:
-      name: (Optional) Light Transition
-      description: Number that represents the time (in milliseconds) the light should take turn on or off, if the light supports it.
+    dimming_speed:
+      name: (Optional) Dimming Speed
+      description: Number that represents the time (in milliseconds) the light should take to change the dim level, if the light supports it.
       default: 250
       selector:
         number:
           min: 0
-          max: 60000
+          max: 5580000
+          step: 1
+          unit_of_measurement: milliseconds
+          mode: box
+    ramp_rate:
+      name: (Optional) Ramp Rate
+      description: Number that represents the time (in milliseconds) the light should take to turn from off to on, if the light supports it.
+      default: 250
+      selector:
+        number:
+          min: 0
+          max: 5580000
           step: 1
           unit_of_measurement: milliseconds
           mode: box
@@ -250,7 +261,8 @@ variables:
   key_down_scene_id: '{{ ( (2,1)[is_key_up_scene_two] | int ) }}'
   light: !input light
   default_scene: !input default_scene
-  light_transition: !input light_transition
+  dimming_speed: !input dimming_speed
+  ramp_rate: !input ramp_rate
   min_brightness: !input min_brightness
   max_brightness: !input max_brightness
   brightness_steps_short: !input brightness_steps_short
@@ -280,9 +292,9 @@ action:
                 - service: hue.activate_scene
                   entity_id: !input default_scene
                   data:
-                    transition: '{{ light_transition / 1000 }}'
+                    transition: '{{ ramp_rate / 1000 }}'
                 - delay:
-                    milliseconds: '{{ light_transition + 1000 }}'
+                    milliseconds: '{{ ramp_rate + 1000 }}'
                 - service: light.turn_on
                   target:
                     device_id: !input zwavejs_device
@@ -296,18 +308,18 @@ action:
                       entity_id: !input light
                       data:
                         brightness: !input on_brightness
-                        transition: '{{ (on_brightness / 255) * (light_transition / 1000) }}'
+                        transition: '{{ (on_brightness / 255) * (ramp_rate / 1000) }}'
               default:
                 - service: light.turn_on
                   entity_id: !input light
                   data:
-                    transition: '{{ light_transition / 1000 }}'
+                    transition: '{{ ramp_rate / 1000 }}'
     - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyPressed" }}' # Down Pressed 1x
       sequence:
         - service: light.turn_off
           entity_id: !input light
           data:
-            transition: '{{ ((state_attr(light,"brightness") | default(0) | int) / 255) * (light_transition / 1000) }}'
+            transition: '{{ ((state_attr(light,"brightness") | default(0) | int) / 255) * (ramp_rate / 1000) }}'
     - conditions: '{{ scene_id == 3 and key_pressed == "KeyPressed" }}'
       sequence: !input 'key_config'
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyReleased" }}'
@@ -325,20 +337,20 @@ action:
               sequence:
                 - service: light.turn_on
                   data:
-                    transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
+                    transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
                     entity_id: !input light
                 - delay:
-                    milliseconds: '{{ light_transition / brightness_steps_long }}'
+                    milliseconds: '{{ dimming_speed / brightness_steps_long }}'
             # if light is off and smooth power on is enabled, turn it on at minimum brightness
             - conditions: '{{ states(light) == "off" and smooth_power_on}}'
               sequence:
                 - service: light.turn_on
                   data:
                     brightness: '{{ min_brightness }}'
-                    transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
+                    transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
                     entity_id: !input light
                 - delay:
-                    milliseconds: '{{ light_transition / brightness_steps_long }}'
+                    milliseconds: '{{ dimming_speed / brightness_steps_long }}'
         # else move on to the loop for increasing the light brightness
         - repeat:
             #while: '{{ true }}'
@@ -348,10 +360,10 @@ action:
                 - service: light.turn_on
                   data:
                     brightness: '{{ [ [(state_attr(light,"brightness") | default(0) | int)+step_long, min_brightness] | max, max_brightness] | min }}'
-                    transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
+                    transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
                     entity_id: !input light
                 - delay:
-                    milliseconds: '{{ light_transition / brightness_steps_long }}'
+                    milliseconds: '{{ dimming_speed / brightness_steps_long }}'
     - conditions: '{{ scene_id == key_down_scene_id and key_pressed == "KeyHeldDown" and states(light) == "on" }}' # Down Key held down
       sequence:
         - choose:
@@ -368,19 +380,19 @@ action:
                             sequence:
                               - service: light.turn_off
                                 data:
-                                  transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
+                                  transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
                                   entity_id: !input light
                               - delay:
-                                  milliseconds: '{{ light_transition / brightness_steps_long }}'
+                                  milliseconds: '{{ dimming_speed / brightness_steps_long }}'
                         # else lower the light's brightness
                         default:
                           - service: light.turn_on
                             data:
                               brightness: '{{ [ [(state_attr(light,"brightness") | default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
-                              transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
+                              transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
                               entity_id: !input light
                           - delay:
-                              milliseconds: '{{ light_transition / brightness_steps_long }}'
+                              milliseconds: '{{ dimming_speed / brightness_steps_long }}'
           default:
             - repeat:
                 # continue lowering brightness until the light turns off
@@ -390,10 +402,10 @@ action:
                   - service: light.turn_on
                     data:
                       brightness: '{{ [ [(state_attr(light,"brightness") | default(1) | int )-step_long, min_brightness] | max, max_brightness] | min }}'
-                      transition: '{{ (light_transition / brightness_steps_long) / 1000 }}'
+                      transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
                       entity_id: !input light
                   - delay:
-                      milliseconds: '{{ light_transition / brightness_steps_long }}'
+                      milliseconds: '{{ dimming_speed / brightness_steps_long }}'
     - conditions: '{{ scene_id == 3 and key_pressed == "KeyHeldDown" }}'
       sequence: !input 'key_config_held'
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed2x" }}'
