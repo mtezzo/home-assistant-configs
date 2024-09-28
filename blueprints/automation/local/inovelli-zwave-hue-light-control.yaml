@@ -21,6 +21,13 @@ blueprint:
         entity:
           integration: hue
           domain: light
+    helper_last_controller_event:
+      name: (Required) Helper - Last Controller Event
+      description: Input Text used to store the last event fired by the controller. You will need to manually create a text input entity for this, please read the blueprint Additional Notes for more info.
+      default: ''
+      selector:
+        entity:
+          domain: input_text
     default_scene:
       name: Default Scene
       description: Activate a Hue Scene on Key Up/On press 1x.
@@ -260,6 +267,7 @@ variables:
   key_up_scene_id: '{{ ( (1,2)[is_key_up_scene_two] | int ) }}'
   key_down_scene_id: '{{ ( (2,1)[is_key_up_scene_two] | int ) }}'
   light: !input light
+  helper_last_controller_event: !input helper_last_controller_event
   default_scene: !input default_scene
   dimming_speed: !input dimming_speed
   ramp_rate: !input ramp_rate
@@ -283,6 +291,13 @@ action:
   - variables:
       scene_id: '{{ (trigger.event.data.property_key_name | int) }}' # values 001,002 and sometimes 003
       key_pressed: '{{ trigger.event.data.value }}'
+      trigger_delta: '{{ (as_timestamp(now()) - ((states(helper_last_controller_event) | from_json).t if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\": \".*\"|\"t\": \d+\.\d+)(, )?){2}\}$")) else as_timestamp("1970-01-01 00:00:00"))) * 1000 }}'
+      last_controller_event: '{{ (states(helper_last_controller_event) | from_json).a if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\": \".*\"|\"t\": \d+\.\d+)(, )?){2}\}$")) else "" }}'
+ # update helper
+  - service: input_text.set_value
+    data:
+      entity_id: !input helper_last_controller_event
+      value: '{{ {"a":trigger_action,"t":as_timestamp(now())} | to_json }}'
   - choose:
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}' # Up Pressed 1x
       sequence:
