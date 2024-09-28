@@ -297,7 +297,7 @@ action:
   - service: input_text.set_value
     data:
       entity_id: !input helper_last_controller_event
-      value: '{{ {"a":scene_id + "-" + key_pressed,"t":as_timestamp(now())} | to_json }}'
+      value: '{{ {"a":scene_id | string + "-" + key_pressed,"t":as_timestamp(now())} | to_json }}'
   - choose:
     - conditions: '{{ scene_id == key_up_scene_id and key_pressed == "KeyPressed" }}' # Up Pressed 1x
       sequence:
