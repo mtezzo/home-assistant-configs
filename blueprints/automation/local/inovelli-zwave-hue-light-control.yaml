@@ -337,20 +337,20 @@ action:
               sequence:
                 - service: light.turn_on
                   data:
-                    transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
+                    transition: '{{ ramp_rate / 1000 }}'
                     entity_id: !input light
                 - delay:
-                    milliseconds: '{{ dimming_speed / brightness_steps_long }}'
+                    milliseconds: '{{ ramp_rate }}'
             # if light is off and smooth power on is enabled, turn it on at minimum brightness
             - conditions: '{{ states(light) == "off" and smooth_power_on}}'
               sequence:
                 - service: light.turn_on
                   data:
                     brightness: '{{ min_brightness }}'
-                    transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
+                    transition: '{{ ramp_rate / 1000 }}'
                     entity_id: !input light
                 - delay:
-                    milliseconds: '{{ dimming_speed / brightness_steps_long }}'
+                    milliseconds: '{{ ramp_rate }}'
         # else move on to the loop for increasing the light brightness
         - repeat:
             #while: '{{ true }}'
@@ -380,10 +380,10 @@ action:
                             sequence:
                               - service: light.turn_off
                                 data:
-                                  transition: '{{ (dimming_speed / brightness_steps_long) / 1000 }}'
+                                  transition: '{{ ramp_rate / 1000 }}'
                                   entity_id: !input light
                               - delay:
-                                  milliseconds: '{{ dimming_speed / brightness_steps_long }}'
+                                  milliseconds: '{{ ramp_rate }}'
                         # else lower the light's brightness
                         default:
                           - service: light.turn_on
