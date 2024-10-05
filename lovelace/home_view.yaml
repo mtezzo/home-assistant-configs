@@ -153,7 +153,7 @@ cards:
           - light.front_porch_light
           - light.back_porch_light
         card_mod:
-          class: middle
+          class: middle-left
           style: |
             ha-card.middle {
               border-left-color: var(--lcars-c54, transparent) !important;
@@ -210,7 +210,7 @@ cards:
           - person.michael
           - zone.home
         card_mod:
-          class: middle
+          class: middle-left
       - type: markdown
         card_mod:
           class: middle-left
@@ -223,7 +223,7 @@ cards:
           - entity: sensor.river_level
             name: Height
         card_mod:
-          class: middle
+          class: middle-left
       - type: markdown
         card_mod:
           class: footer-left
