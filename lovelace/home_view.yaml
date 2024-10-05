@@ -71,10 +71,12 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: header-left
-        content: '# Favorites'
+        content: |
+          <h1>Favorites</h1>
       - type: entities
         show_header_toggle: false
         entities:
@@ -165,8 +167,10 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: markdown
-        content: '# Climate'
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>Climate</h1>
         card_mod:
           class: header-right
       # - type: weather-forecast
@@ -190,15 +194,19 @@ cards:
         entity: climate.dining_room
         card_mod:
           class: middle-right
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: footer-right
-        content: '# &nbsp;'
+        content: |
+          <h1>&nbsp;</h1>
 
   - type: vertical-stack
     cards:
-      - type: markdown
-        content: '# Location'
+      - type: custom:html-card
+        title: ''
+        content: |
+          <h1>Location</h1>
         card_mod:
           class: header-left
       - type: map
@@ -211,10 +219,12 @@ cards:
           - zone.home
         card_mod:
           class: middle-left
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: middle-left
-        content: '# River Level'
+        content: |
+          <h1>River Level</h1>
       - type: custom:mini-graph-card
         icon: mdi:waves
         hours_to_show: 120
@@ -224,7 +234,9 @@ cards:
             name: Height
         card_mod:
           class: middle-left
-      - type: markdown
+      - type: custom:html-card
+        title: ''
         card_mod:
           class: footer-left
-        content: '# &nbsp;'
+        content: |
+          <h1>&nbsp;</h1>

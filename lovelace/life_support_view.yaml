@@ -10,12 +10,12 @@ cards:
         content: |
           <h1>Life Support</h1>
         card_mod:
-          class: header
+          class: header-left
 
       - type: thermostat
         entity: climate.dining_room
         card_mod:
-          class: middle
+          class: middle-left
 
       - type: statistics-graph
         title: 'Temperature'
@@ -34,7 +34,7 @@ cards:
           - entity: sensor.mean_basement_temperature
             name: Basement
         card_mod:
-          class: middle
+          class: middle-left
 
       - type: statistics-graph
         title: 'Humidity'
@@ -53,14 +53,14 @@ cards:
           - entity: sensor.mean_basement_humidity
             name: Basement
         card_mod:
-          class: middle
+          class: middle-left
 
       - type: custom:html-card
         title: ''
         content: |
           <h1>&nbsp;</h1>
         card_mod:
-          class: footer
+          class: footer-left
 
   - type: vertical-stack
     cards:
@@ -71,7 +71,7 @@ cards:
             content: |
               <h1>Workroom Closet</h1>
             card_mod:
-              class: header
+              class: header-left
           - type: custom:mini-graph-card
             name: HUMIDITY
             entities:
@@ -82,7 +82,7 @@ cards:
               legend: false
               labels: true
             card_mod:
-              class: middle
+              class: middle-left
           - type: horizontal-stack
             cards:
               - type: custom:mini-graph-card
@@ -107,7 +107,7 @@ cards:
             content: |
               <h1>&nbsp;</h1>
             card_mod:
-              class: footer
+              class: footer-left
 
       - type: vertical-stack
         cards:
@@ -116,7 +116,7 @@ cards:
             content: |
               <h1>Humidor</h1>
             card_mod:
-              class: header
+              class: header-left
           - type: custom:mini-graph-card
             name: HUMIDITY
             entities:
@@ -127,7 +127,7 @@ cards:
               legend: false
               labels: true
             card_mod:
-              class: middle
+              class: middle-left
           - type: horizontal-stack
             cards:
               - type: custom:mini-graph-card
@@ -152,7 +152,7 @@ cards:
             content: |
               <h1>&nbsp;</h1>
             card_mod:
-              class: footer
+              class: footer-left
 
       - type: vertical-stack
         cards:
@@ -161,7 +161,7 @@ cards:
             content: |
               <h1>Wine Rack</h1>
             card_mod:
-              class: header
+              class: header-left
           - type: custom:mini-graph-card
             name: HUMIDITY
             entities:
@@ -172,7 +172,7 @@ cards:
               legend: false
               labels: true
             card_mod:
-              class: middle
+              class: middle-left
           - type: horizontal-stack
             cards:
               - type: custom:mini-graph-card
@@ -197,4 +197,4 @@ cards:
             content: |
               <h1>&nbsp;</h1>
             card_mod:
-              class: footer
+              class: footer-left

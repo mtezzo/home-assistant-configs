@@ -4,7 +4,7 @@ path: system
 cards:
   - type: vertical-stack
     cards:
-      - type: button
+      - type: button-left
         show_name: true
         show_icon: true
         show_state: true
@@ -14,7 +14,7 @@ cards:
         card_mod:
           class: button-lozenge-right
 
-      - type: button
+      - type: button-left
         show_name: true
         show_icon: true
         show_state: true
@@ -24,7 +24,7 @@ cards:
         card_mod:
           class: button-lozenge
 
-      - type: button
+      - type: button-left
         show_name: true
         show_icon: true
         show_state: true
@@ -91,7 +91,7 @@ cards:
         content: |
           <h1>System Diagnostics</h1>
         card_mod:
-          class: header
+          class: header-left
 
       - type: entities
         title: Hardware Status
@@ -110,14 +110,14 @@ cards:
           - sensor.load_15m
           - sensor.current_version
         card_mod:
-          class: middle
+          class: middle-left
 
       - type: custom:html-card
         title: ''
         content: |
           <h1>Resource Utilization</h1>
         card_mod:
-          class: middle
+          class: middle-left
 
       - type: custom:mini-graph-card
         name: Resources
@@ -130,14 +130,14 @@ cards:
           - entity: sensor.disk_use_percent
             name: DISK
         card_mod:
-          class: middle
+          class: middle-left
 
       - type: custom:html-card
         title: ''
         content: |
           <h1>Failing Batteries</h1>
         card_mod:
-          class: middle
+          class: middle-left
 
       - type: custom:auto-entities
         card:
@@ -145,7 +145,7 @@ cards:
           # title: Batteries
           show_header_toggle: false
           card_mod:
-            class: footer
+            class: footer-left
         filter:
           include:
             - domain: sensor
@@ -158,4 +158,4 @@ cards:
           content: |
             <h1>None</h1>
           card_mod:
-            class: footer
+            class: footer-left

@@ -50,13 +50,13 @@ cards:
         content: |
           <h1>Computers</h1>
         card_mod:
-          class: header
+          class: header-left
       - type: entities
         show_header_toggle: false
         entities:
           - input_button.nemesis_wol
         card_mod:
-          class: middle
+          class: middle-left
           style: |
             ha-card.middle {
               border-left-color: var(--lcars-c54, transparent) !important;
@@ -64,7 +64,7 @@ cards:
       - type: media-control
         entity: media_player.family_room_apple_tv
         card_mod:
-          class: middle
+          class: middle-left
           style: |
             ha-card.middle {
               border-left-color: var(--lcars-c54, transparent) !important;
@@ -72,7 +72,7 @@ cards:
       - type: media-control
         entity: media_player.basement_apple_tv
         card_mod:
-          class: middle
+          class: middle-left
           style: |
             ha-card.middle {
               border-left-color: var(--lcars-c54, transparent) !important;
@@ -80,4 +80,4 @@ cards:
       - type: media-control
         entity: media_player.family_room_tv
         card_mod:
-          class: footer
+          class: footer-left

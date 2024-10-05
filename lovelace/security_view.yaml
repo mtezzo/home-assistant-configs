@@ -9,49 +9,49 @@ cards:
         content: |
           <h1>Security Subsystem</h1>
         card_mod:
-          class: header
+          class: header-left
       - type: custom:html-card
         title: ''
         content: |
           <h1>Basement</h1>
         card_mod:
-          class: middle
+          class: middle-left
       # - type: picture-entity
       #   name: Basement
       #   show_name: false
       #   show_state: false
       #   entity: camera.mnemosyne_basement
       #   card_mod:
-      #     class: middle
+      #     class: middle-left
       - type: area
         area: 65c1e8c8ce7046b49fd30a25bb1d1d79
         show_camera: true
         card_mod:
-          class: middle
+          class: middle-left
       - type: custom:html-card
         title: ''
         content: |
           <h1>Family Room</h1>
         card_mod:
-          class: middle
+          class: middle-left
       # - type: picture-entity
       #   name: Family Room
       #   show_name: false
       #   show_state: false
       #   entity: camera.mnemosyne_family_room
       #   card_mod:
-      #     class: middle
+      #     class: middle-left
       - type: area
         area: 524d9761030444c38a734882ef7dfec3
         show_camera: true
         card_mod:
-          class: middle
+          class: middle-left
       - type: custom:html-card
         title: ''
         content: |
           <h1>&nbsp;</h1>
         card_mod:
-          class: footer
+          class: footer-left
 
   - type: vertical-stack
     cards:
