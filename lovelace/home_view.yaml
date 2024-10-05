@@ -38,7 +38,7 @@ cards:
               action: more-info
             entity: alarm_control_panel.alarm_system
             card_mod:
-              class: button-lozenge
+              class: button-lozenge-left
           - type: button
             name: 'Radon'
             show_name: true
@@ -48,7 +48,7 @@ cards:
               action: more-info
             entity: sensor.basement_radon_pcil
             card_mod:
-              class: button-lozenge
+              class: button-lozenge-left
               style: |
                 ha-card {
                   {% if states('sensor.basement_radon_pcil') | float < 2.7 -%}
@@ -73,7 +73,7 @@ cards:
     cards:
       - type: markdown
         card_mod:
-          class: header
+          class: header-left
         content: '# Favorites'
       - type: entities
         show_header_toggle: false
@@ -161,14 +161,12 @@ cards:
       - type: media-control
         entity: media_player.family_room_tv
         card_mod:
-          class: footer
+          class: footer-left
 
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Climate</h1>
+      - type: markdown
+        content: '# Climate'
         card_mod:
           class: header-right
       # - type: weather-forecast
@@ -192,21 +190,17 @@ cards:
         entity: climate.dining_room
         card_mod:
           class: middle-right
-      - type: custom:html-card
-        title: ''
+      - type: markdown
         card_mod:
           class: footer-right
-        content: |
-          <h1>&nbsp;</h1>
+        content: '# &nbsp;'
 
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Location</h1>
+      - type: markdown
+        content: '# Location'
         card_mod:
-          class: header
+          class: header-left
       - type: map
         aspect_ratio: '16:9'
         default_zoom: 16
@@ -217,12 +211,10 @@ cards:
           - zone.home
         card_mod:
           class: middle
-      - type: custom:html-card
-        title: ''
+      - type: markdown
         card_mod:
-          class: middle
-        content: |
-          <h1>River Level</h1>
+          class: middle-left
+        content: '# River Level'
       - type: custom:mini-graph-card
         icon: mdi:waves
         hours_to_show: 120
@@ -232,9 +224,7 @@ cards:
             name: Height
         card_mod:
           class: middle
-      - type: custom:html-card
-        title: ''
+      - type: markdown
         card_mod:
-          class: footer
-        content: |
-          <h1>&nbsp;</h1>
+          class: footer-left
+        content: '# &nbsp;'
