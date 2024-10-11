@@ -4,7 +4,7 @@ path: system
 cards:
   - type: vertical-stack
     cards:
-      - type: button-left
+      - type: button
         show_name: true
         show_icon: true
         show_state: true
@@ -14,7 +14,7 @@ cards:
         card_mod:
           class: button-lozenge-right
 
-      - type: button-left
+      - type: button
         show_name: true
         show_icon: true
         show_state: true
@@ -22,9 +22,9 @@ cards:
           action: toggle
         entity: input_boolean.lcars_texture
         card_mod:
-          class: button-lozenge
+          class: button-lozenge-left
 
-      - type: button-left
+      - type: button
         show_name: true
         show_icon: true
         show_state: true
@@ -32,7 +32,7 @@ cards:
           action: toggle
         entity: input_boolean.lcars_sound
         card_mod:
-          class: button-lozenge
+          class: button-lozenge-left
 
       - type: custom:html-card
         title: ''
