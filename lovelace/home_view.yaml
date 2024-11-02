@@ -119,17 +119,17 @@ cards:
           - type: section
             label: Basement
           - type: custom:slider-entity-row
-            entity: light.basement_stairs
+            entity: light.hue_basement_stairs
             name: "Stairs"
             hide_when_off: true
             toggle: true
           - type: custom:slider-entity-row
-            entity: light.basement_tv
+            entity: light.hue_basement_tv
             name: "Overhead"
             hide_when_off: true
             toggle: true
           - type: custom:slider-entity-row
-            entity: light.pool_table
+            entity: light.hue_basement_billiard
             name: "Rear Overhead"
             hide_when_off: true
             toggle: true

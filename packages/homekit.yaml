@@ -62,6 +62,8 @@ homekit:
       - switch.mnemosyne_home_mode
       - switch.pi_hole
       - switch.xbox_one
+    exclude_entity_globs:
+      - light.hue_*
     include_entities:
       - automation.master_bedroom_motion
       - binary_sensor.basement_stair_closet_door_window_door_is_open
