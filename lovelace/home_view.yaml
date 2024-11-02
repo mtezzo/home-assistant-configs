@@ -124,7 +124,7 @@ cards:
             hide_when_off: true
             toggle: true
           - type: custom:slider-entity-row
-            entity: light.hue_basement_tv
+            entity: light.hue_basement_lounge
             name: "Overhead"
             hide_when_off: true
             toggle: true
