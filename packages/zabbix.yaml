@@ -27,7 +27,7 @@ homeassistant:
 # Zabbix
 # https://www.home-assistant.io/integrations/zabbix/
 zabbix:
-  host: 192.168.1.35
+  host: 192.168.20.2
   ssl: false
   username: !secret zbx_username
   password: !secret zbx_password
