@@ -31,7 +31,7 @@ cards:
       - type: custom:html-card
         title: ''
         content: |
-          <h1>Family Room</h1>
+          <h1>Living Room</h1>
         card_mod:
           class: middle-left
       # - type: picture-entity
@@ -42,7 +42,7 @@ cards:
       #   card_mod:
       #     class: middle-left
       - type: area
-        area: 524d9761030444c38a734882ef7dfec3
+        area: living_room
         show_camera: true
         card_mod:
           class: middle-left
