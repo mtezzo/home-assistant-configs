@@ -93,7 +93,7 @@ automation housemode:
       - service: script.all_interior_lights_off
       - service: script.set_ecobee_away
       - service: switch.turn_off
-        entity_id: switch.mnemosyne_home_mode
+        entity_id: switch.mnemosyne_surveillance_station_home_mode
 
   - alias: auto_home
     mode: parallel
@@ -115,7 +115,7 @@ automation housemode:
           code: !secret alarm_code
       - service: script.set_ecobee_home
       - service: switch.turn_on
-        entity_id: switch.mnemosyne_home_mode
+        entity_id: switch.mnemosyne_surveillance_station_home_mode
 
 ################################################
 ## Script

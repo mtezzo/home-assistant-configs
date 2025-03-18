@@ -59,7 +59,7 @@ homekit:
       - switch.lg_tv
       - switch.living_room_harmony_hub_listen_to_living_room_sonos
       - switch.living_room_harmony_hub_watch_smart_tv
-      - switch.mnemosyne_home_mode
+      - switch.mnemosyne_surveillance_station_home_mode
       - switch.pi_hole
       - switch.xbox_one
     exclude_entity_globs:
