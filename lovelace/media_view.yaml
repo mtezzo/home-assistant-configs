@@ -55,6 +55,7 @@ cards:
         show_header_toggle: false
         entities:
           - input_button.nemesis_wol
+          - input_button.kratos_wol
         card_mod:
           class: middle-left
           style: |
