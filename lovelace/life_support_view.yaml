@@ -55,6 +55,11 @@ cards:
         card_mod:
           class: middle-left
 
+      - type: thermostat
+        entity: climate.cat_houses
+        card_mod:
+          class: middle-left
+
       - type: custom:html-card
         title: ''
         content: |
