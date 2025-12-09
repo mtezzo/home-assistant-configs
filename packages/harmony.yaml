@@ -67,44 +67,43 @@ homeassistant:
 ## Switch
 ################################################
 
-switch:
-  - platform: template
-    switches:
-      apple_tv:
-        value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or false }}
-        turn_on:
-          - service: remote.turn_on
-            data:
-              entity_id: remote.living_room
-              activity: !secret harmony_living_room_activity_watch_apple_tv
-        turn_off:
-          - service: remote.turn_off
-            data:
-              entity_id: remote.living_room
+template:
+  - switch:
+    - default_entity_id: switch.apple_tv
+      state: >-
+        {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or false }}
+      turn_on:
+      - action: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: !secret harmony_living_room_activity_watch_apple_tv
+      turn_off:
+      - action: remote.turn_off
+        data:
+          entity_id: remote.living_room
 
-      lg_tv:
-        value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch TV') or false }}
-        turn_on:
-          - service: remote.turn_on
-            data:
-              entity_id: remote.living_room
-              activity: !secret harmony_living_room_activity_watch_tv
-        turn_off:
-          - service: remote.turn_off
-            data:
-              entity_id: remote.living_room
+    - default_entity_id: switch.lg_tv
+      state: >-
+        {{ is_state_attr('remote.living_room', 'current_activity', 'Watch TV') or false }}
+      turn_on:
+      - action: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: !secret harmony_living_room_activity_watch_tv
+      turn_off:
+      - action: remote.turn_off
+        data:
+          entity_id: remote.living_room
 
-      xbox_one:
-        value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Play XBox One') or false }}
-        turn_on:
-          - service: remote.turn_on
-            data:
-              entity_id: remote.living_room
-              activity: !secret harmony_living_room_activity_play_xbox_one
-        turn_off:
-          - service: remote.turn_off
-            data:
-              entity_id: remote.living_room
+    - default_entity_id: switch.xbox_one
+      state: >-
+        {{ is_state_attr('remote.living_room', 'current_activity', 'Play XBox One') or false }}
+      turn_on:
+      - action: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: !secret harmony_living_room_activity_play_xbox_one
+      turn_off:
+      - action: remote.turn_off
+        data:
+          entity_id: remote.living_room
