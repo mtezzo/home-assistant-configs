@@ -108,19 +108,19 @@ sensor:
       - humidity
       - light
 
-  - platform: template
-    sensors:
-      wirelesstag_workroom_closet_battery_level:
-        value_template: '{{ (states.sensor.wirelesstag_workroom_closet_humidity.attributes.battery_level|float)|round }}'
-        unit_of_measurement: '%'
+template:
+  - sensor:
+    - default_entity_id: sensor.wirelesstag_workroom_closet_battery_level
+      state: '{{ (states.sensor.wirelesstag_workroom_closet_humidity.attributes.battery_level|float)|round }}'
+      unit_of_measurement: '%'
 
-      wirelesstag_humidor_battery_level:
-        value_template: '{{ (states.sensor.wirelesstag_humidor_humidity.attributes.battery_level|float)|round }}'
-        unit_of_measurement: '%'
+    - default_entity_id: sensor.wirelesstag_humidor_battery_level
+      state: '{{ (states.sensor.wirelesstag_humidor_humidity.attributes.battery_level|float)|round }}'
+      unit_of_measurement: '%'
 
-      wirelesstag_wine_rack_battery_level:
-        value_template: '{{ (states.sensor.wirelesstag_wine_rack_humidity.attributes.battery_level|float)|round }}'
-        unit_of_measurement: '%'
+    - default_entity_id: sensor.wirelesstag_wine_rack_battery_level
+      state: '{{ (states.sensor.wirelesstag_wine_rack_humidity.attributes.battery_level|float)|round }}'
+      unit_of_measurement: '%'
 
 ################################################
 ## Plants
