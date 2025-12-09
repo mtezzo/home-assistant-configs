@@ -31,6 +31,6 @@ homeassistant:
 
 template:
   - sensor:
-    - default_entity_id: sensor.basement_radon_pcil:
+    - default_entity_id: sensor.basement_radon_pcil
       unit_of_measurement: 'pCi/L'
       state: "{{ (states('sensor.basement_radon') | float / 37) | round(2) }}"
