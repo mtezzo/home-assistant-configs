@@ -107,14 +107,13 @@ input_select:
       - Vacation
 
 ################################################
-## Sensor
+## Template Sensor
 ################################################
 
-sensor:
-  - platform: template
-    sensors:
-      household:
-        value_template: >-
+template:
+  - sensor:
+      default_entity_id: sensor.household
+      state: >-
           {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.michaels_status', 'Home') %}
             Home
           {% elif is_state('input_select.julias_status', 'Arriving') or is_state('input_select.michaels_status', 'Arriving') %}
@@ -126,7 +125,7 @@ sensor:
           {% else %}
             Away
           {% endif %}
-        icon_template: >-
+      icon: >-
           {% set household_status = states('sensor.household') %}
           {% if household_status == 'Home' or household_status == 'Arriving' %}
             mdi:map-marker-radius
