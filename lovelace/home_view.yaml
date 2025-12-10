@@ -142,7 +142,7 @@ cards:
             entity: light.pool_table_light
             hide_when_off: true
             toggle: true
-          - entity: light.neon_dino
+          - entity: light.hue_smart_plug_dino_light
             name: "Dino"  
           - type: custom:slider-entity-row
             entity: light.workroom_light
