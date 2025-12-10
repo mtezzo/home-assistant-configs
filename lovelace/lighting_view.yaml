@@ -91,7 +91,7 @@ cards:
                   text-transform: uppercase;
                 }
           - type: tile
-            entity: light.neon_dino
+            entity: light.hue_smart_plug_dino_light
             vertical: true
             name: "Dino"
             card_mod:
