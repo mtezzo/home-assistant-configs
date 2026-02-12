@@ -37,6 +37,7 @@ tts/
 deps/
 www/*
 !www/js/
+!www/css/
 !blueprints
 blueprints/*
 !blueprints/automation

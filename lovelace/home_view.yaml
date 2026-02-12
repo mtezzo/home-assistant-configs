@@ -167,10 +167,8 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Climate</h1>
+      - type: markdown
+        content: "# Climate"
         card_mod:
           class: header-right
       # - type: weather-forecast
@@ -194,13 +192,13 @@ cards:
       - type: thermostat
         entity: climate.dining_room
         card_mod:
-          class: middle-right
-      - type: custom:html-card
-        title: ''
-        card_mod:
           class: footer-right
-        content: |
-          <h1>&nbsp;</h1>
+      # - type: custom:html-card
+      #   title: ''
+      #   card_mod:
+      #     class: footer-right
+      #   content: |
+      #     <h1>&nbsp;</h1>
 
   - type: vertical-stack
     cards:

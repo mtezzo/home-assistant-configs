@@ -109,11 +109,13 @@ logbook:
 
 # https://www.home-assistant.io/lovelace/yaml-mode/
 lovelace:
-  mode: yaml
+  resource_mode: yaml
   resources:
     - url: https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap
       type: css
     - url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
+      type: css
+    - url: /local/css/tungsten.css
       type: css
     - url: /hacsfiles/bignumber-card/bignumber-card.js
       type: module
@@ -137,7 +139,14 @@ lovelace:
       type: module
     - url: /local/js/lcars.js
       type: js
-
+  # dashboards:
+  #   lovelace:
+  #     mode: yaml
+  #     filename: ui-lovelace.yaml
+  #     title: Overview
+  #     icon: mdi:view-dashboard
+  #     show_in_sidebar: true
+  
 # Enables a map showing the location of tracked devices
 # https://www.home-assistant.io/components/map/
 # map:
