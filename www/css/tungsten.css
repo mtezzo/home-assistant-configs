@@ -6,7 +6,7 @@
   size-adjust: 120%;
   ascent-override: 96%;
   descent-override: 12.5%;
-  src: url(/community/fonts/Tungsten-Medium.woff2) format('woff2');
+  src: url(/fonts/Tungsten-Medium.woff2) format('woff2');
 }
 
 @font-face {
@@ -17,5 +17,5 @@
   size-adjust: 120%;
   ascent-override: 96%;
   descent-override: 12.5%;
-  src: url(/community/fonts/Tungsten-Bold.woff2) format('woff2');
+  src: url(/fonts/Tungsten-Bold.woff2) format('woff2');
 }
