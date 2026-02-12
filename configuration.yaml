@@ -139,13 +139,13 @@ lovelace:
       type: module
     - url: /local/js/lcars.js
       type: js
-  # dashboards:
-  #   lovelace:
-  #     mode: yaml
-  #     filename: ui-lovelace.yaml
-  #     title: Overview
-  #     icon: mdi:view-dashboard
-  #     show_in_sidebar: true
+  dashboards:
+    lovelace:
+      mode: yaml
+      filename: ui-lovelace.yaml
+      title: Overview
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
   
 # Enables a map showing the location of tracked devices
 # https://www.home-assistant.io/components/map/
