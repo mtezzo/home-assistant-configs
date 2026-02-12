@@ -115,7 +115,7 @@ lovelace:
       type: css
     - url: https://fonts.googleapis.com/css?family=Open+Sans&display=swap
       type: css
-    - url: /local/css/tungsten.css?v=202602121
+    - url: /local/css/tungsten.css?v=20260212-2
       type: css
     - url: /hacsfiles/bignumber-card/bignumber-card.js
       type: module
