@@ -71,12 +71,10 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
+      - type: markdown
         card_mod:
           class: header-left
-        content: |
-          <h1>Favorites</h1>
+        content: "# Favorites"
       - type: entities
         show_header_toggle: false
         entities:
