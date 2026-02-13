@@ -193,19 +193,11 @@ cards:
         entity: climate.dining_room
         card_mod:
           class: footer-right
-      # - type: custom:html-card
-      #   title: ''
-      #   card_mod:
-      #     class: footer-right
-      #   content: |
-      #     <h1>&nbsp;</h1>
 
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Location</h1>
+      - type: markdown
+        content: "# Location"
         card_mod:
           class: header-left
       - type: map
@@ -218,12 +210,10 @@ cards:
           - zone.home
         card_mod:
           class: middle-left
-      - type: custom:html-card
-        title: ''
+      - type: markdown
+        content: "# River Level"
         card_mod:
           class: middle-left
-        content: |
-          <h1>River Level</h1>
       - type: custom:mini-graph-card
         icon: mdi:waves
         hours_to_show: 120
@@ -233,9 +223,7 @@ cards:
             name: Height
         card_mod:
           class: middle-left
-      - type: custom:html-card
-        title: ''
+      - type: markdown
         card_mod:
           class: footer-left
-        content: |
-          <h1>&nbsp;</h1>
+        content: "# &nbsp;"
