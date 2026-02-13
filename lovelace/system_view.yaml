@@ -86,10 +86,8 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>System Diagnostics</h1>
+      - type: markdown
+        content: "# System Diagnostics"
         card_mod:
           class: header-left
 
@@ -110,10 +108,8 @@ cards:
         card_mod:
           class: middle-left
 
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Resource Utilization</h1>
+      - type: markdown
+        content: "# Resource Utilization"
         card_mod:
           class: middle-left
 
@@ -130,10 +126,8 @@ cards:
         card_mod:
           class: middle-left
 
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Failing Batteries</h1>
+      - type: markdown
+        content: "# Failing Batteries"
         card_mod:
           class: middle-left
 
@@ -151,9 +145,7 @@ cards:
             - attributes:
               battery: "<= 20" # Attribute battery_level is 20 or less
         else:
-          type: custom:html-card
-          title: ''
-          content: |
-            <h1>None</h1>
+          type: markdown
+          content: "# None"
           card_mod:
             class: footer-left
