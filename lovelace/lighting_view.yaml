@@ -7,7 +7,7 @@ cards:
       - type: markdown
         card_mod:
           class: bar-large-left
-        content: '# Lighting Subsystem'
+        content: 'Lighting Subsystem'
 
       - type: button
         name: All Lights Off
@@ -23,9 +23,8 @@ cards:
 
       - type: markdown
         card_mod:
-          class: bar-large-right
-        content: >
-          ## Basement
+          class: bar-right
+        content: "Baement"
       - type: horizontal-stack
         cards:
           - type: tile
@@ -141,9 +140,8 @@ cards:
 
       - type: markdown
         card_mod:
-          class: bar-large-right
-        content: >
-          ## Dining Room
+          class: bar-right
+        content: "Dining Room"
       - type: horizontal-stack
         cards:
           - type: tile
@@ -173,9 +171,8 @@ cards:
     cards:
       - type: markdown
         card_mod:
-          class: bar-large-right
-        content: >
-          ## Kitchen
+          class: bar-right
+        content: "Kitchen"
       - type: tile
         entity: light.kitchen_lights
         vertical: true
@@ -191,8 +188,8 @@ cards:
 
       - type: markdown
         card_mod:
-          class: bar-large-right
-        content: '## Master Bedroom'
+          class: bar-right
+        content: "Master Bedroom"
       - type: horizontal-stack
         cards:
           - type: tile
@@ -221,9 +218,8 @@ cards:
 
       - type: markdown
         card_mod:
-          class: bar-large-right
-        content: >
-          ## Office
+          class: bar-right
+        content: "Office"
       - type: horizontal-stack
         cards:
           - type: tile
@@ -265,9 +261,8 @@ cards:
 
       - type: markdown
         card_mod:
-          class: bar-large-right
-        content: >
-          ## Outdoors
+          class: bar-right
+        content: "Outdoors"
       - type: horizontal-stack
         cards:
           - type: tile
