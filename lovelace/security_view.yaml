@@ -4,16 +4,12 @@ path: security
 cards:
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Security Subsystem</h1>
+      - type: markdown
+        content: "# Security Subsystem"
         card_mod:
           class: header-left
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Basement</h1>
+      - type: markdown
+        content: "# Basement"
         card_mod:
           class: middle-left
       # - type: picture-entity
@@ -28,10 +24,8 @@ cards:
         show_camera: true
         card_mod:
           class: middle-left
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Living Room</h1>
+      - type: markdown
+        content: "# Living Room"
         card_mod:
           class: middle-left
       # - type: picture-entity
@@ -46,19 +40,15 @@ cards:
         show_camera: true
         card_mod:
           class: middle-left
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>&nbsp;</h1>
+      - type: markdown
+        content: "# &nbsp;
         card_mod:
           class: footer-left
 
   - type: vertical-stack
     cards:
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>&nbsp;</h1>
+      - type: markdown
+        content: "# &nbsp;"
         card_mod:
           class: header-open
       - type: history-graph
@@ -70,10 +60,8 @@ cards:
           - alarm_control_panel.alarm_system
         card_mod:
           class: middle-right
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Motion Sensors</h1>
+      - type: markdown
+        content: "# Motion Sensors"
         card_mod:
           class: middle-right
       - type: custom:auto-entities
@@ -88,10 +76,8 @@ cards:
             - domain: binary_sensor
               attributes:
                 device_class: motion
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Door Sensors</h1>
+      - type: markdown
+        content: "# Door Sensors"
         card_mod:
           class: middle-right
       - type: custom:auto-entities

@@ -34,10 +34,8 @@ cards:
         card_mod:
           class: button-lozenge-left
 
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Automations</h1>
+      - type: markdown
+        content: "# Automations"
         card_mod:
           class: header-right
 
