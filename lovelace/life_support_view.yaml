@@ -5,10 +5,8 @@ cards:
   - type: vertical-stack
     cards:
 
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>Life Support</h1>
+      - type: markdown
+        content: "# Life Support"
         card_mod:
           class: header-left
 
@@ -60,10 +58,8 @@ cards:
         card_mod:
           class: middle-left
 
-      - type: custom:html-card
-        title: ''
-        content: |
-          <h1>&nbsp;</h1>
+      - type: markdown
+        content: "# &nbsp;"
         card_mod:
           class: footer-left
 
@@ -71,10 +67,8 @@ cards:
     cards:
       - type: vertical-stack
         cards:
-          - type: custom:html-card
-            title: ''
-            content: |
-              <h1>Workroom Closet</h1>
+          - type: markdown
+            content: "# Workroom Closet"
             card_mod:
               class: header-left
           - type: custom:mini-graph-card
@@ -107,19 +101,15 @@ cards:
                 graph: none
                 card_mod:
                   class: middle-blank
-          - type: custom:html-card
-            title: ''
-            content: |
-              <h1>&nbsp;</h1>
+          - type: markdown
+            content: "# &nbsp;"
             card_mod:
               class: footer-left
 
       - type: vertical-stack
         cards:
-          - type: custom:html-card
-            title: ''
-            content: |
-              <h1>Humidor</h1>
+          - type: markdown
+            content: "# Humidor"
             card_mod:
               class: header-left
           - type: custom:mini-graph-card
@@ -152,19 +142,15 @@ cards:
                 graph: none
                 card_mod:
                   class: middle-blank
-          - type: custom:html-card
-            title: ''
-            content: |
-              <h1>&nbsp;</h1>
+          - type: markdown
+            content: "# &nbsp;"
             card_mod:
               class: footer-left
 
       - type: vertical-stack
         cards:
-          - type: custom:html-card
-            title: ''
-            content: |
-              <h1>Wine Rack</h1>
+          - type: markdown
+            content: "# Wine Rack"
             card_mod:
               class: header-left
           - type: custom:mini-graph-card
@@ -197,9 +183,7 @@ cards:
                 graph: none
                 card_mod:
                   class: middle-blank
-          - type: custom:html-card
-            title: ''
-            content: |
-              <h1>&nbsp;</h1>
+          - type: markdown
+            content: "# &nbsp;"
             card_mod:
               class: footer-left
