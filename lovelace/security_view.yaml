@@ -41,7 +41,7 @@ cards:
         card_mod:
           class: middle-left
       - type: markdown
-        content: "# &nbsp;
+        content: "# &nbsp;"
         card_mod:
           class: footer-left
 
