@@ -138,10 +138,10 @@ cards:
             class: footer-left
         filter:
           include:
-            - domain: sensor
-              entity_id: "*battery_level"
+            # - domain: sensor
+            #   entity_id: "*battery_level"
             - attributes:
-              battery: "<= 20" # Attribute battery_level is 20 or less
+              battery_level: "<= 20" # Attribute battery_level is 20 or less
         else:
           type: markdown
           content: "# None"
