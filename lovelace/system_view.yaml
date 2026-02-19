@@ -132,7 +132,6 @@ cards:
       - type: custom:auto-entities
         card:
           type: entities
-          # title: Batteries
           show_header_toggle: false
           card_mod:
             class: footer-left
@@ -140,6 +139,8 @@ cards:
           include:
             # - domain: sensor
             #   entity_id: "*battery_level"
+            - entity_id: "/sensor.*battery_level/"
+              state: "<= 20"
             - attributes:
               battery_level: "<= 20" # Attribute battery_level is 20 or less
         else:
