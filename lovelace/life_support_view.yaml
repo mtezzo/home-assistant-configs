@@ -4,7 +4,26 @@ path: life-support
 cards:
   - type: vertical-stack
     cards:
-
+      - type: button
+        name: 'Radon'
+        show_name: true
+        show_icon: true
+        show_state: true
+        tap_action:
+          action: more-info
+        entity: sensor.basement_radon_pcil
+        card_mod:
+          class: button-lozenge-left
+          style: |
+            ha-card {
+              {% if states('sensor.basement_radon_pcil') | float < 2.7 -%}
+              background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+              {%- elif states('sensor.basement_radon_pcil') | float < 4 -%}
+              background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+              {%- else -%}
+              background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+              {%- endif %}
+            }
       - type: markdown
         content: "# Life Support"
         card_mod:
