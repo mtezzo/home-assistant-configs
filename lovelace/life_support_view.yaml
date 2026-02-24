@@ -8,12 +8,12 @@ cards:
       - type: markdown
         content: "# Life Support"
         card_mod:
-          class: header-left
+          class: header-right
 
       - type: thermostat
         entity: climate.dining_room
         card_mod:
-          class: middle-left
+          class: middle-right
 
       - type: statistics-graph
         title: 'Temperature'
@@ -32,7 +32,7 @@ cards:
           - entity: sensor.mean_basement_temperature
             name: Basement
         card_mod:
-          class: middle-left
+          class: middle-right
 
       - type: statistics-graph
         title: 'Humidity'
@@ -51,17 +51,17 @@ cards:
           - entity: sensor.mean_basement_humidity
             name: Basement
         card_mod:
-          class: middle-left
+          class: middle-right
 
       - type: thermostat
         entity: climate.cat_houses
         card_mod:
-          class: middle-left
+          class: middle-right
 
       - type: markdown
         content: "# &nbsp;"
         card_mod:
-          class: footer-left
+          class: footer-right
 
   - type: vertical-stack
     cards:
