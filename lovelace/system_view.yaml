@@ -137,8 +137,8 @@ cards:
             class: footer-left
         filter:
           include:
-            # - domain: sensor
-            #   entity_id: "*battery_level"
+            - domain: sensor
+              entity_id: "*battery_level"
             # - entity_id: "/sensor.*battery_level/"
             #   state: "<= 20"
             - attributes:
