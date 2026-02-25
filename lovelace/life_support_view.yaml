@@ -13,7 +13,7 @@ cards:
           action: more-info
         entity: sensor.basement_radon_pcil
         card_mod:
-          class: button-lozenge-left
+          class: button-lozenge-right
           style: |
             ha-card {
               {% if states('sensor.basement_radon_pcil') | float < 2.7 -%}
