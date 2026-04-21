@@ -157,19 +157,23 @@ automation alarm:
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.basement_stair_closet_door_window_door_is_open
+        entity_id: binary_sensor.hue_secure_contact_sensor_2_opening #basement stair closet
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.basement_sump_pump_closet_door_window_door_is_open
+        entity_id: binary_sensor.back_door_open #garage side door
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.workroom_closet_door_window_door_is_open
+        entity_id: binary_sensor.hue_secure_contact_sensor_3_opening #sump pump closet
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.laundry_room_door_window_door_is_open
+        entity_id: binary_sensor.hue_secure_contact_sensor_4_opening #workroom closet
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.laundry_room_door_open #laundry room door
         from: 'off'
         to: 'on'
       # Ecobee Occupancy Sensors
@@ -223,7 +227,7 @@ automation alarm:
           message: >
             Alarm was triggered on:
             {% for state in states.binary_sensor -%}
-              {% if state.state == 'on' and state.entity_id in ['cover.garage_door', 'binary_sensor.basement_stair_closet_door_window_door_is_open', 'binary_sensor.basement_sump_pump_closet_door_window_door_is_open', 'binary_sensor.workroom_closet_door_window_door_is_open', 'binary_sensor.laundry_room_door_window_door_is_open',
+              {% if state.state == 'on' and state.entity_id in ['cover.garage_door', 'binary_sensor.hue_secure_contact_sensor_2_opening', 'binary_sensor.hue_secure_contact_sensor_3_opening', 'binary_sensor.hue_secure_contact_sensor_4_opening', 'binary_sensor.laundry_room_door_open', 'binary_sensor.back_door_open',
               'binary_sensor.dining_room_occupancy', 'binary_sensor.family_room_occupancy', 'binary_sensor.katherine_s_room_occupancy', 'binary_sensor.master_bedroom_occupancy', 'binary_sensor.family_room_motion_sensor_motion_detection', 'binary_sensor.kitchen_motion_sensor_motion_detection', 'binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection'] %}
                 {{ state.name }}
               {%- endif -%}
