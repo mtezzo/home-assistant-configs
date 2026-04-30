@@ -1,0 +1,71 @@
+################################################################
+## Packages / Z-Wave
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'zwave'
+
+      expose: &expose
+        <<: *customize
+        homebridge_hidden: false
+
+################################################
+## Script
+################################################
+
+script:
+  inovelli_hue_sync_led:
+    alias: "Inovelli – Sync LED bar to Hue zone"
+    mode: restart
+    fields:
+      node_id:
+        description: Z-Wave node ID
+        example: 12
+      hue_zone:
+        description: Hue zone entity_id
+        example: light.living_room
+      led_color:
+        description: LED hue when on (0-255)
+        example: 170
+      led_color_off:
+        description: LED hue when off (0-255)
+        example: 170
+      led_intensity_off:
+        description: LED intensity when off (0-100)
+        example: 10
+    sequence:
+      - variables:
+          is_on: "{{ states(hue_zone) == 'on' }}"
+          bri_pct: >
+            {% if is_on %}
+              {{ ((state_attr(hue_zone, 'brightness') | default(255) | int) / 255 * 100) | round(0) | int }}
+            {% else %}
+              0
+            {% endif %}
+          param_color:  "{{ led_color if is_on else led_color_off }}"
+          param_intensity: "{{ bri_pct if is_on else led_intensity_off }}"
+ 
+      # Parameter 13 – LED indicator colour
+      - service: zwave_js.set_config_parameter
+        data:
+          node_id: "{{ node_id }}"
+          parameter: 13
+          value: "{{ param_color }}"
+ 
+      # Parameter 14 – LED indicator intensity (active / always-on level)
+      - service: zwave_js.set_config_parameter
+        data:
+          node_id: "{{ node_id }}"
+          parameter: 14
+          value: "{{ param_intensity }}"
