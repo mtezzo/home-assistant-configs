@@ -51,6 +51,10 @@ homeassistant:
       <<: *customize
       friendly_name: "Trigger Alarm on Binary Sensor"
 
+    automation.trigger_alarm_on_exterior_door:
+      <<: *customize
+      friendly_name: "Trigger Alarm on Exterior Door (Away or Night)"
+
     automation.alarm_triggered_notification:
       <<: *customize
       friendly_name: "Send Notification on Alarm Trigger"
@@ -149,19 +153,37 @@ automation alarm:
         data:
           code: !secret alarm_code
 
-  - alias: trigger_alarm_on_binary_sensor
+  - alias: trigger_alarm_on_exterior_door
     trigger:
-      # Door Sensors
+      # Exterior Doors
       - platform: state
         entity_id: cover.garage_door
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.hue_secure_contact_sensor_2_opening #basement stair closet
+        entity_id: binary_sensor.back_door_open #garage side door
         from: 'off'
         to: 'on'
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.alarm_system
+            state: 'armed_away'
+          - condition: state
+            entity_id: alarm_control_panel.alarm_system
+            state: 'armed_night'
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.alarm_system
+      data:
+        code: !secret alarm_code
+
+  - alias: trigger_alarm_on_binary_sensor
+    trigger:
+      # Interior Door Sensors
       - platform: state
-        entity_id: binary_sensor.back_door_open #garage side door
+        entity_id: binary_sensor.hue_secure_contact_sensor_2_opening #basement stair closet
         from: 'off'
         to: 'on'
       - platform: state

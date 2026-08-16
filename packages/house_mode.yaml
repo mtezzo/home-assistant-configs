@@ -34,6 +34,16 @@ homeassistant:
       friendly_name: "Auto Home"
       icon: mdi:robot
 
+    automation.guest_mode_disarm:
+      <<: *customize
+      friendly_name: "Disarm Alarm on Guest Mode"
+      icon: mdi:account
+
+    automation.guest_mode_restore:
+      <<: *customize
+      friendly_name: "Restore Alarm State When Guest Mode Ends"
+      icon: mdi:account
+
     ################################################
     ## Input Boolean
     ################################################
@@ -120,6 +130,48 @@ automation housemode:
       - service: script.set_ecobee_home
       - service: switch.turn_on
         entity_id: switch.mnemosyne_surveillance_station_home_mode
+
+  - alias: guest_mode_disarm
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        to: 'on'
+    action:
+      - service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.alarm_system
+        data:
+          code: !secret alarm_code
+
+  - alias: guest_mode_restore
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        to: 'off'
+    action:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: sensor.household
+                state:
+                  - 'Home'
+                  - 'Arriving'
+            sequence:
+              - service: alarm_control_panel.alarm_arm_home
+                entity_id: alarm_control_panel.alarm_system
+                data:
+                  code: !secret alarm_code
+          - conditions:
+              - condition: state
+                entity_id: sensor.household
+                state:
+                  - 'Away'
+                  - 'Departing'
+                  - 'Vacation'
+            sequence:
+              - service: alarm_control_panel.alarm_arm_away
+                entity_id: alarm_control_panel.alarm_system
+                data:
+                  code: !secret alarm_code
 
 ################################################
 ## Script

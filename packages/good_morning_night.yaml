@@ -151,10 +151,13 @@ automation morningnight:
         at: '03:00:00'
     condition:
       condition: and
-      conditions: 
+      conditions:
         - condition: state
           entity_id: alarm_control_panel.alarm_system
           state: 'armed_home'
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
     action:
       - service: alarm_control_panel.alarm_arm_night
         entity_id: alarm_control_panel.alarm_system

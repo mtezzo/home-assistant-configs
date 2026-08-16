@@ -50,7 +50,7 @@ script:
      - service: sonos.snapshot
        data_template:
          entity_id: "{{ sonos_entity|default('media_player.living_room') }}"
-     - service: sonos.unjoin
+     - service: media_player.unjoin
        data_template:
          entity_id: "{{ sonos_entity|default('media_player.living_room') }}"
      - service: media_player.volume_set
