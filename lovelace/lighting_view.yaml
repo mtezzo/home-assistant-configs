@@ -23,14 +23,14 @@ cards:
 
       - type: markdown
         uix:
-          class: bar-right
-        content: "On Now"
+          class: header-right
+        content: "# On Now"
       - type: custom:auto-entities
         card:
           type: entities
           show_header_toggle: false
           uix:
-            class: middle-right
+            class: footer-right
         filter:
           include:
             - domain: light
@@ -39,14 +39,18 @@ cards:
               state: "on"
             - entity_id: switch.master_bedroom_outlet_switch
               state: "on"
-          exclude: []
+          exclude:
+            - entity_id: light.exterior_lights
+            - entity_id: light.interior_lights
+            - entity_id: light.dining_room_hutch_light_indicator
+            - entity_id: light.christmas_tree_switch_indicator
         sort:
           method: friendly_name
         else:
           type: markdown
           content: "*Everything's off.*"
           uix:
-            class: middle-right
+            class: footer-right
 
       - type: markdown
         uix:
