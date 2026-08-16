@@ -60,7 +60,7 @@ homeassistant:
 
 #  - platform: harmony
 #    name: Basement
-#    host: 192.168.1.18
+#    host: !secret harmony_basement_host
 #    activity: Watch TV
 
 ################################################
