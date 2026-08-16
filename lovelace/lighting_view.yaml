@@ -24,7 +24,7 @@ cards:
       - type: markdown
         uix:
           class: bar-right
-        content: "Baement"
+        content: "Basement"
       - type: horizontal-stack
         cards:
           - type: tile

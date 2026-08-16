@@ -55,6 +55,10 @@ homeassistant:
       <<: *customize
       friendly_name: Turn All Interior Lights Off
 
+    script.all_media_off:
+      <<: *customize
+      friendly_name: Turn All Media Off
+
 ################################################
 ## Input Boolean
 ################################################
@@ -135,3 +139,24 @@ script:
           transition: 5
       - service: switch.turn_off
         entity_id: switch.master_bedroom_outlet_switch
+  all_media_off:
+    sequence:
+      - service: media_player.turn_off
+        data:
+          entity_id:
+            - media_player.garage
+            - media_player.living_room_tv
+            - media_player.living_room
+            - media_player.dining_room
+            - media_player.office
+            - media_player.family_room_homepod_mini
+            - media_player.family_room_apple_tv
+            - media_player.basement_apple_tv
+            - media_player.family_room_tv
+            - media_player.basement
+      - service: switch.turn_off
+        data:
+          entity_id:
+            - switch.apple_tv
+            - switch.lg_tv
+            - switch.xbox_one

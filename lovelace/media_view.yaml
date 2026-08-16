@@ -2,46 +2,108 @@ icon: mdi:television-classic
 title: Media
 path: media
 cards:
-  - type: custom:roku-card
-    entity: media_player.garage
-    name: Garage TV
-    theme: darkpurple
-    tv: true
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        uix:
+          class: bar-large-left
+        content: 'Media'
+      - type: button
+        name: All Media Off
+        icon: mdi:television-off
+        show_name: true
+        show_icon: true
+        show_state: false
+        tap_action:
+          action: call-service
+        service: script.all_media_off
+        uix:
+          class: button-lozenge-right
 
-  - type: glance
-    title: Living Room Activities
-    entities:
-      - entity: switch.apple_tv
-        tap_action: toggle
-      - entity: switch.lg_tv
-        tap_action: toggle
-      - entity: switch.xbox_one
-        tap_action: toggle
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: "# Living Room"
+        uix:
+          class: header-left
+      - type: conditional
+        conditions:
+          - entity: media_player.living_room_tv
+            state: 'playing'
+        card:
+          type: media-control
+          entity: media_player.living_room_tv
+          uix:
+            class: middle-left
+      - type: glance
+        title: Activities
+        entities:
+          - entity: switch.apple_tv
+            tap_action: toggle
+          - entity: switch.lg_tv
+            tap_action: toggle
+          - entity: switch.xbox_one
+            tap_action: toggle
+        uix:
+          class: footer-left
 
-  - type: conditional
-    conditions:
-      - entity: media_player.living_room_tv
-        state: 'playing'
-    card:
-      type: media-control
-      entity: media_player.living_room_tv
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: "# Family Room"
+        uix:
+          class: header-right
+      - type: media-control
+        entity: media_player.family_room_apple_tv
+        uix:
+          class: middle-right
+      - type: media-control
+        entity: media_player.family_room_tv
+        uix:
+          class: footer-right
 
-  - type: custom:mini-media-player
-    entity: media_player.living_room
-    hide:
-      power: true
-      icon: true
-      source: true
-    speaker_group:
-      platform: sonos
-      show_group_count: true
-      entities:
-        - entity_id: media_player.dining_room
-          name: Sonos Dining Room
-        - entity_id: media_player.living_room
-          name: Sonos Living Room
-        - entity_id: media_player.office
-          name: Sonos Office
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: "# Garage & Basement"
+        uix:
+          class: header-left
+      - type: custom:roku-card
+        entity: media_player.garage
+        name: Garage TV
+        theme: darkpurple
+        tv: true
+        uix:
+          class: middle-left
+      - type: media-control
+        entity: media_player.basement_apple_tv
+        uix:
+          class: footer-left
+
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: "# Whole-Home Audio"
+        uix:
+          class: header-right
+      - type: custom:mini-media-player
+        entity: media_player.living_room
+        hide:
+          power: true
+          icon: true
+          source: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities:
+            - entity_id: media_player.dining_room
+              name: Sonos Dining Room
+            - entity_id: media_player.living_room
+              name: Sonos Living Room
+            - entity_id: media_player.office
+              name: Sonos Office
+        uix:
+          class: footer-right
 
   - type: vertical-stack
     cards:
@@ -54,29 +116,5 @@ cards:
         entities:
           - input_button.nemesis_wol
           - input_button.kratos_wol
-        uix:
-          class: middle-left
-          style: |
-            ha-card.middle-left {
-              border-left-color: var(--lcars-orchid, transparent) !important;
-            }
-      - type: media-control
-        entity: media_player.family_room_apple_tv
-        uix:
-          class: middle-left
-          style: |
-            ha-card.middle-left {
-              border-left-color: var(--lcars-orchid, transparent) !important;
-            }
-      - type: media-control
-        entity: media_player.basement_apple_tv
-        uix:
-          class: middle-left
-          style: |
-            ha-card.middle-left {
-              border-left-color: var(--lcars-orchid, transparent) !important;
-            }
-      - type: media-control
-        entity: media_player.family_room_tv
         uix:
           class: footer-left
