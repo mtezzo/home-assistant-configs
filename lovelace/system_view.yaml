@@ -11,7 +11,7 @@ cards:
         tap_action:
           action: toggle
         entity: input_boolean.guest_mode
-        card_mod:
+        uix:
           class: button-lozenge-right
 
       - type: button
@@ -21,7 +21,7 @@ cards:
         tap_action:
           action: toggle
         entity: input_boolean.lcars_texture
-        card_mod:
+        uix:
           class: button-lozenge-left
 
       - type: button
@@ -31,12 +31,12 @@ cards:
         tap_action:
           action: toggle
         entity: input_boolean.lcars_sound
-        card_mod:
+        uix:
           class: button-lozenge-left
 
       - type: markdown
         content: "# Automations"
-        card_mod:
+        uix:
           class: header-right
 
       - type: entities
@@ -48,7 +48,7 @@ cards:
           - automation.holiday_lighting
           - automation.auto_sunrise
           - input_datetime.auto_sunrise_time
-        card_mod:
+        uix:
           class: middle-right
 
       - type: entities
@@ -57,7 +57,7 @@ cards:
         entities:
           - automation.auto_away
           - automation.auto_home
-        card_mod:
+        uix:
           class: middle-right
 
       - type: entities
@@ -69,7 +69,7 @@ cards:
           - automation.auto_night_weekday
           - automation.auto_night_weekend
           # - automation.set_theme_based_on_sun
-        card_mod:
+        uix:
           class: middle-right
 
       - type: entities
@@ -79,14 +79,14 @@ cards:
           - automation.alarm_triggered_notification
           - automation.update_notification
           - automation.trigger_notification_on_sensor_tamper
-        card_mod:
+        uix:
           class: footer-right
 
   - type: vertical-stack
     cards:
       - type: markdown
         content: "# System Diagnostics"
-        card_mod:
+        uix:
           class: header-left
 
       - type: entities
@@ -103,12 +103,12 @@ cards:
           - sensor.load_5m
           - sensor.load_15m
           - sensor.current_version
-        card_mod:
+        uix:
           class: middle-left
 
       - type: markdown
         content: "# Resource Utilization"
-        card_mod:
+        uix:
           class: middle-left
 
       - type: custom:mini-graph-card
@@ -121,19 +121,19 @@ cards:
             name: MEM
           - entity: sensor.disk_use_percent
             name: DISK
-        card_mod:
+        uix:
           class: middle-left
 
       - type: markdown
         content: "# Failing Batteries"
-        card_mod:
+        uix:
           class: middle-left
 
       - type: custom:auto-entities
         card:
           type: entities
           show_header_toggle: false
-          card_mod:
+          uix:
             class: footer-left
         filter:
           include:
@@ -145,5 +145,5 @@ cards:
         else:
           type: markdown
           content: "# None"
-          card_mod:
+          uix:
             class: footer-left

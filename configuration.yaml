@@ -68,8 +68,8 @@ dhcp:
 frontend:
   javascript_version: latest
   themes: !include_dir_merge_named themes
-  extra_module_url:
-    - /hacsfiles/lovelace-card-mod/card-mod.js?v=4.2.1
+#  extra_module_url:
+#    - /hacsfiles/lovelace-card-mod/card-mod.js?v=4.2.1
     #- /local/js/font-loader.js
 
 # https://www.home-assistant.io/integrations/hardware/

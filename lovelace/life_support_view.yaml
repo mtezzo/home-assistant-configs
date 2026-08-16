@@ -12,7 +12,7 @@ cards:
         tap_action:
           action: more-info
         entity: sensor.basement_radon_pcil
-        card_mod:
+        uix:
           class: button-lozenge-right
           style: |
             ha-card {
@@ -26,12 +26,12 @@ cards:
             }
       - type: markdown
         content: "# Life Support"
-        card_mod:
+        uix:
           class: header-right
 
       - type: thermostat
         entity: climate.dining_room
-        card_mod:
+        uix:
           class: middle-right
 
       - type: statistics-graph
@@ -50,7 +50,7 @@ cards:
             name: Main Floor
           - entity: sensor.mean_basement_temperature
             name: Basement
-        card_mod:
+        uix:
           class: middle-right
 
       - type: statistics-graph
@@ -69,17 +69,17 @@ cards:
             name: Main Floor
           - entity: sensor.mean_basement_humidity
             name: Basement
-        card_mod:
+        uix:
           class: middle-right
 
       - type: thermostat
         entity: climate.cat_houses
-        card_mod:
+        uix:
           class: middle-right
 
       - type: markdown
         content: "# &nbsp;"
-        card_mod:
+        uix:
           class: footer-right
 
   - type: vertical-stack
@@ -88,7 +88,7 @@ cards:
         cards:
           - type: markdown
             content: "# Workroom Closet"
-            card_mod:
+            uix:
               class: header-left
           - type: custom:mini-graph-card
             name: HUMIDITY
@@ -99,7 +99,7 @@ cards:
             show:
               legend: false
               labels: true
-            card_mod:
+            uix:
               class: middle-left
           - type: horizontal-stack
             cards:
@@ -112,24 +112,24 @@ cards:
                 show:
                   graph: bar
                   legend: false
-                card_mod:
+                uix:
                   class: middle-left
               - type: sensor
                 name: BATTERY
                 entity: sensor.wirelesstag_workroom_closet_battery_level
                 graph: none
-                card_mod:
+                uix:
                   class: middle-blank
           - type: markdown
             content: "# &nbsp;"
-            card_mod:
+            uix:
               class: footer-left
 
       - type: vertical-stack
         cards:
           - type: markdown
             content: "# Humidor"
-            card_mod:
+            uix:
               class: header-left
           - type: custom:mini-graph-card
             name: HUMIDITY
@@ -140,7 +140,7 @@ cards:
             show:
               legend: false
               labels: true
-            card_mod:
+            uix:
               class: middle-left
           - type: horizontal-stack
             cards:
@@ -153,24 +153,24 @@ cards:
                 show:
                   graph: bar
                   legend: false
-                card_mod:
+                uix:
                   class: middle-left
               - type: sensor
                 name: BATTERY
                 entity: sensor.wirelesstag_humidor_battery_level
                 graph: none
-                card_mod:
+                uix:
                   class: middle-blank
           - type: markdown
             content: "# &nbsp;"
-            card_mod:
+            uix:
               class: footer-left
 
       - type: vertical-stack
         cards:
           - type: markdown
             content: "# Wine Rack"
-            card_mod:
+            uix:
               class: header-left
           - type: custom:mini-graph-card
             name: HUMIDITY
@@ -181,7 +181,7 @@ cards:
             show:
               legend: false
               labels: true
-            card_mod:
+            uix:
               class: middle-left
           - type: horizontal-stack
             cards:
@@ -194,15 +194,15 @@ cards:
                 show:
                   graph: bar
                   legend: false
-                card_mod:
+                uix:
                   class: middle-left
               - type: sensor
                 name: BATTERY
                 entity: sensor.wirelesstag_wine_rack_battery_level
                 graph: none
-                card_mod:
+                uix:
                   class: middle-blank
           - type: markdown
             content: "# &nbsp;"
-            card_mod:
+            uix:
               class: footer-left

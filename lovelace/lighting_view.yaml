@@ -5,7 +5,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: markdown
-        card_mod:
+        uix:
           class: bar-large-left
         content: 'Lighting Subsystem'
 
@@ -18,11 +18,11 @@ cards:
         tap_action:
           action: call-service
         service: script.all_interior_lights_off
-        card_mod:
+        uix:
           class: button-lozenge-right
 
       - type: markdown
-        card_mod:
+        uix:
           class: bar-right
         content: "Baement"
       - type: horizontal-stack
@@ -33,7 +33,7 @@ cards:
             name: "Overhead"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -45,7 +45,7 @@ cards:
             name: "Rear Overhead"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -57,7 +57,7 @@ cards:
             name: "Track Lights"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -71,7 +71,7 @@ cards:
             name: "Pool Table"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -83,7 +83,7 @@ cards:
             name: "Workroom Light"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -93,7 +93,7 @@ cards:
             entity: light.hue_smart_plug_dino_light
             vertical: true
             name: "Dino"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -107,7 +107,7 @@ cards:
             name: "Workroom Closet"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -119,7 +119,7 @@ cards:
             name: "Sump Closet"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -131,7 +131,7 @@ cards:
             name: "Stair Closet"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -139,7 +139,7 @@ cards:
                 }
 
       - type: markdown
-        card_mod:
+        uix:
           class: bar-right
         content: "Dining Room"
       - type: horizontal-stack
@@ -150,7 +150,7 @@ cards:
             name: "Chandelier"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -160,7 +160,7 @@ cards:
             entity: light.dining_room_hutch_light
             vertical: true
             name: "Hutch"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -170,7 +170,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: markdown
-        card_mod:
+        uix:
           class: bar-right
         content: "Kitchen"
       - type: tile
@@ -179,7 +179,7 @@ cards:
         name: "Overhead"
         features:
           - type: "light-brightness"
-        card_mod:
+        uix:
           style: |
             ha-card.type-tile {
               border-radius: 20px !important;
@@ -187,7 +187,7 @@ cards:
             }
 
       - type: markdown
-        card_mod:
+        uix:
           class: bar-right
         content: "Master Bedroom"
       - type: horizontal-stack
@@ -198,7 +198,7 @@ cards:
             name: "Overhead"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -208,7 +208,7 @@ cards:
             entity: switch.master_bedroom_outlet_switch
             vertical: true
             name: "Outlets"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -217,7 +217,7 @@ cards:
 
 
       - type: markdown
-        card_mod:
+        uix:
           class: bar-right
         content: "Office"
       - type: horizontal-stack
@@ -228,7 +228,7 @@ cards:
             name: "Bookshelf"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -240,7 +240,7 @@ cards:
             name: "Left Key Light"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -252,7 +252,7 @@ cards:
             name: "Right Key Light"
             features:
               - type: "light-brightness"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -260,7 +260,7 @@ cards:
                 }
 
       - type: markdown
-        card_mod:
+        uix:
           class: bar-right
         content: "Outdoors"
       - type: horizontal-stack
@@ -269,7 +269,7 @@ cards:
             entity: light.back_porch_light
             vertical: true
             name: "Back Porch"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -279,7 +279,7 @@ cards:
             entity: light.front_porch_light
             vertical: true
             name: "Front Porch"
-            card_mod:
+            uix:
               style: |
                 ha-card.type-tile {
                   border-radius: 20px !important;
@@ -289,7 +289,7 @@ cards:
         entity: switch.driveway_lights
         vertical: true
         name: "Driveway"
-        card_mod:
+        uix:
           style: |
             ha-card.type-tile {
               border-radius: 20px !important;
