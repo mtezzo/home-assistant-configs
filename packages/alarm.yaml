@@ -275,76 +275,64 @@ automation alarm:
           message: >
             Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
 
-  # - alias: trigger_notification_on_smoke
-  #   trigger:
-  #     - platform: state
-  #       entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
-  #       from: 'off'
-  #       to: 'on'
-  #     - platform: state
-  #       entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_smoke_status
-  #       from: 'off'
-  #       to: 'on'
-  #     - platform: state
-  #       entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_smoke_status
-  #       from: 'off'
-  #       to: 'on'
-  #     - platform: state
-  #       entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_smoke_status
-  #       from: 'off'
-  #       to: 'on'
-  #   action:
-  #     - service: notify.ALL_DEVICES
-  #       data_template:
-  #         data:
-  #           title: Smoke Alert
-  #         message: >
-  #           Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
-  #     - service: persistent_notification.create
-  #       data_template:
-  #         title: Smoke Alert
-  #         message: >
-  #           Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
-  #     - service: script.sonos_say
-  #       data:
-  #         sonos_entity: media_player.living_room
-  #         volume: 0.6
-  #         delay: 5
-  #         message: Smoke Detected!
+  - alias: trigger_notification_on_smoke
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smoke_and_carbon_monoxide_sensor_smoke_detected
+        from: 'off'
+        to: 'on'
+    action:
+      - service: notify.sms
+        data_template:
+          message: >
+            Smoke Alert! Smoke detected in the house!
+          target:
+            - !secret mobile_michael
+      - service: notify.mobile_app_michael_iphone
+        data_template:
+          data:
+            title: Smoke Alert
+          message: >
+            Smoke detected in the house!
+      - service: persistent_notification.create
+        data_template:
+          title: Smoke Alert
+          message: >
+            Smoke detected in the house!
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.6
+          delay: 5
+          message: Smoke Detected!
 
-  # - alias: trigger_notification_on_co
-  #   trigger:
-  #     - platform: state
-  #       entity_id: binary_sensor.guest_bedroom_smoke_and_carbon_monoxide_detector_co_status
-  #       from: 'off'
-  #       to: 'on'
-  #     - platform: state
-  #       entity_id: binary_sensor.laundry_room_smoke_and_carbon_monoxide_detector_co_status
-  #       from: 'off'
-  #       to: 'on'
-  #     - platform: state
-  #       entity_id: binary_sensor.master_bedroom_smoke_and_carbon_monoxide_detector_co_status
-  #       from: 'off'
-  #       to: 'on'
-  #     - platform: state
-  #       entity_id: binary_sensor.office_smoke_and_carbon_monoxide_detector_co_status
-  #       from: 'off'
-  #       to: 'on'
-  #   action:
-  #     - service: notify.ALL_DEVICES
-  #       data_template:
-  #         data:
-  #           title: Carbon Monoxide Alert
-  #         message: >
-  #           Carbon Monoxide from {{ trigger.to_state.attributes.friendly_name }}!
-  #     - service: persistent_notification.create
-  #       data_template:
-  #         title: Carbon Monoxide Alert
-  #         message: >
-  #           Smoke Detected from {{ trigger.to_state.attributes.friendly_name }}!
-  #     - service: script.sonos_say
-  #       data:
-  #         sonos_entity: media_player.living_room
-  #         volume: 0.6
-  #         delay: 5
-  #         message: Carbon Monoxide Detected!
+  - alias: trigger_notification_on_co
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smoke_and_carbon_monoxide_sensor_carbon_monoxide_detected
+        from: 'off'
+        to: 'on'
+    action:
+      - service: notify.sms
+        data_template:
+          message: >
+            Carbon Monoxide Alert! Carbon monoxide detected in the house!
+          target:
+            - !secret mobile_michael
+      - service: notify.mobile_app_michael_iphone
+        data_template:
+          data:
+            title: Carbon Monoxide Alert
+          message: >
+            Carbon monoxide detected in the house!
+      - service: persistent_notification.create
+        data_template:
+          title: Carbon Monoxide Alert
+          message: >
+            Carbon monoxide detected in the house!
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.6
+          delay: 5
+          message: Carbon Monoxide Detected!
