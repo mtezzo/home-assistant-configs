@@ -57,24 +57,24 @@ cards:
         card_mod:
           class: middle-left
           style: |
-            ha-card.middle {
-              border-left-color: var(--lcars-c54, transparent) !important;
+            ha-card.middle-left {
+              border-left-color: var(--lcars-orchid, transparent) !important;
             }
       - type: media-control
         entity: media_player.family_room_apple_tv
         card_mod:
           class: middle-left
           style: |
-            ha-card.middle {
-              border-left-color: var(--lcars-c54, transparent) !important;
+            ha-card.middle-left {
+              border-left-color: var(--lcars-orchid, transparent) !important;
             }
       - type: media-control
         entity: media_player.basement_apple_tv
         card_mod:
           class: middle-left
           style: |
-            ha-card.middle {
-              border-left-color: var(--lcars-c54, transparent) !important;
+            ha-card.middle-left {
+              border-left-color: var(--lcars-orchid, transparent) !important;
             }
       - type: media-control
         entity: media_player.family_room_tv
