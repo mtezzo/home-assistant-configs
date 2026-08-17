@@ -81,6 +81,7 @@ cards:
         title: Notifications
         show_header_toggle: false
         entities:
+          - automation.startup_notification
           - automation.alarm_triggered_notification
           - automation.update_notification
           - automation.trigger_notification_on_sensor_tamper

@@ -86,21 +86,17 @@ automation system:
           message: "Home Assistant is now up and running."
           target:
             - !secret mobile_michael
-      - service: automation.turn_off
-        data:
-          entity_id: automation.startup_notification
 
   - alias: update_notification
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.updater
-        from: 'off'
+        entity_id: update.home_assistant_core_update
         to: 'on'
     action:
       - service: notify.sms
         data_template:
-          message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
+          message: "Home Assistant {{ state_attr('update.home_assistant_core_update', 'latest_version') }} is available."
           target:
             - !secret mobile_michael
 
