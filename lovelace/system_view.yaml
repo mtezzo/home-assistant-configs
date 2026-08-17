@@ -196,5 +196,5 @@ cards:
             class: footer-left
             style: |
               ha-card {
-                padding-left: 18px !important;
+                padding-bottom: 18px !important;
               }
