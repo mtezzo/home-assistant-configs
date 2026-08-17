@@ -45,6 +45,11 @@ homeassistant:
       friendly_name: "Auto Sunrise (Weekdays)"
       icon: mdi:robot
 
+    automation.manual_night:
+      <<: *customize
+      friendly_name: "Manual Night (Bedside Switch)"
+      icon: mdi:weather-night
+
     ################################################
     ## Input DateTime
     ################################################

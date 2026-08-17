@@ -57,6 +57,11 @@ cards:
         entities:
           - automation.auto_away
           - automation.auto_home
+          - automation.person_arriving
+          - automation.person_home
+          - automation.person_departing
+          - automation.person_away
+          - automation.person_vacation
         uix:
           class: middle-right
 
@@ -79,6 +84,30 @@ cards:
           - automation.alarm_triggered_notification
           - automation.update_notification
           - automation.trigger_notification_on_sensor_tamper
+          - automation.trigger_notification_on_smoke
+          - automation.trigger_notification_on_co
+        uix:
+          class: middle-right
+
+      - type: entities
+        title: Security
+        show_header_toggle: false
+        entities:
+          - automation.trigger_alarm_on_exterior_door
+          - automation.trigger_alarm_on_binary_sensor
+          - automation.guest_mode_disarm
+          - automation.guest_mode_restore
+        uix:
+          class: middle-right
+
+      - type: entities
+        title: Manual Controls
+        show_header_toggle: false
+        entities:
+          - automation.master_bedroom_keyfob
+          - automation.nightstand_switches
+          - automation.garage_switch
+          - automation.manual_night
         uix:
           class: footer-right
 
@@ -147,3 +176,7 @@ cards:
           content: "# None"
           uix:
             class: footer-left
+            style: |
+              ha-card {
+                padding-left: 18px !important;
+              }

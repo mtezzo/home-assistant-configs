@@ -4,26 +4,64 @@ path: life-support
 cards:
   - type: vertical-stack
     cards:
-      - type: button
-        name: 'Radon'
-        show_name: true
-        show_icon: true
-        show_state: true
-        tap_action:
-          action: more-info
-        entity: sensor.basement_radon_pcil
-        uix:
-          class: button-lozenge-right
-          style: |
-            ha-card {
-              {% if states('sensor.basement_radon_pcil') | float < 2.7 -%}
-              background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
-              {%- elif states('sensor.basement_radon_pcil') | float < 4 -%}
-              background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
-              {%- else -%}
-              background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
-              {%- endif %}
-            }
+      - type: horizontal-stack
+        cards:
+          - type: button
+            name: 'Radon'
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
+            entity: sensor.basement_radon_pcil
+            uix:
+              class: button-lozenge-right
+              style: |
+                ha-card {
+                  {% if states('sensor.basement_radon_pcil') | float < 2.7 -%}
+                  background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- elif states('sensor.basement_radon_pcil') | float < 4 -%}
+                  background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- else -%}
+                  background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- endif %}
+                }
+          - type: button
+            name: 'Smoke'
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
+            entity: binary_sensor.smoke_and_carbon_monoxide_sensor_smoke_detected
+            uix:
+              class: button-lozenge-right
+              style: |
+                ha-card {
+                  {% if is_state('binary_sensor.smoke_and_carbon_monoxide_sensor_smoke_detected', 'off') -%}
+                  background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- else -%}
+                  background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- endif %}
+                }
+          - type: button
+            name: 'Carbon Monoxide'
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
+            entity: binary_sensor.smoke_and_carbon_monoxide_sensor_carbon_monoxide_detected
+            uix:
+              class: button-lozenge-right
+              style: |
+                ha-card {
+                  {% if is_state('binary_sensor.smoke_and_carbon_monoxide_sensor_carbon_monoxide_detected', 'off') -%}
+                  background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- else -%}
+                  background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- endif %}
+                }
       - type: markdown
         content: "# Life Support"
         uix:
