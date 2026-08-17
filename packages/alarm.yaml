@@ -244,7 +244,7 @@ automation alarm:
         entity_id: alarm_control_panel.alarm_system
         to: 'triggered'
     action:
-      - service: notify.michael_iphone
+      - service: notify.everyone
         data_template:
           data:
             title: Alarm Triggered
@@ -256,10 +256,10 @@ automation alarm:
                 {{ state.name }}
               {%- endif -%}
             {%- endfor -%}
-      - service: notify.julia_iphone
+      - service: notify.persistent_notification
         data_template:
-          data:
-            title: Alarm Triggered
+          notification_id: alarm_triggered
+          title: Alarm Triggered
           message: *alarm_triggered_message
 
   - alias: trigger_notification_on_sensor_tamper
@@ -290,19 +290,15 @@ automation alarm:
         from: 'off'
         to: 'on'
     action:
-      - service: notify.michael_iphone
+      - service: notify.everyone
         data_template:
           data:
             title: Tamper Notification
           message: &tamper_message >
             Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
-      - service: notify.julia_iphone
+      - service: notify.persistent_notification
         data_template:
-          data:
-            title: Tamper Notification
-          message: *tamper_message
-      - service: persistent_notification.create
-        data_template:
+          notification_id: tamper_notification
           title: Tamper Notification
           message: *tamper_message
 
@@ -313,19 +309,15 @@ automation alarm:
         from: 'off'
         to: 'on'
     action:
-      - service: notify.michael_iphone
+      - service: notify.everyone
         data_template:
           data:
             title: Smoke Alert
           message: &smoke_message >
             Smoke detected in the house!
-      - service: notify.julia_iphone
+      - service: notify.persistent_notification
         data_template:
-          data:
-            title: Smoke Alert
-          message: *smoke_message
-      - service: persistent_notification.create
-        data_template:
+          notification_id: smoke_alert
           title: Smoke Alert
           message: *smoke_message
       - service: script.sonos_say
@@ -342,19 +334,15 @@ automation alarm:
         from: 'off'
         to: 'on'
     action:
-      - service: notify.michael_iphone
+      - service: notify.everyone
         data_template:
           data:
             title: Carbon Monoxide Alert
           message: &co_message >
             Carbon monoxide detected in the house!
-      - service: notify.julia_iphone
+      - service: notify.persistent_notification
         data_template:
-          data:
-            title: Carbon Monoxide Alert
-          message: *co_message
-      - service: persistent_notification.create
-        data_template:
+          notification_id: co_alert
           title: Carbon Monoxide Alert
           message: *co_message
       - service: script.sonos_say

@@ -81,7 +81,7 @@ automation system:
           name: LCARS Modern
           # name: default
           mode: dark
-      - service: notify.michael_iphone
+      - service: notify.michael
         data:
           data:
             title: Home Assistant Started
@@ -94,7 +94,7 @@ automation system:
         entity_id: update.home_assistant_core_update
         to: 'on'
     action:
-      - service: notify.michael_iphone
+      - service: notify.michael
         data_template:
           data:
             title: Update Available

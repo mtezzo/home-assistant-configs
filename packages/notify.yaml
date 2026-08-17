@@ -1,0 +1,30 @@
+################################################################
+## Packages / Notify
+################################################################
+
+################################################
+## Notify
+################################################
+
+# Per-person groups fan out to every device that person owns. Add new
+# devices here as they're registered -- automations should always target
+# notify.michael / notify.julia / notify.everyone, never a specific device.
+notify:
+  - platform: group
+    name: michael
+    services:
+      - action: michael_iphone
+      - action: michael_ipad
+      - action: michaels_mac_mini
+
+  - platform: group
+    name: julia
+    services:
+      - action: julia_iphone
+      # - action: julia_ipad
+
+  - platform: group
+    name: everyone
+    services:
+      - action: michael
+      - action: julia
