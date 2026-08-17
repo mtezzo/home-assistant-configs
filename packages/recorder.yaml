@@ -31,13 +31,6 @@ recorder:
         - sun
         - notify
       entities:
-        - automation.keyfob_circle_button_tapped
-        - automation.keyfob_square_button_tapped
-        - automation.keyfob_triangle_button_tapped
-        - automation.keyfob_x_button_tapped
-        - automation.keyfob_minus_button_tapped
-        - automation.keyfob_minus_button_held
-        - automation.keyfob_plus_button_tapped
         - automation.person_arriving
         - automation.person_home
         - automation.person_departing
@@ -47,3 +40,9 @@ recorder:
         - sensor.since_last_boot_templated
         - sensor.date
         - sensor.time
+        - sensor.date_time
+        - sensor.date_time_utc
+        - sensor.date_time_iso
+        - sensor.time_date
+        - sensor.time_utc
+        - sensor.lcars_header
