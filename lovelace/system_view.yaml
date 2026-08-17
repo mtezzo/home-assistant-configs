@@ -57,11 +57,6 @@ cards:
         entities:
           - automation.auto_away
           - automation.auto_home
-          - automation.person_arriving
-          - automation.person_home
-          - automation.person_departing
-          - automation.person_away
-          - automation.person_vacation
         uix:
           class: middle-right
 
@@ -105,7 +100,6 @@ cards:
         title: Manual Controls
         show_header_toggle: false
         entities:
-          - automation.master_bedroom_keyfob
           - automation.nightstand_switches
           - automation.garage_switch
           - automation.manual_night
@@ -133,6 +127,10 @@ cards:
           - sensor.load_5m
           - sensor.load_15m
           - sensor.current_version
+          - update.home_assistant_core_update
+          - sensor.speedtest_ping
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
         uix:
           class: middle-left
 
@@ -151,6 +149,28 @@ cards:
             name: MEM
           - entity: sensor.disk_use_percent
             name: DISK
+        uix:
+          class: middle-left
+
+      - type: markdown
+        content: "# Z-Wave Network"
+        uix:
+          class: middle-left
+
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - sensor.controller_status
+          - sensor.controller_average_background_rssi_channel_0
+          - sensor.controller_average_background_rssi_channel_1
+          - sensor.controller_average_background_rssi_channel_2
+          - sensor.controller_collisions
+          - sensor.controller_missing_acks
+          - sensor.controller_messages_dropped_rx
+          - sensor.controller_messages_dropped_tx
+          - sensor.controller_messages_not_accepted
+          - sensor.controller_timed_out_callbacks
+          - sensor.controller_timed_out_responses
         uix:
           class: middle-left
 
