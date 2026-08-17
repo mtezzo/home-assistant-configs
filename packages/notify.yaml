@@ -13,14 +13,14 @@ notify:
   - platform: group
     name: michael
     services:
-      - action: michael_iphone
-      - action: michael_ipad
-      - action: michaels_mac_mini
+      - action: mobile_app_michael_iphone
+      - action: mobile_app_michael_ipad
+      - action: mobile_app_michaels_mac_mini
 
   - platform: group
     name: julia
     services:
-      - action: julia_iphone
+      - action: mobile_app_julia_iphone
       # - action: julia_ipad
 
   - platform: group
