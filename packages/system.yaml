@@ -81,11 +81,11 @@ automation system:
           name: LCARS Modern
           # name: default
           mode: dark
-      - service: notify.sms
+      - service: notify.michael_iphone
         data:
+          data:
+            title: Home Assistant Started
           message: "Home Assistant is now up and running."
-          target:
-            - !secret mobile_michael
 
   - alias: update_notification
     initial_state: true
@@ -94,11 +94,11 @@ automation system:
         entity_id: update.home_assistant_core_update
         to: 'on'
     action:
-      - service: notify.sms
+      - service: notify.michael_iphone
         data_template:
+          data:
+            title: Update Available
           message: "Home Assistant {{ state_attr('update.home_assistant_core_update', 'latest_version') }} is available."
-          target:
-            - !secret mobile_michael
 
 ################################################
 ## Sensor

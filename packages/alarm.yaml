@@ -244,9 +244,11 @@ automation alarm:
         entity_id: alarm_control_panel.alarm_system
         to: 'triggered'
     action:
-      - service: notify.sms
+      - service: notify.michael_iphone
         data_template:
-          message: >
+          data:
+            title: Alarm Triggered
+          message: &alarm_triggered_message >
             Alarm was triggered on:
             {% for state in states.binary_sensor -%}
               {% if state.state == 'on' and state.entity_id in ['cover.garage_door', 'binary_sensor.hue_secure_contact_sensor_2_opening', 'binary_sensor.hue_secure_contact_sensor_3_opening', 'binary_sensor.hue_secure_contact_sensor_4_opening', 'binary_sensor.laundry_room_door_open', 'binary_sensor.back_door_open',
@@ -254,8 +256,11 @@ automation alarm:
                 {{ state.name }}
               {%- endif -%}
             {%- endfor -%}
-          target:
-            - !secret mobile_michael
+      - service: notify.julia_iphone
+        data_template:
+          data:
+            title: Alarm Triggered
+          message: *alarm_triggered_message
 
   - alias: trigger_notification_on_sensor_tamper
     trigger:
@@ -285,17 +290,21 @@ automation alarm:
         from: 'off'
         to: 'on'
     action:
-      - service: notify.mobile_app_michael_iphone
+      - service: notify.michael_iphone
         data_template:
           data:
             title: Tamper Notification
-          message: >
+          message: &tamper_message >
             Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
+      - service: notify.julia_iphone
+        data_template:
+          data:
+            title: Tamper Notification
+          message: *tamper_message
       - service: persistent_notification.create
         data_template:
           title: Tamper Notification
-          message: >
-            Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
+          message: *tamper_message
 
   - alias: trigger_notification_on_smoke
     trigger:
@@ -304,23 +313,21 @@ automation alarm:
         from: 'off'
         to: 'on'
     action:
-      - service: notify.sms
-        data_template:
-          message: >
-            Smoke Alert! Smoke detected in the house!
-          target:
-            - !secret mobile_michael
-      - service: notify.mobile_app_michael_iphone
+      - service: notify.michael_iphone
         data_template:
           data:
             title: Smoke Alert
-          message: >
+          message: &smoke_message >
             Smoke detected in the house!
+      - service: notify.julia_iphone
+        data_template:
+          data:
+            title: Smoke Alert
+          message: *smoke_message
       - service: persistent_notification.create
         data_template:
           title: Smoke Alert
-          message: >
-            Smoke detected in the house!
+          message: *smoke_message
       - service: script.sonos_say
         data:
           sonos_entity: media_player.living_room
@@ -335,23 +342,21 @@ automation alarm:
         from: 'off'
         to: 'on'
     action:
-      - service: notify.sms
-        data_template:
-          message: >
-            Carbon Monoxide Alert! Carbon monoxide detected in the house!
-          target:
-            - !secret mobile_michael
-      - service: notify.mobile_app_michael_iphone
+      - service: notify.michael_iphone
         data_template:
           data:
             title: Carbon Monoxide Alert
-          message: >
+          message: &co_message >
             Carbon monoxide detected in the house!
+      - service: notify.julia_iphone
+        data_template:
+          data:
+            title: Carbon Monoxide Alert
+          message: *co_message
       - service: persistent_notification.create
         data_template:
           title: Carbon Monoxide Alert
-          message: >
-            Carbon monoxide detected in the house!
+          message: *co_message
       - service: script.sonos_say
         data:
           sonos_entity: media_player.living_room
