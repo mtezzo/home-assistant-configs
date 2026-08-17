@@ -128,9 +128,6 @@ cards:
           - sensor.load_15m
           - sensor.current_version
           - update.home_assistant_core_update
-          - sensor.speedtest_ping
-          - sensor.speedtest_download
-          - sensor.speedtest_upload
         uix:
           class: middle-left
 

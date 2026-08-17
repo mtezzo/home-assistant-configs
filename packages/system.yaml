@@ -43,21 +43,6 @@ homeassistant:
       friendly_name: "System Date"
       icon: mdi:calendar
 
-    sensor.speedtest_ping:
-      <<: *customize
-      friendly_name: Ping
-      icon: mdi:pulse
-
-    sensor.speedtest_download:
-      <<: *customize
-      friendly_name: Download
-      icon: mdi:download
-
-    sensor.speedtest_upload:
-      <<: *customize
-      friendly_name: Upload
-      icon: mdi:upload
-
     sensor.time:
       <<: *customize
       friendly_name: "System Time"
