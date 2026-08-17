@@ -45,7 +45,7 @@ cards:
                   {%- endif %}
                 }
           - type: button
-            name: 'Carbon Monoxide'
+            name: 'CO'
             show_name: true
             show_icon: true
             show_state: true
