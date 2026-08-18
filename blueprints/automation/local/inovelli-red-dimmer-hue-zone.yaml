@@ -69,6 +69,7 @@ blueprint:
       selector:
         entity:
           domain: light
+          integration: zwave_js
 
     inovelli_node_id:
       name: Inovelli Z-Wave Node ID
@@ -81,6 +82,33 @@ blueprint:
           max: 232
           mode: box
 
+    up_paddle_scene:
+      name: "Up" paddle Central Scene button
+      description: >
+        Which Central Scene button number the physical TOP/up paddle
+        actually reports as. This varies by device -- if pressing the top
+        paddle turns the light off (and the bottom paddle turns it on),
+        swap this to "002" and swap the "down" input below to "001".
+      default: "001"
+      selector:
+        select:
+          options:
+            - "001"
+            - "002"
+
+    down_paddle_scene:
+      name: "Down" paddle Central Scene button
+      description: >
+        Which Central Scene button number the physical BOTTOM/down paddle
+        actually reports as. Should always be the opposite of the "up"
+        input above.
+      default: "002"
+      selector:
+        select:
+          options:
+            - "001"
+            - "002"
+
     hue_zone:
       name: Philips Hue Zone / Group
       description: >
@@ -88,6 +116,7 @@ blueprint:
       selector:
         entity:
           domain: light
+          integration: hue
 
     transition_time:
       name: Transition time (seconds)
@@ -152,7 +181,7 @@ trigger:
     event_data:
       node_id: !input inovelli_node_id
       command_class_name: Central Scene
-      property_key_name: "001"   # button 1 = upper paddle
+      property_key_name: !input up_paddle_scene   # button 1 = upper paddle
       value: KeyPressed
     id: upper_tap
 
@@ -162,7 +191,7 @@ trigger:
     event_data:
       node_id: !input inovelli_node_id
       command_class_name: Central Scene
-      property_key_name: "001"
+      property_key_name: !input up_paddle_scene
       value: KeyPressed2x
     id: upper_double
 
@@ -172,7 +201,7 @@ trigger:
     event_data:
       node_id: !input inovelli_node_id
       command_class_name: Central Scene
-      property_key_name: "001"
+      property_key_name: !input up_paddle_scene
       value: KeyHeldDown
     id: upper_hold
 
@@ -182,7 +211,7 @@ trigger:
     event_data:
       node_id: !input inovelli_node_id
       command_class_name: Central Scene
-      property_key_name: "002"   # button 2 = lower paddle
+      property_key_name: !input down_paddle_scene   # button 2 = lower paddle
       value: KeyPressed
     id: lower_tap
 
@@ -192,7 +221,7 @@ trigger:
     event_data:
       node_id: !input inovelli_node_id
       command_class_name: Central Scene
-      property_key_name: "002"
+      property_key_name: !input down_paddle_scene
       value: KeyPressed2x
     id: lower_double
 
@@ -202,7 +231,7 @@ trigger:
     event_data:
       node_id: !input inovelli_node_id
       command_class_name: Central Scene
-      property_key_name: "002"
+      property_key_name: !input down_paddle_scene
       value: KeyHeldDown
     id: lower_hold
 
@@ -305,13 +334,17 @@ action:
                       event_data:
                         node_id: !input inovelli_node_id
                         command_class_name: Central Scene
-                        property_key_name: "001"
+                        property_key_name: !input up_paddle_scene
                         value: KeyReleased
                   timeout:
                     milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
-                  value_template: "{{ wait.trigger is not none }}"
+                  # A bare `condition:` step that evaluates false stops the
+                  # whole automation run -- that's the "break" here. We want
+                  # to break when a release WAS seen, and keep looping on a
+                  # timeout (still held), so this must be true on timeout.
+                  value_template: "{{ wait.trigger is none }}"
               # break out of loop when KeyReleased fires
 
       # ────────────────────────────────────────────────────────────────────
@@ -384,13 +417,17 @@ action:
                       event_data:
                         node_id: !input inovelli_node_id
                         command_class_name: Central Scene
-                        property_key_name: "002"
+                        property_key_name: !input down_paddle_scene
                         value: KeyReleased
                   timeout:
                     milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
-                  value_template: "{{ wait.trigger is not none }}"
+                  # A bare `condition:` step that evaluates false stops the
+                  # whole automation run -- that's the "break" here. We want
+                  # to break when a release WAS seen, and keep looping on a
+                  # timeout (still held), so this must be true on timeout.
+                  value_template: "{{ wait.trigger is none }}"
 
       # ────────────────────────────────────────────────────────────────────
       # HUE ZONE CHANGED (external – Hue app / HA UI / HomeKit) → match
