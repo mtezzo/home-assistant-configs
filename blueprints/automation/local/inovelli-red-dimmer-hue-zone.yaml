@@ -331,6 +331,15 @@ action:
       # safety net, not an arbitrary worst-case guess. +2 as slack for
       # rounding at the ends of the range.
       max_hold_iterations: "{{ ((100 / hold_step) | round(0, 'ceil') | int) + 2 }}"
+      # device_id() is a pure registry lookup (unlike states()/has_value(),
+      # which are tied to the entity's *state value* and can't reliably
+      # tell "deleted" apart from "exists but legitimately reports
+      # unknown" -- a scene that's never been activated through HA before
+      # is a real, non-broken case that would trip up a state-based check).
+      # None here means default_scene doesn't resolve to a real entity at
+      # all -- deleted, renamed, or never existed.
+      default_scene_device_id: >
+        {{ device_id(default_scene) if default_scene != '' else none }}
 
   - choose:
 
@@ -344,8 +353,8 @@ action:
         sequence:
           - choose:
               - conditions: >
-                  {{ default_scene != '' and default_scene in states and
-                     device_id(default_scene) == device_id(hue_zone) }}
+                  {{ default_scene != '' and default_scene_device_id is not none and
+                     default_scene_device_id == device_id(hue_zone) }}
                 sequence:
                   - service: hue.activate_scene
                     target:
@@ -362,7 +371,7 @@ action:
               # app. Don't let this silently degrade to a plain turn-on
               # forever; surface it with its own message so it's clear the
               # fix is "pick a valid scene again", not "check the room".
-              - conditions: "{{ default_scene != '' and default_scene not in states }}"
+              - conditions: "{{ default_scene != '' and default_scene_device_id is none }}"
                 sequence:
                   - service: persistent_notification.create
                     data:
@@ -386,8 +395,8 @@ action:
               # don't-silently-degrade reasoning as above, distinct message
               # since the fix here is "check the room", not "pick again".
               - conditions: >
-                  {{ default_scene != '' and default_scene in states and
-                     device_id(default_scene) != device_id(hue_zone) }}
+                  {{ default_scene != '' and default_scene_device_id is not none and
+                     default_scene_device_id != device_id(hue_zone) }}
                 sequence:
                   - service: persistent_notification.create
                     data:
