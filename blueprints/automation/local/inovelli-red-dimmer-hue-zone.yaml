@@ -497,10 +497,9 @@ action:
                   # repeat.index caps this at max_hold_iterations (a full
                   # 0-100% sweep, plus slack) so the loop is guaranteed to
                   # end on its own even if release-detection somehow never
-                  # fires. Under `mode: restart` this is now just a defense-
-                  # in-depth safety net (a genuine release or even another
-                  # resent KeyHeldDown would already preempt this loop
-                  # directly), not the primary way it's expected to end.
+                  # fires -- a defense-in-depth safety net now that release
+                  # is handled by an explicit `stop:` (see below) rather
+                  # than relying on it as the only way the loop can end.
                   value_template: >
                     {{ states(inovelli_switch) != 'unavailable' and repeat.index <= max_hold_iterations }}
               sequence:
@@ -541,18 +540,23 @@ action:
                       iteration {{ repeat.index }}, brightness {{ new_bri }},
                       wait.trigger: {{ wait.trigger }}
                     entity_id: !input inovelli_switch
-                - condition: template
-                  # A bare `condition:` step that evaluates false stops the
-                  # whole automation run -- that's the "break" here. Matches
-                  # any KeyReleased regardless of which button, rather than
-                  # comparing property_key_name -- some devices don't report
-                  # it consistently on release, which would make that
-                  # comparison never true and hang the loop forever instead
-                  # of breaking. Safe to be this loose under `mode: single`,
-                  # since only one hold-loop (up or down) can ever be active
-                  # at a time -- there's no other button's release for this
-                  # to mistakenly catch.
-                  value_template: "{{ wait.trigger is none }}"
+                - if:
+                    # A bare `condition:` step failing only ends the
+                    # *current iteration* of a repeat, not the script --
+                    # confirmed via testing (the loop kept running for 11
+                    # more iterations after catching the release on the
+                    # very first one). `stop:` is the action that actually
+                    # halts the script, so it has to be reached explicitly
+                    # via if/then rather than relied on implicitly. Matches
+                    # any KeyReleased regardless of which button, rather
+                    # than comparing property_key_name -- some devices
+                    # don't report it consistently on release. Safe to be
+                    # this loose under `mode: single`, since only one
+                    # hold-loop (up or down) can ever be active at a time.
+                    - condition: template
+                      value_template: "{{ wait.trigger is not none }}"
+                  then:
+                    - stop: Paddle released
               # break out of loop when a KeyReleased fires (or the safety cap trips)
 
       # ────────────────────────────────────────────────────────────────────
@@ -643,9 +647,12 @@ action:
                       iteration {{ repeat.index }}, brightness {{ new_bri }},
                       wait.trigger: {{ wait.trigger }}
                     entity_id: !input inovelli_switch
-                - condition: template
-                  # See the matching comment on the UPPER HOLD branch above.
-                  value_template: "{{ wait.trigger is none }}"
+                - if:
+                    # See the matching comment on the UPPER HOLD branch above.
+                    - condition: template
+                      value_template: "{{ wait.trigger is not none }}"
+                  then:
+                    - stop: Paddle released
 
       # ────────────────────────────────────────────────────────────────────
       # LOWER PADDLE -- advanced presses (user-defined, no built-in action)
