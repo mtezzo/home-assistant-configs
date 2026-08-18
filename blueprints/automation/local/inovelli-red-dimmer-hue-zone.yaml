@@ -341,7 +341,12 @@ action:
                 sequence:
                   - service: hue.activate_scene
                     target:
-                      entity_id: !input default_scene
+                      # Templated rather than a direct !input substitution:
+                      # default_scene can legitimately be '' (unused), and
+                      # HA validates a literal `entity_id: ''` at blueprint
+                      # setup time regardless of the guarding condition
+                      # above -- a template defers that to runtime instead.
+                      entity_id: "{{ default_scene }}"
                     data:
                       transition: !input transition_time
               # default_scene is set but the entity no longer exists --
