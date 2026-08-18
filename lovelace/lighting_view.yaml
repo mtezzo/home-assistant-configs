@@ -31,14 +31,27 @@ cards:
           show_header_toggle: false
           uix:
             class: footer-right
+            style: |
+              :host {
+                --lcars-readout-width: 125px;
+              }
         filter:
           include:
             - domain: light
               state: "on"
+              options:
+                uix:
+                  class: entity-barrel-right
             - entity_id: switch.driveway_lights
               state: "on"
+              options:
+                uix:
+                  class: entity-barrel-right
             - entity_id: switch.master_bedroom_outlet_switch
               state: "on"
+              options:
+                uix:
+                  class: entity-barrel-right
           exclude:
             - entity_id: light.exterior_lights
             - entity_id: light.interior_lights
