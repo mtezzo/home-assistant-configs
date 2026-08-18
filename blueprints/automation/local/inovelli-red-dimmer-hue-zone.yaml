@@ -286,13 +286,7 @@ blueprint:
 #     top-level trigger matches while it's running.
 # ---------------------------------------------------------------------------
 mode: single
-# TEMPORARY: was `silent` -- switched to `warning` so a dropped trigger
-# (e.g. a new hold arriving while a previous run is still finishing) shows
-# up in Settings > System > Logs instead of vanishing with zero trace,
-# while we confirm whether that's what's happening. Revert to `silent`
-# once resolved -- that's the correct steady-state value, since dropped
-# KeyHeldDown resends are expected/harmless and shouldn't spam the log.
-max_exceeded: warning
+max_exceeded: silent
 
 # HA's default of 5 stored traces gets flooded almost immediately by
 # discarded hue_changed/paddle_event triggers during a single hold -- bump
@@ -556,17 +550,6 @@ action:
                           timeout:
                             milliseconds: 1000
                           continue_on_timeout: true
-                        # TEMPORARY DIAGNOSTIC -- remove once
-                        # release-detection is confirmed working. Logs each
-                        # iteration's wait_for_trigger outcome to the
-                        # Logbook.
-                        - service: logbook.log
-                          data:
-                            name: Upper hold debug
-                            message: >
-                              iteration {{ repeat.index }}, brightness {{ new_bri }},
-                              wait.trigger: {{ wait.trigger }}
-                            entity_id: !input inovelli_switch
                         - if:
                             # A bare `condition:` step failing only ends the
                             # *current iteration* of a repeat, not the
@@ -674,16 +657,6 @@ action:
                           timeout:
                             milliseconds: 1000
                           continue_on_timeout: true
-                        # TEMPORARY DIAGNOSTIC -- see the matching comment
-                        # on the UPPER HOLD branch above; remove once
-                        # resolved.
-                        - service: logbook.log
-                          data:
-                            name: Lower hold debug
-                            message: >
-                              iteration {{ repeat.index }}, brightness {{ new_bri }},
-                              wait.trigger: {{ wait.trigger }}
-                            entity_id: !input inovelli_switch
                         - if:
                             # See the matching comment on the UPPER HOLD
                             # branch above.
