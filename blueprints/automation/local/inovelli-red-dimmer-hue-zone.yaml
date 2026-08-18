@@ -529,6 +529,15 @@ action:
                 # no release because there wasn't another one to catch).
                 # Running them in parallel shrinks that gap down to just
                 # local interpreter overhead between loop iterations.
+                #
+                # The check-and-stop logic has to live *inside* this same
+                # wait_for_trigger branch, not after the parallel block --
+                # confirmed via testing that a variable set inside a
+                # parallel branch (like `wait`, set by wait_for_trigger)
+                # does not propagate to steps after the block ends. Trying
+                # to read wait.trigger out there crashed the automation on
+                # every single iteration, silently, which is why nothing
+                # was showing up at all.
                 - parallel:
                     - service: light.turn_on
                       target:
@@ -536,45 +545,46 @@ action:
                       data:
                         brightness: "{{ new_bri }}"
                         transition: 1
-                    - wait_for_trigger:
-                        - platform: event
-                          event_type: zwave_js_value_notification
-                          event_data:
-                            node_id: !input inovelli_node_id
-                            command_class_name: Central Scene
-                            value: KeyReleased
-                      timeout:
-                        milliseconds: 1000
-                      continue_on_timeout: true
-                # TEMPORARY DIAGNOSTIC -- remove once release-detection is
-                # confirmed working. Logs each iteration's wait_for_trigger
-                # outcome to the Logbook (better retention than trace
-                # history, and accumulates a running history instead of
-                # evicting old entries).
-                - service: logbook.log
-                  data:
-                    name: Upper hold debug
-                    message: >
-                      iteration {{ repeat.index }}, brightness {{ new_bri }},
-                      wait.trigger: {{ wait.trigger }}
-                    entity_id: !input inovelli_switch
-                - if:
-                    # A bare `condition:` step failing only ends the
-                    # *current iteration* of a repeat, not the script --
-                    # confirmed via testing (the loop kept running for 11
-                    # more iterations after catching the release on the
-                    # very first one). `stop:` is the action that actually
-                    # halts the script, so it has to be reached explicitly
-                    # via if/then rather than relied on implicitly. Matches
-                    # any KeyReleased regardless of which button, rather
-                    # than comparing property_key_name -- some devices
-                    # don't report it consistently on release. Safe to be
-                    # this loose under `mode: single`, since only one
-                    # hold-loop (up or down) can ever be active at a time.
-                    - condition: template
-                      value_template: "{{ wait.trigger is not none }}"
-                  then:
-                    - stop: Paddle released
+                    - sequence:
+                        - wait_for_trigger:
+                            - platform: event
+                              event_type: zwave_js_value_notification
+                              event_data:
+                                node_id: !input inovelli_node_id
+                                command_class_name: Central Scene
+                                value: KeyReleased
+                          timeout:
+                            milliseconds: 1000
+                          continue_on_timeout: true
+                        # TEMPORARY DIAGNOSTIC -- remove once
+                        # release-detection is confirmed working. Logs each
+                        # iteration's wait_for_trigger outcome to the
+                        # Logbook.
+                        - service: logbook.log
+                          data:
+                            name: Upper hold debug
+                            message: >
+                              iteration {{ repeat.index }}, brightness {{ new_bri }},
+                              wait.trigger: {{ wait.trigger }}
+                            entity_id: !input inovelli_switch
+                        - if:
+                            # A bare `condition:` step failing only ends the
+                            # *current iteration* of a repeat, not the
+                            # script -- confirmed via testing (the loop
+                            # kept running for 11 more iterations after
+                            # catching the release on the very first one).
+                            # `stop:` is the action that actually halts the
+                            # script. Matches any KeyReleased regardless of
+                            # which button, rather than comparing
+                            # property_key_name -- some devices don't
+                            # report it consistently on release. Safe to be
+                            # this loose under `mode: single`, since only
+                            # one hold-loop (up or down) can ever be active
+                            # at a time.
+                            - condition: template
+                              value_template: "{{ wait.trigger is not none }}"
+                          then:
+                            - stop: Paddle released
               # break out of loop when a KeyReleased fires (or the safety cap trips)
 
       # ────────────────────────────────────────────────────────────────────
@@ -642,7 +652,10 @@ action:
                       {{ [current_bri - (hold_step / 100 * 255) | int, 1] | max }}
                 # See the matching comment on the UPPER HOLD branch above --
                 # light.turn_on and wait_for_trigger run concurrently to
-                # avoid a gap where a release could land unheard.
+                # avoid a gap where a release could land unheard, and the
+                # check-and-stop logic has to live inside the same
+                # wait_for_trigger branch since wait.trigger doesn't
+                # survive past the end of the parallel block.
                 - parallel:
                     - service: light.turn_on
                       target:
@@ -650,31 +663,34 @@ action:
                       data:
                         brightness: "{{ new_bri }}"
                         transition: 1
-                    - wait_for_trigger:
-                        - platform: event
-                          event_type: zwave_js_value_notification
-                          event_data:
-                            node_id: !input inovelli_node_id
-                            command_class_name: Central Scene
-                            value: KeyReleased
-                      timeout:
-                        milliseconds: 1000
-                      continue_on_timeout: true
-                # TEMPORARY DIAGNOSTIC -- see the matching comment on the
-                # UPPER HOLD branch above; remove once resolved.
-                - service: logbook.log
-                  data:
-                    name: Lower hold debug
-                    message: >
-                      iteration {{ repeat.index }}, brightness {{ new_bri }},
-                      wait.trigger: {{ wait.trigger }}
-                    entity_id: !input inovelli_switch
-                - if:
-                    # See the matching comment on the UPPER HOLD branch above.
-                    - condition: template
-                      value_template: "{{ wait.trigger is not none }}"
-                  then:
-                    - stop: Paddle released
+                    - sequence:
+                        - wait_for_trigger:
+                            - platform: event
+                              event_type: zwave_js_value_notification
+                              event_data:
+                                node_id: !input inovelli_node_id
+                                command_class_name: Central Scene
+                                value: KeyReleased
+                          timeout:
+                            milliseconds: 1000
+                          continue_on_timeout: true
+                        # TEMPORARY DIAGNOSTIC -- see the matching comment
+                        # on the UPPER HOLD branch above; remove once
+                        # resolved.
+                        - service: logbook.log
+                          data:
+                            name: Lower hold debug
+                            message: >
+                              iteration {{ repeat.index }}, brightness {{ new_bri }},
+                              wait.trigger: {{ wait.trigger }}
+                            entity_id: !input inovelli_switch
+                        - if:
+                            # See the matching comment on the UPPER HOLD
+                            # branch above.
+                            - condition: template
+                              value_template: "{{ wait.trigger is not none }}"
+                          then:
+                            - stop: Paddle released
 
       # ────────────────────────────────────────────────────────────────────
       # LOWER PADDLE -- advanced presses (user-defined, no built-in action)
