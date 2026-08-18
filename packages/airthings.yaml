@@ -25,6 +25,20 @@ homeassistant:
       friendly_name: "Basement Radon"
       icon: mdi:radioactive
 
+    sensor.basement_radon_led_tier:
+      <<: *customize
+      friendly_name: "Basement Radon LED Tier"
+      icon: mdi:led-strip-variant
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.basement_radon_led_alert:
+      <<: *customize
+      friendly_name: "Basement Radon LED Alert"
+      icon: mdi:led-strip-variant
+
 ################################################
 ## Sensor
 ################################################
@@ -34,3 +48,91 @@ template:
     - default_entity_id: sensor.basement_radon_pcil
       unit_of_measurement: 'pCi/L'
       state: "{{ (states('sensor.basement_radon') | float / 37) | round(2) }}"
+
+    # Drives the basement switches' LED bar color. Matches the breakpoints
+    # used on the dashboard (life_support_view.yaml, home_view.yaml):
+    # < 2.7 normal, 2.7-4 amber, >= 4 red. Kept as its own sensor (rather than
+    # thresholding inline in the automation) so the automation's state trigger
+    # only fires on a tier change, not on every Airthings poll -- that's what
+    # keeps the number of Z-Wave config-parameter writes (and NVM wear on the
+    # switches) low, regardless of poll frequency.
+    - default_entity_id: sensor.basement_radon_led_tier
+      state: >
+        {% set r = states('sensor.basement_radon_pcil') %}
+        {% if r in ['unknown', 'unavailable', 'none'] %}
+          unavailable
+        {% elif r | float >= 4 %}
+          red
+        {% elif r | float >= 2.7 %}
+          amber
+        {% else %}
+          normal
+        {% endif %}
+
+################################################
+## Automation
+################################################
+
+automation airthings:
+  - alias: basement_radon_led_alert
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: sensor.basement_radon_led_tier
+    condition:
+      # Ignore transitions into/out of unavailable (eg. an Airthings cloud
+      # outage) -- leave the LEDs showing whatever they last reflected rather
+      # than clearing a real alert because the sensor briefly dropped out.
+      - condition: template
+        value_template: "{{ trigger.to_state.state in ['normal', 'amber', 'red'] }}"
+    variables:
+      # Device IDs (not entity IDs) since zwave_js.bulk_set_partial_config_parameters
+      # targets devices -- these switches have no controllable light entity of
+      # their own beyond the LED bar itself.
+      basement_switches:
+        - 952b30c5116e9d260f4d571365fac96f  # Basement Overhead Lights
+        - 91d9d2d9b9bcfaa67470ddf3440e61bd  # Basement Staircase Lights
+        - 8c1b47c1d80f24e83f1db4f11adc59fe  # Basement Track Lights
+        - 508af5a5a043d19c592227407b27e90b  # Rear Basement Overhead Lights
+        - cd840924cf8d67bb51e38a6d306702fe  # Pool Table Light
+        - dc4f609e5ae9be4521938028dfb67a4d  # Workroom Light
+    action:
+      - choose:
+          # Elevated -- solid amber
+          - conditions: "{{ trigger.to_state.state == 'amber' }}"
+            sequence:
+              - service: zwave_js.bulk_set_partial_config_parameters
+                target:
+                  device_id: "{{ basement_switches }}"
+                data:
+                  parameter: 99
+                  value:
+                    255: 255        # duration: indefinite, until cleared
+                    65280: 100      # level: 100%
+                    16711680: 30    # color: amber
+                    4278190080: 1   # effect: solid
+          # High -- pulsing red
+          - conditions: "{{ trigger.to_state.state == 'red' }}"
+            sequence:
+              - service: zwave_js.bulk_set_partial_config_parameters
+                target:
+                  device_id: "{{ basement_switches }}"
+                data:
+                  parameter: 99
+                  value:
+                    255: 255        # duration: indefinite, until cleared
+                    65280: 100      # level: 100%
+                    16711680: 0     # color: red
+                    4278190080: 4   # effect: pulse
+        # Normal -- clear the notification. Parameter 99's dedicated "Clear"
+        # effect (255) reverts the LED bar to its normal default color/intensity
+        # (Parameters 95-98, currently blue) without us needing to know or
+        # re-set what that default is.
+        default:
+          - service: zwave_js.bulk_set_partial_config_parameters
+            target:
+              device_id: "{{ basement_switches }}"
+            data:
+              parameter: 99
+              value:
+                4278190080: 255  # effect: clear
