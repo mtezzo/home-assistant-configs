@@ -466,14 +466,24 @@ action:
           # Central Scene devices typically resend KeyHeldDown every ~200ms
           # for as long as the paddle stays physically held, which also
           # re-matches the top-level trigger above and queues a redundant
-          # run for each resend (mode: queued doesn't interrupt the active
-          # loop, but a queued duplicate would eventually start its OWN
-          # loop with no real release left to catch it, dimming forever).
-          # `current` on the automation entity counts this run itself, so
-          # >1 here means a loop for this switch is already in flight --
-          # bail out instead of starting a second, orphaned one.
+          # run for each resend. `current <= 1` blocks a duplicate from
+          # running *concurrently* with an active loop, but doesn't stop
+          # one that's still queued when the real hold ends -- once the
+          # queue drains, each leftover duplicate sees current back at 1
+          # and happily starts its OWN fresh loop, which is exactly what
+          # caused dimming to continue for a few seconds after release.
+          # The second check catches that case: a duplicate's own trigger
+          # event is however old it's been sitting in the queue by the
+          # time it finally runs, so anything more than a few seconds old
+          # is leftover noise, not a real new hold. 3s is generous enough
+          # to not falsely reject a genuinely fresh press that got delayed
+          # behind an unrelated queued run (e.g. a hue_changed sync, which
+          # can itself take ~2.5s between its 2s stability wait and 0.5s
+          # settle delay).
           - condition: template
-            value_template: "{{ state_attr(this.entity_id, 'current') | int(1) <= 1 }}"
+            value_template: >
+              {{ state_attr(this.entity_id, 'current') | int(1) <= 1 and
+                 (now() - trigger.event.time_fired).total_seconds() < 3 }}
           - repeat:
               while:
                 - condition: template
@@ -569,7 +579,9 @@ action:
         sequence:
           # See the matching guard on the UPPER HOLD branch above.
           - condition: template
-            value_template: "{{ state_attr(this.entity_id, 'current') | int(1) <= 1 }}"
+            value_template: >
+              {{ state_attr(this.entity_id, 'current') | int(1) <= 1 and
+                 (now() - trigger.event.time_fired).total_seconds() < 3 }}
           - repeat:
               while:
                 - condition: template
