@@ -286,7 +286,13 @@ blueprint:
 #     top-level trigger matches while it's running.
 # ---------------------------------------------------------------------------
 mode: single
-max_exceeded: silent
+# TEMPORARY: was `silent` -- switched to `warning` so a dropped trigger
+# (e.g. a new hold arriving while a previous run is still finishing) shows
+# up in Settings > System > Logs instead of vanishing with zero trace,
+# while we confirm whether that's what's happening. Revert to `silent`
+# once resolved -- that's the correct steady-state value, since dropped
+# KeyHeldDown resends are expected/harmless and shouldn't spam the log.
+max_exceeded: warning
 
 # HA's default of 5 stored traces gets flooded almost immediately by
 # discarded hue_changed/paddle_event triggers during a single hold -- bump
