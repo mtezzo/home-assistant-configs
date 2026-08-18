@@ -1,31 +1,59 @@
 blueprint:
   name: Inovelli Red Dimmer ↔ Philips Hue Zone Sync
   description: >
-    Bidirectional sync between an Inovelli Red Series Z-Wave dimmer and a
-    Philips Hue zone (or group).  Changes from the physical switch, Hue app,
+    Bidirectional sync between an Inovelli Red Series 2-1 Z-Wave dimmer (VZW31-SN,
+    in Smart Bulb Mode with the relay decoupled from any real load) and a
+    Philips Hue zone (or group). Changes from the physical switch, Hue app,
     Home Assistant UI, or HomeKit are all reflected on both the switch LED bar
     and the Hue zone.
 
     **Requirements**
-      - Z-Wave JS integration (with the Inovelli Red dimmer paired)
+      - Z-Wave JS integration (with the Inovelli Red dimmer paired, Smart Bulb
+        Mode enabled)
       - Philips Hue integration
-      - The Inovelli switch must expose a `light` entity (used for LED bar sync)
-        **and** fire `zwave_js_value_notification` events for scene/button presses.
+      - The Inovelli switch must expose a `light` entity **and** fire
+        `zwave_js_value_notification` events for scene/button presses.
 
     **How it works**
-      1. Physical paddle press / hold → controls the Hue zone, then syncs the
-         LED bar to the resulting brightness.
-      2. Any external change to the Hue zone (Hue app, HA UI, HomeKit) →
-         syncs the LED bar and, optionally, keeps the switch virtual level in
-         step.
+      1. Physical paddle tap / double-tap → sets the Hue zone AND the switch's
+         own light entity to the same target brightness (both commanded
+         directly, so there's no ambiguity about the resulting level).
+      2. Physical paddle hold → only the Hue zone is commanded by this
+         blueprint, throttled to roughly 1 update/second with a matching
+         `transition` so the bulb interpolates smoothly instead of jumping
+         (a Hue Zigbee group can't reliably absorb much more than ~1
+         command/second -- pushing more just makes it look jerky). The
+         switch's own LED bar is left alone during a hold: Smart Bulb Mode
+         switches still ramp their internal level/LED locally in firmware
+         the instant the paddle is touched, independent of HA, so nothing
+         needs to be sent to keep it moving. See "Ramp rate alignment" below
+         for keeping that native ramp's pace roughly matched to this
+         blueprint's Hue-side pace.
+      3. Any external change to the Hue zone (Hue app, HA UI, HomeKit) →
+         after a short settle delay, reads the zone's actual resulting state
+         and commands the switch's own light entity to match. This is what
+         makes the switch's LED reflect changes it didn't cause itself.
 
-    **LED bar notes**
-      The Inovelli Red uses parameter 13 (LED strip colour) and parameter 14
-      (LED strip intensity) for the *always-on* indicator behaviour.
-      This blueprint writes those parameters via `zwave_js.set_config_parameter`
-      to keep the bar in sync without interfering with the switch's normal
-      Z-Wave level (which is intentionally left alone so the switch doesn't
-      try to directly control anything).
+    **No Z-Wave config parameters are written by this blueprint.** LED bar
+      position is driven entirely by setting the switch's own `light` entity
+      state (a normal Multilevel Switch Set, the same mechanism any dimmer
+      uses for its current level) -- not by poking LED color/intensity
+      parameters, which are a separate cosmetic feature and not the right
+      tool for real-time level tracking.
+
+    **Ramp rate alignment**
+      Because taps/holds are handled differently (see above), only the
+      *hold* case needs alignment: if you want the switch's own local LED
+      ramp (paddle held) to visually finish around the same time as the
+      actual Hue zone (which this blueprint paces via `hold_step`), set the
+      switch's local continuous dimming speed parameters (VZW31-SN
+      parameters 2 = up, 6 = down) so a full 0-99 sweep takes about
+      `100 / hold_step` seconds -- e.g. the default `hold_step: 10` implies
+      a ~10 second full sweep. These are 100ms-resolution values from 1-100
+      (so "10 second full sweep" ≈ value 100), then 1-second resolution from
+      101-160 for longer sweeps. Verify the exact scale for your firmware
+      version in the parameter's tooltip in Z-Wave JS before setting it --
+      this isn't something the blueprint can set for you.
 
   domain: automation
   author: Claude / Anthropic
@@ -36,8 +64,8 @@ blueprint:
     inovelli_switch:
       name: Inovelli Red Dimmer (switch entity)
       description: >
-        The `light` entity for the Inovelli Red dimmer.  Used to read button
-        events and to update the LED bar.
+        The `light` entity for the Inovelli Red dimmer. Commanded directly
+        to move its own LED bar/level after taps and external Hue changes.
       selector:
         entity:
           domain: light
@@ -46,7 +74,7 @@ blueprint:
       name: Inovelli Z-Wave Node ID
       description: >
         The Z-Wave node ID of the Inovelli dimmer (visible in Z-Wave JS
-        developer tools).  Required to set LED bar config parameters.
+        developer tools). Used to filter the button-press events.
       selector:
         number:
           min: 1
@@ -63,7 +91,7 @@ blueprint:
 
     transition_time:
       name: Transition time (seconds)
-      description: Fade duration sent to the Hue zone on dim commands.
+      description: Fade duration sent on discrete tap/double-tap commands.
       default: 1
       selector:
         number:
@@ -76,8 +104,13 @@ blueprint:
     hold_step:
       name: Hold brightness step (%)
       description: >
-        How much to increase / decrease brightness per second while the paddle
-        is held.
+        How much to increase / decrease the Hue zone's brightness per
+        update while the paddle is held. Updates fire roughly once per
+        second (Hue Zigbee groups can't reliably keep up with much more
+        than that), so this also determines how long a full 0-100% sweep
+        takes -- e.g. the default 10% implies ~10 seconds end to end. See
+        "Ramp rate alignment" in the blueprint description if you want the
+        switch's own local LED ramp to match that pace.
       default: 10
       selector:
         number:
@@ -86,43 +119,13 @@ blueprint:
           unit_of_measurement: "%"
           mode: slider
 
-    led_color:
-      name: LED bar colour (on state)
-      description: >
-        Hue (0–255) for the Inovelli LED bar when the zone is on.
-        0 = red, 85 = green, 170 = blue, 255 = white.
-      default: 170
-      selector:
-        number:
-          min: 0
-          max: 255
-          mode: slider
-
-    led_color_off:
-      name: LED bar colour (off state)
-      description: Hue for the LED bar when the zone is off.
-      default: 170
-      selector:
-        number:
-          min: 0
-          max: 255
-          mode: slider
-
-    led_intensity_off:
-      name: LED bar intensity when zone is off (%)
-      description: >
-        0 = completely dark, 10 = dim night-light glow.  Set to 0 to turn the
-        bar fully off when lights are off.
-      default: 10
-      selector:
-        number:
-          min: 0
-          max: 100
-          unit_of_measurement: "%"
-          mode: slider
-
 # ---------------------------------------------------------------------------
-# Mode: queued keeps hold-dimming loops from stacking up
+# Mode: queued (not restart) -- the switch's own state changes (from taps,
+# and from syncing after external Hue changes) also match the hue_changed
+# trigger below. Under `restart`, that self-triggered run would cancel an
+# in-progress hold loop every time it updates the Hue zone, breaking
+# continuous dimming. Queued lets those redundant runs wait their turn
+# instead of interrupting the active hold.
 # ---------------------------------------------------------------------------
 mode: queued
 max: 10
@@ -136,9 +139,6 @@ variables:
   hue_zone: !input hue_zone
   transition_time: !input transition_time
   hold_step: !input hold_step
-  led_color: !input led_color
-  led_color_off: !input led_color_off
-  led_intensity_off: !input led_intensity_off
 
 # ---------------------------------------------------------------------------
 # Triggers
@@ -176,16 +176,6 @@ trigger:
       value: KeyHeldDown
     id: upper_hold
 
-  # Upper paddle release
-  - platform: event
-    event_type: zwave_js_value_notification
-    event_data:
-      node_id: !input inovelli_node_id
-      command_class_name: Central Scene
-      property_key_name: "001"
-      value: KeyReleased
-    id: upper_release
-
   # Lower paddle tap → turn off
   - platform: event
     event_type: zwave_js_value_notification
@@ -216,24 +206,13 @@ trigger:
       value: KeyHeldDown
     id: lower_hold
 
-  # Lower paddle release
-  - platform: event
-    event_type: zwave_js_value_notification
-    event_data:
-      node_id: !input inovelli_node_id
-      command_class_name: Central Scene
-      property_key_name: "002"
-      value: KeyReleased
-    id: lower_release
-
   # ── External changes to the Hue zone ────────────────────────────────────
+  # No to/from filter: a plain state trigger also fires on attribute-only
+  # changes (e.g. brightness slid in the Hue app while the light stays
+  # "on"), which is required for the switch to track real brightness.
   - platform: state
     entity_id: !input hue_zone
     id: hue_changed
-    # Avoid infinite loops – only react to real state changes
-    to:
-      - "on"
-      - "off"
 
 # ---------------------------------------------------------------------------
 # Actions
@@ -242,7 +221,7 @@ action:
   - choose:
 
       # ────────────────────────────────────────────────────────────────────
-      # UPPER TAP → turn Hue zone on (last brightness)
+      # UPPER TAP → turn Hue zone on (last brightness), then match the switch
       # ────────────────────────────────────────────────────────────────────
       - conditions:
           - condition: trigger
@@ -253,42 +232,51 @@ action:
               entity_id: !input hue_zone
             data:
               transition: !input transition_time
+          # "Last brightness" is resolved by Hue, not chosen by us -- wait
+          # briefly then read back the actual result before matching it.
           - delay:
-              milliseconds: 600
-          - alias: Sync LED bar after upper tap
-            call_service: script.inovelli_hue_sync_led
-            data:
-              node_id: !input inovelli_node_id
-              hue_zone: !input hue_zone
-              led_color: !input led_color
-              led_color_off: !input led_color_off
-              led_intensity_off: !input led_intensity_off
+              milliseconds: 400
+          - choose:
+              - conditions: "{{ is_state(hue_zone, 'on') }}"
+                sequence:
+                  - service: light.turn_on
+                    target:
+                      entity_id: !input inovelli_switch
+                    data:
+                      brightness: "{{ state_attr(hue_zone, 'brightness') | default(255) | int }}"
+                      transition: !input transition_time
+            default:
+              - service: light.turn_off
+                target:
+                  entity_id: !input inovelli_switch
+                data:
+                  transition: !input transition_time
 
       # ────────────────────────────────────────────────────────────────────
-      # UPPER DOUBLE-TAP → full brightness
+      # UPPER DOUBLE-TAP → full brightness on both, in parallel
       # ────────────────────────────────────────────────────────────────────
       - conditions:
           - condition: trigger
             id: upper_double
         sequence:
-          - service: light.turn_on
-            target:
-              entity_id: !input hue_zone
-            data:
-              brightness_pct: 100
-              transition: !input transition_time
-          - delay:
-              milliseconds: 600
-          - call_service: script.inovelli_hue_sync_led
-            data:
-              node_id: !input inovelli_node_id
-              hue_zone: !input hue_zone
-              led_color: !input led_color
-              led_color_off: !input led_color_off
-              led_intensity_off: !input led_intensity_off
+          - parallel:
+              - service: light.turn_on
+                target:
+                  entity_id: !input hue_zone
+                data:
+                  brightness_pct: 100
+                  transition: !input transition_time
+              - service: light.turn_on
+                target:
+                  entity_id: !input inovelli_switch
+                data:
+                  brightness_pct: 100
+                  transition: !input transition_time
 
       # ────────────────────────────────────────────────────────────────────
-      # UPPER HOLD → brighten in a loop until released
+      # UPPER HOLD → brighten the Hue zone in a throttled loop until
+      # released. The switch's own LED is not touched here -- see the
+      # blueprint description's "Ramp rate alignment" section.
       # ────────────────────────────────────────────────────────────────────
       - conditions:
           - condition: trigger
@@ -310,14 +298,7 @@ action:
                     entity_id: !input hue_zone
                   data:
                     brightness: "{{ new_bri }}"
-                    transition: 0.5
-                - call_service: script.inovelli_hue_sync_led
-                  data:
-                    node_id: !input inovelli_node_id
-                    hue_zone: !input hue_zone
-                    led_color: !input led_color
-                    led_color_off: !input led_color_off
-                    led_intensity_off: !input led_intensity_off
+                    transition: 1
                 - wait_for_trigger:
                     - platform: event
                       event_type: zwave_js_value_notification
@@ -327,59 +308,54 @@ action:
                         property_key_name: "001"
                         value: KeyReleased
                   timeout:
-                    milliseconds: 600
+                    milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
                   value_template: "{{ wait.trigger is not none }}"
               # break out of loop when KeyReleased fires
 
       # ────────────────────────────────────────────────────────────────────
-      # LOWER TAP → turn off
+      # LOWER TAP → turn off both, in parallel
       # ────────────────────────────────────────────────────────────────────
       - conditions:
           - condition: trigger
             id: lower_tap
         sequence:
-          - service: light.turn_off
-            target:
-              entity_id: !input hue_zone
-            data:
-              transition: !input transition_time
-          - delay:
-              milliseconds: 600
-          - call_service: script.inovelli_hue_sync_led
-            data:
-              node_id: !input inovelli_node_id
-              hue_zone: !input hue_zone
-              led_color: !input led_color
-              led_color_off: !input led_color_off
-              led_intensity_off: !input led_intensity_off
+          - parallel:
+              - service: light.turn_off
+                target:
+                  entity_id: !input hue_zone
+                data:
+                  transition: !input transition_time
+              - service: light.turn_off
+                target:
+                  entity_id: !input inovelli_switch
+                data:
+                  transition: !input transition_time
 
       # ────────────────────────────────────────────────────────────────────
-      # LOWER DOUBLE-TAP → minimum brightness (1 %)
+      # LOWER DOUBLE-TAP → minimum brightness (1 %) on both, in parallel
       # ────────────────────────────────────────────────────────────────────
       - conditions:
           - condition: trigger
             id: lower_double
         sequence:
-          - service: light.turn_on
-            target:
-              entity_id: !input hue_zone
-            data:
-              brightness_pct: 1
-              transition: !input transition_time
-          - delay:
-              milliseconds: 600
-          - call_service: script.inovelli_hue_sync_led
-            data:
-              node_id: !input inovelli_node_id
-              hue_zone: !input hue_zone
-              led_color: !input led_color
-              led_color_off: !input led_color_off
-              led_intensity_off: !input led_intensity_off
+          - parallel:
+              - service: light.turn_on
+                target:
+                  entity_id: !input hue_zone
+                data:
+                  brightness_pct: 1
+                  transition: !input transition_time
+              - service: light.turn_on
+                target:
+                  entity_id: !input inovelli_switch
+                data:
+                  brightness_pct: 1
+                  transition: !input transition_time
 
       # ────────────────────────────────────────────────────────────────────
-      # LOWER HOLD → dim in a loop until released
+      # LOWER HOLD → dim the Hue zone in a throttled loop until released
       # ────────────────────────────────────────────────────────────────────
       - conditions:
           - condition: trigger
@@ -401,14 +377,7 @@ action:
                     entity_id: !input hue_zone
                   data:
                     brightness: "{{ new_bri }}"
-                    transition: 0.5
-                - call_service: script.inovelli_hue_sync_led
-                  data:
-                    node_id: !input inovelli_node_id
-                    hue_zone: !input hue_zone
-                    led_color: !input led_color
-                    led_color_off: !input led_color_off
-                    led_intensity_off: !input led_intensity_off
+                    transition: 1
                 - wait_for_trigger:
                     - platform: event
                       event_type: zwave_js_value_notification
@@ -418,13 +387,14 @@ action:
                         property_key_name: "002"
                         value: KeyReleased
                   timeout:
-                    milliseconds: 600
+                    milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
                   value_template: "{{ wait.trigger is not none }}"
 
       # ────────────────────────────────────────────────────────────────────
-      # HUE ZONE CHANGED (external – Hue app / HA UI / HomeKit)
+      # HUE ZONE CHANGED (external – Hue app / HA UI / HomeKit) → match
+      # the switch's own light entity to whatever the zone ended up at.
       # ────────────────────────────────────────────────────────────────────
       - conditions:
           - condition: trigger
@@ -433,71 +403,18 @@ action:
           # Small delay to let Hue state fully settle
           - delay:
               milliseconds: 500
-          - call_service: script.inovelli_hue_sync_led
-            data:
-              node_id: !input inovelli_node_id
-              hue_zone: !input hue_zone
-              led_color: !input led_color
-              led_color_off: !input led_color_off
-              led_intensity_off: !input led_intensity_off
-
-# ---------------------------------------------------------------------------
-# Companion script – inovelli_hue_sync_led
-#
-# Add this script to your scripts.yaml (or via the Scripts UI) ONCE.
-# All blueprint automations share it.
-#
-# Parameters accepted via 'data':
-#   node_id         – Z-Wave node ID (integer)
-#   hue_zone        – entity_id of the Hue zone
-#   led_color       – LED hue when on  (0-255)
-#   led_color_off   – LED hue when off (0-255)
-#   led_intensity_off – LED intensity when off (0-100)
-# ---------------------------------------------------------------------------
-#
-# ── scripts.yaml entry ────────────────────────────────────────────────────
-#
-# inovelli_hue_sync_led:
-#   alias: "Inovelli – Sync LED bar to Hue zone"
-#   mode: restart
-#   fields:
-#     node_id:
-#       description: Z-Wave node ID
-#       example: 12
-#     hue_zone:
-#       description: Hue zone entity_id
-#       example: light.living_room
-#     led_color:
-#       description: LED hue when on (0-255)
-#       example: 170
-#     led_color_off:
-#       description: LED hue when off (0-255)
-#       example: 170
-#     led_intensity_off:
-#       description: LED intensity when off (0-100)
-#       example: 10
-#   sequence:
-#     - variables:
-#         is_on: "{{ states(hue_zone) == 'on' }}"
-#         bri_pct: >
-#           {% if is_on %}
-#             {{ ((state_attr(hue_zone, 'brightness') | default(255) | int) / 255 * 100) | round(0) | int }}
-#           {% else %}
-#             0
-#           {% endif %}
-#         param_color:  "{{ led_color if is_on else led_color_off }}"
-#         param_intensity: "{{ bri_pct if is_on else led_intensity_off }}"
-#
-#     # Parameter 13 – LED indicator colour
-#     - service: zwave_js.set_config_parameter
-#       data:
-#         node_id: "{{ node_id }}"
-#         parameter: 13
-#         value: "{{ param_color }}"
-#
-#     # Parameter 14 – LED indicator intensity (active / always-on level)
-#     - service: zwave_js.set_config_parameter
-#       data:
-#         node_id: "{{ node_id }}"
-#         parameter: 14
-#         value: "{{ param_intensity }}"
+          - choose:
+              - conditions: "{{ is_state(hue_zone, 'on') }}"
+                sequence:
+                  - service: light.turn_on
+                    target:
+                      entity_id: !input inovelli_switch
+                    data:
+                      brightness: "{{ state_attr(hue_zone, 'brightness') | default(255) | int }}"
+                      transition: 1
+            default:
+              - service: light.turn_off
+                target:
+                  entity_id: !input inovelli_switch
+                data:
+                  transition: 1
