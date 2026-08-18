@@ -15,10 +15,16 @@ blueprint:
         `zwave_js_value_notification` events for scene/button presses.
 
     **How it works**
-      1. Physical paddle tap / double-tap → sets the Hue zone AND the switch's
+      1. Single tap / hold on either paddle behaves like a standard dimmer
+         (see below) -- this part isn't configurable, it's the whole point
+         of the blueprint.
+      2. Double/triple/4x/5x taps on either paddle, and all presses on the
+         config button (if your switch has one), do nothing by default --
+         wire up whatever you want via the advanced action inputs below.
+      3. Physical paddle tap / double-tap → sets the Hue zone AND the switch's
          own light entity to the same target brightness (both commanded
          directly, so there's no ambiguity about the resulting level).
-      2. Physical paddle hold → only the Hue zone is commanded by this
+      4. Physical paddle hold → only the Hue zone is commanded by this
          blueprint, throttled to roughly 1 update/second with a matching
          `transition` so the bulb interpolates smoothly instead of jumping
          (a Hue Zigbee group can't reliably absorb much more than ~1
@@ -29,7 +35,7 @@ blueprint:
          needs to be sent to keep it moving. See "Ramp rate alignment" below
          for keeping that native ramp's pace roughly matched to this
          blueprint's Hue-side pace.
-      3. Any external change to the Hue zone (Hue app, HA UI, HomeKit) →
+      5. Any external change to the Hue zone (Hue app, HA UI, HomeKit) →
          after a short settle delay, reads the zone's actual resulting state
          and commands the switch's own light entity to match. This is what
          makes the switch's LED reflect changes it didn't cause itself.
@@ -133,6 +139,106 @@ blueprint:
           unit_of_measurement: "%"
           mode: slider
 
+    # -------------------------------------------------------------------
+    # Advanced button actions -- single tap and hold are the built-in
+    # dimmer behavior above and aren't configurable here. Everything below
+    # does nothing unless you wire it up. All default to no action.
+    # -------------------------------------------------------------------
+    key_up_2x:
+      name: Up paddle double-tap
+      description: Action to run when the up paddle is pressed twice.
+      default: []
+      selector:
+        action: {}
+
+    key_up_3x:
+      name: Up paddle triple-tap
+      description: Action to run when the up paddle is pressed three times.
+      default: []
+      selector:
+        action: {}
+
+    key_up_4x:
+      name: Up paddle 4x-tap
+      description: Action to run when the up paddle is pressed four times.
+      default: []
+      selector:
+        action: {}
+
+    key_up_5x:
+      name: Up paddle 5x-tap
+      description: Action to run when the up paddle is pressed five times.
+      default: []
+      selector:
+        action: {}
+
+    key_down_2x:
+      name: Down paddle double-tap
+      description: Action to run when the down paddle is pressed twice.
+      default: []
+      selector:
+        action: {}
+
+    key_down_3x:
+      name: Down paddle triple-tap
+      description: Action to run when the down paddle is pressed three times.
+      default: []
+      selector:
+        action: {}
+
+    key_down_4x:
+      name: Down paddle 4x-tap
+      description: Action to run when the down paddle is pressed four times.
+      default: []
+      selector:
+        action: {}
+
+    key_down_5x:
+      name: Down paddle 5x-tap
+      description: Action to run when the down paddle is pressed five times.
+      default: []
+      selector:
+        action: {}
+
+    key_config:
+      name: Config button press
+      description: >
+        Action to run when the config (middle) button is pressed once, if
+        this switch has one.
+      default: []
+      selector:
+        action: {}
+
+    key_config_2x:
+      name: Config button double-tap
+      default: []
+      selector:
+        action: {}
+
+    key_config_3x:
+      name: Config button triple-tap
+      default: []
+      selector:
+        action: {}
+
+    key_config_4x:
+      name: Config button 4x-tap
+      default: []
+      selector:
+        action: {}
+
+    key_config_5x:
+      name: Config button 5x-tap
+      default: []
+      selector:
+        action: {}
+
+    key_config_held:
+      name: Config button held
+      default: []
+      selector:
+        action: {}
+
 # ---------------------------------------------------------------------------
 # Mode: queued (not restart) -- the switch's own state changes (from taps,
 # and from syncing after external Hue changes) also match the hue_changed
@@ -186,11 +292,20 @@ action:
       is_key_up_scene_two: !input is_key_up_scene_two
       key_up_scene_id: "{{ (1, 2)[is_key_up_scene_two] | int }}"
       key_down_scene_id: "{{ (2, 1)[is_key_up_scene_two] | int }}"
+      # The config/scene button is always reported as scene 3 -- unlike
+      # up/down, its number isn't affected by the orientation toggle.
+      key_config_scene_id: 3
       scene_id: >
         {{ (trigger.event.data.property_key_name | int)
            if trigger.id == 'paddle_event' else none }}
       key_pressed: >
         {{ trigger.event.data.value if trigger.id == 'paddle_event' else none }}
+      # A full 0-100% sweep takes 100/hold_step iterations -- holding
+      # longer than that does nothing (brightness is already clamped at
+      # min/max), so that's the natural point to cap the hold loop's
+      # safety net, not an arbitrary worst-case guess. +2 as slack for
+      # rounding at the ends of the range.
+      max_hold_iterations: "{{ ((100 / hold_step) | round(0, 'ceil') | int) + 2 }}"
 
   - choose:
 
@@ -227,27 +342,6 @@ action:
                   transition: !input transition_time
 
       # ────────────────────────────────────────────────────────────────────
-      # UPPER DOUBLE-TAP → full brightness on both, in parallel
-      # ────────────────────────────────────────────────────────────────────
-      - conditions: >
-          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
-             and key_pressed == 'KeyPressed2x' }}
-        sequence:
-          - parallel:
-              - service: light.turn_on
-                target:
-                  entity_id: !input hue_zone
-                data:
-                  brightness_pct: 100
-                  transition: !input transition_time
-              - service: light.turn_on
-                target:
-                  entity_id: !input inovelli_switch
-                data:
-                  brightness_pct: 100
-                  transition: !input transition_time
-
-      # ────────────────────────────────────────────────────────────────────
       # UPPER HOLD → brighten the Hue zone in a throttled loop until
       # released. The switch's own LED is not touched here -- see the
       # blueprint description's "Ramp rate alignment" section.
@@ -270,8 +364,13 @@ action:
           - repeat:
               while:
                 - condition: template
+                  # repeat.index caps this at max_hold_iterations (a full
+                  # 0-100% sweep, plus slack) so the loop is guaranteed to
+                  # end on its own even if release-detection somehow never
+                  # fires -- getting stuck here wedges the whole automation
+                  # (mode: queued means nothing else runs until this does).
                   value_template: >
-                    {{ states(inovelli_switch) != 'unavailable' }}
+                    {{ states(inovelli_switch) != 'unavailable' and repeat.index <= max_hold_iterations }}
               sequence:
                 - variables:
                     current_bri: >
@@ -296,13 +395,38 @@ action:
                   continue_on_timeout: true
                 - condition: template
                   # A bare `condition:` step that evaluates false stops the
-                  # whole automation run -- that's the "break" here. Keep
-                  # looping on a timeout (still held) or a release of the
-                  # *other* paddle; only stop on our own paddle's release.
-                  value_template: >
-                    {{ wait.trigger is none or
-                       (wait.trigger.event.data.property_key_name | int) != key_up_scene_id }}
-              # break out of loop when this paddle's KeyReleased fires
+                  # whole automation run -- that's the "break" here. We rely
+                  # on the `current <= 1` guard above for mutual exclusion
+                  # (only one hold-loop, up or down, can be active at once)
+                  # rather than matching property_key_name on the release --
+                  # some devices don't report it consistently on release,
+                  # which would make that comparison never true and hang
+                  # the loop forever instead of breaking.
+                  value_template: "{{ wait.trigger is none }}"
+              # break out of loop when a KeyReleased fires (or the safety cap trips)
+
+      # ────────────────────────────────────────────────────────────────────
+      # UPPER PADDLE -- advanced presses (user-defined, no built-in action)
+      # ────────────────────────────────────────────────────────────────────
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
+             and key_pressed == 'KeyPressed2x' }}
+        sequence: !input key_up_2x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
+             and key_pressed == 'KeyPressed3x' }}
+        sequence: !input key_up_3x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
+             and key_pressed == 'KeyPressed4x' }}
+        sequence: !input key_up_4x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
+             and key_pressed == 'KeyPressed5x' }}
+        sequence: !input key_up_5x
 
       # ────────────────────────────────────────────────────────────────────
       # LOWER TAP → turn off both, in parallel
@@ -324,27 +448,6 @@ action:
                   transition: !input transition_time
 
       # ────────────────────────────────────────────────────────────────────
-      # LOWER DOUBLE-TAP → minimum brightness (1 %) on both, in parallel
-      # ────────────────────────────────────────────────────────────────────
-      - conditions: >
-          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
-             and key_pressed == 'KeyPressed2x' }}
-        sequence:
-          - parallel:
-              - service: light.turn_on
-                target:
-                  entity_id: !input hue_zone
-                data:
-                  brightness_pct: 1
-                  transition: !input transition_time
-              - service: light.turn_on
-                target:
-                  entity_id: !input inovelli_switch
-                data:
-                  brightness_pct: 1
-                  transition: !input transition_time
-
-      # ────────────────────────────────────────────────────────────────────
       # LOWER HOLD → dim the Hue zone in a throttled loop until released
       # ────────────────────────────────────────────────────────────────────
       - conditions: >
@@ -357,8 +460,9 @@ action:
           - repeat:
               while:
                 - condition: template
+                  # See the matching cap on the UPPER HOLD branch above.
                   value_template: >
-                    {{ states(inovelli_switch) != 'unavailable' }}
+                    {{ states(inovelli_switch) != 'unavailable' and repeat.index <= max_hold_iterations }}
               sequence:
                 - variables:
                     current_bri: >
@@ -382,9 +486,67 @@ action:
                     milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
-                  value_template: >
-                    {{ wait.trigger is none or
-                       (wait.trigger.event.data.property_key_name | int) != key_down_scene_id }}
+                  # See the matching comment on the UPPER HOLD branch above:
+                  # relies on the `current <= 1` guard for mutual exclusion
+                  # instead of matching property_key_name on the release.
+                  value_template: "{{ wait.trigger is none }}"
+
+      # ────────────────────────────────────────────────────────────────────
+      # LOWER PADDLE -- advanced presses (user-defined, no built-in action)
+      # ────────────────────────────────────────────────────────────────────
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
+             and key_pressed == 'KeyPressed2x' }}
+        sequence: !input key_down_2x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
+             and key_pressed == 'KeyPressed3x' }}
+        sequence: !input key_down_3x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
+             and key_pressed == 'KeyPressed4x' }}
+        sequence: !input key_down_4x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
+             and key_pressed == 'KeyPressed5x' }}
+        sequence: !input key_down_5x
+
+      # ────────────────────────────────────────────────────────────────────
+      # CONFIG BUTTON -- always scene 3, unaffected by the up/down toggle.
+      # Entirely user-defined, no built-in action for any press type.
+      # ────────────────────────────────────────────────────────────────────
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_config_scene_id
+             and key_pressed == 'KeyPressed' }}
+        sequence: !input key_config
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_config_scene_id
+             and key_pressed == 'KeyPressed2x' }}
+        sequence: !input key_config_2x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_config_scene_id
+             and key_pressed == 'KeyPressed3x' }}
+        sequence: !input key_config_3x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_config_scene_id
+             and key_pressed == 'KeyPressed4x' }}
+        sequence: !input key_config_4x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_config_scene_id
+             and key_pressed == 'KeyPressed5x' }}
+        sequence: !input key_config_5x
+
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_config_scene_id
+             and key_pressed == 'KeyHeldDown' }}
+        sequence: !input key_config_held
 
       # ────────────────────────────────────────────────────────────────────
       # HUE ZONE CHANGED (external – Hue app / HA UI / HomeKit) → match
