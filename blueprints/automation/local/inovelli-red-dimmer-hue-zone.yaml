@@ -512,22 +512,34 @@ action:
                       {{ state_attr(hue_zone, 'brightness') | int(0) }}
                     new_bri: >
                       {{ [current_bri + (hold_step / 100 * 255) | int, 255] | min }}
-                - service: light.turn_on
-                  target:
-                    entity_id: !input hue_zone
-                  data:
-                    brightness: "{{ new_bri }}"
-                    transition: 1
-                - wait_for_trigger:
-                    - platform: event
-                      event_type: zwave_js_value_notification
-                      event_data:
-                        node_id: !input inovelli_node_id
-                        command_class_name: Central Scene
-                        value: KeyReleased
-                  timeout:
-                    milliseconds: 1000
-                  continue_on_timeout: true
+                # light.turn_on and wait_for_trigger run concurrently here
+                # (not sequentially) -- light.turn_on blocks on a real
+                # network round-trip to the Hue bridge before returning,
+                # and a wait_for_trigger that only starts listening *after*
+                # that completes leaves a real gap where a release can
+                # land and be permanently missed (confirmed via testing: a
+                # KeyReleased fired in exactly that gap between two
+                # iterations, and every later iteration correctly showed
+                # no release because there wasn't another one to catch).
+                # Running them in parallel shrinks that gap down to just
+                # local interpreter overhead between loop iterations.
+                - parallel:
+                    - service: light.turn_on
+                      target:
+                        entity_id: !input hue_zone
+                      data:
+                        brightness: "{{ new_bri }}"
+                        transition: 1
+                    - wait_for_trigger:
+                        - platform: event
+                          event_type: zwave_js_value_notification
+                          event_data:
+                            node_id: !input inovelli_node_id
+                            command_class_name: Central Scene
+                            value: KeyReleased
+                      timeout:
+                        milliseconds: 1000
+                      continue_on_timeout: true
                 # TEMPORARY DIAGNOSTIC -- remove once release-detection is
                 # confirmed working. Logs each iteration's wait_for_trigger
                 # outcome to the Logbook (better retention than trace
@@ -622,22 +634,26 @@ action:
                       {{ state_attr(hue_zone, 'brightness') | int(255) }}
                     new_bri: >
                       {{ [current_bri - (hold_step / 100 * 255) | int, 1] | max }}
-                - service: light.turn_on
-                  target:
-                    entity_id: !input hue_zone
-                  data:
-                    brightness: "{{ new_bri }}"
-                    transition: 1
-                - wait_for_trigger:
-                    - platform: event
-                      event_type: zwave_js_value_notification
-                      event_data:
-                        node_id: !input inovelli_node_id
-                        command_class_name: Central Scene
-                        value: KeyReleased
-                  timeout:
-                    milliseconds: 1000
-                  continue_on_timeout: true
+                # See the matching comment on the UPPER HOLD branch above --
+                # light.turn_on and wait_for_trigger run concurrently to
+                # avoid a gap where a release could land unheard.
+                - parallel:
+                    - service: light.turn_on
+                      target:
+                        entity_id: !input hue_zone
+                      data:
+                        brightness: "{{ new_bri }}"
+                        transition: 1
+                    - wait_for_trigger:
+                        - platform: event
+                          event_type: zwave_js_value_notification
+                          event_data:
+                            node_id: !input inovelli_node_id
+                            command_class_name: Central Scene
+                            value: KeyReleased
+                      timeout:
+                        milliseconds: 1000
+                      continue_on_timeout: true
                 # TEMPORARY DIAGNOSTIC -- see the matching comment on the
                 # UPPER HOLD branch above; remove once resolved.
                 - service: logbook.log
