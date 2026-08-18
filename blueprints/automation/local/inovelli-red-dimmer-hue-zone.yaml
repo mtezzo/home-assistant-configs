@@ -83,7 +83,7 @@ blueprint:
           mode: box
 
     up_paddle_scene:
-      name: "Up" paddle Central Scene button
+      name: '"Up" paddle Central Scene button'
       description: >
         Which Central Scene button number the physical TOP/up paddle
         actually reports as. This varies by device -- if pressing the top
@@ -97,7 +97,7 @@ blueprint:
             - "002"
 
     down_paddle_scene:
-      name: "Down" paddle Central Scene button
+      name: '"Down" paddle Central Scene button'
       description: >
         Which Central Scene button number the physical BOTTOM/down paddle
         actually reports as. Should always be the opposite of the "up"
