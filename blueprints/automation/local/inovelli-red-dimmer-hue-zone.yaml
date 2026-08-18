@@ -122,8 +122,14 @@ blueprint:
       default: ''
       selector:
         entity:
+          # No `integration: hue` filter -- confirmed on real-world testing
+          # that at least some legitimate Hue scene entities aren't
+          # consistently attributed to the "hue" integration in the entity
+          # registry (possibly a side effect of the Hue integration's
+          # 2025.12 overhaul), which silently excluded a valid scene from
+          # this picker and forced a same-named-but-wrong one instead.
+          # domain: scene alone is a broader net, but a correct one.
           domain: scene
-          integration: hue
 
     transition_time:
       name: Transition time (seconds)
@@ -388,12 +394,15 @@ action:
                       entity_id: !input hue_zone
                     data:
                       transition: !input transition_time
-              # default_scene exists but belongs to a different Hue
-              # room/device than hue_zone -- almost certainly a picker
-              # mistake (there's no way for the blueprint's selectors to
-              # enforce this, see the blueprint description). Same
-              # don't-silently-degrade reasoning as above, distinct message
-              # since the fix here is "check the room", not "pick again".
+              # default_scene exists (on some device) but not the same
+              # device as hue_zone -- confirmed accurate: Hue scenes DO
+              # share a device with their room's grouped-light entity, so
+              # this really does mean the wrong scene got picked (e.g. a
+              # same-named scene belonging to a different room). Fix is to
+              # re-pick, but also check whether the *correct* scene is
+              # even showing up as selectable -- if a room's entities
+              # haven't been enabled in the Hue integration, its scenes
+              # won't appear in the picker at all, forcing a wrong pick.
               - conditions: >
                   {{ default_scene != '' and default_scene_device_id is not none and
                      default_scene_device_id != device_id(hue_zone) }}
@@ -407,8 +416,10 @@ action:
                         to the same Hue room as hue_zone ({{ hue_zone }}) on
                         this switch's automation ({{ this.entity_id }}).
                         Falling back to a plain turn-on instead of
-                        activating the scene -- fix the "Default scene"
-                        input on this switch's automation.
+                        activating the scene -- check whether the correct
+                        scene for this room is disabled in the Hue
+                        integration (Settings > Devices & Services > Hue),
+                        then fix the "Default scene" input.
                   - service: light.turn_on
                     target:
                       entity_id: !input hue_zone
