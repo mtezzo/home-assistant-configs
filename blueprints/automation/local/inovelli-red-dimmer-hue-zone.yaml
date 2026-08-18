@@ -109,6 +109,22 @@ blueprint:
           domain: light
           integration: hue
 
+    default_scene:
+      name: Default scene (optional)
+      description: >
+        A Hue scene to activate on a single up-tap, instead of just turning
+        the zone on to whatever brightness/color it was last left at. Must
+        be a scene scoped to the same zone as the Hue Zone/Group input
+        below -- Hue scenes don't have to cover every light in their zone,
+        so double check yours does, or any light left out won't be touched
+        by activation. Leave empty to keep the plain "turn on to last
+        state" behavior.
+      default: ''
+      selector:
+        entity:
+          domain: scene
+          integration: hue
+
     transition_time:
       name: Transition time (seconds)
       description: Fade duration sent on discrete tap/double-tap commands.
@@ -257,6 +273,7 @@ variables:
   inovelli_switch: !input inovelli_switch
   inovelli_node_id: !input inovelli_node_id
   hue_zone: !input hue_zone
+  default_scene: !input default_scene
   transition_time: !input transition_time
   hold_step: !input hold_step
 
@@ -310,19 +327,80 @@ action:
   - choose:
 
       # ────────────────────────────────────────────────────────────────────
-      # UPPER TAP → turn Hue zone on (last brightness), then match the switch
+      # UPPER TAP → activate the default scene (if configured), else turn
+      # the Hue zone on to last brightness/color -- then match the switch
       # ────────────────────────────────────────────────────────────────────
       - conditions: >
           {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
              and key_pressed == 'KeyPressed' }}
         sequence:
-          - service: light.turn_on
-            target:
-              entity_id: !input hue_zone
-            data:
-              transition: !input transition_time
-          # "Last brightness" is resolved by Hue, not chosen by us -- wait
-          # briefly then read back the actual result before matching it.
+          - choose:
+              - conditions: >
+                  {{ default_scene != '' and default_scene in states and
+                     device_id(default_scene) == device_id(hue_zone) }}
+                sequence:
+                  - service: hue.activate_scene
+                    target:
+                      entity_id: !input default_scene
+                    data:
+                      transition: !input transition_time
+              # default_scene is set but the entity no longer exists --
+              # most likely the scene was deleted or renamed in the Hue
+              # app. Don't let this silently degrade to a plain turn-on
+              # forever; surface it with its own message so it's clear the
+              # fix is "pick a valid scene again", not "check the room".
+              - conditions: "{{ default_scene != '' and default_scene not in states }}"
+                sequence:
+                  - service: persistent_notification.create
+                    data:
+                      title: Inovelli/Hue blueprint misconfigured
+                      notification_id: "inovelli_hue_scene_missing_{{ this.entity_id }}"
+                      message: >
+                        default_scene ({{ default_scene }}) no longer
+                        exists -- it was probably deleted or renamed in the
+                        Hue app. Falling back to a plain turn-on on this
+                        switch's automation ({{ this.entity_id }}) until
+                        you re-pick a scene in its "Default scene" input.
+                  - service: light.turn_on
+                    target:
+                      entity_id: !input hue_zone
+                    data:
+                      transition: !input transition_time
+              # default_scene exists but belongs to a different Hue
+              # room/device than hue_zone -- almost certainly a picker
+              # mistake (there's no way for the blueprint's selectors to
+              # enforce this, see the blueprint description). Same
+              # don't-silently-degrade reasoning as above, distinct message
+              # since the fix here is "check the room", not "pick again".
+              - conditions: >
+                  {{ default_scene != '' and default_scene in states and
+                     device_id(default_scene) != device_id(hue_zone) }}
+                sequence:
+                  - service: persistent_notification.create
+                    data:
+                      title: Inovelli/Hue blueprint misconfigured
+                      notification_id: "inovelli_hue_scene_wrong_room_{{ this.entity_id }}"
+                      message: >
+                        default_scene ({{ default_scene }}) doesn't belong
+                        to the same Hue room as hue_zone ({{ hue_zone }}) on
+                        this switch's automation ({{ this.entity_id }}).
+                        Falling back to a plain turn-on instead of
+                        activating the scene -- fix the "Default scene"
+                        input on this switch's automation.
+                  - service: light.turn_on
+                    target:
+                      entity_id: !input hue_zone
+                    data:
+                      transition: !input transition_time
+            default:
+              - service: light.turn_on
+                target:
+                  entity_id: !input hue_zone
+                data:
+                  transition: !input transition_time
+          # The resulting brightness (Hue's own "last state", or whatever
+          # the scene set) isn't chosen by us -- wait briefly then read
+          # back the actual result before matching it.
           - delay:
               milliseconds: 400
           - choose:
