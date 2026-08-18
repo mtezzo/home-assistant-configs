@@ -297,8 +297,16 @@ trigger:
   # No to/from filter: a plain state trigger also fires on attribute-only
   # changes (e.g. brightness slid in the Hue app while the light stays
   # "on"), which is required for the switch to track real brightness.
+  # `for: 2s` debounces this against transitions/fades -- Hue pushes several
+  # intermediate state updates while a light ramps (from a scene activation,
+  # our own tap-triggered transition, or an external one), and without this
+  # each intermediate tick would independently queue its own switch-sync,
+  # dragging the switch's LED through a stale, jumbled sequence of past
+  # values instead of settling on the final one.
   - platform: state
     entity_id: !input hue_zone
+    for:
+      seconds: 2
     id: hue_changed
 
 # ---------------------------------------------------------------------------
@@ -404,10 +412,12 @@ action:
                 data:
                   transition: !input transition_time
           # The resulting brightness (Hue's own "last state", or whatever
-          # the scene set) isn't chosen by us -- wait briefly then read
-          # back the actual result before matching it.
-          - delay:
-              milliseconds: 400
+          # the scene set) isn't chosen by us -- wait for the transition we
+          # just requested to actually finish, then read back the real
+          # result. Must be at least transition_time or this reads a
+          # mid-fade value instead of the settled one (e.g. brightness: 0
+          # partway into a 1s fade-in).
+          - delay: "{{ transition_time + 0.5 }}"
           - choose:
               - conditions: "{{ is_state(hue_zone, 'on') }}"
                 sequence:
