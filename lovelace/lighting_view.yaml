@@ -53,11 +53,14 @@ cards:
                 uix:
                   class: entity-barrel-right
           exclude:
+            - entity_id: light.basement_overhead_lights
+            - entity_id: light.basement_staircase_lights
+            - entity_id: light.rear_basement_overhead_lights
             - entity_id: light.exterior_lights
             - entity_id: light.interior_lights
             - entity_id: light.dining_room_hutch_light_indicator
             - entity_id: light.christmas_tree_switch_indicator
-            - entity_id: '/^light\.hue_(?!front_yard$|fireplace_light$).*$/'
+            - entity_id: '/^light\.hue_(?!basement_billiard$|basement_lounge$|basement_staors$|front_yard$|fireplace_light$).*$/'
         sort:
           method: friendly_name
         else:
