@@ -262,15 +262,26 @@ blueprint:
         action: {}
 
 # ---------------------------------------------------------------------------
-# Mode: queued (not restart) -- the switch's own state changes (from taps,
-# and from syncing after external Hue changes) also match the hue_changed
-# trigger below. Under `restart`, that self-triggered run would cancel an
-# in-progress hold loop every time it updates the Hue zone, breaking
-# continuous dimming. Queued lets those redundant runs wait their turn
-# instead of interrupting the active hold.
+# Mode: restart. Central Scene devices resend KeyHeldDown roughly every
+# 200ms for as long as a paddle stays held, and each resend matches the
+# generic trigger below same as the initial press. Under `queued`, those
+# pile up and drain one-by-one *after* the real hold ends, each starting
+# its own fresh loop with no release left to catch it -- which is exactly
+# what caused dimming to keep going for several seconds (or, in the worst
+# case, all the way to max) after release. Under `restart`, each resend
+# just seamlessly restarts the same loop from the current live brightness
+# (harmless -- no visible glitch, since it's reading live state either
+# way), and a genuine release event immediately and reliably preempts
+# whatever's running instead of waiting in line behind a backlog.
+#
+# This does mean hue_changed firing mid-hold would cancel an active loop
+# -- but it can't, in practice: hue_changed requires 2 continuous seconds
+# of stability (see its `for:` below) before it can fire at all, and the
+# hold loop updates faster than that throughout an active hold, so
+# hue_changed never gets a chance to fire until after the loop's own
+# updates have already stopped.
 # ---------------------------------------------------------------------------
-mode: queued
-max: 10
+mode: restart
 
 # ---------------------------------------------------------------------------
 # Variables – resolved once at trigger time
@@ -468,35 +479,16 @@ action:
           {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
              and key_pressed == 'KeyHeldDown' }}
         sequence:
-          # Central Scene devices typically resend KeyHeldDown every ~200ms
-          # for as long as the paddle stays physically held, which also
-          # re-matches the top-level trigger above and queues a redundant
-          # run for each resend. `current <= 1` blocks a duplicate from
-          # running *concurrently* with an active loop, but doesn't stop
-          # one that's still queued when the real hold ends -- once the
-          # queue drains, each leftover duplicate sees current back at 1
-          # and happily starts its OWN fresh loop, which is exactly what
-          # caused dimming to continue for a few seconds after release.
-          # The second check catches that case: a duplicate's own trigger
-          # event is however old it's been sitting in the queue by the
-          # time it finally runs, so anything more than a few seconds old
-          # is leftover noise, not a real new hold. 3s is generous enough
-          # to not falsely reject a genuinely fresh press that got delayed
-          # behind an unrelated queued run (e.g. a hue_changed sync, which
-          # can itself take ~2.5s between its 2s stability wait and 0.5s
-          # settle delay).
-          - condition: template
-            value_template: >
-              {{ state_attr(this.entity_id, 'current') | int(1) <= 1 and
-                 (now() - trigger.event.time_fired).total_seconds() < 3 }}
           - repeat:
               while:
                 - condition: template
                   # repeat.index caps this at max_hold_iterations (a full
                   # 0-100% sweep, plus slack) so the loop is guaranteed to
                   # end on its own even if release-detection somehow never
-                  # fires -- getting stuck here wedges the whole automation
-                  # (mode: queued means nothing else runs until this does).
+                  # fires. Under `mode: restart` this is now just a defense-
+                  # in-depth safety net (a genuine release or even another
+                  # resent KeyHeldDown would already preempt this loop
+                  # directly), not the primary way it's expected to end.
                   value_template: >
                     {{ states(inovelli_switch) != 'unavailable' and repeat.index <= max_hold_iterations }}
               sequence:
@@ -527,13 +519,15 @@ action:
                   continue_on_timeout: true
                 - condition: template
                   # A bare `condition:` step that evaluates false stops the
-                  # whole automation run -- that's the "break" here. We rely
-                  # on the `current <= 1` guard above for mutual exclusion
-                  # (only one hold-loop, up or down, can be active at once)
-                  # rather than matching property_key_name on the release --
-                  # some devices don't report it consistently on release,
-                  # which would make that comparison never true and hang
-                  # the loop forever instead of breaking.
+                  # whole automation run -- that's the "break" here. Matches
+                  # any KeyReleased regardless of which button, rather than
+                  # comparing property_key_name -- some devices don't report
+                  # it consistently on release, which would make that
+                  # comparison never true and hang the loop forever instead
+                  # of breaking. Safe to be this loose under `mode: restart`,
+                  # since only one hold-loop (up or down) can ever be active
+                  # at a time -- there's no other button's release for this
+                  # to mistakenly catch.
                   value_template: "{{ wait.trigger is none }}"
               # break out of loop when a KeyReleased fires (or the safety cap trips)
 
@@ -586,11 +580,6 @@ action:
           {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
              and key_pressed == 'KeyHeldDown' }}
         sequence:
-          # See the matching guard on the UPPER HOLD branch above.
-          - condition: template
-            value_template: >
-              {{ state_attr(this.entity_id, 'current') | int(1) <= 1 and
-                 (now() - trigger.event.time_fired).total_seconds() < 3 }}
           - repeat:
               while:
                 - condition: template
@@ -622,9 +611,7 @@ action:
                     milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
-                  # See the matching comment on the UPPER HOLD branch above:
-                  # relies on the `current <= 1` guard for mutual exclusion
-                  # instead of matching property_key_name on the release.
+                  # See the matching comment on the UPPER HOLD branch above.
                   value_template: "{{ wait.trigger is none }}"
 
       # ────────────────────────────────────────────────────────────────────
