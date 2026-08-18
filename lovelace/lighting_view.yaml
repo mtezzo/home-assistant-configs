@@ -44,6 +44,7 @@ cards:
             - entity_id: light.interior_lights
             - entity_id: light.dining_room_hutch_light_indicator
             - entity_id: light.christmas_tree_switch_indicator
+            - entity_id: '/^light\.hue_(?!front_yard$|fireplace_light$).*$/'
         sort:
           method: friendly_name
         else:
