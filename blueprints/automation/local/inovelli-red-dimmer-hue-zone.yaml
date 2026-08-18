@@ -82,32 +82,17 @@ blueprint:
           max: 232
           mode: box
 
-    up_paddle_scene:
-      name: '"Up" paddle Central Scene button'
+    is_key_up_scene_two:
+      name: Up/down paddles reversed?
       description: >
-        Which Central Scene button number the physical TOP/up paddle
-        actually reports as. This varies by device -- if pressing the top
-        paddle turns the light off (and the bottom paddle turns it on),
-        swap this to "002" and swap the "down" input below to "001".
-      default: "001"
+        The physical top/bottom paddle doesn't always map to Central Scene
+        button "001"/"002" the same way on every device. Try it with the
+        default first: if pressing the top (up) paddle behaves like off/dim
+        and the bottom (down) paddle behaves like on/brighten, toggle this
+        off to swap them.
+      default: true
       selector:
-        select:
-          options:
-            - "001"
-            - "002"
-
-    down_paddle_scene:
-      name: '"Down" paddle Central Scene button'
-      description: >
-        Which Central Scene button number the physical BOTTOM/down paddle
-        actually reports as. Should always be the opposite of the "up"
-        input above.
-      default: "002"
-      selector:
-        select:
-          options:
-            - "001"
-            - "002"
+        boolean:
 
     hue_zone:
       name: Philips Hue Zone / Group
@@ -174,66 +159,16 @@ variables:
 # ---------------------------------------------------------------------------
 trigger:
   # ── Physical paddle events (Z-Wave JS scene notifications) ──────────────
-
-  # Upper paddle tap → turn on
+  # One generic trigger for all button presses -- which physical paddle and
+  # press-type it represents is resolved at runtime in the action below, so
+  # the up/down mapping can be toggled per-device via a single input instead
+  # of needing separate blueprint inputs per orientation.
   - platform: event
     event_type: zwave_js_value_notification
     event_data:
       node_id: !input inovelli_node_id
       command_class_name: Central Scene
-      property_key_name: !input up_paddle_scene   # button 1 = upper paddle
-      value: KeyPressed
-    id: upper_tap
-
-  # Upper paddle double-tap → full brightness
-  - platform: event
-    event_type: zwave_js_value_notification
-    event_data:
-      node_id: !input inovelli_node_id
-      command_class_name: Central Scene
-      property_key_name: !input up_paddle_scene
-      value: KeyPressed2x
-    id: upper_double
-
-  # Upper paddle hold → start brightening
-  - platform: event
-    event_type: zwave_js_value_notification
-    event_data:
-      node_id: !input inovelli_node_id
-      command_class_name: Central Scene
-      property_key_name: !input up_paddle_scene
-      value: KeyHeldDown
-    id: upper_hold
-
-  # Lower paddle tap → turn off
-  - platform: event
-    event_type: zwave_js_value_notification
-    event_data:
-      node_id: !input inovelli_node_id
-      command_class_name: Central Scene
-      property_key_name: !input down_paddle_scene   # button 2 = lower paddle
-      value: KeyPressed
-    id: lower_tap
-
-  # Lower paddle double-tap → minimum brightness (1 %)
-  - platform: event
-    event_type: zwave_js_value_notification
-    event_data:
-      node_id: !input inovelli_node_id
-      command_class_name: Central Scene
-      property_key_name: !input down_paddle_scene
-      value: KeyPressed2x
-    id: lower_double
-
-  # Lower paddle hold → start dimming
-  - platform: event
-    event_type: zwave_js_value_notification
-    event_data:
-      node_id: !input inovelli_node_id
-      command_class_name: Central Scene
-      property_key_name: !input down_paddle_scene
-      value: KeyHeldDown
-    id: lower_hold
+    id: paddle_event
 
   # ── External changes to the Hue zone ────────────────────────────────────
   # No to/from filter: a plain state trigger also fires on attribute-only
@@ -247,14 +182,24 @@ trigger:
 # Actions
 # ---------------------------------------------------------------------------
 action:
+  - variables:
+      is_key_up_scene_two: !input is_key_up_scene_two
+      key_up_scene_id: "{{ (1, 2)[is_key_up_scene_two] | int }}"
+      key_down_scene_id: "{{ (2, 1)[is_key_up_scene_two] | int }}"
+      scene_id: >
+        {{ (trigger.event.data.property_key_name | int)
+           if trigger.id == 'paddle_event' else none }}
+      key_pressed: >
+        {{ trigger.event.data.value if trigger.id == 'paddle_event' else none }}
+
   - choose:
 
       # ────────────────────────────────────────────────────────────────────
       # UPPER TAP → turn Hue zone on (last brightness), then match the switch
       # ────────────────────────────────────────────────────────────────────
-      - conditions:
-          - condition: trigger
-            id: upper_tap
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
+             and key_pressed == 'KeyPressed' }}
         sequence:
           - service: light.turn_on
             target:
@@ -284,9 +229,9 @@ action:
       # ────────────────────────────────────────────────────────────────────
       # UPPER DOUBLE-TAP → full brightness on both, in parallel
       # ────────────────────────────────────────────────────────────────────
-      - conditions:
-          - condition: trigger
-            id: upper_double
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
+             and key_pressed == 'KeyPressed2x' }}
         sequence:
           - parallel:
               - service: light.turn_on
@@ -307,10 +252,21 @@ action:
       # released. The switch's own LED is not touched here -- see the
       # blueprint description's "Ramp rate alignment" section.
       # ────────────────────────────────────────────────────────────────────
-      - conditions:
-          - condition: trigger
-            id: upper_hold
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_up_scene_id
+             and key_pressed == 'KeyHeldDown' }}
         sequence:
+          # Central Scene devices typically resend KeyHeldDown every ~200ms
+          # for as long as the paddle stays physically held, which also
+          # re-matches the top-level trigger above and queues a redundant
+          # run for each resend (mode: queued doesn't interrupt the active
+          # loop, but a queued duplicate would eventually start its OWN
+          # loop with no real release left to catch it, dimming forever).
+          # `current` on the automation entity counts this run itself, so
+          # >1 here means a loop for this switch is already in flight --
+          # bail out instead of starting a second, orphaned one.
+          - condition: template
+            value_template: "{{ state_attr(this.entity_id, 'current') | int(1) <= 1 }}"
           - repeat:
               while:
                 - condition: template
@@ -334,25 +290,26 @@ action:
                       event_data:
                         node_id: !input inovelli_node_id
                         command_class_name: Central Scene
-                        property_key_name: !input up_paddle_scene
                         value: KeyReleased
                   timeout:
                     milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
                   # A bare `condition:` step that evaluates false stops the
-                  # whole automation run -- that's the "break" here. We want
-                  # to break when a release WAS seen, and keep looping on a
-                  # timeout (still held), so this must be true on timeout.
-                  value_template: "{{ wait.trigger is none }}"
-              # break out of loop when KeyReleased fires
+                  # whole automation run -- that's the "break" here. Keep
+                  # looping on a timeout (still held) or a release of the
+                  # *other* paddle; only stop on our own paddle's release.
+                  value_template: >
+                    {{ wait.trigger is none or
+                       (wait.trigger.event.data.property_key_name | int) != key_up_scene_id }}
+              # break out of loop when this paddle's KeyReleased fires
 
       # ────────────────────────────────────────────────────────────────────
       # LOWER TAP → turn off both, in parallel
       # ────────────────────────────────────────────────────────────────────
-      - conditions:
-          - condition: trigger
-            id: lower_tap
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
+             and key_pressed == 'KeyPressed' }}
         sequence:
           - parallel:
               - service: light.turn_off
@@ -369,9 +326,9 @@ action:
       # ────────────────────────────────────────────────────────────────────
       # LOWER DOUBLE-TAP → minimum brightness (1 %) on both, in parallel
       # ────────────────────────────────────────────────────────────────────
-      - conditions:
-          - condition: trigger
-            id: lower_double
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
+             and key_pressed == 'KeyPressed2x' }}
         sequence:
           - parallel:
               - service: light.turn_on
@@ -390,10 +347,13 @@ action:
       # ────────────────────────────────────────────────────────────────────
       # LOWER HOLD → dim the Hue zone in a throttled loop until released
       # ────────────────────────────────────────────────────────────────────
-      - conditions:
-          - condition: trigger
-            id: lower_hold
+      - conditions: >
+          {{ trigger.id == 'paddle_event' and scene_id == key_down_scene_id
+             and key_pressed == 'KeyHeldDown' }}
         sequence:
+          # See the matching guard on the UPPER HOLD branch above.
+          - condition: template
+            value_template: "{{ state_attr(this.entity_id, 'current') | int(1) <= 1 }}"
           - repeat:
               while:
                 - condition: template
@@ -417,25 +377,20 @@ action:
                       event_data:
                         node_id: !input inovelli_node_id
                         command_class_name: Central Scene
-                        property_key_name: !input down_paddle_scene
                         value: KeyReleased
                   timeout:
                     milliseconds: 1000
                   continue_on_timeout: true
                 - condition: template
-                  # A bare `condition:` step that evaluates false stops the
-                  # whole automation run -- that's the "break" here. We want
-                  # to break when a release WAS seen, and keep looping on a
-                  # timeout (still held), so this must be true on timeout.
-                  value_template: "{{ wait.trigger is none }}"
+                  value_template: >
+                    {{ wait.trigger is none or
+                       (wait.trigger.event.data.property_key_name | int) != key_down_scene_id }}
 
       # ────────────────────────────────────────────────────────────────────
       # HUE ZONE CHANGED (external – Hue app / HA UI / HomeKit) → match
       # the switch's own light entity to whatever the zone ended up at.
       # ────────────────────────────────────────────────────────────────────
-      - conditions:
-          - condition: trigger
-            id: hue_changed
+      - conditions: "{{ trigger.id == 'hue_changed' }}"
         sequence:
           # Small delay to let Hue state fully settle
           - delay:
