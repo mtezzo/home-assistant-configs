@@ -73,7 +73,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: tile
-            entity: light.basement_overhead_lights
+            entity: light.hue_basement_lounge
             vertical: true
             name: "Overhead"
             features:
@@ -91,7 +91,7 @@ cards:
                   {% endif %}
                 }
           - type: tile
-            entity: light.rear_basement_overhead_lights
+            entity: light.hue_basement_billiard
             vertical: true
             name: "Rear Overhead"
             features:
