@@ -288,6 +288,13 @@ blueprint:
 mode: single
 max_exceeded: silent
 
+# HA's default of 5 stored traces gets flooded almost immediately by
+# discarded hue_changed/paddle_event triggers during a single hold -- bump
+# it so the actual hold-loop runs are still findable in trace history
+# afterward, not just the noise around them.
+trace:
+  stored_traces: 20
+
 # ---------------------------------------------------------------------------
 # Variables – resolved once at trigger time
 # ---------------------------------------------------------------------------
