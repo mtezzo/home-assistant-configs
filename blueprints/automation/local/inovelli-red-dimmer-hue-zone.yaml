@@ -445,7 +445,12 @@ action:
                     target:
                       entity_id: !input inovelli_switch
                     data:
-                      brightness: "{{ state_attr(hue_zone, 'brightness') | default(255) | int }}"
+                      # int(255), not default(255)|int -- Jinja's default()
+                      # only substitutes on Undefined, not on an explicit
+                      # None (which is exactly what an off Hue light's
+                      # brightness attribute is), so int()'s own fallback
+                      # argument is the one that actually has to do the work.
+                      brightness: "{{ state_attr(hue_zone, 'brightness') | int(255) }}"
                       transition: !input transition_time
             default:
               - service: light.turn_off
@@ -496,8 +501,12 @@ action:
                     {{ states(inovelli_switch) != 'unavailable' and repeat.index <= max_hold_iterations }}
               sequence:
                 - variables:
+                    # int(0), not default(0)|int -- see the comment on the
+                    # UPPER TAP switch-sync above; an off light's brightness
+                    # attribute is an explicit None, which default() won't
+                    # catch.
                     current_bri: >
-                      {{ state_attr(hue_zone, 'brightness') | default(0) | int }}
+                      {{ state_attr(hue_zone, 'brightness') | int(0) }}
                     new_bri: >
                       {{ [current_bri + (hold_step / 100 * 255) | int, 255] | min }}
                 - service: light.turn_on
@@ -590,8 +599,10 @@ action:
                     {{ states(inovelli_switch) != 'unavailable' and repeat.index <= max_hold_iterations }}
               sequence:
                 - variables:
+                    # int(255), not default(255)|int -- see the comment on
+                    # the UPPER HOLD branch above.
                     current_bri: >
-                      {{ state_attr(hue_zone, 'brightness') | default(255) | int }}
+                      {{ state_attr(hue_zone, 'brightness') | int(255) }}
                     new_bri: >
                       {{ [current_bri - (hold_step / 100 * 255) | int, 1] | max }}
                 - service: light.turn_on
@@ -689,7 +700,9 @@ action:
                     target:
                       entity_id: !input inovelli_switch
                     data:
-                      brightness: "{{ state_attr(hue_zone, 'brightness') | default(255) | int }}"
+                      # int(255), not default(255)|int -- see the comment on
+                      # the UPPER TAP switch-sync above.
+                      brightness: "{{ state_attr(hue_zone, 'brightness') | int(255) }}"
                       transition: 1
             default:
               - service: light.turn_off
