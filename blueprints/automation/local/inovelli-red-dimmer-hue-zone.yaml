@@ -262,26 +262,31 @@ blueprint:
         action: {}
 
 # ---------------------------------------------------------------------------
-# Mode: restart. Central Scene devices resend KeyHeldDown roughly every
-# 200ms for as long as a paddle stays held, and each resend matches the
-# generic trigger below same as the initial press. Under `queued`, those
-# pile up and drain one-by-one *after* the real hold ends, each starting
-# its own fresh loop with no release left to catch it -- which is exactly
-# what caused dimming to keep going for several seconds (or, in the worst
-# case, all the way to max) after release. Under `restart`, each resend
-# just seamlessly restarts the same loop from the current live brightness
-# (harmless -- no visible glitch, since it's reading live state either
-# way), and a genuine release event immediately and reliably preempts
-# whatever's running instead of waiting in line behind a backlog.
+# Mode: single, discarding new triggers while a run is active (rather than
+# queuing or restarting). Central Scene devices resend KeyHeldDown roughly
+# every 200ms for as long as a paddle stays held, and each resend matches
+# the generic trigger below same as the initial press.
 #
-# This does mean hue_changed firing mid-hold would cancel an active loop
-# -- but it can't, in practice: hue_changed requires 2 continuous seconds
-# of stability (see its `for:` below) before it can fire at all, and the
-# hold loop updates faster than that throughout an active hold, so
-# hue_changed never gets a chance to fire until after the loop's own
-# updates have already stopped.
+#   - Under `queued`, resends pile up and drain one-by-one *after* the
+#     real hold ends, each starting its own fresh loop with no release
+#     left to catch it -- dimming kept going for several extra seconds
+#     (in the worst case, all the way to max) after release.
+#   - Under `restart`, each resend cancels the in-flight loop and starts a
+#     fresh one, which resets `repeat.index` back to 1 -- so instead of
+#     stepping once per second (the loop's own intended pace, from its
+#     `wait_for_trigger` timeout below), it was stepping once per resend,
+#     ~200ms. A full 0-100% sweep finished in ~2 seconds instead of the
+#     ~10 implied by `hold_step`, and looked like it "stopped" when it had
+#     actually just hit the brightness clamp.
+#   - Under `single`, a resend while a loop is already running is just
+#     discarded -- it doesn't touch the active loop at all, so the loop's
+#     own pacing is left alone. Release detection still works instantly:
+#     the loop's `wait_for_trigger` is its own independent, real-time
+#     event listener, completely unaffected by what happens to *new*
+#     top-level trigger matches while it's running.
 # ---------------------------------------------------------------------------
-mode: restart
+mode: single
+max_exceeded: silent
 
 # ---------------------------------------------------------------------------
 # Variables – resolved once at trigger time
