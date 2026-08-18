@@ -529,6 +529,18 @@ action:
                   timeout:
                     milliseconds: 1000
                   continue_on_timeout: true
+                # TEMPORARY DIAGNOSTIC -- remove once release-detection is
+                # confirmed working. Logs each iteration's wait_for_trigger
+                # outcome to the Logbook (better retention than trace
+                # history, and accumulates a running history instead of
+                # evicting old entries).
+                - service: logbook.log
+                  data:
+                    name: Upper hold debug
+                    message: >
+                      iteration {{ repeat.index }}, brightness {{ new_bri }},
+                      wait.trigger: {{ wait.trigger }}
+                    entity_id: !input inovelli_switch
                 - condition: template
                   # A bare `condition:` step that evaluates false stops the
                   # whole automation run -- that's the "break" here. Matches
@@ -536,7 +548,7 @@ action:
                   # comparing property_key_name -- some devices don't report
                   # it consistently on release, which would make that
                   # comparison never true and hang the loop forever instead
-                  # of breaking. Safe to be this loose under `mode: restart`,
+                  # of breaking. Safe to be this loose under `mode: single`,
                   # since only one hold-loop (up or down) can ever be active
                   # at a time -- there's no other button's release for this
                   # to mistakenly catch.
@@ -622,6 +634,15 @@ action:
                   timeout:
                     milliseconds: 1000
                   continue_on_timeout: true
+                # TEMPORARY DIAGNOSTIC -- see the matching comment on the
+                # UPPER HOLD branch above; remove once resolved.
+                - service: logbook.log
+                  data:
+                    name: Lower hold debug
+                    message: >
+                      iteration {{ repeat.index }}, brightness {{ new_bri }},
+                      wait.trigger: {{ wait.trigger }}
+                    entity_id: !input inovelli_switch
                 - condition: template
                   # See the matching comment on the UPPER HOLD branch above.
                   value_template: "{{ wait.trigger is none }}"
