@@ -49,6 +49,16 @@ homeassistant:
       friendly_name: "Auto-Disable Guest Mode After Return"
       icon: mdi:account-clock
 
+    automation.vacation_occupancy_evening_on:
+      <<: *customize
+      friendly_name: "Vacation Occupancy Simulation - Evening On"
+      icon: mdi:lightbulb-multiple-outline
+
+    automation.vacation_occupancy_night_routine:
+      <<: *customize
+      friendly_name: "Vacation Occupancy Simulation - Night Routine"
+      icon: mdi:bed-clock
+
     ################################################
     ## Input Boolean
     ################################################
@@ -205,6 +215,157 @@ automation housemode:
         state: 'on'
       - service: input_boolean.turn_off
         entity_id: input_boolean.guest_mode
+
+  # Occupancy simulation while the house is empty for an extended trip.
+  # Skipped entirely if guest_mode is on, since the house is then genuinely
+  # occupied (a caretaker) and doesn't need faking. Exterior lights (porch,
+  # driveway) are deliberately excluded -- those already run on their own
+  # dusk-to-dawn automation regardless of occupancy, so touching them here
+  # would add nothing.
+  #
+  # Every wait below is a wait_for_trigger (not a plain delay) so it can be
+  # cut short the instant something relevant changes, rather than sleeping
+  # blindly for up to 45+ minutes before noticing. Abort triggers: the
+  # household is no longer 'Vacation' (you're home), guest mode gets turned
+  # on, or one of the same motion/occupancy/door sensors alarm.yaml already
+  # treats as "someone's here" fires. The alarm_control_panel itself is a
+  # purely virtual state machine that nobody actually arms/disarms in
+  # person -- a cat sitter never touches it -- so it's not usable as a
+  # presence signal here; the physical sensors are.
+  - alias: vacation_occupancy_evening_on
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: '-00:15:00'
+    condition:
+      - condition: state
+        entity_id: sensor.household
+        state: 'Vacation'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+    variables:
+      vacation_lights:
+        - light.office_bookshelf_lamp
+        - light.kitchen_lights
+        - light.dining_room_light
+        - light.hue_basement_lounge  # glow from the basement windows
+    action:
+      # Jitter the start so lights don't snap on at the same instant every
+      # night.
+      - wait_for_trigger: &vacation_abort_triggers
+          - platform: state
+            entity_id: sensor.household
+          - platform: state
+            entity_id: input_boolean.guest_mode
+            to: 'on'
+          - platform: state
+            entity_id:
+              # Same "someone's here" sensors alarm.yaml's
+              # trigger_alarm_on_binary_sensor / trigger_alarm_on_exterior_door
+              # already use -- interior doors, occupancy, and motion.
+              - binary_sensor.hue_secure_contact_sensor_2_opening  # basement stair closet
+              - binary_sensor.hue_secure_contact_sensor_3_opening  # sump pump closet
+              - binary_sensor.hue_secure_contact_sensor_4_opening  # workroom closet
+              - binary_sensor.laundry_room_door_open
+              - binary_sensor.back_door_open
+              - binary_sensor.dining_room_occupancy
+              - binary_sensor.family_room_occupancy
+              - binary_sensor.katherine_s_room_occupancy
+              - binary_sensor.master_bedroom_occupancy
+              - binary_sensor.family_room_motion_sensor_motion_detection
+              - binary_sensor.kitchen_motion_sensor_motion_detection
+              - binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
+            to: 'on'
+          - platform: state
+            entity_id: cover.garage_door
+            to: 'on'
+        timeout: "{{ range(0, 2700) | random }}"  # up to 45 min
+        continue_on_timeout: true
+      - if:
+          # wait_for_trigger + continue_on_timeout leaves `wait.trigger` as
+          # none if we simply timed out, or set to the trigger data if
+          # something in the list above actually fired -- so this is "did we
+          # get interrupted," not a re-derived state check.
+          - condition: template
+            value_template: &vacation_abort_condition "{{ wait.trigger is not none }}"
+        then:
+          - stop: &vacation_abort_reason "Someone appears to be home or in the house -- aborting vacation occupancy simulation"
+      - repeat:
+          for_each: "{{ vacation_lights }}"
+          sequence:
+            # Not every light every night -- ~65% chance each, so the pattern
+            # varies night to night rather than being identical.
+            - if:
+                - condition: template
+                  value_template: "{{ range(0, 100) | random < 65 }}"
+              then:
+                # Stagger each light rather than flipping them all at once.
+                - wait_for_trigger: *vacation_abort_triggers
+                  timeout: "{{ range(0, 600) | random }}"  # up to 10 min
+                  continue_on_timeout: true
+                - if:
+                    - condition: template
+                      value_template: *vacation_abort_condition
+                  then:
+                    - stop: *vacation_abort_reason
+                - service: light.turn_on
+                  target:
+                    entity_id: "{{ repeat.item }}"
+
+  - alias: vacation_occupancy_night_routine
+    trigger:
+      - platform: time
+        at: '22:00:00'
+    condition:
+      - condition: state
+        entity_id: sensor.household
+        state: 'Vacation'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+    variables:
+      vacation_lights:
+        - light.office_bookshelf_lamp
+        - light.kitchen_lights
+        - light.dining_room_light
+        - light.hue_basement_lounge
+    action:
+      # Downstairs/basement lights off sometime between 22:00-22:45.
+      - wait_for_trigger: *vacation_abort_triggers
+        timeout: "{{ range(0, 2700) | random }}"
+        continue_on_timeout: true
+      - if:
+          - condition: template
+            value_template: *vacation_abort_condition
+        then:
+          - stop: *vacation_abort_reason
+      - service: light.turn_off
+        target:
+          entity_id: "{{ vacation_lights }}"
+      # Bedroom lamp (via the outlet switch) comes on 15-45 min later --
+      # simulating heading upstairs for the night.
+      - wait_for_trigger: *vacation_abort_triggers
+        timeout: "{{ range(900, 2700) | random }}"
+        continue_on_timeout: true
+      - if:
+          - condition: template
+            value_template: *vacation_abort_condition
+        then:
+          - stop: *vacation_abort_reason
+      - service: switch.turn_on
+        entity_id: switch.master_bedroom_outlet_switch
+      # Stays on 30-90 min (reading in bed, etc.) before lights-out.
+      - wait_for_trigger: *vacation_abort_triggers
+        timeout: "{{ range(1800, 5400) | random }}"
+        continue_on_timeout: true
+      - if:
+          - condition: template
+            value_template: *vacation_abort_condition
+        then:
+          - stop: *vacation_abort_reason
+      - service: switch.turn_off
+        entity_id: switch.master_bedroom_outlet_switch
 
 ################################################
 ## Script
