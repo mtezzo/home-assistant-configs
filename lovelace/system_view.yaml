@@ -48,6 +48,9 @@ cards:
           - automation.holiday_lighting
           - automation.auto_sunrise
           - input_datetime.auto_sunrise_time
+          - automation.basement_radon_led_alert
+          - automation.vacation_occupancy_evening_on
+          - automation.vacation_occupancy_night_routine
         uix:
           class: middle-right
 
@@ -82,6 +85,9 @@ cards:
           - automation.trigger_notification_on_sensor_tamper
           - automation.trigger_notification_on_smoke
           - automation.trigger_notification_on_co
+          - automation.trigger_notification_on_water_leak
+          - automation.trigger_notification_on_garage_door_open
+          - automation.basement_radon_high_notification
         uix:
           class: middle-right
 
@@ -93,6 +99,7 @@ cards:
           - automation.trigger_alarm_on_binary_sensor
           - automation.guest_mode_disarm
           - automation.guest_mode_restore
+          - automation.guest_mode_auto_disable
         uix:
           class: middle-right
 
