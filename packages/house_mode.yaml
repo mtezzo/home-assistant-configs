@@ -259,27 +259,17 @@ automation housemode:
           - platform: state
             entity_id: input_boolean.guest_mode
             to: 'on'
-          - platform: state
-            entity_id:
-              # Same "someone's here" sensors alarm.yaml's
-              # trigger_alarm_on_binary_sensor / trigger_alarm_on_exterior_door
-              # already use -- interior doors, occupancy, and motion.
-              - binary_sensor.hue_secure_contact_sensor_2_opening  # basement stair closet
-              - binary_sensor.hue_secure_contact_sensor_3_opening  # sump pump closet
-              - binary_sensor.hue_secure_contact_sensor_4_opening  # workroom closet
-              - binary_sensor.laundry_room_door_open
-              - binary_sensor.back_door_open
-              - binary_sensor.dining_room_occupancy
-              - binary_sensor.family_room_occupancy
-              - binary_sensor.katherine_s_room_occupancy
-              - binary_sensor.master_bedroom_occupancy
-              - binary_sensor.family_room_motion_sensor_motion_detection
-              - binary_sensor.kitchen_motion_sensor_motion_detection
-              - binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
-            to: 'on'
-          - platform: state
-            entity_id: cover.garage_door
-            to: 'on'
+          # Same 'someone's here' signal as alarm.yaml's
+          # trigger_alarm_on_binary_sensor / trigger_alarm_on_exterior_door --
+          # reuses the interior-door, exterior-door, motion, and occupancy
+          # labels directly, so this stays correct as those labels change
+          # (e.g. it now automatically excludes the dead kitchen motion
+          # sensor and correctly matches the garage door's real open/closed
+          # states, both of which this block got wrong before those labels
+          # existed).
+          - platform: template
+            value_template: >
+              {{ (expand(label_entities('interior-door')) + expand(label_entities('exterior-door')) + expand(label_entities('motion')) + expand(label_entities('occupancy'))) | selectattr('state', 'in', ['on', 'open']) | list | count > 0 }}
         timeout: "{{ range(0, 2700) | random }}"  # up to 45 min
         continue_on_timeout: true
       - if:
