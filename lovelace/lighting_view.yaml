@@ -30,11 +30,7 @@ cards:
           type: entities
           show_header_toggle: false
           uix:
-            class: footer-right
-            style: |
-              :host {
-                --lcars-readout-width: 125px;
-              }
+            class: middle-blank
         filter:
           include:
             - domain: light
@@ -60,14 +56,22 @@ cards:
             - entity_id: light.interior_lights
             - entity_id: light.dining_room_hutch_light_indicator
             - entity_id: light.christmas_tree_switch_indicator
-            - entity_id: '/^light\.hue_(?!basement_billiard$|basement_lounge$|basement_staors$|front_yard$|fireplace_light$).*$/'
+            - entity_id: '/^light\.hue_(?!basement_billiard$|!basement_lounge$|!basement_stairs$|!front_yard$|!fireplace_light$).*$/'
         sort:
           method: friendly_name
         else:
           type: markdown
           content: "*Everything's off.*"
           uix:
-            class: footer-right
+            class: middle-blank
+      - type: markdown
+        content: "# &nbsp;"
+        uix:
+          class: footer-right
+          style: |
+            :host {
+              --lcars-readout-width: 125px;
+            }
 
       - type: markdown
         uix:
