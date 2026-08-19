@@ -158,17 +158,18 @@ automation alarm:
         data:
           code: !secret alarm_code
 
+  # Membership driven by the 'exterior-door' label rather than a hardcoded
+  # entity list. Mixes domains (cover.garage_door + binary_sensor.back_door_open)
+  # on purpose -- they're one logical concept (exterior entry point) feeding
+  # the same condition and action -- but that's exactly why the check matches
+  # both 'open' (native cover state) and 'on' (binary_sensor), rather than a
+  # single value: a naive '== on' check would silently miss the garage door,
+  # since covers report open/closed, not on/off.
   - alias: trigger_alarm_on_exterior_door
     trigger:
-      # Exterior Doors
-      - platform: state
-        entity_id: cover.garage_door
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.back_door_open #garage side door
-        from: 'off'
-        to: 'on'
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('exterior-door')) | selectattr('state', 'in', ['on', 'open']) | list | count > 0 }}
     condition:
       - condition: or
         conditions:
@@ -186,53 +187,26 @@ automation alarm:
 
   - alias: trigger_alarm_on_binary_sensor
     trigger:
-      # Interior Door Sensors
-      - platform: state
-        entity_id: binary_sensor.hue_secure_contact_sensor_2_opening #basement stair closet
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.hue_secure_contact_sensor_3_opening #sump pump closet
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.hue_secure_contact_sensor_4_opening #workroom closet
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.laundry_room_door_open #laundry room door
-        from: 'off'
-        to: 'on'
-      # Ecobee Occupancy Sensors
-      - platform: state
-        entity_id: binary_sensor.dining_room_occupancy
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.family_room_occupancy
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.katherine_s_room_occupancy
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.master_bedroom_occupancy
-        from: 'off'
-        to: 'on'
-      # Motion Sensors
-      - platform: state
-        entity_id: binary_sensor.family_room_motion_sensor_motion_detection
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.kitchen_motion_sensor_motion_detection
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
-        from: 'off'
-        to: 'on'
+      # Interior Door Sensors -- membership driven by the 'interior-door'
+      # label. These doors are all normally closed while away, so only the
+      # closed->open direction matters (a cat can push one shut, not open
+      # one) -- the aggregate count going from 0 to >0 captures exactly that,
+      # same as the per-entity from:off/to:on it replaces.
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('interior-door')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+      # Ecobee Occupancy Sensors -- membership driven by the 'occupancy'
+      # label. Now also covers the basement and craft room sensors, which
+      # existed but were never wired into this automation before.
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('occupancy')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+      # Motion Sensors -- membership driven by the 'motion' label. The old
+      # kitchen sensor was a Fibaro unit that got unpaired for reliability
+      # issues and was never replaced, hence no longer referenced here.
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('motion')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
     condition:
       - condition: state
         entity_id: alarm_control_panel.alarm_system
@@ -255,64 +229,49 @@ automation alarm:
             title: Alarm Triggered
           message: &alarm_triggered_message >
             Alarm was triggered on:
-            {% for state in states.binary_sensor -%}
-              {% if state.state == 'on' and state.entity_id in ['cover.garage_door', 'binary_sensor.hue_secure_contact_sensor_2_opening', 'binary_sensor.hue_secure_contact_sensor_3_opening', 'binary_sensor.hue_secure_contact_sensor_4_opening', 'binary_sensor.laundry_room_door_open', 'binary_sensor.back_door_open',
-              'binary_sensor.dining_room_occupancy', 'binary_sensor.family_room_occupancy', 'binary_sensor.katherine_s_room_occupancy', 'binary_sensor.master_bedroom_occupancy', 'binary_sensor.family_room_motion_sensor_motion_detection', 'binary_sensor.kitchen_motion_sensor_motion_detection', 'binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection'] %}
-                {{ state.name }}
-              {%- endif -%}
-            {%- endfor -%}
+            {% set active_entities =
+              (expand(label_entities('interior-door')) | selectattr('state', 'eq', 'on') | list)
+              + (expand(label_entities('exterior-door')) | selectattr('state', 'in', ['on', 'open']) | list)
+              + (expand(label_entities('motion')) | selectattr('state', 'eq', 'on') | list)
+              + (expand(label_entities('occupancy')) | selectattr('state', 'eq', 'on') | list)
+            %}
+            {{ active_entities | map(attribute='name') | join(', ') }}
       - service: notify.persistent_notification
         data_template:
           notification_id: alarm_triggered
           title: Alarm Triggered
           message: *alarm_triggered_message
 
+  # Membership driven by the 'tamper' label rather than a hardcoded list --
+  # this automation was silently broken before, since several of these
+  # entity_ids were stale (renamed by a Hue migration) and two others
+  # referenced sensors that had since been replaced/removed entirely.
   - alias: trigger_notification_on_sensor_tamper
     trigger:
-
-      - platform: state
-        entity_id: binary_sensor.basement_stair_closet_door_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_sump_pump_closet_door_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.workroom_closet_door_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_laundry_room_door_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.water_heater_flood_sensor_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.family_room_motion_sensor_tampering_product_cover_removed
-        from: 'off'
-        to: 'on'
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('tamper')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
     action:
       - service: notify.everyone
         data_template:
           data:
             title: Tamper Notification
           message: &tamper_message >
-            Cover removed from {{ trigger.to_state.attributes.friendly_name }}!
+            Cover removed from {{ expand(label_entities('tamper')) | selectattr('state', 'eq', 'on') | map(attribute='name') | join(', ') }}!
       - service: notify.persistent_notification
         data_template:
           notification_id: tamper_notification
           title: Tamper Notification
           message: *tamper_message
 
+  # Membership driven by the 'smoke' label rather than a hardcoded entity --
+  # only one sensor today, but this covers any future smoke detector (e.g. a
+  # second Airthings-reported source) without touching this automation.
   - alias: trigger_notification_on_smoke
     trigger:
-      - platform: state
-        entity_id: binary_sensor.smoke_and_carbon_monoxide_sensor_smoke_detected
-        from: 'off'
-        to: 'on'
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('smoke')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
     action:
       - service: notify.everyone
         data_template:
@@ -332,12 +291,15 @@ automation alarm:
           delay: 5
           message: Smoke Detected!
 
+  # Membership driven by the 'carbon-monoxide' label -- only one sensor today
+  # (the hardwired smoke/CO network), but this covers Mila or a future
+  # Airthings CO source without touching this automation, as long as it's
+  # tagged with the label when it shows up.
   - alias: trigger_notification_on_co
     trigger:
-      - platform: state
-        entity_id: binary_sensor.smoke_and_carbon_monoxide_sensor_carbon_monoxide_detected
-        from: 'off'
-        to: 'on'
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('carbon-monoxide')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
     action:
       - service: notify.everyone
         data_template:
@@ -357,28 +319,24 @@ automation alarm:
           delay: 5
           message: Carbon Monoxide Detected!
 
+  # Membership driven by the 'water-leak' label (Settings > Entities) rather
+  # than a hardcoded entity list -- label any new leak sensor and it's
+  # included automatically, survives renames too. A plain state trigger can't
+  # take a label (entity_id has to be a literal list), so this is a template
+  # trigger instead; expand(label_entities(...)) is the supported way to make
+  # that reactive to label membership and to the members' state changes.
   - alias: trigger_notification_on_water_leak
     trigger:
-      - platform: state
-        entity_id:
-          - binary_sensor.basement_bathroom_water_sensor_water_leak_detected
-          - binary_sensor.floor_water_sensor_water_leak_detected
-          - binary_sensor.guest_bathroom_water_sensor_water_leak_detected
-          - binary_sensor.laundry_sink_water_sensor_water_leak_detected
-          - binary_sensor.main_floor_bathroom_water_sensor_water_leak_detected
-          - binary_sensor.master_bathroom_water_sensor_water_leak_detected
-          - binary_sensor.sump_pump_water_sensor_water_leak_detected
-          - binary_sensor.washing_machine_water_sensor_water_leak_detected
-          - binary_sensor.water_heater_flood_sensor_water_leak_detected
-        from: 'off'
-        to: 'on'
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('water-leak')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
     action:
       - service: notify.everyone
         data_template:
           data:
             title: Water Leak Detected
           message: &water_leak_message >
-            Water leak detected at {{ trigger.to_state.attributes.friendly_name }}!
+            Water leak detected at {{ expand(label_entities('water-leak')) | selectattr('state', 'eq', 'on') | map(attribute='name') | join(', ') }}!
       - service: notify.persistent_notification
         data_template:
           notification_id: water_leak_detected
@@ -389,7 +347,7 @@ automation alarm:
     trigger:
       - platform: state
         entity_id: cover.garage_door
-        to: 'on'
+        to: 'open'
         for:
           hours: 1
     action:

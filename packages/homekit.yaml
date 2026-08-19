@@ -76,7 +76,10 @@ homekit:
       - binary_sensor.master_bedroom_dresser_motion_sensor_motion_detection
       - binary_sensor.family_room_motion_sensor_motion_detection
 
-      # Water Sensors
+      # Water Sensors -- keep in sync with the 'water-leak' label (see
+      # packages/alarm.yaml). HomeKit's entity filter can't reference labels
+      # directly (no include_labels support as of this writing), so this
+      # list has to be maintained by hand alongside the label.
       - binary_sensor.basement_bathroom_water_sensor_water_leak_detected
       - binary_sensor.floor_water_sensor_water_leak_detected
       - binary_sensor.guest_bathroom_water_sensor_water_leak_detected

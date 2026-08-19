@@ -47,21 +47,20 @@ cards:
         uix:
           class: middle-right
       - type: markdown
-        content: "# Motion Sensors"
+        content: "# Motion & Occupancy"
         uix:
           class: middle-right
       - type: custom:auto-entities
         card:
           type: entities
-          # title: Motion Sensors
+          # title: Motion & Occupancy
           show_header_toggle: false
           uix:
             class: middle-right
         filter:
           include:
-            - domain: binary_sensor
-              attributes:
-                device_class: motion
+            - label: motion
+            - label: occupancy
       - type: markdown
         content: "# Door Sensors"
         uix:
@@ -75,9 +74,5 @@ cards:
             class: middle-right
         filter:
           include:
-            - domain: binary_sensor
-              attributes:
-                device_class: door
-            - domain: binary_sensor
-              attributes:
-                device_class: garage_door
+            - label: interior-door
+            - label: exterior-door
