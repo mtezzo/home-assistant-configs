@@ -39,6 +39,11 @@ homeassistant:
       friendly_name: "Basement Radon LED Alert"
       icon: mdi:led-strip-variant
 
+    automation.basement_radon_high_notification:
+      <<: *customize
+      friendly_name: "Send Notification on High Radon"
+      icon: mdi:message-text
+
 ################################################
 ## Sensor
 ################################################
@@ -146,3 +151,25 @@ automation airthings:
               parameter: 99
               value:
                 4278190080: -1  # effect: clear (255, sent as -1 -- see note above)
+
+  # Separate from the LED alert above -- this one is specifically for the red
+  # tier (>= 4 pCi/L, the EPA action level) so the whole household is notified
+  # even if nobody's near the basement switches to see the LED color.
+  - alias: basement_radon_high_notification
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: sensor.basement_radon_led_tier
+        to: 'red'
+    action:
+      - service: notify.everyone
+        data_template:
+          data:
+            title: High Radon Level
+          message: &radon_high_message >
+            Basement radon has reached {{ states('sensor.basement_radon_pcil') }} pCi/L, above the EPA action level of 4 pCi/L.
+      - service: notify.persistent_notification
+        data_template:
+          notification_id: basement_radon_high
+          title: High Radon Level
+          message: *radon_high_message

@@ -44,6 +44,11 @@ homeassistant:
       friendly_name: "Restore Alarm State When Guest Mode Ends"
       icon: mdi:account
 
+    automation.guest_mode_auto_disable:
+      <<: *customize
+      friendly_name: "Auto-Disable Guest Mode After Return"
+      icon: mdi:account-clock
+
     ################################################
     ## Input Boolean
     ################################################
@@ -172,6 +177,34 @@ automation housemode:
                 entity_id: alarm_control_panel.alarm_system
                 data:
                   code: !secret alarm_code
+
+  - alias: guest_mode_auto_disable
+    mode: restart
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        to: 'on'
+    action:
+      # Guest mode typically gets turned on while still home (so it's not
+      # forgotten before leaving), so only start the "are we back" countdown
+      # once the house has actually been left empty at least once -- otherwise
+      # this would disable guest mode minutes after enabling it, before ever
+      # leaving.
+      - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.household
+            from: 'Home'
+      - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.household
+            to: 'Home'
+            for:
+              minutes: 10
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.guest_mode
 
 ################################################
 ## Script
