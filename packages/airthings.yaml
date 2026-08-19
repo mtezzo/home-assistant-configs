@@ -49,13 +49,16 @@ template:
       unit_of_measurement: 'pCi/L'
       state: "{{ (states('sensor.basement_radon') | float / 37) | round(2) }}"
 
-    # Drives the basement switches' LED bar color. Matches the breakpoints
-    # used on the dashboard (life_support_view.yaml, home_view.yaml):
-    # < 2.7 normal, 2.7-4 amber, >= 4 red. Kept as its own sensor (rather than
-    # thresholding inline in the automation) so the automation's state trigger
-    # only fires on a tier change, not on every Airthings poll -- that's what
-    # keeps the number of Z-Wave config-parameter writes (and NVM wear on the
-    # switches) low, regardless of poll frequency.
+    # Drives the basement switches' LED bar color. Intentionally a higher
+    # amber threshold (3.7) than the dashboard's (2.7, in life_support_view.yaml
+    # / home_view.yaml) -- the switch LEDs are a physical, always-visible
+    # indicator, so they should only light up once radon is really starting to
+    # get unhealthy, not at the first sign of drift the dashboard already shows.
+    # Kept as its own sensor (rather than thresholding inline in the
+    # automation) so the automation's state trigger only fires on a tier
+    # change, not on every Airthings poll -- that's what keeps the number of
+    # Z-Wave config-parameter writes (and NVM wear on the switches) low,
+    # regardless of poll frequency.
     - default_entity_id: sensor.basement_radon_led_tier
       state: >
         {% set r = states('sensor.basement_radon_pcil') %}
@@ -63,7 +66,7 @@ template:
           unavailable
         {% elif r | float >= 4 %}
           red
-        {% elif r | float >= 2.7 %}
+        {% elif r | float >= 3.7 %}
           amber
         {% else %}
           normal
@@ -108,8 +111,8 @@ automation airthings:
                   parameter: 99
                   value:
                     255: 255        # duration: indefinite, until cleared
-                    65280: 50      # level: 50%
-                    16711680: 30    # color: amber
+                    65280: 15       # level: 15%
+                    16711680: 10    # color: amber
                     4278190080: 1   # effect: solid
           # High -- pulsing red
           - conditions: "{{ trigger.to_state.state == 'red' }}"
@@ -121,7 +124,7 @@ automation airthings:
                   parameter: 99
                   value:
                     255: 255        # duration: indefinite, until cleared
-                    65280: 50      # level: 50%
+                    65280: 10       # level: 10%
                     16711680: 0     # color: red
                     4278190080: 4   # effect: pulse
         # Normal -- clear the notification. Parameter 99's dedicated "Clear"
