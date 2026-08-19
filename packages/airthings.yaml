@@ -108,7 +108,7 @@ automation airthings:
                   parameter: 99
                   value:
                     255: 255        # duration: indefinite, until cleared
-                    65280: 100      # level: 100%
+                    65280: 50      # level: 50%
                     16711680: 30    # color: amber
                     4278190080: 1   # effect: solid
           # High -- pulsing red
@@ -121,13 +121,20 @@ automation airthings:
                   parameter: 99
                   value:
                     255: 255        # duration: indefinite, until cleared
-                    65280: 100      # level: 100%
+                    65280: 50      # level: 50%
                     16711680: 0     # color: red
                     4278190080: 4   # effect: pulse
         # Normal -- clear the notification. Parameter 99's dedicated "Clear"
         # effect (255) reverts the LED bar to its normal default color/intensity
         # (Parameters 95-98, currently blue) without us needing to know or
         # re-set what that default is.
+        #
+        # The effect byte is the top byte of the combined 32-bit parameter
+        # value, so any value >= 128 there trips a zwave-js-server-python bug
+        # (signed/unsigned mishandling -- home-assistant/core#104675) that
+        # rejects it as "not valid for configuration parameters" (ZW0322).
+        # Workaround: send it as its two's-complement negative equivalent
+        # (255 -> -1) instead of 255.
         default:
           - service: zwave_js.bulk_set_partial_config_parameters
             target:
@@ -135,4 +142,4 @@ automation airthings:
             data:
               parameter: 99
               value:
-                4278190080: 255  # effect: clear
+                4278190080: -1  # effect: clear (255, sent as -1 -- see note above)
