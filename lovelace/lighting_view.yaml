@@ -63,7 +63,7 @@ cards:
           type: markdown
           content: "*Everything's off.*"
           uix:
-            class: middle-blank
+            class: middle-right
       - type: markdown
         content: "# &nbsp;"
         uix:
