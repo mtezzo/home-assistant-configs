@@ -63,7 +63,6 @@ cloud:
         - sensor.wirelesstag_workroom_closet_temperature
         - sensor.wirelesstag_wine_rack_humidity
         - sensor.wirelesstag_wine_rack_temperature
-        - sensor.wirelesstag_wine_rack_temperature
 
         # Switches
         - switch.front_porch_outdoor_double_plug

@@ -42,11 +42,6 @@ homeassistant:
       friendly_name: "Persistence Subscribe (Alarm System)"
       icon: mdi:alarm
 
-    automation.alarm_startup_state:
-      <<: *customize
-      friendly_name: "Arm Alarm on System Startup"
-      icon: mdi:alarm
-
     automation.trigger_alarm_on_binary_sensor:
       <<: *customize
       friendly_name: "Trigger Alarm on Binary Sensor"
