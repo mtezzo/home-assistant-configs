@@ -31,6 +31,11 @@ cards:
           show_header_toggle: false
           uix:
             class: middle-blank
+            style: |
+              :host{
+                --lcars-readout-width: 125px;
+                --lcars-vertical-border: 40px;
+              }
         filter:
           include:
             - domain: light
