@@ -135,21 +135,21 @@ cards:
       - type: horizontal-stack
         cards:
           - type: tile
-            entity: light.workroom_closet_light
+            entity: light.hue_workroom_closet_light
             vertical: true
             name: "Workroom Closet"
             features:
               - type: "light-brightness"
             uix: *tile_style
           - type: tile
-            entity: light.basement_sump_pump_closet_light
+            entity: light.hue_basement_sump_pump_closet_light
             vertical: true
             name: "Sump Closet"
             features:
               - type: "light-brightness"
             uix: *tile_style
           - type: tile
-            entity: light.basement_stair_closet_light
+            entity: light.hue_basement_stair_closet_light
             vertical: true
             name: "Stair Closet"
             features:
