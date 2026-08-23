@@ -62,6 +62,7 @@ cards:
             - entity_id: light.dining_room_hutch_light_indicator
             - entity_id: light.christmas_tree_switch_indicator
             - entity_id: '/^light\.hue_(?!basement_billiard$|!basement_lounge$|!basement_stairs$|!front_yard$|!fireplace_light$).*$/'
+            - entity_id: switch.driveway_lights
         sort:
           method: friendly_name
         else:
