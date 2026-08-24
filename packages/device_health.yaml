@@ -113,11 +113,20 @@ automation device_health:
 
   # Z-Wave config parameters like these aren't pushed by the device on
   # change -- they're only read at pairing/interview time (or on a manual
-  # ping), so without this they can go stale indefinitely, which defeats the
-  # point of a safety check. HA's own docs are explicit that zwave_js polling
-  # should be used sparingly to avoid mesh congestion, so this stays
-  # deliberately infrequent (every 30 min) and scoped to just these 14
-  # entities rather than the whole network.
+  # refresh), so without this they can go stale indefinitely (confirmed on
+  # this system: one switch's temperature sat unchanged for 3+ hours), which
+  # defeats the point of a safety check. HA's own docs are explicit that
+  # zwave_js polling should be used sparingly to avoid mesh congestion, so
+  # this stays deliberately infrequent (every 30 min) and scoped to just
+  # these 14 entities rather than the whole network.
+  #
+  # zwave_js.refresh_value is deprecated in favor of zwave_js.ping / the
+  # per-device ping button entity -- but confirmed by direct testing that
+  # ping (both HA's button.*_ping and the Z-Wave JS UI's own ping) does NOT
+  # refresh these values, while refresh_value does, immediately. Deprecated
+  # or not, it's the only mechanism that actually works for this value type
+  # right now, so don't "modernize" this to ping without re-confirming
+  # ping actually refreshes Configuration CC values by then.
   - alias: refresh_device_health_values
     initial_state: true
     trigger:
