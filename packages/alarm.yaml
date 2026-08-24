@@ -384,7 +384,7 @@ automation alarm:
 
   # Membership driven by the 'life-safety-alert' (which devices should show
   # this) x 'inovelli-led' (which devices actually speak this Z-Wave
-  # notification parameter) label intersection. Fast-blink red is
+  # notification parameter) label intersection. Fast-siren red is
   # deliberately more urgent-looking than radon's slower pulse, so a glance
   # can tell the two apart.
   #
@@ -413,7 +413,7 @@ automation alarm:
                     255: 255        # duration: indefinite, until cleared
                     65280: 100      # level: 100%
                     16711680: 0     # color: red
-                    4278190080: 2   # effect: fast blink
+                    4278190080: 18  # effect: fast siren
         # Clear, then force basement_radon_led_alert to re-run so it can
         # immediately re-assert its own LED state if radon is still elevated
         # -- otherwise clearing here would blindly wipe an active radon
