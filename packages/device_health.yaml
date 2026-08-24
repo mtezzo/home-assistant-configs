@@ -38,6 +38,11 @@ homeassistant:
       friendly_name: "Send Notification on High Device Temperature"
       icon: mdi:thermometer-high
 
+    automation.refresh_device_health_values:
+      <<: *customize
+      friendly_name: "Refresh Device Health Values"
+      icon: mdi:refresh
+
 ################################################
 ## Automation
 ################################################
@@ -105,3 +110,20 @@ automation device_health:
           notification_id: device_temperature_warning
           title: Device Temperature Warning
           message: *device_temp_warning_message
+
+  # Z-Wave config parameters like these aren't pushed by the device on
+  # change -- they're only read at pairing/interview time (or on a manual
+  # ping), so without this they can go stale indefinitely, which defeats the
+  # point of a safety check. HA's own docs are explicit that zwave_js polling
+  # should be used sparingly to avoid mesh congestion, so this stays
+  # deliberately infrequent (every 30 min) and scoped to just these 14
+  # entities rather than the whole network.
+  - alias: refresh_device_health_values
+    initial_state: true
+    trigger:
+      - platform: time_pattern
+        minutes: '/30'
+    action:
+      - service: zwave_js.refresh_value
+        data:
+          entity_id: "{{ (label_entities('device-internal-temp') + label_entities('device-overheat')) | unique | list }}"

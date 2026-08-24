@@ -178,6 +178,7 @@ cards:
           - sensor.controller_messages_not_accepted
           - sensor.controller_timed_out_callbacks
           - sensor.controller_timed_out_responses
+          - automation.refresh_device_health_values
         uix:
           class: middle-left
 
