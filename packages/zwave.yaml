@@ -19,4 +19,3 @@ homeassistant:
       expose: &expose
         <<: *customize
         homebridge_hidden: false
-

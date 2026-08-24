@@ -80,6 +80,31 @@ homeassistant:
       friendly_name: "Send Notification on Garage Door Left Open"
       icon: mdi:message-text
 
+    automation.life_safety_led_indicator:
+      <<: *customize
+      friendly_name: "Life Safety LED Indicator"
+      icon: mdi:fire-alert
+
+    ################################################
+    ## Binary Sensor
+    ################################################
+
+    binary_sensor.life_safety_alert_active:
+      <<: *customize
+      friendly_name: "Life Safety Alert Active"
+      icon: mdi:fire-alert
+
+################################################
+## Binary Sensor
+################################################
+
+template:
+  - binary_sensor:
+    - default_entity_id: binary_sensor.life_safety_alert_active
+      device_class: safety
+      state: >
+        {{ (expand(label_entities('smoke')) + expand(label_entities('carbon-monoxide'))) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+
 ################################################
 ## Alarm Control Panel
 ################################################
@@ -356,3 +381,54 @@ automation alarm:
           data:
             title: Garage Door Open
           message: "The garage door has been open for over an hour."
+
+  # Membership driven by the 'life-safety-alert' (which devices should show
+  # this) x 'inovelli-led' (which devices actually speak this Z-Wave
+  # notification parameter) label intersection. Fast-blink red is
+  # deliberately more urgent-looking than radon's slower pulse, so a glance
+  # can tell the two apart.
+  #
+  # binary_sensor.life_safety_alert_active exists specifically so this can be
+  # a plain state trigger (fires on both directions) with a choose/default,
+  # matching basement_radon_led_alert's structure -- a boolean template
+  # trigger only fires on the false->true edge, which isn't enough here since
+  # we also need the true->false edge to clear the LEDs.
+  - alias: life_safety_led_indicator
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.life_safety_alert_active
+    variables:
+      alert_switches: "{{ label_entities('life-safety-alert') | select('in', label_entities('inovelli-led')) | list | map('device_id') | unique | list }}"
+    action:
+      - choose:
+          - conditions: "{{ trigger.to_state.state == 'on' }}"
+            sequence:
+              - service: zwave_js.bulk_set_partial_config_parameters
+                target:
+                  device_id: "{{ alert_switches }}"
+                data:
+                  parameter: 99
+                  value:
+                    255: 255        # duration: indefinite, until cleared
+                    65280: 100      # level: 100%
+                    16711680: 0     # color: red
+                    4278190080: 2   # effect: fast blink
+        # Clear, then force basement_radon_led_alert to re-run so it can
+        # immediately re-assert its own LED state if radon is still elevated
+        # -- otherwise clearing here would blindly wipe an active radon
+        # indicator on the 6 switches these two features share, and it
+        # wouldn't come back until the next radon tier change.
+        default:
+          - service: zwave_js.bulk_set_partial_config_parameters
+            target:
+              device_id: "{{ alert_switches }}"
+            data:
+              parameter: 99
+              value:
+                4278190080: -1  # effect: clear
+          - service: automation.trigger
+            target:
+              entity_id: automation.basement_radon_led_alert
+            data:
+              skip_condition: true

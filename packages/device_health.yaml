@@ -1,0 +1,107 @@
+################################################################
+## Packages / Device Health
+##
+## Hardware self-diagnostics (currently: switch internal temperature and
+## overheat-protection flags) exposed by devices themselves, regardless of
+## which integration/protocol they come in over. Deliberately not named
+## after Z-Wave: the 'device-internal-temp' / 'device-overheat' labels these
+## automations key off are protocol-agnostic on purpose, so a future Zigbee
+## device (or anything else) exposing the same kind of diagnostic just needs
+## the label applied, no automation changes.
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'device_health'
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.device_overheat_notification:
+      <<: *customize
+      friendly_name: "Send Notification on Device Overheat"
+      icon: mdi:thermometer-alert
+
+    automation.device_temperature_warning:
+      <<: *customize
+      friendly_name: "Send Notification on High Device Temperature"
+      icon: mdi:thermometer-high
+
+################################################
+## Automation
+################################################
+
+automation device_health:
+  # Membership driven by the 'device-overheat' label rather than a hardcoded
+  # list -- label any future switch/device that exposes an overheat-protection
+  # diagnostic and it's included automatically. These report as the strings
+  # 'True'/'False' (plain zwave_js config-parameter sensors, not native
+  # binary_sensor on/off), so the check is a string comparison.
+  - alias: device_overheat_notification
+    initial_state: true
+    trigger:
+      - platform: template
+        value_template: >
+          {{ expand(label_entities('device-overheat')) | selectattr('state', 'eq', 'True') | list | count > 0 }}
+    action:
+      - service: notify.everyone
+        data_template:
+          data:
+            title: Device Overheating
+          message: &device_overheat_message >
+            Overheat protection triggered on: {{ expand(label_entities('device-overheat')) | selectattr('state', 'eq', 'True') | map(attribute='name') | join(', ') }}
+      - service: notify.persistent_notification
+        data_template:
+          notification_id: device_overheat
+          title: Device Overheating
+          message: *device_overheat_message
+
+  # Softer, earlier warning than the overheat-protection flag above --
+  # Parameter 33 is presumably Inovelli's own hard cutoff, this is a
+  # provisional 45C line since there's no baseline data yet (current
+  # readings run 28-33C). Adjust the threshold once there's a better sense
+  # of normal range for these enclosures.
+  - alias: device_temperature_warning
+    initial_state: true
+    trigger:
+      - platform: template
+        value_template: >
+          {% set ns = namespace(warm=[]) %}
+          {% for s in expand(label_entities('device-internal-temp')) %}
+            {% if s.state not in ['unknown', 'unavailable'] and s.state | float(0) > 45 %}
+              {% set ns.warm = ns.warm + [s] %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.warm | count > 0 }}
+    variables:
+      warm_switches: >
+        {% set ns = namespace(warm=[]) %}
+        {% for s in expand(label_entities('device-internal-temp')) %}
+          {% if s.state not in ['unknown', 'unavailable'] and s.state | float(0) > 45 %}
+            {% set ns.warm = ns.warm + [s.name] %}
+          {% endif %}
+        {% endfor %}
+        {{ ns.warm | join(', ') }}
+    action:
+      - service: notify.everyone
+        data_template:
+          data:
+            title: Device Temperature Warning
+          message: &device_temp_warning_message >
+            Running warmer than expected (over 45°C): {{ warm_switches }}
+      - service: notify.persistent_notification
+        data_template:
+          notification_id: device_temperature_warning
+          title: Device Temperature Warning
+          message: *device_temp_warning_message

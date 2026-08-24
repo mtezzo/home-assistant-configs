@@ -82,6 +82,14 @@ template:
 ################################################
 
 automation airthings:
+  # Membership driven by the 'radon-alert' (which devices should show radon
+  # status) x 'inovelli-led' (which devices actually speak this Z-Wave
+  # notification parameter) label intersection, rather than a hardcoded
+  # device list. Uses states(...) rather than trigger.to_state so this stays
+  # correct whether it fires from a real tier change or gets force-triggered
+  # by life_safety_led_indicator (alarm.yaml) restoring the radon LED after a
+  # smoke/CO alert clears -- automation.trigger doesn't supply a real trigger
+  # context, so relying on trigger.to_state there would error.
   - alias: basement_radon_led_alert
     initial_state: true
     trigger:
@@ -92,22 +100,16 @@ automation airthings:
       # outage) -- leave the LEDs showing whatever they last reflected rather
       # than clearing a real alert because the sensor briefly dropped out.
       - condition: template
-        value_template: "{{ trigger.to_state.state in ['normal', 'amber', 'red'] }}"
+        value_template: "{{ states('sensor.basement_radon_led_tier') in ['normal', 'amber', 'red'] }}"
     variables:
       # Device IDs (not entity IDs) since zwave_js.bulk_set_partial_config_parameters
       # targets devices -- these switches have no controllable light entity of
       # their own beyond the LED bar itself.
-      basement_switches:
-        - 952b30c5116e9d260f4d571365fac96f  # Basement Overhead Lights
-        - 91d9d2d9b9bcfaa67470ddf3440e61bd  # Basement Staircase Lights
-        - 8c1b47c1d80f24e83f1db4f11adc59fe  # Basement Track Lights
-        - 508af5a5a043d19c592227407b27e90b  # Rear Basement Overhead Lights
-        - cd840924cf8d67bb51e38a6d306702fe  # Pool Table Light
-        - dc4f609e5ae9be4521938028dfb67a4d  # Workroom Light
+      basement_switches: "{{ label_entities('radon-alert') | select('in', label_entities('inovelli-led')) | list | map('device_id') | unique | list }}"
     action:
       - choose:
           # Elevated -- solid amber
-          - conditions: "{{ trigger.to_state.state == 'amber' }}"
+          - conditions: "{{ states('sensor.basement_radon_led_tier') == 'amber' }}"
             sequence:
               - service: zwave_js.bulk_set_partial_config_parameters
                 target:
@@ -120,7 +122,7 @@ automation airthings:
                     16711680: 10    # color: amber
                     4278190080: 1   # effect: solid
           # High -- pulsing red
-          - conditions: "{{ trigger.to_state.state == 'red' }}"
+          - conditions: "{{ states('sensor.basement_radon_led_tier') == 'red' }}"
             sequence:
               - service: zwave_js.bulk_set_partial_config_parameters
                 target:

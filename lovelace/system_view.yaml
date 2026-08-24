@@ -51,6 +51,7 @@ cards:
           - automation.basement_radon_led_alert
           - automation.vacation_occupancy_evening_on
           - automation.vacation_occupancy_night_routine
+          - automation.life_safety_led_indicator
         uix:
           class: middle-right
 
@@ -88,6 +89,8 @@ cards:
           - automation.trigger_notification_on_water_leak
           - automation.trigger_notification_on_garage_door_open
           - automation.basement_radon_high_notification
+          - automation.device_overheat_notification
+          - automation.device_temperature_warning
         uix:
           class: middle-right
 
@@ -177,6 +180,25 @@ cards:
           - sensor.controller_timed_out_responses
         uix:
           class: middle-left
+
+      - type: markdown
+        content: "# Device Temperatures"
+        uix:
+          class: middle-left
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          show_header_toggle: false
+          uix:
+            class: middle-left
+        filter:
+          include:
+            - label: device-internal-temp
+        sort:
+          method: state
+          numeric: true
+          reverse: true
 
       - type: markdown
         content: "# Failing Batteries"
