@@ -72,13 +72,13 @@ homeassistant:
     ## Script
     ################################################
 
-    script.all_exterior_lights_off:
-      <<: *customize
-      friendly_name: Turn All Exterior Lights Off
-
     script.all_interior_lights_off:
       <<: *customize
       friendly_name: Turn All Interior Lights Off
+
+    script.overhead_lights_off:
+      <<: *customize
+      friendly_name: Turn Off Overhead Lights (Keep Accent Lighting)
 
     script.all_media_off:
       <<: *customize
@@ -362,19 +362,52 @@ automation housemode:
 ################################################
 
 script:
-  all_exterior_lights_off:
-    sequence:
-      - service: light.turn_off
-        data:
-          entity_id: light.exterior_lights
+  # Membership driven by 'interior-light' x 'primary-light'/'accent-light'
+  # label intersections. Two variants because the desired scope differs by
+  # who's calling:
+  #   - all_interior_lights_off is a genuine full sweep (primary + accent) --
+  #     used by bedtime (good_night) and leaving the house (auto_away),
+  #     where accent/mood lighting like the basement neon sign should also
+  #     go off.
+  #   - overhead_lights_off only touches 'primary-light' -- used by the
+  #     dashboard button for killing overhead lighting *in order to* set a
+  #     mood, so accent lighting must be left alone.
+  #
+  # No exterior equivalent: exterior lighting runs entirely on its own
+  # UI-configured timers and isn't meant to be commanded off from here.
+  #
+  # Both split target by domain rather than using a single
+  # homeassistant.turn_off call -- some labeled entities are switch domain
+  # (e.g. switch.driveway_lights carries 'exterior-light'/'primary-light'),
+  # and `transition` isn't a valid switch.turn_off parameter, so a
+  # mixed-domain target with that data would error on any switch entity in
+  # the list.
   all_interior_lights_off:
     sequence:
+      - variables:
+          interior_lights: "{{ label_entities('interior-light') | select('in', label_entities('primary-light') + label_entities('accent-light')) | list }}"
       - service: light.turn_off
+        target:
+          entity_id: "{{ interior_lights | select('match', '^light\\.') | list }}"
         data:
-          entity_id: light.interior_lights
           transition: 5
       - service: switch.turn_off
+        target:
+          entity_id: "{{ interior_lights | select('match', '^switch\\.') | list }}"
+      - service: switch.turn_off
         entity_id: switch.master_bedroom_outlet_switch
+  overhead_lights_off:
+    sequence:
+      - variables:
+          primary_interior: "{{ label_entities('interior-light') | select('in', label_entities('primary-light')) | list }}"
+      - service: light.turn_off
+        target:
+          entity_id: "{{ primary_interior | select('match', '^light\\.') | list }}"
+        data:
+          transition: 5
+      - service: switch.turn_off
+        target:
+          entity_id: "{{ primary_interior | select('match', '^switch\\.') | list }}"
   all_media_off:
     sequence:
       - service: media_player.turn_off

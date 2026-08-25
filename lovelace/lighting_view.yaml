@@ -10,14 +10,14 @@ cards:
         content: 'Lighting Subsystem'
 
       - type: button
-        name: All Lights Off
+        name: Overhead Off
         icon: mdi:lamps
         show_name: true
         show_icon: true
         show_state: false
         tap_action:
           action: call-service
-        service: script.all_interior_lights_off
+        service: script.overhead_lights_off
         uix:
           class: button-lozenge-right
 
@@ -37,13 +37,19 @@ cards:
                 --lcars-vertical-border: 40px;
               }
         filter:
+          # Driven by the 'primary-light'/'accent-light' role labels rather
+          # than a hand-maintained exclude list -- anything without one of
+          # those two labels (indicators, individual Hue bulbs behind a zone,
+          # secondary/mirror entities, the old flat Hue zone groups) is
+          # excluded automatically by simply never matching, no exclude
+          # rules needed.
           include:
-            - domain: light
+            - label: primary-light
               state: "on"
               options:
                 uix:
                   class: entity-barrel-right
-            - entity_id: switch.driveway_lights
+            - label: accent-light
               state: "on"
               options:
                 uix:
@@ -53,16 +59,6 @@ cards:
               options:
                 uix:
                   class: entity-barrel-right
-          exclude:
-            - entity_id: light.basement_overhead_lights
-            - entity_id: light.basement_staircase_lights
-            - entity_id: light.rear_basement_overhead_lights
-            - entity_id: light.exterior_lights
-            - entity_id: light.interior_lights
-            - entity_id: light.dining_room_hutch_light_indicator
-            - entity_id: light.christmas_tree_switch_indicator
-            - entity_id: '/^light\.hue_(?!basement_billiard$|!basement_lounge$|!basement_stairs$|!front_yard$|!fireplace_light$).*$/'
-            - entity_id: switch.driveway_lights
         sort:
           method: friendly_name
         else:
