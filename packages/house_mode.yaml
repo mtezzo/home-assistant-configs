@@ -80,6 +80,18 @@ homeassistant:
       <<: *customize
       friendly_name: Turn Off Overhead Lights (Keep Accent Lighting)
 
+    script.tvs_off:
+      <<: *customize
+      friendly_name: Turn TVs Off
+
+    script.speakers_off:
+      <<: *customize
+      friendly_name: Turn Speakers Off
+
+    script.streamers_off:
+      <<: *customize
+      friendly_name: Turn Streaming Boxes Off
+
     script.all_media_off:
       <<: *customize
       friendly_name: Turn All Media Off
@@ -120,6 +132,7 @@ automation housemode:
         data:
           code: !secret alarm_code
       - service: script.all_interior_lights_off
+      - service: script.all_media_off
       - service: script.set_ecobee_away
       - service: switch.turn_off
         entity_id: switch.mnemosyne_surveillance_station_home_mode
@@ -408,24 +421,61 @@ script:
       - service: switch.turn_off
         target:
           entity_id: "{{ primary_interior | select('match', '^switch\\.') | list }}"
+  # Bulk media control driven by the 'media-tv'/'media-speaker'/
+  # 'media-streaming-box' type labels rather than a hardcoded entity list --
+  # both because these devices churn constantly (new Apple TVs, new
+  # HomePods, new TVs, things moved between rooms and renamed), and because
+  # decomposing into per-type sub-scripts means a media_player entity that
+  # hasn't been categorized yet is simply never touched by the sweep, rather
+  # than turned off just because it exists in the domain.
+  #
+  # Some devices are represented by both a media_player entity (playback
+  # control) and a separate switch entity (hard power cutoff -- a smart plug
+  # or an integration-provided power switch, e.g. switch.lg_tv/switch.xbox_one
+  # today), so each sub-script splits its label's entities by domain and
+  # calls the matching service for each rather than assuming media_player
+  # domain throughout. Both entities for a given device need the same type
+  # label for this to catch the switch half too.
+  tvs_off:
+    sequence:
+      - variables:
+          tv_entities: "{{ label_entities('media-tv') }}"
+      - service: media_player.turn_off
+        target:
+          entity_id: "{{ tv_entities | select('match', '^media_player\\.') | list }}"
+      - service: switch.turn_off
+        target:
+          entity_id: "{{ tv_entities | select('match', '^switch\\.') | list }}"
+
+  # media_player.turn_off is a no-op on HomePods and (per report) Sonos too --
+  # both are always-on hardware with no real power state to command via
+  # their integrations, so "off" for a speaker actually means pause. Any
+  # switch-domain speaker entity (e.g. a smart plug powering an amp) still
+  # gets a real turn_off, since that one *does* have a power state.
+  speakers_off:
+    sequence:
+      - variables:
+          speaker_entities: "{{ label_entities('media-speaker') }}"
+      - service: media_player.media_pause
+        target:
+          entity_id: "{{ speaker_entities | select('match', '^media_player\\.') | list }}"
+      - service: switch.turn_off
+        target:
+          entity_id: "{{ speaker_entities | select('match', '^switch\\.') | list }}"
+
+  streamers_off:
+    sequence:
+      - variables:
+          streamer_entities: "{{ label_entities('media-streaming-box') }}"
+      - service: media_player.turn_off
+        target:
+          entity_id: "{{ streamer_entities | select('match', '^media_player\\.') | list }}"
+      - service: switch.turn_off
+        target:
+          entity_id: "{{ streamer_entities | select('match', '^switch\\.') | list }}"
+
   all_media_off:
     sequence:
-      - service: media_player.turn_off
-        data:
-          entity_id:
-            - media_player.garage
-            - media_player.living_room_tv
-            - media_player.living_room
-            - media_player.dining_room
-            - media_player.office
-            - media_player.family_room_homepod_mini
-            - media_player.family_room_apple_tv
-            - media_player.basement_apple_tv
-            - media_player.family_room_tv
-            - media_player.basement
-      - service: switch.turn_off
-        data:
-          entity_id:
-            - switch.apple_tv
-            - switch.lg_tv
-            - switch.xbox_one
+      - service: script.tvs_off
+      - service: script.speakers_off
+      - service: script.streamers_off

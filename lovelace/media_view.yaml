@@ -23,9 +23,20 @@ cards:
   - type: vertical-stack
     cards:
       - type: markdown
-        content: "# Living Room"
+        content: "# TVs"
         uix:
           class: header-left
+      - type: button
+        name: TVs Off
+        icon: mdi:television-off
+        show_name: true
+        show_icon: true
+        show_state: false
+        tap_action:
+          action: call-service
+        service: script.tvs_off
+        uix:
+          class: button-lozenge-left
       - type: conditional
         conditions:
           - entity: media_player.living_room_tv
@@ -35,39 +46,10 @@ cards:
           entity: media_player.living_room_tv
           uix:
             class: middle-left
-      - type: glance
-        title: Activities
-        entities:
-          - entity: switch.apple_tv
-            tap_action: toggle
-          - entity: switch.lg_tv
-            tap_action: toggle
-          - entity: switch.xbox_one
-            tap_action: toggle
-        uix:
-          class: footer-left
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        content: "# Family Room"
-        uix:
-          class: header-right
-      - type: media-control
-        entity: media_player.family_room_apple_tv
-        uix:
-          class: middle-right
       - type: media-control
         entity: media_player.family_room_tv
         uix:
-          class: footer-right
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        content: "# Garage & Basement"
-        uix:
-          class: header-left
+          class: middle-left
       - type: custom:roku-card
         entity: media_player.garage
         name: Garage TV
@@ -75,17 +57,102 @@ cards:
         tv: true
         uix:
           class: middle-left
-      - type: media-control
-        entity: media_player.basement_apple_tv
+      - type: glance
+        title: TV Power
+        entities:
+          - entity: switch.lg_tv
+            tap_action: toggle
         uix:
           class: footer-left
+      # Catches any 'media-tv' entity that hasn't been given its own card
+      # above -- new TVs show up here automatically instead of falling out
+      # of sight the way the old hardcoded list did.
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Other TVs
+          show_header_toggle: false
+          uix:
+            class: footer-left
+        filter:
+          include:
+            - label: media-tv
+          exclude:
+            - entity_id: media_player.living_room_tv
+            - entity_id: media_player.family_room_tv
+            - entity_id: media_player.garage
+            - entity_id: switch.lg_tv
+        show_empty: false
 
   - type: vertical-stack
     cards:
       - type: markdown
-        content: "# Whole-Home Audio"
+        content: "# Streaming Boxes"
         uix:
           class: header-right
+      - type: button
+        name: Streaming Boxes Off
+        icon: mdi:power-plug-off
+        show_name: true
+        show_icon: true
+        show_state: false
+        tap_action:
+          action: call-service
+        service: script.streamers_off
+        uix:
+          class: button-lozenge-right
+      - type: media-control
+        entity: media_player.family_room_apple_tv
+        uix:
+          class: middle-right
+      - type: media-control
+        entity: media_player.basement_apple_tv
+        uix:
+          class: middle-right
+      - type: glance
+        title: Activities
+        entities:
+          - entity: switch.apple_tv
+            tap_action: toggle
+        uix:
+          class: footer-right
+      # Catches any 'media-streaming-box' entity that hasn't been given its
+      # own card above. switch.xbox_one is deliberately not shown anywhere
+      # on this page -- it's unlabeled while the Harmony setup for it is
+      # being fixed, so it won't appear here until it's re-labeled.
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Other Streaming Boxes
+          show_header_toggle: false
+          uix:
+            class: footer-right
+        filter:
+          include:
+            - label: media-streaming-box
+          exclude:
+            - entity_id: media_player.family_room_apple_tv
+            - entity_id: media_player.basement_apple_tv
+            - entity_id: switch.apple_tv
+        show_empty: false
+
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: "# Speakers"
+        uix:
+          class: header-left
+      - type: button
+        name: Speakers Off
+        icon: mdi:volume-off
+        show_name: true
+        show_icon: true
+        show_state: false
+        tap_action:
+          action: call-service
+        service: script.speakers_off
+        uix:
+          class: button-lozenge-left
       - type: custom:mini-media-player
         entity: media_player.living_room
         hide:
@@ -103,18 +170,36 @@ cards:
             - entity_id: media_player.office
               name: Sonos Office
         uix:
-          class: footer-right
+          class: middle-left
+      # Catches any 'media-speaker' entity that hasn't been given its own
+      # card above -- this is where the HomePod (previously missing from
+      # this dashboard entirely) and any future speaker will show up.
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Other Speakers
+          show_header_toggle: false
+          uix:
+            class: footer-left
+        filter:
+          include:
+            - label: media-speaker
+          exclude:
+            - entity_id: media_player.living_room
+            - entity_id: media_player.dining_room
+            - entity_id: media_player.office
+        show_empty: false
 
   - type: vertical-stack
     cards:
       - type: markdown
         content: "# Computers"
         uix:
-          class: header-left
+          class: header-right
       - type: entities
         show_header_toggle: false
         entities:
           - input_button.nemesis_wol
           - input_button.kratos_wol
         uix:
-          class: footer-left
+          class: footer-right
