@@ -41,6 +41,9 @@ homekit:
       - climate.dining_room
       - input_boolean.lcars_texture
       - input_boolean.lcars_sound
+      - light.basement_overhead_lights
+      - light.basement_staircase_lights
+      - light.rear_basement_overhead_lights
       - light.dining_room_hutch_light_indicator
       - light.christmas_tree_switch_indicator
       - light.exterior_lights
