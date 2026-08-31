@@ -50,11 +50,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Trigger Alarm on Exterior Door (Away or Night)"
 
-    automation.alarm_triggered_notification:
-      <<: *customize
-      friendly_name: "Send Notification on Alarm Trigger"
-      icon: mdi:message-text
-
     automation.trigger_notification_on_sensor_tamper:
       <<: *customize
       friendly_name: "Send Notification on Tamper"
@@ -183,19 +178,39 @@ automation alarm:
         data:
           code: !secret alarm_code
 
-  # Membership driven by the 'exterior-door' label rather than a hardcoded
-  # entity list. Mixes domains (cover.garage_door + binary_sensor.back_door_open)
-  # on purpose -- they're one logical concept (exterior entry point) feeding
-  # the same condition and action -- but that's exactly why the check matches
-  # both 'open' (native cover state) and 'on' (binary_sensor), rather than a
-  # single value: a naive '== on' check would silently miss the garage door,
-  # since covers report open/closed, not on/off.
+  # Rewritten from an aggregate "is anything in this label currently
+  # open/on" trigger to a generic state_changed event trigger + label
+  # membership condition -- the aggregate version could only tell you the
+  # count crossed zero, never *which* entity did it, so the notification
+  # (previously a separate alarm_triggered_notification automation, now
+  # folded directly into this one and trigger_alarm_on_binary_sensor below)
+  # had to list everything currently active across every alarm-relevant
+  # label instead of naming the one thing that actually caused it.
+  #
+  # Mixes domains (cover.garage_door + binary_sensor.back_door_open) on
+  # purpose -- they're one logical concept (exterior entry point) feeding
+  # the same condition and action -- but that's exactly why the check
+  # matches both 'open' (native cover state) and 'on' (binary_sensor),
+  # rather than a single value: a naive '== on' check would silently miss
+  # the garage door, since covers report open/closed, not on/off.
+  #
+  # old_state guarding: 'old_state is none' covers an entity's very first
+  # state_changed event (e.g. right after HA restart); without that OR
+  # clause, old_state.state would error on that first event instead of
+  # just treating it as a genuine open/closed transition.
   - alias: trigger_alarm_on_exterior_door
+    mode: parallel
     trigger:
-      - platform: template
-        value_template: >
-          {{ expand(label_entities('exterior-door')) | selectattr('state', 'in', ['on', 'open']) | list | count > 0 }}
+      - platform: event
+        event_type: state_changed
     condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in label_entities('exterior-door')
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state in ['on', 'open']
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state not in ['on', 'open']) }}
       - condition: or
         conditions:
           - condition: state
@@ -205,84 +220,88 @@ automation alarm:
             entity_id: alarm_control_panel.alarm_system
             state: 'armed_night'
     action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.alarm_system
-      data:
-        code: !secret alarm_code
-
-  - alias: trigger_alarm_on_binary_sensor
-    trigger:
-      # Interior Door Sensors -- membership driven by the 'interior-door'
-      # label. These doors are all normally closed while away, so only the
-      # closed->open direction matters (a cat can push one shut, not open
-      # one) -- the aggregate count going from 0 to >0 captures exactly that,
-      # same as the per-entity from:off/to:on it replaces.
-      - platform: template
-        value_template: >
-          {{ expand(label_entities('interior-door')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
-      # Ecobee Occupancy Sensors -- membership driven by the 'occupancy'
-      # label. Now also covers the basement and craft room sensors, which
-      # existed but were never wired into this automation before.
-      - platform: template
-        value_template: >
-          {{ expand(label_entities('occupancy')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
-      # Motion Sensors -- membership driven by the 'motion' label. The old
-      # kitchen sensor was a Fibaro unit that got unpaired for reliability
-      # issues and was never replaced, hence no longer referenced here.
-      - platform: template
-        value_template: >
-          {{ expand(label_entities('motion')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
-    condition:
-      - condition: state
+      - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.alarm_system
-        state: 'armed_away'
-    action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.alarm_system
-      data:
-        code: !secret alarm_code
-
-  - alias: alarm_triggered_notification
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.alarm_system
-        to: 'triggered'
-    action:
+        data:
+          code: !secret alarm_code
       - service: notify.everyone
         data_template:
           data:
             title: Alarm Triggered
-          message: &alarm_triggered_message >
-            Alarm was triggered on:
-            {% set active_entities =
-              (expand(label_entities('interior-door')) | selectattr('state', 'eq', 'on') | list)
-              + (expand(label_entities('exterior-door')) | selectattr('state', 'in', ['on', 'open']) | list)
-              + (expand(label_entities('motion')) | selectattr('state', 'eq', 'on') | list)
-              + (expand(label_entities('occupancy')) | selectattr('state', 'eq', 'on') | list)
-            %}
-            {{ active_entities | map(attribute='name') | join(', ') }}
+          message: &exterior_door_alarm_message >
+            Alarm triggered: {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
       - service: notify.persistent_notification
         data_template:
           notification_id: alarm_triggered
           title: Alarm Triggered
-          message: *alarm_triggered_message
+          message: *exterior_door_alarm_message
+
+  # Same restructuring as trigger_alarm_on_exterior_door above, for interior
+  # doors, occupancy, and motion -- all of which only matter while
+  # armed_away (exterior doors additionally count while armed_night, which
+  # is why that one stayed a separate automation rather than merging here).
+  - alias: trigger_alarm_on_binary_sensor
+    mode: parallel
+    trigger:
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in
+               (label_entities('interior-door') + label_entities('occupancy') + label_entities('motion'))
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'on'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'on') }}
+      - condition: state
+        entity_id: alarm_control_panel.alarm_system
+        state: 'armed_away'
+    action:
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.alarm_system
+        data:
+          code: !secret alarm_code
+      - service: notify.everyone
+        data_template:
+          data:
+            title: Alarm Triggered
+          message: &binary_sensor_alarm_message >
+            Alarm triggered: {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
+      - service: notify.persistent_notification
+        data_template:
+          notification_id: alarm_triggered
+          title: Alarm Triggered
+          message: *binary_sensor_alarm_message
 
   # Membership driven by the 'tamper' label rather than a hardcoded list --
   # this automation was silently broken before, since several of these
   # entity_ids were stale (renamed by a Hue migration) and two others
   # referenced sensors that had since been replaced/removed entirely.
+  #
+  # Same generic state_changed event + label-membership pattern as the alarm
+  # triggers above, so the message names the specific entity/area rather
+  # than an aggregate list of everything currently tampered.
   - alias: trigger_notification_on_sensor_tamper
+    mode: parallel
     trigger:
-      - platform: template
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
         value_template: >
-          {{ expand(label_entities('tamper')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+          {{ trigger.event.data.entity_id in label_entities('tamper')
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'on'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'on') }}
     action:
       - service: notify.everyone
         data_template:
           data:
             title: Tamper Notification
           message: &tamper_message >
-            Cover removed from {{ expand(label_entities('tamper')) | selectattr('state', 'eq', 'on') | map(attribute='name') | join(', ') }}!
+            Cover removed from {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}!
       - service: notify.persistent_notification
         data_template:
           notification_id: tamper_notification
@@ -346,22 +365,31 @@ automation alarm:
 
   # Membership driven by the 'water-leak' label (Settings > Entities) rather
   # than a hardcoded entity list -- label any new leak sensor and it's
-  # included automatically, survives renames too. A plain state trigger can't
-  # take a label (entity_id has to be a literal list), so this is a template
-  # trigger instead; expand(label_entities(...)) is the supported way to make
-  # that reactive to label membership and to the members' state changes.
+  # included automatically, survives renames too.
+  #
+  # Same generic state_changed event + label-membership pattern as the alarm
+  # triggers above, so the message names the specific entity/area rather
+  # than an aggregate list of everything currently wet.
   - alias: trigger_notification_on_water_leak
+    mode: parallel
     trigger:
-      - platform: template
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
         value_template: >
-          {{ expand(label_entities('water-leak')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+          {{ trigger.event.data.entity_id in label_entities('water-leak')
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'on'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'on') }}
     action:
       - service: notify.everyone
         data_template:
           data:
             title: Water Leak Detected
           message: &water_leak_message >
-            Water leak detected at {{ expand(label_entities('water-leak')) | selectattr('state', 'eq', 'on') | map(attribute='name') | join(', ') }}!
+            Water leak detected at {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}!
       - service: notify.persistent_notification
         data_template:
           notification_id: water_leak_detected
