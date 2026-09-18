@@ -109,6 +109,7 @@ input_boolean:
 
 automation housemode:
   - alias: auto_away
+    id: auto_away
     mode: parallel
     trigger:
       - platform: state
@@ -138,6 +139,7 @@ automation housemode:
         entity_id: switch.mnemosyne_surveillance_station_home_mode
 
   - alias: auto_home
+    id: auto_home
     mode: parallel
     trigger:
       - platform: state
@@ -160,6 +162,7 @@ automation housemode:
         entity_id: switch.mnemosyne_surveillance_station_home_mode
 
   - alias: guest_mode_disarm
+    id: guest_mode_disarm
     trigger:
       - platform: state
         entity_id: input_boolean.guest_mode
@@ -171,6 +174,7 @@ automation housemode:
           code: !secret alarm_code
 
   - alias: guest_mode_restore
+    id: guest_mode_restore
     trigger:
       - platform: state
         entity_id: input_boolean.guest_mode
@@ -202,6 +206,7 @@ automation housemode:
                   code: !secret alarm_code
 
   - alias: guest_mode_auto_disable
+    id: guest_mode_auto_disable
     mode: restart
     trigger:
       - platform: state
@@ -246,6 +251,7 @@ automation housemode:
   # person -- a cat sitter never touches it -- so it's not usable as a
   # presence signal here; the physical sensors are.
   - alias: vacation_occupancy_evening_on
+    id: vacation_occupancy_evening_on
     trigger:
       - platform: sun
         event: sunset
@@ -317,6 +323,7 @@ automation housemode:
                     entity_id: "{{ repeat.item }}"
 
   - alias: vacation_occupancy_night_routine
+    id: vacation_occupancy_night_routine
     trigger:
       - platform: time
         at: '22:00:00'

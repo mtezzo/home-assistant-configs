@@ -54,6 +54,7 @@ homeassistant:
 
 automation system:
   - alias: startup_notification
+    id: startup_notification
     initial_state: true
     trigger:
       - platform: homeassistant
@@ -73,6 +74,7 @@ automation system:
           message: "Home Assistant is now up and running."
 
   - alias: update_notification
+    id: update_notification
     initial_state: true
     trigger:
       - platform: state

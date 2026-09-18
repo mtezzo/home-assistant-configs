@@ -129,6 +129,7 @@ alarm_control_panel:
 
 automation alarm:
   - alias: persistence_publish_alarm_control_panel
+    id: persistence_publish_alarm_control_panel
     initial_state: 'on'
     trigger:
       - platform: state
@@ -154,6 +155,7 @@ automation alarm:
           retain: true
 
   - alias: persistence_subscribe_alarm_control_panel
+    id: persistence_subscribe_alarm_control_panel
     initial_state: 'on'
     trigger:
       - platform: mqtt
@@ -199,6 +201,7 @@ automation alarm:
   # clause, old_state.state would error on that first event instead of
   # just treating it as a genuine open/closed transition.
   - alias: trigger_alarm_on_exterior_door
+    id: trigger_alarm_on_exterior_door
     mode: parallel
     trigger:
       - platform: event
@@ -241,6 +244,7 @@ automation alarm:
   # armed_away (exterior doors additionally count while armed_night, which
   # is why that one stayed a separate automation rather than merging here).
   - alias: trigger_alarm_on_binary_sensor
+    id: trigger_alarm_on_binary_sensor
     mode: parallel
     trigger:
       - platform: event
@@ -283,6 +287,7 @@ automation alarm:
   # triggers above, so the message names the specific entity/area rather
   # than an aggregate list of everything currently tampered.
   - alias: trigger_notification_on_sensor_tamper
+    id: trigger_notification_on_sensor_tamper
     mode: parallel
     trigger:
       - platform: event
@@ -312,6 +317,7 @@ automation alarm:
   # only one sensor today, but this covers any future smoke detector (e.g. a
   # second Airthings-reported source) without touching this automation.
   - alias: trigger_notification_on_smoke
+    id: trigger_notification_on_smoke
     trigger:
       - platform: template
         value_template: >
@@ -340,6 +346,7 @@ automation alarm:
   # Airthings CO source without touching this automation, as long as it's
   # tagged with the label when it shows up.
   - alias: trigger_notification_on_co
+    id: trigger_notification_on_co
     trigger:
       - platform: template
         value_template: >
@@ -371,6 +378,7 @@ automation alarm:
   # triggers above, so the message names the specific entity/area rather
   # than an aggregate list of everything currently wet.
   - alias: trigger_notification_on_water_leak
+    id: trigger_notification_on_water_leak
     mode: parallel
     trigger:
       - platform: event
@@ -397,6 +405,7 @@ automation alarm:
           message: *water_leak_message
 
   - alias: trigger_notification_on_garage_door_open
+    id: trigger_notification_on_garage_door_open
     trigger:
       - platform: state
         entity_id: cover.garage_door
@@ -422,6 +431,7 @@ automation alarm:
   # trigger only fires on the false->true edge, which isn't enough here since
   # we also need the true->false edge to clear the LEDs.
   - alias: life_safety_led_indicator
+    id: life_safety_led_indicator
     initial_state: true
     trigger:
       - platform: state

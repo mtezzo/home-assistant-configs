@@ -91,6 +91,7 @@ automation airthings:
   # smoke/CO alert clears -- automation.trigger doesn't supply a real trigger
   # context, so relying on trigger.to_state there would error.
   - alias: basement_radon_led_alert
+    id: basement_radon_led_alert
     initial_state: true
     trigger:
       - platform: state
@@ -158,6 +159,7 @@ automation airthings:
   # tier (>= 4 pCi/L, the EPA action level) so the whole household is notified
   # even if nobody's near the basement switches to see the LED color.
   - alias: basement_radon_high_notification
+    id: basement_radon_high_notification
     initial_state: true
     trigger:
       - platform: state

@@ -44,6 +44,7 @@ automation remotes:
   ## Switches
   ################################################
   - alias: garage_switch
+    id: garage_switch
     initial_state: true
     mode: restart
     max_exceeded: silent
@@ -72,6 +73,7 @@ automation remotes:
                 entity_id: cover.garage_door
 
   - alias: nightstand_switches
+    id: nightstand_switches
     initial_state: true
     mode: restart
     max_exceeded: silent

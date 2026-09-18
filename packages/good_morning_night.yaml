@@ -84,6 +84,7 @@ homeassistant:
 
 automation morningnight:
   - alias: auto_morning
+    id: auto_morning
     initial_state: true
     trigger:
       - platform: sun
@@ -100,6 +101,7 @@ automation morningnight:
           code: !secret alarm_code
 
   - alias: auto_evening
+    id: auto_evening
     trigger:
       - platform: sun
         event: sunset
@@ -125,6 +127,7 @@ automation morningnight:
       - service: script.good_evening
 
   - alias: auto_night_weekday
+    id: auto_night_weekday
     trigger:
       - platform: time
         at: '23:30:00'
@@ -151,6 +154,7 @@ automation morningnight:
           code: !secret alarm_code
 
   - alias: auto_night_weekend
+    id: auto_night_weekend
     trigger:
       - platform: time
         at: '03:00:00'
@@ -170,6 +174,7 @@ automation morningnight:
           code: !secret alarm_code
 
   - alias: manual_night
+    id: manual_night
     trigger:
       - platform: state
         entity_id: alarm_control_panel.alarm_system
@@ -183,6 +188,7 @@ automation morningnight:
       - service: script.good_night
 
   - alias: auto_sunrise
+    id: auto_sunrise
     trigger:
       - platform: template
         value_template: "{{ states('sensor.time') == (state_attr('input_datetime.auto_sunrise_time', 'timestamp') | int | timestamp_custom('%H:%M', false)) }}"

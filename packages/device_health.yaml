@@ -54,6 +54,7 @@ automation device_health:
   # 'True'/'False' (plain zwave_js config-parameter sensors, not native
   # binary_sensor on/off), so the check is a string comparison.
   - alias: device_overheat_notification
+    id: device_overheat_notification
     initial_state: true
     trigger:
       - platform: template
@@ -78,6 +79,7 @@ automation device_health:
   # readings run 28-33C). Adjust the threshold once there's a better sense
   # of normal range for these enclosures.
   - alias: device_temperature_warning
+    id: device_temperature_warning
     initial_state: true
     trigger:
       - platform: template
@@ -128,6 +130,7 @@ automation device_health:
   # right now, so don't "modernize" this to ping without re-confirming
   # ping actually refreshes Configuration CC values by then.
   - alias: refresh_device_health_values
+    id: refresh_device_health_values
     initial_state: true
     trigger:
       - platform: time_pattern

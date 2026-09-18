@@ -141,6 +141,7 @@ template:
 
 automation presence:
   - alias: person_arriving
+    id: person_arriving
     mode: parallel
     initial_state: true
     trigger:
@@ -164,6 +165,7 @@ automation presence:
             {% endif %}
  
   - alias: person_home
+    id: person_home
     mode: parallel
     initial_state: true
     trigger:
@@ -184,6 +186,7 @@ automation presence:
           option: 'Home'
  
   - alias: person_departing
+    id: person_departing
     mode: parallel
     initial_state: true
     trigger:
@@ -202,6 +205,7 @@ automation presence:
           option: 'Departing'
  
   - alias: person_away
+    id: person_away
     mode: parallel
     initial_state: true
     trigger:
@@ -222,6 +226,7 @@ automation presence:
           option: 'Away'
  
   - alias: person_vacation
+    id: person_vacation
     mode: parallel
     initial_state: true
     trigger:
