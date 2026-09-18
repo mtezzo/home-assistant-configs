@@ -288,7 +288,7 @@ automation housemode:
           # existed).
           - platform: template
             value_template: >
-              {{ (expand(label_entities('interior-door')) + expand(label_entities('exterior-door')) + expand(label_entities('motion')) + expand(label_entities('occupancy'))) | selectattr('state', 'in', ['on', 'open']) | list | count > 0 }}
+              {{ (expand(label_entities('interior_door')) + expand(label_entities('exterior_door')) + expand(label_entities('motion')) + expand(label_entities('occupancy'))) | selectattr('state', 'in', ['on', 'open']) | list | count > 0 }}
         timeout: "{{ range(0, 2700) | random }}"  # up to 45 min
         continue_on_timeout: true
       - if:
@@ -405,7 +405,7 @@ script:
   all_interior_lights_off:
     sequence:
       - variables:
-          interior_lights: "{{ label_entities('interior-light') | select('in', label_entities('primary-light') + label_entities('accent-light')) | list }}"
+          interior_lights: "{{ label_entities('interior_light') | select('in', label_entities('primary_light') + label_entities('accent_light')) | list }}"
       - service: light.turn_off
         target:
           entity_id: "{{ interior_lights | select('match', '^light\\.') | list }}"
@@ -419,7 +419,7 @@ script:
   overhead_lights_off:
     sequence:
       - variables:
-          primary_interior: "{{ label_entities('interior-light') | select('in', label_entities('primary-light')) | list }}"
+          primary_interior: "{{ label_entities('interior_light') | select('in', label_entities('primary_light')) | list }}"
       - service: light.turn_off
         target:
           entity_id: "{{ primary_interior | select('match', '^light\\.') | list }}"
@@ -428,8 +428,8 @@ script:
       - service: switch.turn_off
         target:
           entity_id: "{{ primary_interior | select('match', '^switch\\.') | list }}"
-  # Bulk media control driven by the 'media-tv'/'media-speaker'/
-  # 'media-streaming-box' type labels rather than a hardcoded entity list --
+  # Bulk media control driven by the 'media_tv'/'media_speaker'/
+  # 'streaming_box' type labels rather than a hardcoded entity list --
   # both because these devices churn constantly (new Apple TVs, new
   # HomePods, new TVs, things moved between rooms and renamed), and because
   # decomposing into per-type sub-scripts means a media_player entity that
@@ -446,7 +446,7 @@ script:
   tvs_off:
     sequence:
       - variables:
-          tv_entities: "{{ label_entities('media-tv') }}"
+          tv_entities: "{{ label_entities('media_tv') }}"
       - service: media_player.turn_off
         target:
           entity_id: "{{ tv_entities | select('match', '^media_player\\.') | list }}"
@@ -462,7 +462,7 @@ script:
   speakers_off:
     sequence:
       - variables:
-          speaker_entities: "{{ label_entities('media-speaker') }}"
+          speaker_entities: "{{ label_entities('media_speaker') }}"
       - service: media_player.media_pause
         target:
           entity_id: "{{ speaker_entities | select('match', '^media_player\\.') | list }}"
@@ -473,7 +473,7 @@ script:
   streamers_off:
     sequence:
       - variables:
-          streamer_entities: "{{ label_entities('media-streaming-box') }}"
+          streamer_entities: "{{ label_entities('streaming_box') }}"
       - service: media_player.turn_off
         target:
           entity_id: "{{ streamer_entities | select('match', '^media_player\\.') | list }}"

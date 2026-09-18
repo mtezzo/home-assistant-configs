@@ -76,7 +76,7 @@ cards:
             class: footer-left
         filter:
           include:
-            - label: media-tv
+            - label: media_tv
           exclude:
             - entity_id: media_player.living_room_tv
             - entity_id: media_player.family_room_tv
@@ -129,7 +129,7 @@ cards:
             class: footer-right
         filter:
           include:
-            - label: media-streaming-box
+            - label: streaming_box
           exclude:
             - entity_id: media_player.family_room_apple_tv
             - entity_id: media_player.basement_apple_tv
@@ -183,7 +183,7 @@ cards:
             class: footer-left
         filter:
           include:
-            - label: media-speaker
+            - label: media_speaker
           exclude:
             - entity_id: media_player.living_room
             - entity_id: media_player.dining_room

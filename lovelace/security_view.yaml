@@ -74,5 +74,5 @@ cards:
             class: middle-right
         filter:
           include:
-            - label: interior-door
-            - label: exterior-door
+            - label: interior_door
+            - label: exterior_door

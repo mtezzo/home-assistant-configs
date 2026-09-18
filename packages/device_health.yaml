@@ -59,19 +59,20 @@ automation device_health:
     trigger:
       - platform: template
         value_template: >
-          {{ expand(label_entities('device-overheat')) | selectattr('state', 'eq', 'True') | list | count > 0 }}
+          {{ expand(label_entities('device_overheat')) | selectattr('state', 'eq', 'True') | list | count > 0 }}
     action:
       - service: notify.everyone
         data_template:
           data:
             title: Device Overheating
           message: &device_overheat_message >
-            Overheat protection triggered on: {{ expand(label_entities('device-overheat')) | selectattr('state', 'eq', 'True') | map(attribute='name') | join(', ') }}
+            Overheat protection triggered on: {{ expand(label_entities('device_overheat')) | selectattr('state', 'eq', 'True') | map(attribute='name') | join(', ') }}
       - service: notify.persistent_notification
         data_template:
-          notification_id: device_overheat
           title: Device Overheating
           message: *device_overheat_message
+          data:
+            notification_id: device_overheat
 
   # Softer, earlier warning than the overheat-protection flag above --
   # Parameter 33 is presumably Inovelli's own hard cutoff, this is a
@@ -85,7 +86,7 @@ automation device_health:
       - platform: template
         value_template: >
           {% set ns = namespace(warm=[]) %}
-          {% for s in expand(label_entities('device-internal-temp')) %}
+          {% for s in expand(label_entities('device_internal_temp')) %}
             {% if s.state not in ['unknown', 'unavailable'] and s.state | float(0) > 45 %}
               {% set ns.warm = ns.warm + [s] %}
             {% endif %}
@@ -94,7 +95,7 @@ automation device_health:
     variables:
       warm_switches: >
         {% set ns = namespace(warm=[]) %}
-        {% for s in expand(label_entities('device-internal-temp')) %}
+        {% for s in expand(label_entities('device_internal_temp')) %}
           {% if s.state not in ['unknown', 'unavailable'] and s.state | float(0) > 45 %}
             {% set ns.warm = ns.warm + [s.name] %}
           {% endif %}
@@ -109,9 +110,10 @@ automation device_health:
             Running warmer than expected (over 45°C): {{ warm_switches }}
       - service: notify.persistent_notification
         data_template:
-          notification_id: device_temperature_warning
           title: Device Temperature Warning
           message: *device_temp_warning_message
+          data:
+            notification_id: device_temperature_warning
 
   # Z-Wave config parameters like these aren't pushed by the device on
   # change -- they're only read at pairing/interview time (or on a manual
@@ -138,4 +140,4 @@ automation device_health:
     action:
       - service: zwave_js.refresh_value
         data:
-          entity_id: "{{ (label_entities('device-internal-temp') + label_entities('device-overheat')) | unique | list }}"
+          entity_id: "{{ (label_entities('device_internal_temp') + label_entities('device_overheat')) | unique | list }}"

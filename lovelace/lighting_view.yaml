@@ -44,12 +44,12 @@ cards:
           # excluded automatically by simply never matching, no exclude
           # rules needed.
           include:
-            - label: primary-light
+            - label: primary_light
               state: "on"
               options:
                 uix:
                   class: entity-barrel-right
-            - label: accent-light
+            - label: accent_light
               state: "on"
               options:
                 uix:

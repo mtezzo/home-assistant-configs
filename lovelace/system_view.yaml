@@ -194,7 +194,7 @@ cards:
             class: middle-left
         filter:
           include:
-            - label: device-internal-temp
+            - label: device_internal_temp
         sort:
           method: state
           numeric: true

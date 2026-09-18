@@ -106,7 +106,7 @@ automation airthings:
       # Device IDs (not entity IDs) since zwave_js.bulk_set_partial_config_parameters
       # targets devices -- these switches have no controllable light entity of
       # their own beyond the LED bar itself.
-      basement_switches: "{{ label_entities('radon-alert') | select('in', label_entities('inovelli-led')) | list | map('device_id') | unique | list }}"
+      basement_switches: "{{ label_entities('radon_alert') | select('in', label_entities('inovelli_led')) | list | map('device_id') | unique | list }}"
     action:
       - choose:
           # Elevated -- solid amber
@@ -174,6 +174,7 @@ automation airthings:
             Basement radon has reached {{ states('sensor.basement_radon_pcil') }} pCi/L, above the EPA action level of 4 pCi/L.
       - service: notify.persistent_notification
         data_template:
-          notification_id: basement_radon_high
           title: High Radon Level
           message: *radon_high_message
+          data:
+            notification_id: basement_radon_high

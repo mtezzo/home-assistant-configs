@@ -98,7 +98,7 @@ template:
     - default_entity_id: binary_sensor.life_safety_alert_active
       device_class: safety
       state: >
-        {{ (expand(label_entities('smoke')) + expand(label_entities('carbon-monoxide'))) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+        {{ (expand(label_entities('smoke')) + expand(label_entities('carbon_monoxide'))) | selectattr('state', 'eq', 'on') | list | count > 0 }}
 
 ################################################
 ## Alarm Control Panel
@@ -209,7 +209,7 @@ automation alarm:
     condition:
       - condition: template
         value_template: >
-          {{ trigger.event.data.entity_id in label_entities('exterior-door')
+          {{ trigger.event.data.entity_id in label_entities('exterior_door')
              and trigger.event.data.new_state is not none
              and trigger.event.data.new_state.state in ['on', 'open']
              and (trigger.event.data.old_state is none
@@ -235,9 +235,10 @@ automation alarm:
             Alarm triggered: {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
       - service: notify.persistent_notification
         data_template:
-          notification_id: alarm_triggered
           title: Alarm Triggered
           message: *exterior_door_alarm_message
+          data:
+            notification_id: alarm_triggered
 
   # Same restructuring as trigger_alarm_on_exterior_door above, for interior
   # doors, occupancy, and motion -- all of which only matter while
@@ -253,7 +254,7 @@ automation alarm:
       - condition: template
         value_template: >
           {{ trigger.event.data.entity_id in
-               (label_entities('interior-door') + label_entities('occupancy') + label_entities('motion'))
+               (label_entities('interior_door') + label_entities('occupancy') + label_entities('motion'))
              and trigger.event.data.new_state is not none
              and trigger.event.data.new_state.state == 'on'
              and (trigger.event.data.old_state is none
@@ -274,9 +275,10 @@ automation alarm:
             Alarm triggered: {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
       - service: notify.persistent_notification
         data_template:
-          notification_id: alarm_triggered
           title: Alarm Triggered
           message: *binary_sensor_alarm_message
+          data:
+            notification_id: alarm_triggered
 
   # Membership driven by the 'tamper' label rather than a hardcoded list --
   # this automation was silently broken before, since several of these
@@ -309,9 +311,10 @@ automation alarm:
             Cover removed from {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}!
       - service: notify.persistent_notification
         data_template:
-          notification_id: tamper_notification
           title: Tamper Notification
           message: *tamper_message
+          data:
+            notification_id: tamper_notification
 
   # Membership driven by the 'smoke' label rather than a hardcoded entity --
   # only one sensor today, but this covers any future smoke detector (e.g. a
@@ -331,9 +334,10 @@ automation alarm:
             Smoke detected in the house!
       - service: notify.persistent_notification
         data_template:
-          notification_id: smoke_alert
           title: Smoke Alert
           message: *smoke_message
+          data:
+            notification_id: smoke_alert
       - service: script.sonos_say
         data:
           sonos_entity: media_player.living_room
@@ -350,7 +354,7 @@ automation alarm:
     trigger:
       - platform: template
         value_template: >
-          {{ expand(label_entities('carbon-monoxide')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+          {{ expand(label_entities('carbon_monoxide')) | selectattr('state', 'eq', 'on') | list | count > 0 }}
     action:
       - service: notify.everyone
         data_template:
@@ -360,9 +364,10 @@ automation alarm:
             Carbon monoxide detected in the house!
       - service: notify.persistent_notification
         data_template:
-          notification_id: co_alert
           title: Carbon Monoxide Alert
           message: *co_message
+          data:
+            notification_id: co_alert
       - service: script.sonos_say
         data:
           sonos_entity: media_player.living_room
@@ -386,7 +391,7 @@ automation alarm:
     condition:
       - condition: template
         value_template: >
-          {{ trigger.event.data.entity_id in label_entities('water-leak')
+          {{ trigger.event.data.entity_id in label_entities('water_leak')
              and trigger.event.data.new_state is not none
              and trigger.event.data.new_state.state == 'on'
              and (trigger.event.data.old_state is none
@@ -400,9 +405,10 @@ automation alarm:
             Water leak detected at {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}!
       - service: notify.persistent_notification
         data_template:
-          notification_id: water_leak_detected
           title: Water Leak Detected
           message: *water_leak_message
+          data:
+            notification_id: water_leak_detected
 
   - alias: trigger_notification_on_garage_door_open
     id: trigger_notification_on_garage_door_open
@@ -437,7 +443,7 @@ automation alarm:
       - platform: state
         entity_id: binary_sensor.life_safety_alert_active
     variables:
-      alert_switches: "{{ label_entities('life-safety-alert') | select('in', label_entities('inovelli-led')) | list | map('device_id') | unique | list }}"
+      alert_switches: "{{ label_entities('life_safety_alert') | select('in', label_entities('inovelli_led')) | list | map('device_id') | unique | list }}"
     action:
       - choose:
           - conditions: "{{ trigger.to_state.state == 'on' }}"
