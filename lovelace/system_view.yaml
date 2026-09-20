@@ -49,6 +49,7 @@ cards:
           - automation.auto_sunrise
           - input_datetime.auto_sunrise_time
           - automation.basement_radon_led_alert
+          - automation.basement_radon_led_toggle_effect
           - automation.vacation_occupancy_evening_on
           - automation.vacation_occupancy_night_routine
           - automation.life_safety_led_indicator

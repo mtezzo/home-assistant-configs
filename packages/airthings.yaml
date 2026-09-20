@@ -39,6 +39,11 @@ homeassistant:
       friendly_name: "Basement Radon LED Alert"
       icon: mdi:led-strip-variant
 
+    automation.basement_radon_led_toggle_effect:
+      <<: *customize
+      friendly_name: "Basement Radon LED Toggle Effect"
+      icon: mdi:led-strip-variant
+
     automation.basement_radon_high_notification:
       <<: *customize
       friendly_name: "Send Notification on High Radon"
@@ -82,14 +87,23 @@ template:
 ################################################
 
 automation airthings:
-  # Membership driven by the 'radon-alert' (which devices should show radon
-  # status) x 'inovelli-led' (which devices actually speak this Z-Wave
+  # Membership driven by the 'radon_alert' (which devices should show radon
+  # status) x 'inovelli_led' (which devices actually speak this Z-Wave
   # notification parameter) label intersection, rather than a hardcoded
   # device list. Uses states(...) rather than trigger.to_state so this stays
   # correct whether it fires from a real tier change or gets force-triggered
   # by life_safety_led_indicator (alarm.yaml) restoring the radon LED after a
   # smoke/CO alert clears -- automation.trigger doesn't supply a real trigger
   # context, so relying on trigger.to_state there would error.
+  #
+  # Effect (not just color) is partitioned by each switch's own on/off state:
+  # solid means "nobody's down here right now", pulsing means "this light is
+  # on" -- same convention for both amber and red, so color alone signals
+  # severity and effect alone signals occupancy. Without this, every switch
+  # in a tier showed an identical color regardless of its own on/off state,
+  # which made it impossible to tell which switch in a multi-gang box (rear
+  # basement overhead / pool table / track lights share one box) was the one
+  # actually on.
   - alias: basement_radon_led_alert
     id: basement_radon_led_alert
     initial_state: true
@@ -106,35 +120,45 @@ automation airthings:
       # Device IDs (not entity IDs) since zwave_js.bulk_set_partial_config_parameters
       # targets devices -- these switches have no controllable light entity of
       # their own beyond the LED bar itself.
-      basement_switches: "{{ label_entities('radon_alert') | select('in', label_entities('inovelli_led')) | list | map('device_id') | unique | list }}"
+      radon_entities: "{{ label_entities('radon_alert') | select('in', label_entities('inovelli_led')) | list }}"
+      on_devices: >
+        {% set ns = namespace(d=[]) %}
+        {% for e in radon_entities %}
+          {% if is_state(e, 'on') %}{% set ns.d = ns.d + [device_id(e)] %}{% endif %}
+        {% endfor %}
+        {{ ns.d | unique | list }}
+      off_devices: >
+        {% set ns = namespace(d=[]) %}
+        {% for e in radon_entities %}
+          {% if not is_state(e, 'on') %}{% set ns.d = ns.d + [device_id(e)] %}{% endif %}
+        {% endfor %}
+        {{ ns.d | unique | list }}
+      tier_level: "{{ 15 if states('sensor.basement_radon_led_tier') == 'amber' else 10 }}"
+      tier_color: "{{ 10 if states('sensor.basement_radon_led_tier') == 'amber' else 0 }}"
     action:
       - choose:
-          # Elevated -- solid amber
-          - conditions: "{{ states('sensor.basement_radon_led_tier') == 'amber' }}"
+          - conditions: "{{ states('sensor.basement_radon_led_tier') in ['amber', 'red'] }}"
             sequence:
               - service: zwave_js.bulk_set_partial_config_parameters
                 target:
-                  device_id: "{{ basement_switches }}"
+                  device_id: "{{ off_devices }}"
                 data:
                   parameter: 99
                   value:
-                    255: 255        # duration: indefinite, until cleared
-                    65280: 15       # level: 15%
-                    16711680: 10    # color: amber
-                    4278190080: 1   # effect: solid
-          # High -- pulsing red
-          - conditions: "{{ states('sensor.basement_radon_led_tier') == 'red' }}"
-            sequence:
+                    255: 255              # duration: indefinite, until cleared
+                    65280: "{{ tier_level }}"
+                    16711680: "{{ tier_color }}"
+                    4278190080: 1         # effect: solid -- light currently off
               - service: zwave_js.bulk_set_partial_config_parameters
                 target:
-                  device_id: "{{ basement_switches }}"
+                  device_id: "{{ on_devices }}"
                 data:
                   parameter: 99
                   value:
-                    255: 255        # duration: indefinite, until cleared
-                    65280: 10       # level: 10%
-                    16711680: 0     # color: red
-                    4278190080: 4   # effect: pulse
+                    255: 255              # duration: indefinite, until cleared
+                    65280: "{{ tier_level }}"
+                    16711680: "{{ tier_color }}"
+                    4278190080: 4         # effect: pulse -- light currently on
         # Normal -- clear the notification. Parameter 99's dedicated "Clear"
         # effect (255) reverts the LED bar to its normal default color/intensity
         # (Parameters 95-98, currently blue) without us needing to know or
@@ -149,11 +173,50 @@ automation airthings:
         default:
           - service: zwave_js.bulk_set_partial_config_parameters
             target:
-              device_id: "{{ basement_switches }}"
+              device_id: "{{ radon_entities | map('device_id') | unique | list }}"
             data:
               parameter: 99
               value:
                 4278190080: -1  # effect: clear (255, sent as -1 -- see note above)
+
+  # Keeps each switch's solid/pulse effect in sync with its own on/off state
+  # in real time -- without this, a switch toggled between tier changes would
+  # show a stale effect (e.g. still solid after being turned on) until the
+  # next time sensor.basement_radon_led_tier happens to change. Only touches
+  # the one device that actually toggled, not the whole basement_switches
+  # set, so it doesn't undo what basement_radon_led_alert already set on
+  # every other switch.
+  - alias: basement_radon_led_toggle_effect
+    id: basement_radon_led_toggle_effect
+    mode: parallel
+    trigger:
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in
+               (label_entities('radon_alert') | select('in', label_entities('inovelli_led')) | list)
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.old_state is not none
+             and trigger.event.data.new_state.state != trigger.event.data.old_state.state
+             and states('sensor.basement_radon_led_tier') in ['amber', 'red'] }}
+    variables:
+      toggled_device: "{{ device_id(trigger.event.data.entity_id) }}"
+      tier_level: "{{ 15 if states('sensor.basement_radon_led_tier') == 'amber' else 10 }}"
+      tier_color: "{{ 10 if states('sensor.basement_radon_led_tier') == 'amber' else 0 }}"
+      tier_effect: "{{ 4 if trigger.event.data.new_state.state == 'on' else 1 }}"
+    action:
+      - service: zwave_js.bulk_set_partial_config_parameters
+        target:
+          device_id: "{{ toggled_device }}"
+        data:
+          parameter: 99
+          value:
+            255: 255
+            65280: "{{ tier_level }}"
+            16711680: "{{ tier_color }}"
+            4278190080: "{{ tier_effect }}"
 
   # Separate from the LED alert above -- this one is specifically for the red
   # tier (>= 4 pCi/L, the EPA action level) so the whole household is notified
