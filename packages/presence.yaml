@@ -113,14 +113,18 @@ input_select:
 template:
   - sensor:
       default_entity_id: sensor.household
+      # Membership driven by the 'household_member' label (filtered to the
+      # input_select.*_status half of it) rather than hardcoding each
+      # person's status entity -- see the automation comment above for why.
       state: >-
-          {% if is_state('input_select.julias_status', 'Home') or is_state('input_select.michaels_status', 'Home') %}
+          {% set statuses = expand(label_entities('household_member') | select('match', '^input_select\.') | list) %}
+          {% if statuses | selectattr('state', 'eq', 'Home') | list | count > 0 %}
             Home
-          {% elif is_state('input_select.julias_status', 'Arriving') or is_state('input_select.michaels_status', 'Arriving') %}
+          {% elif statuses | selectattr('state', 'eq', 'Arriving') | list | count > 0 %}
             Arriving
-          {% elif is_state('input_select.julias_status', 'Departing') or is_state('input_select.michaels_status', 'Departing') %}
+          {% elif statuses | selectattr('state', 'eq', 'Departing') | list | count > 0 %}
             Departing
-          {% elif is_state('input_select.julias_status', 'Vacation') and is_state('input_select.michaels_status', 'Vacation') %}
+          {% elif statuses | count > 0 and statuses | selectattr('state', 'eq', 'Vacation') | list | count == statuses | count %}
             Vacation
           {% else %}
             Away
@@ -140,108 +144,160 @@ template:
 ################################################
 
 automation presence:
+  # Membership driven by the 'household_member' label (applied to both a
+  # person's person.* entity and their input_select.*_status entity) rather
+  # than listing each person by name -- adding a new household member only
+  # means creating their person/input_select pair, linking them via the
+  # status_select customize attribute below, and labeling both. No
+  # automation here needs editing.
+  #
+  # A plain state trigger can't take a label (entity_id has to be a literal
+  # list), so this is the same generic state_changed event + label-
+  # membership condition pattern used throughout alarm.yaml.
   - alias: person_arriving
     id: person_arriving
     mode: parallel
     initial_state: true
     trigger:
-      - platform: state
-        entity_id: person.julia
-#        from: 'not_home'
-        to: 'home'
-      - platform: state
-        entity_id: person.michael
-#        from: 'not_home'
-        to: 'home'
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in label_entities('household_member')
+             and trigger.event.data.entity_id is match('^person\.')
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'home'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'home') }}
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: "{{ state_attr(trigger.entity_id, 'status_select') }}"
+          entity_id: "{{ state_attr(trigger.event.data.entity_id, 'status_select') }}"
           option: >-
-            {% if is_state(state_attr(trigger.entity_id, 'status_select'), 'Departing') %}
+            {% if is_state(state_attr(trigger.event.data.entity_id, 'status_select'), 'Departing') %}
               Home
             {% else %}
               Arriving
             {% endif %}
- 
+
+  # No 'for: minutes: 10' equivalent on a generic event trigger, and a plain
+  # delay + recheck isn't equivalent either -- it only looks at the state at
+  # the two endpoints, not whether it held continuously in between, so it'd
+  # wrongly fire if the status left 'Arriving' and came back before the
+  # window elapsed. wait_for_trigger + continue_on_timeout is the real
+  # equivalent: it waits for *any* change to this entity, so a genuine
+  # timeout (wait.trigger is none) proves nothing interrupted it, while an
+  # early trigger proves it didn't hold continuously and this should abort.
+  # Same pattern as the vacation-occupancy abort logic elsewhere in this repo.
   - alias: person_home
     id: person_home
     mode: parallel
     initial_state: true
     trigger:
-      - platform: state
-        entity_id: input_select.julias_status
-        to: 'Arriving'
-        for:
-          minutes: 10
-      - platform: state
-        entity_id: input_select.michaels_status
-        to: 'Arriving'
-        for:
-          minutes: 10
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in label_entities('household_member')
+             and trigger.event.data.entity_id is match('^input_select\.')
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'Arriving'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'Arriving') }}
     action:
+      - wait_for_trigger:
+          - platform: state
+            entity_id: "{{ trigger.event.data.entity_id }}"
+        timeout:
+          minutes: 10
+        continue_on_timeout: true
+      - condition: template
+        value_template: "{{ wait.trigger is none }}"
       - service: input_select.select_option
         data_template:
-          entity_id: '{{ trigger.entity_id }}'
+          entity_id: "{{ trigger.event.data.entity_id }}"
           option: 'Home'
- 
+
   - alias: person_departing
     id: person_departing
     mode: parallel
     initial_state: true
     trigger:
-      - platform: state
-        entity_id: person.julia
-        from: 'home'
-#        to: 'not_home'
-      - platform: state
-        entity_id: person.michael
-        from: 'home'
-#        to: 'not_home'
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in label_entities('household_member')
+             and trigger.event.data.entity_id is match('^person\.')
+             and trigger.event.data.old_state is not none
+             and trigger.event.data.old_state.state == 'home'
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state != 'home' }}
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: "{{ state_attr(trigger.entity_id, 'status_select') }}"
+          entity_id: "{{ state_attr(trigger.event.data.entity_id, 'status_select') }}"
           option: 'Departing'
- 
+
   - alias: person_away
     id: person_away
     mode: parallel
     initial_state: true
     trigger:
-      - platform: state
-        entity_id: input_select.julias_status
-        to: 'Departing'
-        for:
-          minutes: 10
-      - platform: state
-        entity_id: input_select.michaels_status
-        to: 'Departing'
-        for:
-          minutes: 10
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in label_entities('household_member')
+             and trigger.event.data.entity_id is match('^input_select\.')
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'Departing'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'Departing') }}
     action:
+      - wait_for_trigger:
+          - platform: state
+            entity_id: "{{ trigger.event.data.entity_id }}"
+        timeout:
+          minutes: 10
+        continue_on_timeout: true
+      - condition: template
+        value_template: "{{ wait.trigger is none }}"
       - service: input_select.select_option
         data_template:
-          entity_id: '{{ trigger.entity_id }}'
+          entity_id: "{{ trigger.event.data.entity_id }}"
           option: 'Away'
- 
+
   - alias: person_vacation
     id: person_vacation
     mode: parallel
     initial_state: true
     trigger:
-      - platform: state
-        entity_id: input_select.julias_status
-        to: 'Away'
-        for:
-          hours: 24
-      - platform: state
-        entity_id: input_select.michaels_status
-        to: 'Away'
-        for:
-          hours: 24
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in label_entities('household_member')
+             and trigger.event.data.entity_id is match('^input_select\.')
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'Away'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'Away') }}
     action:
+      - wait_for_trigger:
+          - platform: state
+            entity_id: "{{ trigger.event.data.entity_id }}"
+        timeout:
+          hours: 24
+        continue_on_timeout: true
+      - condition: template
+        value_template: "{{ wait.trigger is none }}"
       - service: input_select.select_option
         data_template:
-          entity_id: '{{ trigger.entity_id }}'
+          entity_id: "{{ trigger.event.data.entity_id }}"
           option: 'Vacation'

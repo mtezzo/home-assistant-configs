@@ -50,6 +50,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Trigger Alarm on Exterior Door (Away or Night)"
 
+    automation.alarm_triggered_notification:
+      <<: *customize
+      friendly_name: "Send Notification on Alarm Trigger"
+      icon: mdi:message-text
+
     automation.trigger_notification_on_sensor_tamper:
       <<: *customize
       friendly_name: "Send Notification on Tamper"
@@ -88,6 +93,30 @@ homeassistant:
       <<: *customize
       friendly_name: "Life Safety Alert Active"
       icon: mdi:fire-alert
+
+    ################################################
+    ## Input Text
+    ################################################
+
+    input_text.last_alarm_trigger_source:
+      <<: *customize
+      friendly_name: "Last Alarm Trigger Source"
+      icon: mdi:message-alert
+
+################################################
+## Input Text
+################################################
+
+# Hand-off between the trigger_alarm_on_* automations (which fire the
+# instant a door/sensor trips, starting the alarm panel's own pending/entry
+# delay) and alarm_triggered_notification (which waits for the panel to
+# actually reach 'triggered' before notifying -- see that automation's
+# comment for why). Set at trigger time so the eventual notification can
+# still name the specific entity/area that caused it, even though the
+# notification itself fires later and decoupled from the trigger event.
+input_text:
+  last_alarm_trigger_source:
+    max: 255
 
 ################################################
 ## Binary Sensor
@@ -183,11 +212,7 @@ automation alarm:
   # Rewritten from an aggregate "is anything in this label currently
   # open/on" trigger to a generic state_changed event trigger + label
   # membership condition -- the aggregate version could only tell you the
-  # count crossed zero, never *which* entity did it, so the notification
-  # (previously a separate alarm_triggered_notification automation, now
-  # folded directly into this one and trigger_alarm_on_binary_sensor below)
-  # had to list everything currently active across every alarm-relevant
-  # label instead of naming the one thing that actually caused it.
+  # count crossed zero, never *which* entity did it.
   #
   # Mixes domains (cover.garage_door + binary_sensor.back_door_open) on
   # purpose -- they're one logical concept (exterior entry point) feeding
@@ -200,6 +225,20 @@ automation alarm:
   # state_changed event (e.g. right after HA restart); without that OR
   # clause, old_state.state would error on that first event instead of
   # just treating it as a genuine open/closed transition.
+  #
+  # 'Arriving' guard: input_select.*_status sits in 'Arriving' for up to 10
+  # minutes right after a person's device_tracker reports 'home' (see
+  # presence.yaml) -- a much narrower window than "is anyone home", which
+  # would also be true for sleeping residents during a real break-in and
+  # defeat the point. This specifically fixes the armed_night case: arriving
+  # home late doesn't disarm/rearm anything (the house deliberately stays
+  # armed_night all night), and sensor.household's own 'Home'-takes-priority
+  # template means it never even reflects the arrival if the other person is
+  # already home asleep -- so this checks the 'household_member' label
+  # (filtered to input_select.*_status) directly rather than that aggregate,
+  # same reasoning presence.yaml's automations use. Checked here (not just
+  # at notification time) so a recognized arrival doesn't start the alarm
+  # panel's pending countdown at all, not even silently.
   - alias: trigger_alarm_on_exterior_door
     id: trigger_alarm_on_exterior_door
     mode: parallel
@@ -222,28 +261,28 @@ automation alarm:
           - condition: state
             entity_id: alarm_control_panel.alarm_system
             state: 'armed_night'
+      - condition: template
+        value_template: >
+          {{ expand(label_entities('household_member') | select('match', '^input_select\.') | list)
+             | selectattr('state', 'eq', 'Arriving') | list | count == 0 }}
     action:
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.last_alarm_trigger_source
+        data:
+          value: >
+            {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.alarm_system
         data:
           code: !secret alarm_code
-      - service: notify.everyone
-        data_template:
-          data:
-            title: Alarm Triggered
-          message: &exterior_door_alarm_message >
-            Alarm triggered: {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
-      - service: notify.persistent_notification
-        data_template:
-          title: Alarm Triggered
-          message: *exterior_door_alarm_message
-          data:
-            notification_id: alarm_triggered
 
   # Same restructuring as trigger_alarm_on_exterior_door above, for interior
   # doors, occupancy, and motion -- all of which only matter while
   # armed_away (exterior doors additionally count while armed_night, which
   # is why that one stayed a separate automation rather than merging here).
+  # Same 'Arriving' guard too -- see the comment on that automation for why
+  # the 'household_member' label is checked rather than sensor.household.
   - alias: trigger_alarm_on_binary_sensor
     id: trigger_alarm_on_binary_sensor
     mode: parallel
@@ -262,21 +301,53 @@ automation alarm:
       - condition: state
         entity_id: alarm_control_panel.alarm_system
         state: 'armed_away'
+      - condition: template
+        value_template: >
+          {{ expand(label_entities('household_member') | select('match', '^input_select\.') | list)
+             | selectattr('state', 'eq', 'Arriving') | list | count == 0 }}
     action:
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.last_alarm_trigger_source
+        data:
+          value: >
+            {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.alarm_system
         data:
           code: !secret alarm_code
+
+  # Deliberately separate from the trigger_alarm_on_* automations above, and
+  # deliberately watching the alarm panel's own 'triggered' state rather than
+  # notifying synchronously at trigger time. The 'manual' alarm_control_panel
+  # platform already has a real entry delay built in (delay_time: 45 for
+  # armed_away) -- trigger_alarm_on_exterior_door arms it into 'pending', and
+  # it only actually becomes 'triggered' if nobody disarms within that
+  # window. Notifying immediately at trigger time (the old design) meant a
+  # push/persistent notification fired even when the pending window was
+  # about to resolve into a normal disarm -- e.g. arriving home, opening the
+  # garage while still armed_away, and disarming moments later via the app:
+  # the alarm panel handled that correctly and never really "triggered", but
+  # the notification had already gone out regardless. Waiting for the real
+  # 'triggered' transition means a legitimate disarm within the delay window
+  # means no notification at all, matching what actually happened.
+  - alias: alarm_triggered_notification
+    id: alarm_triggered_notification
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.alarm_system
+        to: 'triggered'
+    action:
       - service: notify.everyone
         data_template:
           data:
             title: Alarm Triggered
-          message: &binary_sensor_alarm_message >
-            Alarm triggered: {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
+          message: &alarm_triggered_message >
+            Alarm triggered: {{ states('input_text.last_alarm_trigger_source') }}
       - service: notify.persistent_notification
         data_template:
           title: Alarm Triggered
-          message: *binary_sensor_alarm_message
+          message: *alarm_triggered_message
           data:
             notification_id: alarm_triggered
 
