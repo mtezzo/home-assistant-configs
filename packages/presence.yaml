@@ -185,11 +185,17 @@ automation presence:
   # delay + recheck isn't equivalent either -- it only looks at the state at
   # the two endpoints, not whether it held continuously in between, so it'd
   # wrongly fire if the status left 'Arriving' and came back before the
-  # window elapsed. wait_for_trigger + continue_on_timeout is the real
-  # equivalent: it waits for *any* change to this entity, so a genuine
-  # timeout (wait.trigger is none) proves nothing interrupted it, while an
-  # early trigger proves it didn't hold continuously and this should abort.
-  # Same pattern as the vacation-occupancy abort logic elsewhere in this repo.
+  # window elapsed.
+  #
+  # wait_for_trigger can't help here either -- its nested trigger's entity_id
+  # is validated at config-setup time, same as a top-level state trigger, so
+  # a template there ("Entity ... is neither a valid entity ID nor a valid
+  # UUID... Got None") fails before the automation ever runs. wait_template
+  # doesn't have that restriction (it's a plain template, not a trigger
+  # config) and gives the same continuously-held semantics: it re-evaluates
+  # reactively as the entity changes, so a genuine timeout (wait.completed
+  # is false) proves the state never left 'Arriving' the whole time, while
+  # completing early proves it did and this should abort.
   - alias: person_home
     id: person_home
     mode: parallel
@@ -207,14 +213,12 @@ automation presence:
              and (trigger.event.data.old_state is none
                   or trigger.event.data.old_state.state != 'Arriving') }}
     action:
-      - wait_for_trigger:
-          - platform: state
-            entity_id: "{{ trigger.event.data.entity_id }}"
+      - wait_template: "{{ not is_state(trigger.event.data.entity_id, 'Arriving') }}"
         timeout:
           minutes: 10
         continue_on_timeout: true
       - condition: template
-        value_template: "{{ wait.trigger is none }}"
+        value_template: "{{ not wait.completed }}"
       - service: input_select.select_option
         data_template:
           entity_id: "{{ trigger.event.data.entity_id }}"
@@ -259,14 +263,12 @@ automation presence:
              and (trigger.event.data.old_state is none
                   or trigger.event.data.old_state.state != 'Departing') }}
     action:
-      - wait_for_trigger:
-          - platform: state
-            entity_id: "{{ trigger.event.data.entity_id }}"
+      - wait_template: "{{ not is_state(trigger.event.data.entity_id, 'Departing') }}"
         timeout:
           minutes: 10
         continue_on_timeout: true
       - condition: template
-        value_template: "{{ wait.trigger is none }}"
+        value_template: "{{ not wait.completed }}"
       - service: input_select.select_option
         data_template:
           entity_id: "{{ trigger.event.data.entity_id }}"
@@ -289,14 +291,12 @@ automation presence:
              and (trigger.event.data.old_state is none
                   or trigger.event.data.old_state.state != 'Away') }}
     action:
-      - wait_for_trigger:
-          - platform: state
-            entity_id: "{{ trigger.event.data.entity_id }}"
+      - wait_template: "{{ not is_state(trigger.event.data.entity_id, 'Away') }}"
         timeout:
           hours: 24
         continue_on_timeout: true
       - condition: template
-        value_template: "{{ wait.trigger is none }}"
+        value_template: "{{ not wait.completed }}"
       - service: input_select.select_option
         data_template:
           entity_id: "{{ trigger.event.data.entity_id }}"
