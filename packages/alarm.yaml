@@ -50,6 +50,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Trigger Alarm on Exterior Door (Away or Night)"
 
+    automation.night_alarm_resolve_on_arrival:
+      <<: *customize
+      friendly_name: "Resolve Night Alarm on Late Arrival"
+      icon: mdi:shield-check
+
     automation.alarm_triggered_notification:
       <<: *customize
       friendly_name: "Send Notification on Alarm Trigger"
@@ -103,6 +108,11 @@ homeassistant:
       friendly_name: "Last Alarm Trigger Source"
       icon: mdi:message-alert
 
+    input_text.last_alarm_armed_mode:
+      <<: *customize
+      friendly_name: "Last Alarm Armed Mode"
+      icon: mdi:shield-lock
+
 ################################################
 ## Input Text
 ################################################
@@ -114,9 +124,16 @@ homeassistant:
 # comment for why). Set at trigger time so the eventual notification can
 # still name the specific entity/area that caused it, even though the
 # notification itself fires later and decoupled from the trigger event.
+#
+# last_alarm_armed_mode is a similar hand-off, to night_alarm_resolve_on_arrival
+# -- it needs to know the pending state came from armed_night specifically
+# (not armed_away, which already resolves correctly via auto_home) before
+# it's safe to re-arm to armed_night on a recognized late arrival.
 input_text:
   last_alarm_trigger_source:
     max: 255
+  last_alarm_armed_mode:
+    max: 32
 
 ################################################
 ## Binary Sensor
@@ -146,8 +163,18 @@ alarm_control_panel:
       arming_time: 0
       delay_time: 0
     armed_night:
+      # arming_time stays 0 -- that one governs the exit delay when arming
+      # UP (the nightstand triple-click routine depends on this being
+      # instant so lights turn off right away), unaffected by delay_time
+      # below, which only governs the entry delay after something trips the
+      # alarm while already armed. See night_alarm_resolve_on_arrival for
+      # why this needed a real delay: confirmed empirically that a phone's
+      # background location update can lag the physical garage door opening
+      # by 20-30+ seconds regardless of GPS zone radius, so an instant
+      # trigger with zero delay gave a legitimate late arrival no window to
+      # be recognized at all.
       arming_time: 0
-      delay_time: 0
+      delay_time: 45
     armed_vacation:
       arming_time: 0
       delay_time: 0
@@ -272,7 +299,61 @@ automation alarm:
         data:
           value: >
             {{ trigger.event.data.new_state.name }}{{ ' (' + area_name(trigger.event.data.entity_id) + ')' if area_name(trigger.event.data.entity_id) else '' }}
+      # Captured before alarm_trigger changes the state, so
+      # night_alarm_resolve_on_arrival knows the pending it's looking at
+      # came from armed_night specifically (this is the only automation
+      # that can trigger while armed_night, so armed_away never needs this).
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.last_alarm_armed_mode
+        data:
+          value: "{{ states('alarm_control_panel.alarm_system') }}"
       - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.alarm_system
+        data:
+          code: !secret alarm_code
+
+  # Complements the 'Arriving' pre-check on trigger_alarm_on_exterior_door
+  # above -- that check is a fast path for when presence detection has
+  # already caught up by the moment the door opens, but real-world testing
+  # showed the phone's location can lag the physical door-opening by 20-30+
+  # seconds, confirmed independent of GPS zone radius (the phone was already
+  # ~100ft inside even the old 65m zone when the door opened, yet didn't
+  # report an update until 26s later -- an iOS background-location-throttling
+  # issue, not a detection-range one). armed_night's delay_time exists
+  # specifically to give that lagging update a real window to land in.
+  #
+  # Re-arms to armed_night specifically (not armed_home) if 'Arriving' shows
+  # up during that window -- same mode before and after, just a brief
+  # 'pending' blip in between, so nothing that assumes the house stays in
+  # night mode all night is disturbed. Gated on last_alarm_armed_mode being
+  # 'armed_night' so this doesn't interfere with an armed_away-triggered
+  # pending, which already resolves correctly via auto_home (house_mode.yaml)
+  # arming to armed_home instead. If nobody arrives within delay_time, the
+  # panel proceeds to real 'triggered' exactly as it does today.
+  - alias: night_alarm_resolve_on_arrival
+    id: night_alarm_resolve_on_arrival
+    mode: parallel
+    trigger:
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.event.data.entity_id in
+               (label_entities('household_member') | select('match', '^input_select\.') | list)
+             and trigger.event.data.new_state is not none
+             and trigger.event.data.new_state.state == 'Arriving'
+             and (trigger.event.data.old_state is none
+                  or trigger.event.data.old_state.state != 'Arriving') }}
+      - condition: state
+        entity_id: alarm_control_panel.alarm_system
+        state: 'pending'
+      - condition: state
+        entity_id: input_text.last_alarm_armed_mode
+        state: 'armed_night'
+    action:
+      - service: alarm_control_panel.alarm_arm_night
         entity_id: alarm_control_panel.alarm_system
         data:
           code: !secret alarm_code

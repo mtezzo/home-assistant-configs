@@ -101,6 +101,7 @@ cards:
         entities:
           - automation.trigger_alarm_on_exterior_door
           - automation.trigger_alarm_on_binary_sensor
+          - automation.night_alarm_resolve_on_arrival
           - automation.guest_mode_disarm
           - automation.guest_mode_restore
           - automation.guest_mode_auto_disable
