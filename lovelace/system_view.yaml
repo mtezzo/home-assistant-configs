@@ -52,7 +52,6 @@ cards:
           - automation.basement_radon_led_toggle_effect
           - automation.vacation_occupancy_evening_on
           - automation.vacation_occupancy_night_routine
-          - automation.life_safety_led_indicator
         uix:
           class: middle-right
 
@@ -82,15 +81,8 @@ cards:
         show_header_toggle: false
         entities:
           - automation.startup_notification
-          - automation.alarm_triggered_notification
           - automation.update_notification
-          - automation.trigger_notification_on_sensor_tamper
-          - automation.trigger_notification_on_smoke
-          - automation.trigger_notification_on_co
-          - automation.trigger_notification_on_water_leak
           - automation.trigger_notification_on_garage_door_open
-          - automation.basement_radon_high_notification
-          - automation.device_overheat_notification
           - automation.device_temperature_warning
         uix:
           class: middle-right
@@ -107,16 +99,6 @@ cards:
           - automation.guest_mode_auto_disable
         uix:
           class: middle-right
-
-      - type: entities
-        title: Manual Controls
-        show_header_toggle: false
-        entities:
-          - automation.nightstand_switches
-          - automation.garage_switch
-          - automation.manual_night
-        uix:
-          class: footer-right
 
   - type: vertical-stack
     cards:

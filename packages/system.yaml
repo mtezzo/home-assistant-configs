@@ -34,6 +34,11 @@ homeassistant:
       friendly_name: "Update Notification"
       icon: mdi:message-text
 
+    automation.critical_automation_watchdog:
+      <<: *customize
+      friendly_name: "Critical Automation Watchdog"
+      icon: mdi:shield-alert
+
     ################################################
     ## Sensor
     ################################################
@@ -86,6 +91,72 @@ automation system:
           data:
             title: Update Available
           message: "Home Assistant {{ state_attr('update.home_assistant_core_update', 'latest_version') }} is available."
+
+  # A hardcoded (not label-driven) list on purpose -- this is a deliberately
+  # curated set of automations that should never be off, not a category that
+  # grows/shrinks with entities the way sensors do. These are exactly the
+  # ones pulled off the System dashboard's toggle lists for being too easy
+  # to disable by accident (see system_view.yaml) -- this is the safety net
+  # for noticing if one gets disabled anyway, by any means (a stray tap
+  # before they were removed from the dashboard, Settings > Automations
+  # directly, a bug during YAML development, etc).
+  #
+  # Three triggers: the state trigger catches it within moments of it
+  # happening; the hourly sweep is a backstop in case that's ever missed;
+  # the startup check catches anything that was already off before HA last
+  # restarted. notify.persistent_notification uses a fixed notification_id,
+  # so repeated hourly firings update the same notification rather than
+  # piling up duplicates -- deliberately no push notification here, since an
+  # hourly repeat of that would just be noise; the persistent notification
+  # alone is enough to catch it next time the dashboard's opened.
+  - alias: critical_automation_watchdog
+    id: critical_automation_watchdog
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id:
+          - automation.trigger_notification_on_smoke
+          - automation.trigger_notification_on_co
+          - automation.trigger_notification_on_water_leak
+          - automation.trigger_notification_on_sensor_tamper
+          - automation.basement_radon_high_notification
+          - automation.device_overheat_notification
+          - automation.alarm_triggered_notification
+          - automation.life_safety_led_indicator
+        to: 'off'
+      - platform: time_pattern
+        hours: '/1'
+      - platform: homeassistant
+        event: start
+    variables:
+      critical_automations:
+        - automation.trigger_notification_on_smoke
+        - automation.trigger_notification_on_co
+        - automation.trigger_notification_on_water_leak
+        - automation.trigger_notification_on_sensor_tamper
+        - automation.basement_radon_high_notification
+        - automation.device_overheat_notification
+        - automation.alarm_triggered_notification
+        - automation.life_safety_led_indicator
+      disabled_names: >
+        {% set ns = namespace(off=[]) %}
+        {% for e in critical_automations %}
+          {% if not is_state(e, 'on') %}
+            {% set ns.off = ns.off + [state_attr(e, 'friendly_name') or e] %}
+          {% endif %}
+        {% endfor %}
+        {{ ns.off | join(', ') }}
+    condition:
+      - condition: template
+        value_template: "{{ disabled_names != '' }}"
+    action:
+      - service: notify.persistent_notification
+        data_template:
+          title: Critical Automation Disabled
+          message: >
+            These safety-critical automations are currently off and should be re-enabled: {{ disabled_names }}
+          data:
+            notification_id: critical_automation_watchdog
 
 ################################################
 ## Sensor
