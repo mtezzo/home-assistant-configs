@@ -98,7 +98,7 @@ cards:
           - automation.guest_mode_restore
           - automation.guest_mode_auto_disable
         uix:
-          class: middle-right
+          class: footer-right
 
   - type: vertical-stack
     cards:
