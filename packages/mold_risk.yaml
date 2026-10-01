@@ -1,0 +1,212 @@
+################################################################
+## Packages / Mold Risk
+##
+## Derives a per-floor mold risk tier from the existing mean temperature/
+## humidity sensors (life_support_view.yaml) -- two independent signals,
+## either of which indicates real risk: sustained high relative humidity
+## (EPA/building-science guidance treats >60% as elevated, >70% as high),
+## or a small dew-point margin (room temperature close to the dew point --
+## the more precise predictor of actual condensation forming on a cold
+## surface, e.g. a basement wall, even at moderate bulk humidity).
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    package.node_anchors:
+      customize: &customize
+        package: 'mold_risk'
+
+    sensor.upstairs_dew_point:
+      <<: *customize
+      friendly_name: "Upstairs Dew Point"
+      icon: mdi:water-thermometer
+
+    sensor.main_floor_dew_point:
+      <<: *customize
+      friendly_name: "Main Floor Dew Point"
+      icon: mdi:water-thermometer
+
+    sensor.basement_dew_point:
+      <<: *customize
+      friendly_name: "Basement Dew Point"
+      icon: mdi:water-thermometer
+
+    sensor.upstairs_mold_risk:
+      <<: *customize
+      friendly_name: "Upstairs Mold Risk"
+      icon: mdi:mold
+
+    sensor.main_floor_mold_risk:
+      <<: *customize
+      friendly_name: "Main Floor Mold Risk"
+      icon: mdi:mold
+
+    sensor.basement_mold_risk:
+      <<: *customize
+      friendly_name: "Basement Mold Risk"
+      icon: mdi:mold
+
+    automation.mold_risk_notification:
+      <<: *customize
+      friendly_name: "Send Notification on Mold Risk"
+      icon: mdi:mold
+
+################################################
+## Sensor
+################################################
+
+template:
+  - sensor:
+    # Magnus-Tetens approximation. Sensors here are Fahrenheit, the formula
+    # is defined in Celsius, so convert in and back out. RH is floored at 1%
+    # before the log to avoid a math domain error if a sensor ever glitches
+    # to 0/negative.
+    - default_entity_id: sensor.upstairs_dew_point
+      unit_of_measurement: '°F'
+      state: >
+        {% set t = states('sensor.master_bedroom_dresser_motion_sensor_air_temperature') %}
+        {% set rh = states('sensor.master_bedroom_dresser_motion_sensor_humidity') %}
+        {% if t in ['unknown', 'unavailable', 'none'] or rh in ['unknown', 'unavailable', 'none'] %}
+          unavailable
+        {% else %}
+          {% set t_c = (t | float - 32) * 5 / 9 %}
+          {% set rh_f = [rh | float, 1] | max %}
+          {% set alpha = (rh_f / 100) | log + (17.62 * t_c) / (243.12 + t_c) %}
+          {% set dew_c = (243.12 * alpha) / (17.62 - alpha) %}
+          {{ (dew_c * 9 / 5 + 32) | round(1) }}
+        {% endif %}
+
+    - default_entity_id: sensor.main_floor_dew_point
+      unit_of_measurement: '°F'
+      state: >
+        {% set t = states('sensor.mean_main_floor_temperature') %}
+        {% set rh = states('sensor.mean_main_floor_humidity') %}
+        {% if t in ['unknown', 'unavailable', 'none'] or rh in ['unknown', 'unavailable', 'none'] %}
+          unavailable
+        {% else %}
+          {% set t_c = (t | float - 32) * 5 / 9 %}
+          {% set rh_f = [rh | float, 1] | max %}
+          {% set alpha = (rh_f / 100) | log + (17.62 * t_c) / (243.12 + t_c) %}
+          {% set dew_c = (243.12 * alpha) / (17.62 - alpha) %}
+          {{ (dew_c * 9 / 5 + 32) | round(1) }}
+        {% endif %}
+
+    - default_entity_id: sensor.basement_dew_point
+      unit_of_measurement: '°F'
+      state: >
+        {% set t = states('sensor.mean_basement_temperature') %}
+        {% set rh = states('sensor.mean_basement_humidity') %}
+        {% if t in ['unknown', 'unavailable', 'none'] or rh in ['unknown', 'unavailable', 'none'] %}
+          unavailable
+        {% else %}
+          {% set t_c = (t | float - 32) * 5 / 9 %}
+          {% set rh_f = [rh | float, 1] | max %}
+          {% set alpha = (rh_f / 100) | log + (17.62 * t_c) / (243.12 + t_c) %}
+          {% set dew_c = (243.12 * alpha) / (17.62 - alpha) %}
+          {{ (dew_c * 9 / 5 + 32) | round(1) }}
+        {% endif %}
+
+    # 'action' if RH >= 70% OR temp is within 3F of the dew point (real
+    # condensation risk regardless of bulk RH); 'watch' if RH >= 60%;
+    # otherwise 'normal'. Kept as its own sensor (rather than thresholding
+    # inline in the automation) for the same reason as
+    # sensor.basement_radon_led_tier -- so the notification automation's
+    # trigger only fires on a tier change, and so 'for: hours: 4' in that
+    # automation can gate on sustained risk rather than instantaneous spikes.
+    - default_entity_id: sensor.upstairs_mold_risk
+      state: >
+        {% set t = states('sensor.master_bedroom_dresser_motion_sensor_air_temperature') %}
+        {% set rh = states('sensor.master_bedroom_dresser_motion_sensor_humidity') %}
+        {% set dp = states('sensor.upstairs_dew_point') %}
+        {% if t in ['unknown', 'unavailable', 'none'] or rh in ['unknown', 'unavailable', 'none'] or dp in ['unknown', 'unavailable', 'none'] %}
+          unavailable
+        {% elif rh | float >= 70 or (t | float - dp | float) <= 3 %}
+          action
+        {% elif rh | float >= 60 %}
+          watch
+        {% else %}
+          normal
+        {% endif %}
+
+    - default_entity_id: sensor.main_floor_mold_risk
+      state: >
+        {% set t = states('sensor.mean_main_floor_temperature') %}
+        {% set rh = states('sensor.mean_main_floor_humidity') %}
+        {% set dp = states('sensor.main_floor_dew_point') %}
+        {% if t in ['unknown', 'unavailable', 'none'] or rh in ['unknown', 'unavailable', 'none'] or dp in ['unknown', 'unavailable', 'none'] %}
+          unavailable
+        {% elif rh | float >= 70 or (t | float - dp | float) <= 3 %}
+          action
+        {% elif rh | float >= 60 %}
+          watch
+        {% else %}
+          normal
+        {% endif %}
+
+    - default_entity_id: sensor.basement_mold_risk
+      state: >
+        {% set t = states('sensor.mean_basement_temperature') %}
+        {% set rh = states('sensor.mean_basement_humidity') %}
+        {% set dp = states('sensor.basement_dew_point') %}
+        {% if t in ['unknown', 'unavailable', 'none'] or rh in ['unknown', 'unavailable', 'none'] or dp in ['unknown', 'unavailable', 'none'] %}
+          unavailable
+        {% elif rh | float >= 70 or (t | float - dp | float) <= 3 %}
+          action
+        {% elif rh | float >= 60 %}
+          watch
+        {% else %}
+          normal
+        {% endif %}
+
+################################################
+## Automation
+################################################
+
+automation mold_risk:
+  - alias: mold_risk_notification
+    id: mold_risk_notification
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: sensor.upstairs_mold_risk
+        to: ['watch', 'action']
+        for:
+          hours: 4
+        id: upstairs
+      - platform: state
+        entity_id: sensor.main_floor_mold_risk
+        to: ['watch', 'action']
+        for:
+          hours: 4
+        id: main_floor
+      - platform: state
+        entity_id: sensor.basement_mold_risk
+        to: ['watch', 'action']
+        for:
+          hours: 4
+        id: basement
+    variables:
+      floor_name: >
+        {{ {'upstairs': 'Upstairs', 'main_floor': 'Main Floor', 'basement': 'Basement'}[trigger.id] }}
+      humidity_entity: >
+        {{ {'upstairs': 'sensor.master_bedroom_dresser_motion_sensor_humidity', 'main_floor': 'sensor.mean_main_floor_humidity', 'basement': 'sensor.mean_basement_humidity'}[trigger.id] }}
+      tier: "{{ trigger.to_state.state }}"
+    action:
+      - service: notify.everyone
+        data_template:
+          data:
+            title: >
+              {{ 'High Mold Risk' if tier == 'action' else 'Mold Risk' }}
+          message: &mold_risk_message >
+            {{ floor_name }} humidity has been {{ 'critically high' if tier == 'action' else 'elevated' }} for 4+ hours ({{ states(humidity_entity) }}% RH). Consider running a dehumidifier.
+      - service: notify.persistent_notification
+        data_template:
+          title: >
+            {{ 'High Mold Risk' if tier == 'action' else 'Mold Risk' }}
+          message: *mold_risk_message
+          data:
+            notification_id: "mold_risk_{{ trigger.id }}"

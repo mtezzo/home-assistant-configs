@@ -123,6 +123,7 @@ automation system:
           - automation.device_overheat_notification
           - automation.alarm_triggered_notification
           - automation.life_safety_led_indicator
+          - automation.mold_risk_notification
         to: 'off'
       - platform: time_pattern
         hours: '/1'
@@ -138,6 +139,7 @@ automation system:
         - automation.device_overheat_notification
         - automation.alarm_triggered_notification
         - automation.life_safety_led_indicator
+        - automation.mold_risk_notification
       disabled_names: >
         {% set ns = namespace(off=[]) %}
         {% for e in critical_automations %}

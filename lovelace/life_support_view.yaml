@@ -110,6 +110,69 @@ cards:
         uix:
           class: middle-right
 
+      - type: horizontal-stack
+        cards:
+          - type: button
+            name: 'Upstairs Mold'
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
+            entity: sensor.upstairs_mold_risk
+            uix:
+              class: button-lozenge-right
+              style: |
+                ha-card {
+                  {% if is_state('sensor.upstairs_mold_risk', 'normal') -%}
+                  background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- elif is_state('sensor.upstairs_mold_risk', 'watch') -%}
+                  background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- else -%}
+                  background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- endif %}
+                }
+          - type: button
+            name: 'Main Floor Mold'
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
+            entity: sensor.main_floor_mold_risk
+            uix:
+              class: button-lozenge-right
+              style: |
+                ha-card {
+                  {% if is_state('sensor.main_floor_mold_risk', 'normal') -%}
+                  background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- elif is_state('sensor.main_floor_mold_risk', 'watch') -%}
+                  background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- else -%}
+                  background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- endif %}
+                }
+          - type: button
+            name: 'Basement Mold'
+            show_name: true
+            show_icon: true
+            show_state: true
+            tap_action:
+              action: more-info
+            entity: sensor.basement_mold_risk
+            uix:
+              class: button-lozenge-right
+              style: |
+                ha-card {
+                  {% if is_state('sensor.basement_mold_risk', 'normal') -%}
+                  background: var(--success-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- elif is_state('sensor.basement_mold_risk', 'watch') -%}
+                  background: var(--warning-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- else -%}
+                  background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
+                  {%- endif %}
+                }
+
       - type: thermostat
         entity: climate.cat_houses
         uix:
