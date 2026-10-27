@@ -62,53 +62,6 @@ cards:
                   background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
                   {%- endif %}
                 }
-      - type: markdown
-        content: "# Life Support"
-        uix:
-          class: header-right
-
-      - type: thermostat
-        entity: climate.dining_room
-        uix:
-          class: middle-right
-
-      - type: statistics-graph
-        title: 'Temperature'
-        chart_type: line
-        days_to_show: 1
-        stat_types:
-          - mean
-        period: hour
-        entities:
-          - entity: sensor.wood_valley_haslett_sensors_temperature
-            name: Outside
-          - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
-            name: Upstairs
-          - entity: sensor.mean_main_floor_temperature
-            name: Main Floor
-          - entity: sensor.mean_basement_temperature
-            name: Basement
-        uix:
-          class: middle-right
-
-      - type: statistics-graph
-        title: 'Humidity'
-        chart_type: line
-        days_to_show: 1
-        stat_types:
-          - mean
-        period: hour
-        entities:
-          - entity: sensor.wood_valley_haslett_sensors_humidity
-            name: Outside
-          - entity: sensor.master_bedroom_dresser_motion_sensor_humidity
-            name: Upstairs
-          - entity: sensor.mean_main_floor_humidity
-            name: Main Floor
-          - entity: sensor.mean_basement_humidity
-            name: Basement
-        uix:
-          class: middle-right
 
       - type: horizontal-stack
         cards:
@@ -172,6 +125,54 @@ cards:
                   background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
                   {%- endif %}
                 }
+
+      - type: markdown
+        content: "# Life Support"
+        uix:
+          class: header-right
+
+      - type: thermostat
+        entity: climate.dining_room
+        uix:
+          class: middle-right
+
+      - type: statistics-graph
+        title: 'Temperature'
+        chart_type: line
+        days_to_show: 1
+        stat_types:
+          - mean
+        period: hour
+        entities:
+          - entity: sensor.wood_valley_haslett_sensors_temperature
+            name: Outside
+          - entity: sensor.master_bedroom_dresser_motion_sensor_air_temperature
+            name: Upstairs
+          - entity: sensor.mean_main_floor_temperature
+            name: Main Floor
+          - entity: sensor.mean_basement_temperature
+            name: Basement
+        uix:
+          class: middle-right
+
+      - type: statistics-graph
+        title: 'Humidity'
+        chart_type: line
+        days_to_show: 1
+        stat_types:
+          - mean
+        period: hour
+        entities:
+          - entity: sensor.wood_valley_haslett_sensors_humidity
+            name: Outside
+          - entity: sensor.master_bedroom_dresser_motion_sensor_humidity
+            name: Upstairs
+          - entity: sensor.mean_main_floor_humidity
+            name: Main Floor
+          - entity: sensor.mean_basement_humidity
+            name: Basement
+        uix:
+          class: middle-right
 
       - type: thermostat
         entity: climate.cat_houses
