@@ -85,6 +85,13 @@ cards:
                   background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
                   {%- endif %}
                 }
+                .name {
+                  white-space: normal !important;
+                  overflow: visible !important;
+                  text-overflow: clip !important;
+                  font-size: 0.8em !important;
+                  line-height: 1.1 !important;
+                }
           - type: button
             name: 'Main Floor Mold'
             show_name: true
@@ -105,6 +112,13 @@ cards:
                   background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
                   {%- endif %}
                 }
+                .name {
+                  white-space: normal !important;
+                  overflow: visible !important;
+                  text-overflow: clip !important;
+                  font-size: 0.8em !important;
+                  line-height: 1.1 !important;
+                }
           - type: button
             name: 'Basement Mold'
             show_name: true
@@ -124,6 +138,13 @@ cards:
                   {%- else -%}
                   background: var(--error-color, var(--ha-card-background, var(--card-background-color, white))) !important;
                   {%- endif %}
+                }
+                .name {
+                  white-space: normal !important;
+                  overflow: visible !important;
+                  text-overflow: clip !important;
+                  font-size: 0.8em !important;
+                  line-height: 1.1 !important;
                 }
 
       - type: markdown

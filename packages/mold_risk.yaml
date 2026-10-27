@@ -38,22 +38,22 @@ homeassistant:
     sensor.upstairs_mold_risk:
       <<: *customize
       friendly_name: "Upstairs Mold Risk"
-      icon: mdi:mold
+      icon: mdi:water-percent
 
     sensor.main_floor_mold_risk:
       <<: *customize
       friendly_name: "Main Floor Mold Risk"
-      icon: mdi:mold
+      icon: mdi:water-percent
 
     sensor.basement_mold_risk:
       <<: *customize
       friendly_name: "Basement Mold Risk"
-      icon: mdi:mold
+      icon: mdi:water-percent
 
     automation.mold_risk_notification:
       <<: *customize
       friendly_name: "Send Notification on Mold Risk"
-      icon: mdi:mold
+      icon: mdi:water-percent-alert
 
 ################################################
 ## Sensor
