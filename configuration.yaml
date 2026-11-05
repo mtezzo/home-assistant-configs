@@ -117,25 +117,25 @@ lovelace:
       type: css
     - url: /local/css/tungsten.css?v=20260212-2
       type: css
-    - url: /hacsfiles/bignumber-card/bignumber-card.js
+    - url: /local/community/bignumber-card/bignumber-card.js
       type: module
-    - url: /hacsfiles/banner-card/banner-card.js
+    - url: /local/community/banner-card/banner-card.js
       type: module
-    - url: /hacsfiles/button-card/button-card.js
+    - url: /local/community/button-card/button-card.js
       type: module
-    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+    - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
       type: module
-    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+    - url: /local/community/mini-media-player/mini-media-player-bundle.js
       type: module
-    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+    - url: /local/community/lovelace-auto-entities/auto-entities.js
       type: module
-    - url: /hacsfiles/roku-card/roku-card.js
+    - url: /local/community/roku-card/roku-card.js
       type: module
-    - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+    - url: /local/community/lovelace-slider-entity-row/slider-entity-row.js
       type: module
-    - url: /hacsfiles/weather-card/weather-card.js
+    - url: /local/community/weather-card/weather-card.js
       type: module
-    - url: /hacsfiles/lovelace-html-card/html-card.js
+    - url: /local/community/lovelace-html-card/html-card.js
       type: module
     - url: /local/js/lcars.js
       type: js
